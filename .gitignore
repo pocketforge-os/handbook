@@ -1,0 +1,8 @@
+# mdBook output
+book/
+
+# Editor
+.vscode/
+*.swp
+*~
+.DS_Store
