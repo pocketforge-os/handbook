@@ -15,7 +15,7 @@ electrical harness.
 | Ordinary M3 hex nuts | 42 | 36 populate the sliding/splice nut bars, four join the DUT-holder links, and two join the placard holder; the accepted nuts measure 5.36 mm across flats × 2.30 mm thick |
 | M3 × 12 mm screws | 38 | Socket/button head for general mounts; use two flat-head screws at the placard-holder joint |
 | M3 × 30 mm flat-head screws | 4 | Power-strip blocks; choose the shortest stocked length that fully engages the captive nut without bottoming |
-| M3 wide flat washers | 42 | Spread clamp load on printed parts and park the six service spares |
+| M3 wide flat washers | 42 | Spread clamp load on printed parts and lightly retain the six tagged parked replacements |
 | M5 drop-in T-nuts, screws, washers | 16 sets | Lower holes of the eight stacking-registration tabs |
 | Optional M5 drop-in hardware | Up to 8 sets | Positively locks one chassis to the chassis above it |
 | Power strip wall-mount screws | 4 | Supplied with the selected strip; they drive only into printed ABS blocks |
@@ -29,8 +29,8 @@ electrical harness.
 
 The canonical beds produce:
 
-- 28 short M3 sliding nut bars: 22 use-now mount positions plus six parked
-  replacement bars;
+- 28 identical orange short M3 sliding nut bars: 22 use-now mount positions
+  plus six parked replacements identified by blue tape on their screws;
 - four long double-nut splice bars;
 - two full-wrap upright splice collars;
 - four camera-frame joint plates;
