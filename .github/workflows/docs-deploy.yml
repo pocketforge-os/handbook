@@ -1,0 +1,62 @@
+# PocketForge Handbook — build & deploy (infra-261 Phase A, D5/D6).
+#
+# - On every PR: run `mkdocs build --strict` as a gate (broken nav/link fails).
+# - On push to main: build, then deploy to GitHub Pages via the Actions flow.
+#
+# The build job needs no Pages permissions and never calls the Pages API, so the
+# PR gate stays green even before Pages is enabled in repo settings. Only the
+# push-to-main deploy job touches Pages (configure-pages + deploy-pages).
+
+name: docs-deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege by default; the deploy job elevates what it needs.
+permissions:
+  contents: read
+
+# Serialize deploys; never cancel an in-progress publish.
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: build (mkdocs --strict)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pinned docs toolchain
+        run: pip install -r requirements.txt
+      - name: Build (strict — fails on any broken link or nav warning)
+        run: mkdocs build --strict
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    name: deploy (GitHub Pages)
+    # Publish only from main pushes — never from a PR.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,12 @@
+# PocketForge Handbook — pinned docs toolchain (infra-261 D6, reproducible build).
+#
+# Pin the DIRECT dependencies to exact versions so a fresh checkout + CI build
+# resolve the same tree. Bump deliberately (edit a pin, re-run the local build
+# in docs/contributing/), never float on `latest`.
+#
+# Install:  pip install -r requirements.txt
+# Preview:  mkdocs serve
+# Build:    mkdocs build --strict
+
+mkdocs-material==9.7.7
+pymdown-extensions==11.0.1
