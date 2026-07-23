@@ -13,7 +13,7 @@ Attach the electronics fixture plate to the two camera-frame crossbars. One
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-07-fixture-spacers.png" alt="Exploded electronics fixture plate with four orange keyed spacers between the plate and two camera-frame crossbars">
+    <img src="../../../../assets/generated/test-node-chassis/detail-07-fixture-spacers.png" alt="Exploded translucent electronics fixture plate with four orange keyed spacers and four blue arrows pointing toward two silver camera-frame crossbars">
     <figcaption>Use all four spacers. Each key enters an aluminum groove; each flat face supports one corner of the plate.</figcaption>
   </figure>
   <figure>
@@ -26,10 +26,20 @@ Attach the electronics fixture plate to the two camera-frame crossbars. One
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × electronics fixture plate</strong><small>With the Logitech C270 mount in the standard example</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>4 × 5 mm keyed plate spacers</strong><small>Print Batch 03</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>4 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the four crossbar nut bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × electronics fixture plate</strong><small>With the Logitech C270 mount in the standard example</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × 5 mm keyed plate spacers</strong><small>Print Batch 03</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>4 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the four crossbar nut bars</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange geometry</span><span>The close-up highlights four keyed spacers; the destination highlights the fixture plate. Smaller orange links, collars, and plates are prior work.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrows</span><span>Move each spacer key toward and into the operator-facing crossbar groove.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Ghosted plate</span><span>The translucent plate lets you see all four spacer positions at once.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark components</span><span>The installed electronics and camera stay on the operator-facing side of the plate.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

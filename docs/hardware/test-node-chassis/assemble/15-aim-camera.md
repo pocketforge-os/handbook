@@ -22,9 +22,18 @@ before wiring. The DUT remains unpowered.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>No new hardware</strong><small>Use the installed camera, fixture plate, and DUT holder</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>Ruler or tape measure</strong><small>For the X and Y centerline checks</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>No new hardware</strong><small>Use the installed camera, fixture plate, and DUT holder</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>Ruler or tape measure</strong><small>For the X and Y centerline checks</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--cyan">Blue sight cone</span><span>The wide end must surround the complete DUT; the narrow end begins at the camera lens.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark DUT</span><span>The device face—not the back of its holder—is the camera target.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Ghosted mounts</span><span>The fixture plate and DUT holder are translucent so the lens-to-screen direction remains visible.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

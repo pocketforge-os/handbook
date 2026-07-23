@@ -22,11 +22,21 @@ hang the unplugged strip on its own wall-mount screw heads.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>2 × printed power-strip mounting blocks</strong><small>Print Batch 04</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>4 × M3 × 30 mm flat-head screws</strong><small>Block-to-rail fasteners</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × unplugged power strip and 4 supplied wall screws</strong><small>Keep its mains cord visibly disconnected</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>Drill and root-diameter bit, if required</strong><small>For printed ABS pilot holes only</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × printed power-strip mounting blocks</strong><small>Print Batch 04</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>4 × M3 × 30 mm flat-head screws</strong><small>Block-to-rail fasteners</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--purchased">Purchased</span><span><strong>1 × unplugged power strip and 4 supplied wall screws</strong><small>Keep its mains cord visibly disconnected</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>Drill and root-diameter bit, if required</strong><small>For printed ABS pilot holes only</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>The two printed blocks remain fastened to the lower operator-side rail.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrows</span><span>Move the unplugged strip toward the protruding supplied screw heads.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Ghosted strip</span><span>The translucent rectangle is the power strip; never drill or drive through its enclosure.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rail</span><span>The aluminum rail receives only the M3 block fasteners through preloaded nut bars.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

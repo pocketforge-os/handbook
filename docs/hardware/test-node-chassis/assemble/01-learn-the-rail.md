@@ -22,10 +22,19 @@ once before loading the labeled frame rails.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>1 × short sliding nut bar</strong><small>Print Batch 01 · ordinary M3 nut already seated in its pocket</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>1 × M3 × 12 mm screw and wide washer</strong><small>Use these as a removable handle</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × aluminum offcut or unlabeled rail</strong><small>Practice piece; do not use a labeled frame rail yet</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × short sliding nut bar</strong><small>Print Batch 01 · ordinary M3 nut already seated in its pocket</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>1 × M3 × 12 mm screw and wide washer</strong><small>Use these as a removable handle</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × aluminum offcut or unlabeled rail</strong><small>Practice piece; do not use a labeled frame rail yet</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange bar</span><span>The sliding nut bar goes inside the rail.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>Insert the bar through the open cut end, in the arrow direction.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rail</span><span>This is the aluminum practice piece; the narrow long-face opening is not an entrance.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

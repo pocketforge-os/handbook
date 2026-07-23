@@ -188,6 +188,8 @@ def main() -> int:
             f"Step {step_number} of {step_count}",
             'class="pf-step-layout"',
             'class="pf-part-list"',
+            'class="pf-part-tag ',
+            'class="pf-picture-key"',
             'class="pf-step-check"',
             'class="pf-step-nav"',
         )
@@ -196,6 +198,12 @@ def main() -> int:
                 raise SystemExit(
                     f"assembly step {step_number} is missing {fragment!r}"
                 )
+
+        if step_html.count('class="pf-cue ') < 2:
+            raise SystemExit(
+                f"assembly step {step_number} needs at least two named "
+                "picture cues"
+            )
 
         step_parser = page_references[step_page]
         generated_pngs = [
@@ -254,6 +262,10 @@ def main() -> int:
     guide_text = "\n".join(page.read_text(encoding="utf-8") for page in pages)
     if "build-a-dut" in guide_text.lower():
         raise SystemExit("retired build-a-dut terminology remains in the guide")
+    if 'class="pf-key' in guide_text:
+        raise SystemExit(
+            "legacy unlabeled color swatch remains in the chassis guide"
+        )
 
     print(
         "handbook_surface=pass "

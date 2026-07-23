@@ -22,12 +22,21 @@ camera-frame crossbars. This completes the full inventory of 28.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>2 × completed camera-frame uprights</strong><small>From Step 4</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>2 × 306 mm camera-frame crossbars</strong><small>Lower and upper · tape codes <code>GANTRY-CROSS-L</code> and <code>GANTRY-CROSS-U</code></small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>8 × short use-now sliding nut bars</strong><small>Four for the uprights and four for the crossbars</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>2 × short sliding nut bars to park as spares</strong><small>One in each crossbar</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Handles and spare retainers</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>2 × completed camera-frame uprights</strong><small>From Step 4</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>2 × 306 mm camera-frame crossbars</strong><small>Lower and upper · tape codes <code>GANTRY-CROSS-L</code> and <code>GANTRY-CROSS-U</code></small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × short use-now sliding nut bars</strong><small>Four for the uprights and four for the crossbars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--service">Service</span><span><strong>2 × short sliding nut bars to park as spares</strong><small>One in each crossbar</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Handles and spare retainers</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Eight use-now bars belong in the smaller camera frame: four in its uprights and four in its crossbars.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>One blue-tagged service spare parks in each camera-frame crossbar.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver frame</span><span>The transparent camera frame shows the loaded groove while keeping the hidden bar count visible.</span></li>
+  </ul>
+</div>
 
 ## Load the uprights
 

@@ -23,11 +23,20 @@ service.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × 318 mm depth rails</strong><small>Left lower, left upper, right lower, right upper</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>4 × short sliding nut bars for this build</strong><small>One camera-frame mount position per rail</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>4 × short sliding nut bars to park as spares</strong><small>Mark their screw heads with blue removable tape</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four handles plus four spare retainers</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 318 mm depth rails</strong><small>Left lower, left upper, right lower, right upper</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × short sliding nut bars for this build</strong><small>One camera-frame mount position per rail</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--service">Service</span><span><strong>4 × short sliding nut bars to park as spares</strong><small>Mark their screw heads with blue removable tape</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four handles plus four spare retainers</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One loose use-now bar belongs in each depth rail.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>One blue-tagged service spare parks near the device-side end of each depth rail.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The transparent outer frame shows which inside groove receives both bars.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

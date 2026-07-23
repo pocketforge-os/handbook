@@ -13,7 +13,7 @@ outer top. It cannot be inserted as a complete assembly afterward.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-04-lower-gantry.png" alt="Complete smaller camera frame descending between four open outer-frame posts along blue arrows">
+    <img src="../../../../assets/generated/test-node-chassis/detail-04-lower-gantry.png" alt="Orange-highlighted camera frame descending between four open silver outer-frame posts along two blue arrows">
     <figcaption>Lower the camera frame as one unit. The four posts are present; the complete upper ring is still absent.</figcaption>
   </figure>
   <figure>
@@ -26,9 +26,18 @@ outer top. It cannot be inserted as a complete assembly afterward.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × open outer frame</strong><small>Lower rectangle and four posts from Step 8</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>1 × complete camera frame</strong><small>Smaller rectangle from Step 6</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>1 × open outer frame</strong><small>Lower rectangle and four posts from Step 8</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>1 × complete camera frame</strong><small>Smaller rectangle from Step 6</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange frame</span><span>Move the complete camera frame as one rigid subassembly.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrows</span><span>Lower it straight down between the four posts before installing any upper rail.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver outer frame</span><span>The lower rectangle and four posts stay still and remain open at the top.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

@@ -26,9 +26,18 @@ before beginning the formal verification checklist.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>No new hardware</strong><small>Use a tape measure, square, and your completed chassis</small></span></li>
-  <li><span class="pf-key pf-key--green" aria-hidden="true"></span><span><strong>The reference checklist below</strong><small>Correct any mismatch before electrical integration</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>No new hardware</strong><small>Use a tape measure, square, and your completed chassis</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--check">Check</span><span><strong>The reference checklist below</strong><small>Correct any mismatch before electrical integration</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange hardware</span><span>Compare every visible printed frame part: collars, joint plates, links, spacers, mounts, risers, and eight stacking tabs.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver frame</span><span>All aluminum rails are present, flush at their corners, and square around the captive camera frame.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Installed parts</span><span>The dark and natural-color plate, DUT holder, placard, camera, and power strip match the operator/device layout in the checklist.</span></li>
+  </ul>
+</div>
 
 ## Compare the build
 

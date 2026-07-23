@@ -26,10 +26,19 @@ the outside of the operator-side rail.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>The 2 × lower camera-frame joint plates</strong><small>Already attached loosely to the camera-frame uprights</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the lower depth-rail nut bars</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>Ruler or tape measure</strong><small>Readable to at least 1 mm</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>The 2 × lower camera-frame joint plates</strong><small>Already attached loosely to the camera-frame uprights</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the lower depth-rail nut bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>Ruler or tape measure</strong><small>Readable to at least 1 mm</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange geometry</span><span>The first drawing highlights the keyed joint plate; the second highlights the complete camera frame whose centerline you position.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue measure</span><span>The arrow runs from the operator-side outside plane to the upright centerline: 75 mm.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The translucent rails are stationary mating geometry, not parts to remove.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

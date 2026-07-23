@@ -26,11 +26,20 @@ Build the left and right upright the same way.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × 164 mm upright halves</strong><small>Two left halves and two right halves</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>2 × full-wrap splice collars</strong><small>Print Batch 02</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>4 × long double-nut splice bars</strong><small>Print Batch 01 · two bars per upright</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four per completed splice</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 164 mm upright halves</strong><small>Two left halves and two right halves</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × full-wrap splice collars</strong><small>Print Batch 02</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × long double-nut splice bars</strong><small>Print Batch 01 · two bars per upright</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four per completed splice</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange bars</span><span>The two hidden long bars bridge each center seam; the destination view highlights both completed uprights orange.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue shell</span><span>The cutaway shell in the first drawing is the full-wrap splice collar.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver halves</span><span>The translucent aluminum ends must meet with no visible gap inside the collar.</span></li>
+  </ul>
+</div>
 
 ## Do this twice
 

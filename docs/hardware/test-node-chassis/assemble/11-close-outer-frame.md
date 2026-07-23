@@ -13,7 +13,7 @@ posts together.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-05-lower-top-ring.png" alt="Complete upper rectangular rail ring descending along blue arrows onto four outer-frame posts">
+    <img src="../../../../assets/generated/test-node-chassis/detail-05-lower-top-ring.png" alt="Orange-highlighted upper rectangular rail ring descending along two blue arrows onto four silver outer-frame posts">
     <figcaption>Close the chassis with one assembled ring. Align all four post ends before lowering; do not force one corner down ahead of the others.</figcaption>
   </figure>
   <figure>
@@ -26,11 +26,20 @@ posts together.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × operator upper width rail</strong><small>306 mm · <code>WIDTH-O-U</code></small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × device upper width rail</strong><small>306 mm · <code>WIDTH-D-U</code></small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>2 × upper depth rails</strong><small>318 mm · left and right</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × metal three-way end connectors</strong><small>With their supplied set screws</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × operator upper width rail</strong><small>306 mm · <code>WIDTH-O-U</code></small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × device upper width rail</strong><small>306 mm · <code>WIDTH-D-U</code></small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>2 × upper depth rails</strong><small>318 mm · left and right</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--metal">Metal</span><span><strong>4 × metal three-way end connectors</strong><small>With their supplied set screws</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange geometry</span><span>The large upper ring is the active subassembly. Small orange camera-frame collars and plates are carry-over parts already installed.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrows</span><span>Lower the ring evenly onto all four post ends; no corner leads.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver chassis</span><span>The lower frame, posts, and captive camera frame stay still below the ring.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

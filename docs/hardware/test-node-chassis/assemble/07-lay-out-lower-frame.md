@@ -22,11 +22,20 @@ and loose in this step.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × operator lower width rail</strong><small>306 mm · <code>WIDTH-O-L</code> · four loaded bars</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × device lower width rail</strong><small>306 mm · <code>WIDTH-D-L</code> · two loaded bars</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × left lower depth rail</strong><small>318 mm · <code>DEPTH-L-L</code> · one active bar and one blue spare</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × right lower depth rail</strong><small>318 mm · <code>DEPTH-R-L</code> · one active bar and one blue spare</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × operator lower width rail</strong><small>306 mm · <code>WIDTH-O-L</code> · four loaded bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × device lower width rail</strong><small>306 mm · <code>WIDTH-D-L</code> · two loaded bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × left lower depth rail</strong><small>318 mm · <code>DEPTH-L-L</code> · one active bar and one blue spare</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × right lower depth rail</strong><small>318 mm · <code>DEPTH-R-L</code> · one active bar and one blue spare</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--blue">Blue words</span><span>Stand at <strong>OPERATOR</strong> and look across the rectangle toward <strong>DEVICE / WALL</strong>.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The four bars form one flat rectangle; their ends meet without crossing.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark tape codes</span><span><strong>WIDTH-O-L</strong>, <strong>WIDTH-D-L</strong>, <strong>DEPTH-L-L</strong>, and <strong>DEPTH-R-L</strong> identify the exact positions.</span></li>
+  </ul>
+</div>
 
 ## Do this
 
