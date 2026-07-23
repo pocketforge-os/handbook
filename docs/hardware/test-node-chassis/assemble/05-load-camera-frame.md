@@ -13,8 +13,8 @@ camera-frame crossbars. This completes the full inventory of 28.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-map.png" alt="Transparent complete chassis with orange use-now sliding nut bars and blue parked spare bars visible inside rails">
-    <figcaption>The smaller camera frame holds six use-now bars in this view plus two bars on its far upright face; one blue spare parks in each crossbar.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/preload-camera-frame.png" alt="Four separated camera-frame rails in operator view: each upright has two orange bars on the groove facing the other upright, the upper crossbar has a blue spare at left and two orange bars, and the lower crossbar has two orange bars and a blue spare at right">
+    <figcaption>Load the four rails while they are still separate. The two upright grooves face each other; both crossbar grooves face the operator. Ten blocks means ten bars. <a href="../../../../assets/generated/test-node-chassis/preload-camera-frame.png">Open the labeled drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -32,26 +32,47 @@ camera-frame crossbars. This completes the full inventory of 28.
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Eight use-now bars belong in the smaller camera frame: four in its uprights and four in its crossbars.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>One blue-tagged service spare parks in each camera-frame crossbar.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver frame</span><span>The transparent camera frame shows the loaded groove while keeping the hidden bar count visible.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Eight use-now bars: two in each upright and two in each crossbar.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>Two service spares: upper crossbar at far left; lower crossbar at far right.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The four rails are deliberately separated because Step 6 closes their ends.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>Each rail label states its local count; the drawing total is 10 bars.</span></li>
   </ul>
 </div>
 
-## Load the uprights
+</div>
+</div>
 
-1. Set the left and right upright in their future orientation.
-2. On each upright, load **two use-now bars** into the groove that faces the
-   other upright—the inside of the future camera frame.
+!!! note "The blocks identify a groove, not an insertion route"
+    Every bar enters through an **open cut end**. The blocks hover beside the
+    loaded long face so you can see the exact groove and count.
 
-## Load the crossbars
+## Match all four rails
 
-1. On each crossbar, choose the groove that will face the operator.
-2. Load **two use-now bars and one blue-marked spare** into that groove.
-3. Park the upper-crossbar spare at the far left.
-4. Park the lower-crossbar spare at the far right.
-5. Lightly retain both spares with their screws and washers. Leave the four
-   use-now bars loose.
+| Rail | Groove faces in operator view | Load |
+| --- | --- | --- |
+| Left upright | Right, toward other upright | 2 orange |
+| Right upright | Left, toward other upright | 2 orange |
+| `GANTRY-CROSS-U` | Operator | 2 orange + 1 blue at far left |
+| `GANTRY-CROSS-L` | Operator | 2 orange + 1 blue at far right |
+
+## Load the two uprights
+
+1. Set the completed left and right uprights in the operator view shown.
+2. Slide **two orange use-now bars** into the right-facing groove of the left
+   upright.
+3. Slide **two orange use-now bars** into the left-facing groove of the right
+   upright.
+4. Leave all four upright bars loose on their screw handles.
+
+## Load the two crossbars
+
+1. Turn both crossbars so the groove that will face the operator is up.
+2. In `GANTRY-CROSS-U`, load **one blue spare and two orange use-now bars**.
+   Park the blue spare at the far left, as pictured.
+3. In `GANTRY-CROSS-L`, load **two orange use-now bars and one blue spare**.
+   Park the blue spare at the far right, as pictured.
+4. Lightly retain both blue spares with their screws and washers. Leave the
+   four orange crossbar bars loose.
 
 ## Count all short bars
 
@@ -60,14 +81,13 @@ camera-frame crossbars. This completes the full inventory of 28.
 - Camera frame in this step: **8 use-now + 2 spares**.
 - Grand total: **22 use-now + 6 spares = 28**.
 
-</div>
-</div>
-
 <div class="pf-step-check" markdown="1">
 
 **Before you continue:** count all **28 short sliding nut bars** now. The six
 blue spares are lightly retained; the 22 use-now bars remain movable. A missing
-bar is easy to fix now and requires disassembly after the rail ends close.
+bar is easy to fix now and requires disassembly after the rail ends close. The
+camera-frame group in front of you contains exactly **10 bars: 8 orange + 2
+blue**.
 
 </div>
 

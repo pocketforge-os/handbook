@@ -13,12 +13,8 @@ while both cut ends are still open.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-map.png" alt="Transparent complete chassis showing orange active sliding nut bars and blue parked spare bars inside aluminum rails">
-    <figcaption>Orange marks a bar used by a mount in this build. This step loads only the four left-to-right width rails.</figcaption>
-  </figure>
-  <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-03-lower-frame-layout.png" alt="Top-down lower frame with operator, device, left, and right sides labeled">
-    <figcaption>Use the operator and device labels to choose the correct rail face. “Inside” always means toward the empty center of this rectangle.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/preload-width-rails.png" alt="Separate lower and upper width-rail pairs viewed from above: WIDTH-O-L has four orange bars on its device-facing groove, WIDTH-D-L has two on its operator-facing groove, WIDTH-O-U has two on its outward operator-facing groove, and WIDTH-D-U has two on its operator-facing groove">
+    <figcaption>Match one rail at a time. Each orange block sits beside the groove to load; its spacing along the rail is only for counting. <a href="../../../../assets/generated/test-node-chassis/preload-width-rails.png">Open the labeled drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -34,40 +30,55 @@ while both cut ends are still open.
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Use-now nut bars. This step loads the 10 blocks that belong in the four width rails.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>Parked service spares shown for the later whole-chassis count; do not add them to a width rail.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue words</span><span><strong>OPERATOR</strong> and <strong>DEVICE / WALL</strong> establish which way the rail faces.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>Transparent context in the first drawing; the four lower rails and their tape codes in the second.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One block equals one short nut bar. A block touches the long face whose groove receives it.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue words</span><span><strong>OPERATOR</strong> and <strong>DEVICE / WALL</strong> establish the rail orientation.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>These are the four separate 306 mm width rails, grouped as the future lower and upper pairs.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>Each tape code is followed by its exact bar count: 4, 2, 2, and 2.</span></li>
   </ul>
 </div>
 
+</div>
+</div>
+
+!!! note "The blocks identify a groove, not an insertion route"
+    Every orange bar still enters through an **open cut end**, as practiced in
+    Step 1. The drawing moves the blocks just outside the long face so the
+    loaded groove stays visible.
+
 ## Load this exact count
 
-| Plain rail name | Tape code | Groove to load | Bars |
-| --- | --- | --- | ---: |
-| Operator lower | `WIDTH-O-L` | Inside face, pointing toward the device | 4 |
-| Operator upper | `WIDTH-O-U` | Outside face, pointing toward the operator | 2 |
-| Device lower | `WIDTH-D-L` | Inside face, pointing toward the operator | 2 |
-| Device upper | `WIDTH-D-U` | Inside face, pointing toward the operator | 2 |
+| Rail and tape code | Groove faces | Load |
+| --- | --- | ---: |
+| Operator lower<br>`WIDTH-O-L` | Device / wall (inside) | 4 orange |
+| Operator upper<br>`WIDTH-O-U` | Operator (outside) | 2 orange |
+| Device lower<br>`WIDTH-D-L` | Operator (inside) | 2 orange |
+| Device upper<br>`WIDTH-D-U` | Operator (inside) | 2 orange |
 
 ## Do this
 
-1. Lay the four rails parallel with every tape label readable.
-2. Turn each rail until the named groove faces up.
-3. Put a screw and washer one turn into every nut bar as a handle.
-4. Slide the listed number through either open cut end.
-5. Spread the bars along the rail so you can count them. Do not tighten or set
-   final positions yet.
-6. Read the four counts aloud: **4, 2, 2, 2**.
-
-</div>
-</div>
+1. Lay the four rails in the lower and upper pairs shown in the picture. Keep
+   every tape label readable.
+2. Put a screw and washer one turn into each of the 10 nut bars. These are
+   removable handles.
+3. Load `WIDTH-O-L`: slide **four bars** into the groove facing
+   **DEVICE / WALL**.
+4. Load `WIDTH-D-L`: slide **two bars** into the groove facing
+   **OPERATOR**.
+5. Load `WIDTH-O-U`: slide **two bars** into the groove facing
+   **OPERATOR**. This is the only width rail whose bars face away from the
+   empty center of the chassis.
+6. Load `WIDTH-D-U`: slide **two bars** into the groove facing
+   **OPERATOR**.
+7. Spread the bars only far enough to count them. Do not tighten them or set
+   their final left-to-right positions yet.
+8. Point to each tape code and read the four counts aloud:
+   **`WIDTH-O-L` 4, `WIDTH-D-L` 2, `WIDTH-O-U` 2, `WIDTH-D-U` 2**.
 
 <div class="pf-step-check" markdown="1">
 
 **Before you continue:** the four rails contain **10 bars total**. No bar is in
-the top or bottom groove, and every loaded groove points in the direction named
-in the table.
+the top or bottom groove. `WIDTH-O-U` faces the operator; the other three
+loaded faces match the picture and table.
 
 </div>
 

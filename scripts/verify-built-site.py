@@ -203,6 +203,17 @@ def main() -> int:
                 "print-bed model-viewer is missing manual click-to-load wiring"
             )
     print_html = print_page.read_text(encoding="utf-8")
+    for required_fragment in (
+        "prep-captive-nut.png",
+        "prep-captive-nut-count.png",
+        "36 seated nuts",
+        "28 short bars + 4 long bars",
+    ):
+        if required_fragment not in print_html:
+            raise SystemExit(
+                "print page is missing captive-nut preparation detail: "
+                f"{required_fragment!r}"
+            )
     if (
         'model-viewer[data-click-to-load]' not in print_html
         or "viewer.dismissPoster()" not in print_html
@@ -285,6 +296,11 @@ def main() -> int:
         raise SystemExit("assembly start page is missing the ordered step list")
 
     verify_page = guide_root / "verify" / "index.html"
+    dedicated_preload_visuals = {
+        2: "preload-width-rails.png",
+        3: "preload-depth-rails.png",
+        5: "preload-camera-frame.png",
+    }
     step_count = len(assembly_steps)
     for index, step_page in enumerate(assembly_steps):
         step_number = index + 1
@@ -320,6 +336,15 @@ def main() -> int:
         if not generated_pngs:
             raise SystemExit(
                 f"assembly step {step_number} has no generated CAD visual"
+            )
+        dedicated_visual = dedicated_preload_visuals.get(step_number)
+        if dedicated_visual and not any(
+            Path(urlparse(source).path).name == dedicated_visual
+            for source in generated_pngs
+        ):
+            raise SystemExit(
+                f"assembly step {step_number} is missing its dedicated "
+                f"preload visual {dedicated_visual}"
             )
 
         resolved_links = {
