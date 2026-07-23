@@ -1,0 +1,227 @@
+# Print the hardware
+
+<script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
+
+Use the canonical beds below. Do not scale, auto-orient, split, or auto-arrange
+these STLs.
+
+## Slicer contract
+
+| Setting | Value |
+| --- | --- |
+| Material | ABS |
+| Nozzle | 0.8 mm |
+| Layer height | 0.4 mm |
+| Perimeters | At least 3 |
+| Top/bottom solid layers | At least 4 |
+| Infill | 20–30%; gyroid or grid |
+| Scale | 100% |
+| Supports | Disabled for every canonical bed |
+| Brim | Disabled on the validated process; add only if your own adhesion requires it |
+| Automatic orientation | Disabled |
+
+Retain the temperature, cooling, enclosure, and first-layer values from your
+known-good ABS profile. Geometry is already exported in its intended
+support-free orientation.
+
+!!! warning "Bed size is intentional"
+    The largest production bed is 240 × 150 mm. All beds fit the conservative
+    247 × 207 mm usable envelope of the PocketForge Prusa i3 MK3S profile, but
+    some leave little X-axis margin. Confirm the slicer reports every object
+    inside the printable area.
+
+## Batch 00 — calibration (conditional)
+
+Print this bed only after changing the extrusion supplier, printer, nozzle,
+material, slicer compensation, or placard-slide geometry.
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-00-calibration.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-00-calibration.png"
+    alt="Interactive model of the Batch 00 calibration print bed"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 00 STL](../../assets/generated/test-node-chassis/production-batch-00-calibration.stl){ .pf-download download }
+
+The bed contains the rail-key coupon, two M3 channel-bar candidates, and the
+placard-slide coupon.
+
+- [ ] The 6.43 mm rail key slides without force and does not wobble out of the
+      slot mouth.
+- [ ] Select the two-scallop channel bar. It must travel freely end-to-end and
+      remain captured when pulled toward the slot mouth.
+- [ ] The placard coupon inserts from the right, stays retained when horizontal,
+      and can still be removed by hand.
+
+Stop here if any check fails. Compensation belongs in the parametric source;
+do not scale one production bed independently.
+
+## Batch 01 — ironed channel interfaces
+
+This is the only production bed that requires ironing. Enable ironing on
+topmost surfaces only. If the slicer cannot iron, print normally and wet-sand
+only the channel-contact surfaces until they move smoothly.
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-01-ironed-interfaces.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-01-ironed-interfaces.png"
+    alt="Interactive model of the Batch 01 ironed channel-interface print bed"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 01 STL](../../assets/generated/test-node-chassis/production-batch-01-ironed-interfaces.stl){ .pf-download download }
+
+Expected output:
+
+- 28 short, single-nut M3 channel bars;
+- four long, double-nut upright-splice bars.
+
+## Batch 02 — upright splice collars
+
+Print both collars standing on their indexed open ends, exactly as exported.
+No supports are required.
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-02-splice-collars.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-02-splice-collars.png"
+    alt="Interactive model of the Batch 02 upright-splice-collar print bed"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 02 STL](../../assets/generated/test-node-chassis/production-batch-02-splice-collars.stl){ .pf-download download }
+
+Expected output: two identical full-wrap collars.
+
+## Batch 03 — movable mounts
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-03-movable-mounts.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-03-movable-mounts.png"
+    alt="Interactive model of the Batch 03 movable-mount print bed"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 03 STL](../../assets/generated/test-node-chassis/production-batch-03-movable-mounts.stl){ .pf-download download }
+
+Expected output:
+
+- four keyed gantry joint plates;
+- four 5 mm fixture-plate spacers;
+- two upper and two lower DUT-carrier links.
+
+## Batch 04 — frame hardware
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-04-frame-hardware.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-04-frame-hardware.png"
+    alt="Interactive model of the Batch 04 frame-hardware print bed"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 04 STL](../../assets/generated/test-node-chassis/production-batch-04-frame-hardware.stl){ .pf-download download }
+
+Expected output:
+
+- eight stacking-registration tabs;
+- two placard risers and two keyed placard spacers;
+- two identical power-strip mount blocks.
+
+## Batch 05 — identification
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-05-identification.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-05-identification.png"
+    alt="Interactive model of the separated Batch 05 placard holder and insert"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="interaction"
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 05 STL](../../assets/generated/test-node-chassis/production-batch-05-identification.stl){ .pf-download download }
+
+Expected output: one fleet-width holder and one replaceable device-name
+cartridge. The default cartridge says `TrimUI Smart Pro`. Longer names shrink
+within the same standard holder instead of changing its mounting geometry.
+
+## Install the captive nuts
+
+Do this at the bench before bringing the aluminum frame parts over.
+
+1. Place one ordinary M3 nut over a printed hex pocket.
+2. Pass an M3 screw and washer through from the opposite side.
+3. Thread the screw into the nut by hand.
+4. Tighten only enough to pull the nut squarely into the pocket.
+5. Remove the screw and inspect that the nut sits flat and cannot rotate.
+
+Populate:
+
+- one nut in each of the 28 short channel bars;
+- two nuts in each of the four long splice bars.
+
+Do not glue the nuts and do not pause a print to encapsulate them. The open
+pockets are the calibrated production interface and let a damaged nut be
+replaced.
+
+!!! tip "Identify the splice-bar ends now"
+    On every long bar, the **unmarked 12.8 mm end** enters the first rail and
+    touches the collar's internal pusher. The **one-scallop 16 mm end** finishes
+    at the extrusion butt seam. Mark the unnotched end with removable tape if
+    that makes the distinction faster during assembly.
+
+## Print gate
+
+- [ ] All five production beds completed without supports.
+- [ ] Batch 01 channel surfaces are smooth and dimensionally unchanged.
+- [ ] Count: 28 short bars, four long bars, two collars.
+- [ ] All 36 captive nuts are square and fully seated.
+- [ ] No split layers, lifted corners, or damaged screw holes are visible.
+- [ ] Every batch stayed at 100% scale and in its exported orientation.
+
+Next: [cut and label the extrusion](cut.md).

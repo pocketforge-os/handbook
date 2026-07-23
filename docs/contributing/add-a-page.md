@@ -72,7 +72,8 @@ the `# H1`, delete the stub `warning` admonition and the "What this page will
 cover" line, and write the content in their place. No `mkdocs.yml` change is
 needed — the page is already in the nav.
 
-!!! warning "The Build-a-DUT page is reserved"
-    [`hardware/build-a-dut.md`](../hardware/build-a-dut.md) is authored by the
-    Codex lane alongside the physical build. Don't fill it in as part of
-    unrelated docs work.
+!!! warning "Generated CAD assets are not hand-edited"
+    The renders and downloads in the
+    [test-node chassis guide](../hardware/test-node-chassis/index.md) come from
+    a pinned `test-node-hw` OpenSCAD revision. Update the source model and its
+    asset lock instead of patching a generated image or STL.
