@@ -37,6 +37,97 @@
   --poster-color: transparent;
 }
 
+.chassis-model-label-toggle {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 3;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(23, 54, 79, 0.92);
+  box-shadow: 0 0.1rem 0.3rem rgba(23, 33, 43, 0.24);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.chassis-model-label-toggle:hover,
+.chassis-model-label-toggle:focus-visible {
+  background: #234f70;
+}
+
+.chassis-model-label-toggle:focus-visible {
+  outline: 0.15rem solid var(--md-accent-fg-color);
+  outline-offset: 0.15rem;
+}
+
+.chassis-model-shell model-viewer[data-labels-visible="false"] .pf-model-hotspot {
+  display: none;
+}
+
+.chassis-model-shell model-viewer:not(:defined) > .pf-model-hotspot {
+  display: none;
+}
+
+.pf-model-hotspot {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: max-content;
+  max-width: 13rem;
+  padding: 0.3rem 0.48rem 0.32rem;
+  transform: translate(0.55rem, -50%);
+  border: 1px solid rgba(23, 54, 79, 0.26);
+  border-left: 0.2rem solid var(--pf-orange);
+  border-radius: 0.3rem;
+  color: #17212b;
+  background: rgba(251, 250, 242, 0.94);
+  box-shadow: 0 0.12rem 0.35rem rgba(23, 33, 43, 0.2);
+  font-size: 0.66rem;
+  line-height: 1.25;
+  pointer-events: none;
+  white-space: nowrap;
+  --min-hotspot-opacity: 0;
+}
+
+.pf-model-hotspot strong {
+  font-size: 0.68rem;
+  letter-spacing: 0.015em;
+}
+
+.pf-model-hotspot > span {
+  color: #46525d;
+  font-size: 0.59rem;
+}
+
+.pf-model-hotspot--operator,
+.pf-model-hotspot--device {
+  transform: translate(-50%, 0.55rem);
+  border-color: rgba(255, 255, 255, 0.38);
+  border-left-color: #51bfd4;
+  color: #fff;
+  background: rgba(23, 54, 79, 0.94);
+}
+
+.pf-model-hotspot--operator > span,
+.pf-model-hotspot--device > span {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.pf-model-hotspot--device,
+.pf-model-hotspot--width,
+.pf-model-hotspot--depth {
+  transform: translate(-50%, -115%);
+}
+
+.pf-model-hotspot--camera-frame {
+  transform: translate(-100%, -50%);
+}
+
 .chassis-model-help,
 .pf-model-help {
   position: absolute;
@@ -623,8 +714,37 @@
 @media screen and (max-width: 44rem) {
   .chassis-model-shell,
   .chassis-model-shell model-viewer {
-    min-height: 22rem;
-    height: 22rem;
+    min-height: 24rem;
+    height: 24rem;
+  }
+
+  .chassis-model-label-toggle {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .pf-model-hotspot {
+    max-width: 10.5rem;
+    padding: 0.22rem 0.35rem 0.24rem;
+    font-size: 0.58rem;
+    white-space: normal;
+  }
+
+  .pf-model-hotspot strong {
+    font-size: 0.6rem;
+  }
+
+  .pf-model-hotspot > span {
+    font-size: 0.54rem;
+  }
+
+  .pf-model-hotspot--camera-frame {
+    max-width: 7.5rem;
+    transform: translate(-55%, -50%);
+  }
+
+  .pf-model-hotspot--operator {
+    transform: translate(-50%, -300%);
   }
 
   .pf-batch-model-shell,

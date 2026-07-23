@@ -19,11 +19,35 @@ moving on.
 ## See the destination
 
 <script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
-<div class="chassis-model-shell">
+<script type="module">
+  const viewer = document.querySelector("#assembly-chassis-model");
+  const toggle = document.querySelector("[data-chassis-label-toggle]");
+  if (viewer && toggle) {
+    toggle.hidden = false;
+    toggle.addEventListener("click", () => {
+      const labelsVisible = viewer.dataset.labelsVisible !== "true";
+      viewer.dataset.labelsVisible = String(labelsVisible);
+      toggle.setAttribute("aria-pressed", String(labelsVisible));
+      toggle.textContent = labelsVisible ? "Hide labels" : "Show labels";
+    });
+  }
+</script>
+<div class="chassis-model-shell" data-chassis-labeled-model>
+  <button
+    class="chassis-model-label-toggle"
+    type="button"
+    data-chassis-label-toggle
+    aria-controls="assembly-chassis-model"
+    aria-pressed="true"
+    hidden>
+    Hide labels
+  </button>
   <model-viewer
+    id="assembly-chassis-model"
     src="../../../assets/generated/test-node-chassis/pocketforge-test-node.glb"
     poster="../../../assets/generated/test-node-chassis/hero.png"
     alt="Interactive model of the complete PocketForge test-node chassis"
+    data-labels-visible="true"
     camera-controls
     touch-action="pan-y"
     shadow-intensity="0.7"
@@ -32,6 +56,54 @@ moving on.
     camera-orbit="35deg 68deg 1.05m"
     min-camera-orbit="auto auto 0.55m"
     max-camera-orbit="auto auto 1.7m">
+    <span
+      class="pf-model-hotspot pf-model-hotspot--operator"
+      slot="hotspot-operator"
+      data-position="0.173m 0.045m 0.030m"
+      data-normal="0 1 0">
+      <strong>OPERATOR SIDE</strong>
+      <span>stand here</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--device"
+      slot="hotspot-device"
+      data-position="0.173m 0.340m -0.375m"
+      data-normal="0 1 0">
+      <strong>DEVICE / WALL SIDE</strong>
+      <span>DUT mounts here</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--post"
+      slot="hotspot-post"
+      data-position="0.010m 0.200m 0.012m"
+      data-normal="0 0 1">
+      <strong>POST · 360 mm</strong>
+      <span>4 vertical pieces</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--width"
+      slot="hotspot-width"
+      data-position="0.173m 0.358m 0.012m"
+      data-normal="0 1 0">
+      <strong>WIDTH · 306 mm</strong>
+      <span>4 left-to-right rails</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--depth"
+      slot="hotspot-depth"
+      data-position="0.010m 0.358m -0.179m"
+      data-normal="0 1 0">
+      <strong>DEPTH · 318 mm</strong>
+      <span>4 operator-to-device rails</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--camera-frame"
+      slot="hotspot-camera-frame"
+      data-position="0.336m 0.205m -0.075m"
+      data-normal="0 0 1">
+      <strong>CAMERA FRAME</strong>
+      <span>uprights: 164 + 164 mm · crossbars: 306 mm</span>
+    </span>
   </model-viewer>
   <span class="chassis-model-help">drag to rotate · scroll to zoom</span>
 </div>
@@ -42,9 +114,12 @@ moving on.
     alt="Static finished view of the complete PocketForge test-node chassis">
 </noscript>
 
-Rotate the model whenever an orientation is unclear. The static drawings in the
-steps use this same viewpoint: the **operator side** is closest to you and the
-**device side** is farthest from you.
+Use **Show labels** whenever an orientation is unclear. The four **360 mm
+posts** stand vertically, the four **318 mm depth rails** run from operator to
+device, and the **306 mm width rails** run left to right. Each camera-frame
+upright joins two 164 mm halves; its two crossbars are also 306 mm. The static
+drawings use this same viewpoint: the **operator side** is closest to you and
+the **device / wall side** is farthest from you.
 
 ## Five names you need
 
