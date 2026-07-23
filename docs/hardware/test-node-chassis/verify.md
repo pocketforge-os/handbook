@@ -6,12 +6,12 @@ Correct a failed mechanical gate before wiring anything.
 ## 1. Inventory and preload
 
 - [ ] Eight metal three-way connectors are installed.
-- [ ] Four concealed metal L-connectors secure the gantry crossbars.
+- [ ] Four concealed metal L-connectors secure the camera-frame crossbars.
 - [ ] Two splice collars bridge two fully butted 164 mm halves each.
 - [ ] Every collar has four aligned screws; no screw bears on aluminum.
-- [ ] All 22 use-now short channel bars are accounted for.
+- [ ] All 22 use-now short sliding nut bars are accounted for.
 - [ ] Six replacement bars are lightly parked under screws and wide washers.
-- [ ] No loose nut or printed bar rattles inside an extrusion.
+- [ ] No loose nut or printed bar rattles inside an aluminum rail.
 
 ## 2. Frame geometry
 
@@ -27,12 +27,12 @@ Correct a failed mechanical gate before wiring anything.
 If the outside height varies slightly because of connector-cap casting, accept
 it only when all four posts match and both rings remain parallel.
 
-## 3. Gantry movement
+## 3. Camera-frame movement
 
 Test one axis at a time:
 
-1. Loosen the eight gantry-joint screws. Confirm the complete gantry slides
-   along Y without binding, then return its centerline to 75 mm.
+1. Loosen the eight camera-frame joint screws. Confirm the complete camera
+   frame slides along Y without binding, then return its centerline to 75 mm.
 2. Retighten the joint screws by hand.
 3. Loosen the concealed L-connectors. Confirm both crossbars can move in Z,
    then restore the plate to a flat, untwisted position.
@@ -41,7 +41,7 @@ Test one axis at a time:
    recenter and tighten it.
 
 - [ ] Every axis moves only when its fasteners are loosened.
-- [ ] The gantry stays square through its practical adjustment range.
+- [ ] The camera frame stays square through its practical adjustment range.
 - [ ] Printed keys remain seated and show no split layers or whitening.
 
 ## 4. DUT carrier
@@ -66,7 +66,7 @@ itself remains unpowered.
 The carrier's printed `TOP` and `BOTTOM` orientation text may crop. Complete
 DUT visibility with margin is the requirement.
 
-If framing fails, move the complete gantry in Y first. Use X and Z plate
+If framing fails, move the complete camera frame in Y first. Use X and Z plate
 adjustment only to restore centering.
 
 ## 6. Placard, power-strip mount, and stacking

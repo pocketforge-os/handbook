@@ -34,10 +34,10 @@ replaceable node placard.
 | --- | ---: |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
-| Aluminum | 20 × 20 mm, nominal slot-6 extrusion |
+| Aluminum | 20 × 20 mm square rail, also sold as 2020 slot-6 extrusion |
 | Stock consumed | Six nominal 1 m sticks |
 | Printed material | ABS, designed around a 0.8 mm nozzle |
-| Adjustment | Camera/electronics gantry moves in X, Y, and Z |
+| Adjustment | Movable camera frame adjusts in X, Y, and Z |
 | DUT carrier | Fixed to the device-side frame on the shared optical axis |
 | Stacking | Aluminum-on-aluminum load path with printed registration tabs |
 
@@ -62,20 +62,21 @@ depending on where someone stands.
 </div>
 
 Orange parts in the assembly drawings are the parts added in that step.
-Completed aluminum turns gray; metal corner and crossbar connectors stay dark.
+Completed aluminum rails turn gray; metal corner and crossbar connectors stay
+dark.
 
 ## Build path
 
 1. [Collect the parts and tools](parts.md).
 2. [Print the six canonical beds](print.md).
-3. [Cut and label the extrusion](cut.md).
-4. [Preload every captive nut and assemble the frame](assemble.md).
+3. [Cut and label the aluminum rails](cut.md).
+4. [Assemble the chassis in 19 bench-sized steps](assemble/index.md).
 5. [Run the unpowered verification gates](verify.md).
 
 !!! tip "Build the chassis while the device ships"
     The carrier is the only device-specific mechanical layer. The standard
-    chassis, fixture gantry, power-strip mount, and identification holder can
-    all be fabricated before a new handheld arrives.
+    chassis, movable camera frame, power-strip mount, and identification holder
+    can all be fabricated before a new handheld arrives.
 
 ## Source of truth
 

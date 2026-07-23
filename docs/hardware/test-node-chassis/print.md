@@ -32,7 +32,7 @@ support-free orientation.
 
 ## Batch 00 — calibration (conditional)
 
-Print this bed only after changing the extrusion supplier, printer, nozzle,
+Print this bed only after changing the aluminum-rail supplier, printer, nozzle,
 material, slicer compensation, or placard-slide geometry.
 
 <div class="pf-batch-model-shell">
@@ -57,8 +57,8 @@ placard-slide coupon.
 
 - [ ] The 6.43 mm rail key slides without force and does not wobble out of the
       slot mouth.
-- [ ] Select the two-scallop channel bar. It must travel freely end-to-end and
-      remain captured when pulled toward the slot mouth.
+- [ ] Select the two-scallop sliding nut bar. It must travel freely end-to-end
+      and remain captured when pulled toward the slot mouth.
 - [ ] The placard coupon inserts from the right, stays retained when horizontal,
       and can still be removed by hand.
 
@@ -90,7 +90,7 @@ only the channel-contact surfaces until they move smoothly.
 
 Expected output:
 
-- 28 short, single-nut M3 channel bars;
+- 28 short, single-nut M3 sliding nut bars;
 - four long, double-nut upright-splice bars.
 
 ## Batch 02 — upright splice collars
@@ -138,7 +138,7 @@ Expected output: two identical full-wrap collars.
 
 Expected output:
 
-- four keyed gantry joint plates;
+- four keyed camera-frame joint plates;
 - four 5 mm fixture-plate spacers;
 - two upper and two lower DUT-carrier links.
 
@@ -202,7 +202,7 @@ Do this at the bench before bringing the aluminum frame parts over.
 
 Populate:
 
-- one nut in each of the 28 short channel bars;
+- one nut in each of the 28 short sliding nut bars;
 - two nuts in each of the four long splice bars.
 
 Do not glue the nuts and do not pause a print to encapsulate them. The open
@@ -212,7 +212,7 @@ replaced.
 !!! tip "Identify the splice-bar ends now"
     On every long bar, the **unmarked 12.8 mm end** enters the first rail and
     touches the collar's internal pusher. The **one-scallop 16 mm end** finishes
-    at the extrusion butt seam. Mark the unnotched end with removable tape if
+    at the aluminum butt seam. Mark the unnotched end with removable tape if
     that makes the distinction faster during assembly.
 
 ## Print gate
@@ -224,4 +224,4 @@ replaced.
 - [ ] No split layers, lifted corners, or damaged screw holes are visible.
 - [ ] Every batch stayed at 100% scale and in its exported orientation.
 
-Next: [cut and label the extrusion](cut.md).
+Next: [cut and label the aluminum rails](cut.md).

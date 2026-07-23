@@ -1,4 +1,4 @@
-# Cut the extrusion
+# Cut the aluminum rails
 
 One chassis fits in six nominal 1 m sticks. Finished dimensions are measured
 aluminum lengths—connector caps are not included in the cut length.
@@ -19,7 +19,7 @@ aluminum lengths—connector caps are not included in the cut length.
     All four **360 mm** pieces stand vertically. The **356.4 mm** value at the
     end of stock bar 6 is retained offcut, not a chassis rail or post.
 
-Total finished extrusion is 5204 mm. The plan reserves 3.2 mm after every
+Total finished aluminum rail is 5204 mm. The plan reserves 3.2 mm after every
 finished piece for kerf and retains 738.4 mm of combined offcut.
 
 ## What “kerf” means here
@@ -71,7 +71,7 @@ non-structural tooling.
    first datum.
 2. Mark every planned finished piece and its identity on the stock before
    starting the saw.
-3. Clamp the extrusion.
+3. Clamp the aluminum rail.
 4. Align the blade on the waste side of the mark.
 5. Make one witnessed cut and measure the result before batch cutting.
 6. Continue by measuring the next finished piece from the new clean end.
@@ -79,18 +79,18 @@ non-structural tooling.
 8. Verify and label the piece before placing it in the finished pile.
 
 !!! warning "Do not hide an inaccurate cut in assembly"
-    The printed gantry collars join two 164 mm halves; they do not correct a
-    short outer-frame rail. Recut an out-of-tolerance structural piece rather
-    than forcing a connector or squaring the frame against it.
+    The printed camera-frame collars join two 164 mm halves; they do not
+    correct a short outer-frame rail. Recut an out-of-tolerance structural
+    piece rather than forcing a connector or squaring the frame against it.
 
 ## Cut gate
 
 - [ ] 4 × 360 mm posts.
 - [ ] 4 × 318 mm depth rails.
 - [ ] 4 × 306 mm width rails.
-- [ ] 4 × 164 mm gantry upright halves.
-- [ ] 2 × 306 mm gantry crossbars.
+- [ ] 4 × 164 mm camera-frame upright halves.
+- [ ] 2 × 306 mm camera-frame crossbars.
 - [ ] Every cut is square, deburred, measured, and labeled.
 - [ ] The useful 356.4 mm offcut is retained.
 
-Next: [preload and assemble the chassis](assemble.md).
+Next: [assemble the chassis in 19 bench steps](assemble/index.md).
