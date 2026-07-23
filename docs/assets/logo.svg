@@ -1,0 +1,6 @@
+<!-- PLACEHOLDER logo — swap for the real PocketForge brand mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="PocketForge">
+  <rect x="4" y="4" width="40" height="40" rx="9" fill="none" stroke="currentColor" stroke-width="3"/>
+  <path d="M17 34V14h9a6 6 0 0 1 0 12h-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="33" cy="20" r="2.4" fill="currentColor"/>
+</svg>

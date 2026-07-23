@@ -1,0 +1,18 @@
+/* PocketForge Handbook — theme polish (infra-261 Phase A placeholder).
+   Extend here once the real brand palette lands; keep it minimal for now. */
+
+:root {
+  --md-primary-fg-color: #3f51b5;
+  --md-accent-fg-color: #536dfe;
+}
+
+/* Give the 🚧 stub admonition a distinct, hard-to-miss look so unfinished
+   pages read as unfinished at a glance. */
+.md-typeset .admonition.warning > .admonition-title {
+  font-weight: 700;
+}
+
+/* Slightly roomier task-list checkboxes for the bring-up checklist spine. */
+.md-typeset .task-list-item {
+  margin-bottom: 0.15rem;
+}

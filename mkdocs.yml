@@ -1,0 +1,125 @@
+# PocketForge Handbook — Material for MkDocs configuration (infra-261 Phase A).
+# Framework/scaffold only: theme + nav skeleton + plugins. Most pages are
+# visibly-marked 🚧 stubs authored separately (see docs/contributing/).
+
+site_name: PocketForge Handbook
+site_description: >-
+  Developer & operator onboarding for PocketForge OS — build a device, stand up
+  a lab, and bring up a new PocketForge unit end to end.
+site_author: PocketForge OS
+
+# D4 — served under a /docs base path (target pocketforge.com/docs/). Internal
+# links are relative (use_directory_urls), so the same build also renders
+# correctly at the GitHub Pages scaffolding URL (pocketforge-os.github.io/handbook/, D5).
+site_url: https://pocketforge.com/docs/
+
+repo_name: pocketforge-os/handbook
+repo_url: https://github.com/pocketforge-os/handbook
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  # Placeholders — swap for real brand assets (see docs/assets/).
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Light/dark toggle (D3 — beautiful out of the box).
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+extra_css:
+  - assets/custom.css
+
+markdown_extensions:
+  # Admonitions + collapsible blocks (used by the 🚧 stub convention).
+  - admonition
+  - pymdownx.details
+  # Task-list checklists — the spine of the bring-up checklist (§5 ⭐).
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # Content tabs (e.g. per-board / per-host variants).
+  - pymdownx.tabbed:
+      alternate_style: true
+  # Fenced code + Mermaid diagrams as a superfences custom fence.
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  status:
+    stub: 🚧 Stub — content authored separately
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pocketforge-os
+
+# Information architecture — infra-261 §5. Each leaf below is a stub page in
+# Phase A except index.md and the contributing/ guide (real content).
+nav:
+  - Overview: index.md
+  - Contributor onboarding: onboarding/index.md
+  - Hardware:
+      - hardware/index.md
+      - Build a DUT: hardware/build-a-dut.md
+      - Per-DUT test node: hardware/test-node.md
+      - Bill of materials: hardware/bom.md
+  - Lab & infrastructure:
+      - lab/index.md
+      - labgrid coordinator: lab/labgrid.md
+      - Relay power: lab/power.md
+      - Networking: lab/networking.md
+  - Build & flash:
+      - build-flash/index.md
+      - The pf build pipeline: build-flash/pf-build.md
+      - Flashing ladder (OTA→SD→FEL): build-flash/flashing-ladder.md
+  - ⭐ Bring up a device: bring-up-checklist.md
+  - Reference:
+      - reference/index.md
+      - Glossary: reference/glossary.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Recovery runbooks: reference/recovery.md
+  - Contributing:
+      - contributing/index.md
+      - Doc style guide: contributing/style-guide.md
+      - How to add a page: contributing/add-a-page.md
