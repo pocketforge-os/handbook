@@ -1,6 +1,6 @@
 {
   "project": "mechanical/dut-chassis-2020-v1",
   "repository": "https://github.com/pocketforge-os/test-node-hw.git",
-  "revision": "9c4f0c51503f372213915f1827a630e3d3d6ac4c",
-  "schema": 1
+  "source_path": "cad/test-node-hw",
+  "schema": 2
 }

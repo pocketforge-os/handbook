@@ -13,9 +13,9 @@ import pathlib
 import sys
 
 lock = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
-if lock.get("schema") != 1:
+if lock.get("schema") != 2:
     raise SystemExit("unsupported CAD asset lock schema")
-for key in ("repository", "revision", "project"):
+for key in ("repository", "source_path", "project"):
     value = lock.get(key)
     if not isinstance(value, str) or not value:
         raise SystemExit(f"CAD asset lock is missing {key}")
@@ -24,9 +24,9 @@ PY
 )
 
 source_repository=${lock_values[0]}
-source_revision=${lock_values[1]}
+source_path=${lock_values[1]}
 project_path=${lock_values[2]}
-temporary_root=
+temporary_root=$(mktemp -d)
 
 cleanup() {
   if [[ -n "${temporary_root}" && -d "${temporary_root}" ]]; then
@@ -35,30 +35,40 @@ cleanup() {
 }
 trap cleanup EXIT
 
+expected_revision=$(
+  git -C "${repo_root}" ls-files --stage -- "${source_path}" |
+    awk '$1 == "160000" { print $2 }'
+)
+[[ -n "${expected_revision}" ]] || {
+  echo "CAD source path is not an indexed git submodule: ${source_path}" >&2
+  exit 1
+}
+
 if [[ -n "${CAD_SOURCE_DIR:-}" ]]; then
   source_root=$(realpath "${CAD_SOURCE_DIR}")
-  if [[ "${ALLOW_DIRTY_CAD:-0}" != "1" ]]; then
-    actual_revision=$(git -C "${source_root}" rev-parse HEAD)
-    [[ "${actual_revision}" == "${source_revision}" ]] || {
-      echo "CAD revision mismatch: ${actual_revision} != ${source_revision}" >&2
-      exit 1
-    }
-    [[ -z "$(git -C "${source_root}" status --porcelain)" ]] || {
-      echo "refusing to publish assets from a dirty CAD worktree" >&2
-      exit 1
-    }
-  fi
 else
-  [[ "${source_revision}" != PENDING_* ]] || {
-    echo "cad-assets.lock.json still has an unmerged placeholder revision" >&2
+  source_root="${repo_root}/${source_path}"
+  [[ -e "${source_root}/.git" ]] || {
+    echo "CAD submodule is not initialized; run: git submodule update --init" >&2
     exit 1
   }
-  temporary_root=$(mktemp -d)
-  source_root="${temporary_root}/test-node-hw"
-  git init --quiet "${source_root}"
-  git -C "${source_root}" remote add origin "${source_repository}"
-  git -C "${source_root}" fetch --quiet --depth=1 origin "${source_revision}"
-  git -C "${source_root}" checkout --quiet --detach FETCH_HEAD
+fi
+
+actual_revision=$(git -C "${source_root}" rev-parse HEAD)
+actual_repository=$(git -C "${source_root}" remote get-url origin)
+[[ "${actual_repository}" == "${source_repository}" ]] || {
+  echo "CAD repository mismatch: ${actual_repository} != ${source_repository}" >&2
+  exit 1
+}
+if [[ "${ALLOW_DIRTY_CAD:-0}" != "1" ]]; then
+  [[ "${actual_revision}" == "${expected_revision}" ]] || {
+    echo "CAD gitlink mismatch: ${actual_revision} != ${expected_revision}" >&2
+    exit 1
+  }
+  [[ -z "$(git -C "${source_root}" status --porcelain)" ]] || {
+    echo "refusing to publish assets from a dirty CAD worktree" >&2
+    exit 1
+  }
 fi
 
 project_dir="${source_root}/${project_path}"
@@ -67,10 +77,6 @@ project_dir="${source_root}/${project_path}"
   exit 1
 }
 
-if [[ -z "${temporary_root}" ]]; then
-  build_root=$(mktemp -d)
-  temporary_root=${build_root}
-fi
 python_env="${temporary_root}/asset-python"
 python3 -m venv "${python_env}"
 "${python_env}/bin/pip" install \
@@ -114,7 +120,8 @@ required_assets=(
   production-batch-02-splice-collars.stl
   production-batch-03-movable-mounts.stl
   production-batch-04-frame-hardware.stl
-  production-batch-05-identification.stl
+  production-batch-05-placard-holder.stl
+  production-batch-06-device-nameplate.stl
   hero.png
   step-01-splice-uprights.png
   step-02-build-gantry.png
@@ -144,13 +151,15 @@ required_assets=(
   batch-02-splice-collars.png
   batch-03-movable-mounts.png
   batch-04-frame-hardware.png
-  batch-05-identification.png
+  batch-05-placard-holder.png
+  batch-06-device-nameplate.png
   batch-00-calibration.glb
   batch-01-ironed-interfaces.glb
   batch-02-splice-collars.glb
   batch-03-movable-mounts.glb
   batch-04-frame-hardware.glb
-  batch-05-identification.glb
+  batch-05-placard-holder.glb
+  batch-06-device-nameplate.glb
   preload-channel-bar.png
   preload-map.png
   pocketforge-test-node.glb

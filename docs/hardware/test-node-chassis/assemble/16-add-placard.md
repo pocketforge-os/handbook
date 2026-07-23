@@ -24,7 +24,7 @@ device-name cartridge in from the right.
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × placard risers and 2 × keyed spacers</strong><small>Print Batch 04</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × 230 mm placard holder</strong><small>Print Batch 05</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × device-name cartridge</strong><small>Print Batch 05 · TrimUI Smart Pro in the example</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × device-name cartridge</strong><small>Print Batch 06 · TrimUI Smart Pro in the example</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the upper rail nut bars</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm flat-head screws and ordinary M3 nuts</strong><small>Holder-to-riser joints</small></span></li>
 </ul>

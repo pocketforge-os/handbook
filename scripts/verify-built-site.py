@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
+import struct
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
@@ -69,6 +71,20 @@ def verify_hashes(asset_dir: Path) -> int:
             raise SystemExit(f"checksum mismatch: {asset}")
         count += 1
     return count
+
+
+def read_glb_json(path: Path) -> dict:
+    data = path.read_bytes()
+    if len(data) < 20:
+        raise SystemExit(f"interactive model is truncated: {path}")
+    magic, version, declared_length = struct.unpack_from("<4sII", data)
+    if magic != b"glTF" or version != 2 or declared_length != len(data):
+        raise SystemExit(f"interactive model has an invalid GLB header: {path}")
+    chunk_length, chunk_type = struct.unpack_from("<I4s", data, 12)
+    if chunk_type != b"JSON":
+        raise SystemExit(f"interactive model has no leading JSON chunk: {path}")
+    chunk = data[20 : 20 + chunk_length].rstrip(b" \x00")
+    return json.loads(chunk.decode("utf-8"))
 
 
 def main() -> int:
@@ -162,7 +178,8 @@ def main() -> int:
             "batch-02-splice-collars.glb": 1,
             "batch-03-movable-mounts.glb": 1,
             "batch-04-frame-hardware.glb": 1,
-            "batch-05-identification.glb": 1,
+            "batch-05-placard-holder.glb": 1,
+            "batch-06-device-nameplate.glb": 1,
         }
     )
     if viewer_sources != expected_viewer_counts:
@@ -190,10 +207,14 @@ def main() -> int:
         raise SystemExit(
             "print page is missing the click handler that dismisses model posters"
         )
+    if "Do not scale, auto-orient, or auto-arrange" not in print_html:
+        raise SystemExit("print page is missing the canonical no-transform warning")
+    if "auto-orient, split" in print_html:
+        raise SystemExit("print page still prohibits splitting canonical beds")
     print_downloads = page_references[print_page].downloads
-    if len(print_downloads) != 6:
+    if len(print_downloads) != 7:
         raise SystemExit(
-            f"expected six print-bed downloads, found {len(print_downloads)}"
+            f"expected seven print-bed downloads, found {len(print_downloads)}"
         )
     for download in print_downloads:
         linked_name = Path(urlparse(download.get("href", "")).path).name
@@ -287,8 +308,8 @@ def main() -> int:
 
     asset_dir = site / "assets" / "generated" / "test-node-chassis"
     batches = sorted(asset_dir.glob("production-batch-*.stl"))
-    if len(batches) != 6:
-        raise SystemExit(f"expected six canonical STL beds, found {len(batches)}")
+    if len(batches) != 7:
+        raise SystemExit(f"expected seven canonical STL beds, found {len(batches)}")
     if any("print-group" in path.name for path in asset_dir.iterdir()):
         raise SystemExit("development print-group artifact reached the handbook")
 
@@ -298,6 +319,36 @@ def main() -> int:
             raise SystemExit(
                 f"interactive model is not a binary glTF file: {model}"
             )
+
+    nameplate_model = read_glb_json(
+        asset_dir / "batch-06-device-nameplate.glb"
+    )
+    expected_nameplate_materials = {
+        "White nameplate body": [0.9607843137254902, 0.9607843137254902,
+                                 0.9294117647058824, 1.0],
+        "Black raised labels": [0.0196078431372549, 0.0196078431372549,
+                                0.0196078431372549, 1.0],
+    }
+    actual_nameplate_materials = {
+        material.get("name"): material.get("pbrMetallicRoughness", {}).get(
+            "baseColorFactor"
+        )
+        for material in nameplate_model.get("materials", [])
+    }
+    if actual_nameplate_materials != expected_nameplate_materials:
+        raise SystemExit(
+            "Batch 06 GLB material contract changed: "
+            f"{actual_nameplate_materials!r}"
+        )
+    material_indices = {
+        primitive.get("material")
+        for mesh in nameplate_model.get("meshes", [])
+        for primitive in mesh.get("primitives", [])
+    }
+    if material_indices != {0, 1}:
+        raise SystemExit(
+            f"Batch 06 GLB does not use both nameplate materials: {material_indices}"
+        )
 
     checksums = verify_hashes(asset_dir)
     guide_text = "\n".join(page.read_text(encoding="utf-8") for page in pages)

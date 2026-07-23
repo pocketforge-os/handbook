@@ -104,8 +104,10 @@ captions explain the correctness cue rather than repeating the heading.
 Generated assembly images must identify and pin their source revision. A strict
 build should fail when a required step visual disappears, navigation skips a
 step, or a generated asset is stale. When the physical design changes, update
-the assembly sequence, per-step parts, verification gate, and source lock in
-the same change.
+the assembly sequence, per-step parts, verification gate, and source gitlink in
+the same change. The handbook tracks the CAD gitlink with Dependabot so source
+changes automatically open a regeneration PR instead of silently leaving the
+published models stale.
 
 ## Admonitions
 
