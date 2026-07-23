@@ -8,17 +8,18 @@ hide:
 <p class="pf-step-count">Assembly · Step 6 of 19</p>
 
 Join the two uprights and two crossbars into the smaller movable rectangle.
-Build it flat on the bench so its orientation is easy to see.
+Build it flat on the bench in the same operator view as Step 5. **Leave all 10
+loaded nut bars in their pictured grooves** while you join the rails.
 
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-02-crossbar-corner.png" alt="Transparent camera-frame corner exposing a dark concealed metal L connector inside the upright and crossbar">
-    <figcaption>One of four identical corners. The dark metal L connector hides inside both rails; the populated long groove on each crossbar faces the operator.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/detail-02-crossbar-corner.png" alt="Transparent upper-left camera-frame corner with the dark concealed L connector pointing down, visible silver adjustment screws, two orange crossbar nut bars including one with blue tape, and one orange upright nut bar retained from Step 5">
+    <figcaption>Upper-left corner: point the dark L connector down so its adjustment screw stays easy to reach below the top bar. The small orange bars—and the blue-taped spare—are the loaded Step 5 parts; leave them in place.</figcaption>
   </figure>
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/step-02-build-gantry.png" alt="Completed rectangular movable camera frame with two uprights, two crossbars, and four orange joint plates">
-    <figcaption>Destination: a square inner rectangle with four orange joint plates—one at each upright end.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/step-02-build-gantry.png" alt="Completed rectangular movable camera frame retaining all 10 orange Step 5 nut bars, two blue-taped spares, two centered splice collars, four orange joint plates, downward upper L connectors, and upward lower L connectors">
+    <figcaption>Destination: the same 10 loaded bars remain visible in the completed rectangle. Both top L connectors point down for adjustment access; the lower pair point up.</figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -36,17 +37,23 @@ Build it flat on the bench so its orientation is easy to see.
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--charcoal">Charcoal L</span><span>The concealed metal connector enters both rails at each of the four corners.</span></li>
-    <li><span class="pf-cue pf-cue--orange">Orange frame</span><span>The destination drawing highlights the complete camera frame and its four keyed joint plates.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver cutaway</span><span>The translucent rail walls reveal the hidden L connector in the close-up.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Charcoal L</span><span>Top connectors point down; lower connectors point up. The silver dots show the accessible adjustment screws.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Small orange bars</span><span>All 10 loaded Step 5 nut bars stay in their same grooves while the rails close.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue stripes</span><span>The two parked service spares stay at the upper-left and lower-right crossbar positions.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange collars and plates</span><span>The large center collars remain from Step 4; one keyed joint plate sits at each upright end.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver cutaway</span><span>The translucent rail walls reveal the hidden upper L connector in the close-up.</span></li>
   </ul>
 </div>
 
 ## Do this
 
 1. Lay the two uprights parallel with their loaded grooves facing each other.
-2. Turn both crossbars so their loaded grooves face the operator side.
-3. Insert one concealed L connector at each end of both crossbars.
+   Keep their four small orange nut bars and both large splice collars in place.
+2. Turn both crossbars so their loaded grooves face the operator side. Keep all
+   six crossbar nut bars in those grooves, including the two blue-taped spares.
+3. Insert one concealed L connector at each crossbar end. On the **upper
+   crossbar, point both L connectors down** so their adjustment screws remain
+   reachable below the bar. On the lower crossbar, point both connectors up.
 4. Join the lower and upper crossbars between the uprights.
 5. Snug the connector screws, but leave them loose enough that each crossbar
    can still slide up or down later.
@@ -62,9 +69,11 @@ Build it flat on the bench so its orientation is easy to see.
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** all four corners contain a concealed L connector, both
-loaded crossbar grooves face the operator, all four orange joint plates sit
-flat, and the complete camera frame can still be adjusted without binding.
+**Before you continue:** all **10 Step 5 nut bars are still visible in their
+loaded grooves**, including two with blue tape. All four corners contain a
+concealed L connector; the upper pair point down and the lower pair point up.
+Both loaded crossbar grooves face the operator, all four orange joint plates
+sit flat, and the complete camera frame can still be adjusted without binding.
 
 </div>
 
