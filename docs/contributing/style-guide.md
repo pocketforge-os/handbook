@@ -52,6 +52,12 @@ useful as an expert reference but poor as a bench interface: it hides the
 current parts, encourages skipped preloads, and makes mobile navigation
 fragile.
 
+Preparation is not exempt from this discipline. When a preparation action
+changes a part's state—seating a captive nut, installing an insert, lubricating
+a bearing, or sorting a preload—treat that section as a compact assembly step:
+define the unfamiliar term, list the exact working set, picture the before and
+finished states, show the quantity arithmetic, and end with a countable gate.
+
 ### Contract for every assembly step
 
 Every step page must include:

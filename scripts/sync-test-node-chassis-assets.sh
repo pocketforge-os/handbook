@@ -160,8 +160,13 @@ required_assets=(
   batch-04-frame-hardware.glb
   batch-05-placard-holder.glb
   batch-06-device-nameplate.glb
+  prep-captive-nut.png
+  prep-captive-nut-count.png
   preload-channel-bar.png
   preload-map.png
+  preload-width-rails.png
+  preload-depth-rails.png
+  preload-camera-frame.png
   pocketforge-test-node.glb
   pocketforge-test-node.provenance.json
   cut-list.csv

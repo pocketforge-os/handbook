@@ -233,24 +233,84 @@ Expected output: one replaceable white device-name cartridge with black raised
 text. The default cartridge says `TrimUI Smart Pro`. Longer names shrink within
 the same standard holder instead of changing its mounting geometry.
 
-## Install the captive nuts
+## Prepare the captive nuts
 
-Do this at the bench before bringing the aluminum frame parts over.
+Do this at the bench before bringing over any aluminum rails.
 
-1. Place one ordinary M3 nut over a printed hex pocket.
-2. Pass an M3 screw and washer through from the opposite side.
-3. Thread the screw into the nut by hand.
-4. Tighten only enough to pull the nut squarely into the pocket.
-5. Remove the screw and inspect that the nut sits flat and cannot rotate.
+A **captive nut** is just an ordinary metal M3 nut held in a hex-shaped
+pocket. The metal nut supplies the screw thread; the orange printed bar keeps
+the nut from turning. The screw and washer shown below are a temporary pull
+tool—remove them after seating each nut.
 
-Populate:
+<div class="pf-step-layout" markdown="1">
+<div class="pf-step-visual">
+  <figure>
+    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut.png" alt="At left, an exploded orange short nut bar with a dark M3 hex nut above its pocket and a silver screw and washer entering from below beside a blue upward arrow; at right, the screw is removed and a green check marks the nut seated flat in the bar">
+    <figcaption>Left: pull the nut into the hex pocket from the smooth side. Right: remove the screw and keep the finished bar.</figcaption>
+  </figure>
+  <figure>
+    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png" alt="Four rows of seven orange short bars with one dark nut each beside four long orange splice bars with two dark nuts each, labeled 36 metal M3 nuts total">
+    <figcaption>Finish all 28 short bars and all four long bars now. <a href="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png">Open the count drawing full size.</a></figcaption>
+  </figure>
+</div>
+<div class="pf-step-copy" markdown="1">
 
-- one nut in each of the 28 short sliding nut bars;
-- two nuts in each of the four long splice bars.
+### Get these parts
 
-Do not glue the nuts and do not pause a print to encapsulate them. The open
-pockets are the calibrated production interface and let a damaged nut be
-replaced.
+<ul class="pf-part-list">
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>28 × short sliding nut bars</strong><small>Batch 01 · one hex pocket per bar</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × long splice bars</strong><small>Batch 01 · two hex pockets per bar</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>36 × ordinary M3 hex nuts</strong><small>28 for the short bars + 8 for the long bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>1 × M3 screw, wide washer, and 2.5 mm hex key</strong><small>Reuse the same screw and washer as the pull tool</small></span></li>
+</ul>
+
+<div class="pf-picture-key" role="group" aria-label="Captive nut picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange bar</span><span>The printed carrier has a hex-shaped pocket on one face and a smooth screw hole on the other.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark hex</span><span>This is the ordinary metal M3 nut. It belongs in the hex pocket, not on the smooth face.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver hardware</span><span>The screw and wide washer pull from the smooth side and come back out when the nut is seated.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>Thread the screw upward into the nut by hand; never hammer or press the nut from above.</span></li>
+    <li><span class="pf-cue pf-cue--green">Green check</span><span>The finished nut sits flat in its pocket and cannot turn.</span></li>
+  </ul>
+</div>
+
+</div>
+</div>
+
+### Seat one nut
+
+1. Put one short orange bar on the bench with its **hex-shaped pocket facing
+   up**.
+2. Set one ordinary M3 nut flat in that pocket.
+3. Hold the nut in place. From the smooth side underneath, pass the M3 screw
+   through a wide washer and through the bar.
+4. Turn the screw into the nut **by hand for two or three turns**. Stop and
+   realign it if the screw does not turn freely.
+5. Use the hex key only until the nut is pulled squarely to the bottom of the
+   pocket. This is seating pressure, not final fastener torque.
+6. Remove the screw and washer.
+7. Check from the pocket side: all six nut corners are inside the hex recess,
+   the nut lies flat, and a fingertip cannot rotate it.
+
+### Repeat the exact count
+
+- Seat **one nut in each of the 28 short bars**: 28 nuts.
+- Seat **two nuts in each of the four long splice bars**: 8 nuts.
+- Final total: **28 short bars + 4 long bars + 36 seated nuts**.
+
+<div class="pf-step-check" markdown="1">
+
+**Before you continue:** count four complete rows of seven short bars and four
+long bars. Every short bar shows one flat metal nut; every long bar shows two.
+The temporary screw and washer have been removed from all 32 printed bars.
+
+</div>
+
+!!! warning "No glue, heat, or hammering"
+    Do not glue the nuts, melt them in, hammer them, or pause a print to
+    encapsulate them. The open pockets are the calibrated production
+    interface and let a damaged nut be replaced.
 
 !!! tip "Identify the splice-bar ends now"
     On every long bar, the **unmarked 12.8 mm end** enters the first rail and

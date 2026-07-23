@@ -14,8 +14,8 @@ service.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-map.png" alt="Transparent complete chassis showing orange active sliding nut bars and blue parked spare bars inside aluminum rails">
-    <figcaption>Each of the four operator-to-device depth rails contains one orange use-now bar and one blue service spare on its inside face.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/preload-depth-rails.png" alt="Separate lower and upper depth-rail pairs viewed from above: each left rail has one orange and one blue bar on its right inside groove, each right rail mirrors them on its left inside groove, and every blue spare is near the device wall end">
+    <figcaption>Each rail gets the same pair in its inside groove: one loose orange use-now bar near the operator side and one retained blue spare near the device side. <a href="../../../../assets/generated/test-node-chassis/preload-depth-rails.png">Open the labeled drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -32,35 +32,53 @@ service.
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One loose use-now bar belongs in each depth rail.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>One blue-tagged service spare parks near the device-side end of each depth rail.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The transparent outer frame shows which inside groove receives both bars.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One loose use-now bar belongs in each of the four depth rails.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>One service spare parks near the <strong>DEVICE / WALL</strong> end of every rail.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>Left and right rails mirror each other so both loaded grooves face the empty center.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>The four tape codes identify lower left, lower right, upper left, and upper right.</span></li>
   </ul>
 </div>
 
+</div>
+</div>
+
+!!! note "The blocks identify a groove, not an insertion route"
+    Insert every bar through an **open cut end**. The orange and blue blocks
+    hover outside the long face only to show which groove is loaded.
+
+## Match all four rails
+
+| Rail | Inside groove faces | Load |
+| --- | --- | --- |
+| `DEPTH-L-L` | Right, toward center | 1 orange + 1 blue |
+| `DEPTH-R-L` | Left, toward center | 1 orange + 1 blue |
+| `DEPTH-L-U` | Right, toward center | 1 orange + 1 blue |
+| `DEPTH-R-U` | Left, toward center | 1 orange + 1 blue |
+
 ## Do this
 
-1. Lay the rails as left/right pairs with their tape labels readable.
-2. Find the groove that will face the empty center of the chassis. The two
-   left rails use their **right-facing** groove; the two right rails use their
-   **left-facing** groove.
-3. Slide one use-now bar and one blue-marked spare into that same groove on
-   every rail.
-4. Move each spare toward the future **device-side** end. Leave enough clear
-   rail for the metal corner connector tongue.
-5. Tighten only the spare's screw until its washer stops the bar from sliding
-   or rattling.
-6. Leave the use-now bar loose on its screw handle. It will meet a camera-frame
-   joint later.
-
-</div>
-</div>
+1. Lay out the lower pair and upper pair exactly as pictured, with
+   **OPERATOR** nearest you and every tape label readable.
+2. Mark four screw heads with blue removable tape. These four bars are the
+   service spares.
+3. Starting with `DEPTH-L-L`, slide **one orange use-now bar and one
+   blue-marked spare** into the right-facing inside groove.
+4. Repeat on `DEPTH-R-L`, using its left-facing inside groove.
+5. Repeat the same mirrored pair on `DEPTH-L-U` and `DEPTH-R-U`.
+6. On every rail, move the blue spare toward the future
+   **DEVICE / WALL** end. Leave enough empty rail for the metal corner
+   connector tongue.
+7. Tighten only the blue spare's screw until its washer stops the bar from
+   sliding or rattling.
+8. Leave each orange use-now bar loose on its screw handle. It will meet a
+   camera-frame joint later.
 
 <div class="pf-step-check" markdown="1">
 
 **Before you continue:** every depth rail contains exactly **two bars in its
 inside groove**—one loose use-now bar and one lightly parked blue spare. That is
-eight bars in this step and four parked spares so far.
+**8 bars in this step: 4 orange + 4 blue**. All four blue bars are at the
+device-side ends shown in the picture.
 
 </div>
 
