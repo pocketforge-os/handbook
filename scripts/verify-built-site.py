@@ -366,6 +366,20 @@ def main() -> int:
                         f"explanation {explanation!r}"
                     )
 
+        if step_number == 6:
+            normalized_step_html = " ".join(step_html.split())
+            for continuity_instruction in (
+                "Leave all 10 loaded nut bars in their pictured grooves",
+                "upper crossbar, point both L connectors down",
+                "10 Step 5 nut bars are still visible",
+                "including two with blue tape",
+            ):
+                if continuity_instruction not in normalized_step_html:
+                    raise SystemExit(
+                        "assembly step 6 is missing the loaded-state "
+                        f"continuity instruction {continuity_instruction!r}"
+                    )
+
         resolved_links = {
             target
             for tag, reference in step_parser.references
