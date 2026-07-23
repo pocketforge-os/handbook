@@ -56,7 +56,7 @@ material, slicer compensation, or placard-slide geometry.
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 00 STL](../../assets/generated/test-node-chassis/production-batch-00-calibration.stl){ .pf-download download }
+[Download Batch 00 STL](../../assets/generated/test-node-chassis/production-batch-00-calibration.stl){ .pf-download download="production-batch-00-calibration.stl" }
 
 The bed contains the rail-key coupon, two M3 channel-bar candidates, and the
 placard-slide coupon.
@@ -93,7 +93,7 @@ only the channel-contact surfaces until they move smoothly.
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 01 STL](../../assets/generated/test-node-chassis/production-batch-01-ironed-interfaces.stl){ .pf-download download }
+[Download Batch 01 STL](../../assets/generated/test-node-chassis/production-batch-01-ironed-interfaces.stl){ .pf-download download="production-batch-01-ironed-interfaces.stl" }
 
 Expected output:
 
@@ -121,7 +121,7 @@ No supports are required.
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 02 STL](../../assets/generated/test-node-chassis/production-batch-02-splice-collars.stl){ .pf-download download }
+[Download Batch 02 STL](../../assets/generated/test-node-chassis/production-batch-02-splice-collars.stl){ .pf-download download="production-batch-02-splice-collars.stl" }
 
 Expected output: two identical full-wrap collars.
 
@@ -143,7 +143,7 @@ Expected output: two identical full-wrap collars.
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 03 STL](../../assets/generated/test-node-chassis/production-batch-03-movable-mounts.stl){ .pf-download download }
+[Download Batch 03 STL](../../assets/generated/test-node-chassis/production-batch-03-movable-mounts.stl){ .pf-download download="production-batch-03-movable-mounts.stl" }
 
 Expected output:
 
@@ -169,7 +169,7 @@ Expected output:
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 04 STL](../../assets/generated/test-node-chassis/production-batch-04-frame-hardware.stl){ .pf-download download }
+[Download Batch 04 STL](../../assets/generated/test-node-chassis/production-batch-04-frame-hardware.stl){ .pf-download download="production-batch-04-frame-hardware.stl" }
 
 Expected output:
 
@@ -195,7 +195,7 @@ Expected output:
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 05 STL](../../assets/generated/test-node-chassis/production-batch-05-identification.stl){ .pf-download download }
+[Download Batch 05 STL](../../assets/generated/test-node-chassis/production-batch-05-identification.stl){ .pf-download download="production-batch-05-identification.stl" }
 
 Expected output: one fleet-width holder and one replaceable device-name
 cartridge. The default cartridge says `TrimUI Smart Pro`. Longer names shrink
