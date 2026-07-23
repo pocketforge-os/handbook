@@ -17,6 +17,7 @@ class LocalReferenceParser(HTMLParser):
         self.references: list[tuple[str, str]] = []
         self.model_viewers: list[dict[str, str]] = []
         self.images: list[dict[str, str]] = []
+        self.downloads: list[dict[str, str]] = []
 
     def handle_starttag(
         self, tag: str, attrs: list[tuple[str, str | None]]
@@ -24,6 +25,8 @@ class LocalReferenceParser(HTMLParser):
         attributes = {key: value or "" for key, value in attrs}
         if tag in {"a", "link"} and attributes.get("href"):
             self.references.append((tag, attributes["href"]))
+        if tag == "a" and "pf-download" in attributes.get("class", "").split():
+            self.downloads.append(attributes)
         if tag in {"img", "script", "source", "model-viewer"} and attributes.get(
             "src"
         ):
@@ -187,6 +190,19 @@ def main() -> int:
         raise SystemExit(
             "print page is missing the click handler that dismisses model posters"
         )
+    print_downloads = page_references[print_page].downloads
+    if len(print_downloads) != 6:
+        raise SystemExit(
+            f"expected six print-bed downloads, found {len(print_downloads)}"
+        )
+    for download in print_downloads:
+        linked_name = Path(urlparse(download.get("href", "")).path).name
+        download_name = download.get("download", "")
+        if download_name != linked_name:
+            raise SystemExit(
+                "print-bed download filename does not match its linked asset: "
+                f"{download_name!r} != {linked_name!r}"
+            )
 
     if page_viewer_sources[assembly_page] != ["pocketforge-test-node.glb"]:
         raise SystemExit(
