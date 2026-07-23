@@ -138,6 +138,12 @@ def main() -> int:
                     raise SystemExit(
                         f"model-viewer is missing {required_attribute}"
                     )
+            reveal = viewer.get("reveal", "auto")
+            if reveal not in {"auto", "manual"}:
+                raise SystemExit(
+                    f"model-viewer uses unsupported reveal value {reveal!r}: "
+                    f"{page.relative_to(site)}"
+                )
             source_name = Path(urlparse(viewer["src"]).path).name
             viewer_sources[source_name] += 1
             page_sources.append(source_name)
@@ -161,6 +167,25 @@ def main() -> int:
             "interactive model counts changed: "
             f"{dict(sorted(viewer_sources.items()))} != "
             f"{dict(sorted(expected_viewer_counts.items()))}"
+        )
+
+    print_page = guide_root / "print" / "index.html"
+    print_viewers = page_references[print_page].model_viewers
+    for viewer in print_viewers:
+        if (
+            viewer.get("reveal") != "manual"
+            or "data-click-to-load" not in viewer
+        ):
+            raise SystemExit(
+                "print-bed model-viewer is missing manual click-to-load wiring"
+            )
+    print_html = print_page.read_text(encoding="utf-8")
+    if (
+        'model-viewer[data-click-to-load]' not in print_html
+        or "viewer.dismissPoster()" not in print_html
+    ):
+        raise SystemExit(
+            "print page is missing the click handler that dismisses model posters"
         )
 
     if page_viewer_sources[assembly_page] != ["pocketforge-test-node.glb"]:

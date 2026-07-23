@@ -1,6 +1,11 @@
 # Print the hardware
 
 <script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
+<script type="module">
+  document.querySelectorAll("model-viewer[data-click-to-load]").forEach((viewer) => {
+    viewer.addEventListener("click", () => viewer.dismissPoster(), { once: true });
+  });
+</script>
 
 Use the canonical beds below. Do not scale, auto-orient, split, or auto-arrange
 these STLs.
@@ -43,7 +48,8 @@ material, slicer compensation, or placard-slide geometry.
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
@@ -79,7 +85,8 @@ only the channel-contact surfaces until they move smoothly.
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
@@ -106,7 +113,8 @@ No supports are required.
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
@@ -127,7 +135,8 @@ Expected output: two identical full-wrap collars.
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
@@ -152,7 +161,8 @@ Expected output:
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
@@ -177,7 +187,8 @@ Expected output:
     camera-controls
     touch-action="pan-y"
     loading="lazy"
-    reveal="interaction"
+    reveal="manual"
+    data-click-to-load
     shadow-intensity="0.7"
     shadow-softness="0.8">
   </model-viewer>
