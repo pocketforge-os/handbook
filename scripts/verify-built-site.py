@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
@@ -83,46 +84,65 @@ def main() -> int:
             raise SystemExit(f"missing chassis guide page: {page}")
 
     missing: list[str] = []
-    viewer_count = 0
-    viewer_sources: set[str] = set()
+    viewer_sources: Counter[str] = Counter()
+    page_viewer_sources: dict[Path, list[str]] = {}
     for page in pages:
         page_parser = LocalReferenceParser()
         page_parser.feed(page.read_text(encoding="utf-8"))
+        page_sources: list[str] = []
         for tag, reference in page_parser.references:
             target = resolve_reference(site, page, reference)
             if target is not None and not target.exists():
                 missing.append(f"{page.relative_to(site)}: <{tag}> {reference}")
         for viewer in page_parser.model_viewers:
-            viewer_count += 1
             for required_attribute in ("src", "poster", "alt", "camera-controls"):
                 if required_attribute not in viewer:
                     raise SystemExit(
                         f"model-viewer is missing {required_attribute}"
                     )
-            viewer_sources.add(Path(urlparse(viewer["src"]).path).name)
+            source_name = Path(urlparse(viewer["src"]).path).name
+            viewer_sources[source_name] += 1
+            page_sources.append(source_name)
+        page_viewer_sources[page] = page_sources
 
     if missing:
         raise SystemExit("unresolved local references:\n" + "\n".join(missing))
+    expected_viewer_counts = Counter(
+        {
+            "pocketforge-test-node.glb": 2,
+            "batch-00-calibration.glb": 1,
+            "batch-01-ironed-interfaces.glb": 1,
+            "batch-02-splice-collars.glb": 1,
+            "batch-03-movable-mounts.glb": 1,
+            "batch-04-frame-hardware.glb": 1,
+            "batch-05-identification.glb": 1,
+        }
+    )
+    if viewer_sources != expected_viewer_counts:
+        raise SystemExit(
+            "interactive model counts changed: "
+            f"{dict(sorted(viewer_sources.items()))} != "
+            f"{dict(sorted(expected_viewer_counts.items()))}"
+        )
+
+    assembly_page = guide_root / "assemble" / "index.html"
+    if page_viewer_sources[assembly_page] != ["pocketforge-test-node.glb"]:
+        raise SystemExit(
+            "assembly page must contain exactly one finished chassis model"
+        )
+    assembly_html = assembly_page.read_text(encoding="utf-8")
+    if "assets/vendor/model-viewer/model-viewer.min.js" not in assembly_html:
+        raise SystemExit(
+            "assembly page is missing the pinned local model-viewer script"
+        )
+    if "<noscript>" not in assembly_html:
+        raise SystemExit(
+            "assembly page is missing the static no-JavaScript fallback"
+        )
+
     expected_viewer_sources = {
-        "pocketforge-test-node.glb",
-        "batch-00-calibration.glb",
-        "batch-01-ironed-interfaces.glb",
-        "batch-02-splice-collars.glb",
-        "batch-03-movable-mounts.glb",
-        "batch-04-frame-hardware.glb",
-        "batch-05-identification.glb",
+        model_name for model_name in expected_viewer_counts
     }
-    if viewer_count != len(expected_viewer_sources):
-        raise SystemExit(
-            "expected "
-            f"{len(expected_viewer_sources)} interactive models, "
-            f"found {viewer_count}"
-        )
-    if viewer_sources != expected_viewer_sources:
-        raise SystemExit(
-            "interactive model source set changed: "
-            f"{sorted(viewer_sources)} != {sorted(expected_viewer_sources)}"
-        )
 
     asset_dir = site / "assets" / "generated" / "test-node-chassis"
     batches = sorted(asset_dir.glob("production-batch-*.stl"))
@@ -146,7 +166,8 @@ def main() -> int:
     print(
         "handbook_surface=pass "
         f"pages={len(pages)} local_links=resolved batches={len(batches)} "
-        f"checksums={checksums} interactive_models={viewer_count}"
+        f"checksums={checksums} "
+        f"interactive_models={sum(viewer_sources.values())}"
     )
     return 0
 

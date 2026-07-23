@@ -8,6 +8,40 @@ missing bar requires partial disassembly.
     The power strip remains unplugged. Do not connect a programmable supply,
     DUT, USB power, battery emulator, or mains input during this procedure.
 
+## Inspect the finished chassis
+
+Rotate and zoom the finished assembly before starting. Use it to resolve an
+orientation question or inspect where a rail, gantry, carrier, or accessory
+lands from another angle.
+
+<script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
+<div class="chassis-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/pocketforge-test-node.glb"
+    poster="../../../assets/generated/test-node-chassis/hero.png"
+    alt="Interactive model of the complete PocketForge test-node chassis"
+    camera-controls
+    touch-action="pan-y"
+    shadow-intensity="0.7"
+    shadow-softness="0.8"
+    exposure="1.0"
+    camera-orbit="35deg 68deg 1.05m"
+    min-camera-orbit="auto auto 0.55m"
+    max-camera-orbit="auto auto 1.7m">
+  </model-viewer>
+  <span class="chassis-model-help">drag to rotate · scroll to zoom</span>
+</div>
+<noscript>
+  <img
+    class="pf-step-render"
+    src="../../../assets/generated/test-node-chassis/hero.png"
+    alt="Static finished view of the complete PocketForge test-node chassis">
+</noscript>
+
+The static finished view remains visible while the model loads or when
+interactive 3D is unavailable. The detailed panels below use the same
+operator-side and device-side orientation as this model.
+
 Each numbered section begins with its completed state. The close-up panels then
 show the interface, direction, or measurement that matters for the next
 operation:
