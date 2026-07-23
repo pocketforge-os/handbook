@@ -13,8 +13,8 @@ once before loading the labeled frame rails.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-channel-bar.png" alt="Orange sliding nut bar entering the open cut end of a gray 20 mm square aluminum rail in the direction of a blue arrow">
-    <figcaption>The bar enters through the open cut end. It cannot pass through the narrow opening on the long rail face.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/preload-channel-bar.png" alt="Orange sliding nut bar entering the open cut end of a silver 20 mm V-slot aluminum rail in the direction of a blue arrow">
+    <figcaption>Feed the whole bar through the open cut end. The long slot only exposes its screw hole.</figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -38,27 +38,25 @@ once before loading the labeled frame rails.
 
 ## Do this
 
-1. Look at the open end of the rail. The material is a 20 mm square with one
-   long groove on each face.
-2. Find the two faces of the orange bar. The broad solid face points outward,
-   toward the groove opening you can see. The open pocket with the metal nut
-   points inward, toward the center of the rail.
-3. Put the washer on the screw. Thread the screw into the nut by only one turn.
-   The loose screw is now a handle.
-4. Slide the bar through the **cut end** in the blue-arrow direction.
-5. Move it along the full practice piece. Pull gently toward the groove opening;
-   the rail lips should keep it trapped.
-6. Remove the practice bar and keep its screw and washer with it.
+1. Find the rail's open **cut end**. The bar enters here—not through the long
+   slot.
+2. Hold the bar with its broad orange face toward the slot. The metal nut faces
+   the center of the rail.
+3. Add the washer, then thread the screw into the nut by **one turn**. Use the
+   loose screw as a handle.
+4. Feed the bar into the cut end in the blue-arrow direction.
+5. Slide it end to end. Tug the handle gently toward the slot; the rail lips
+   should hold the bar inside.
+6. Slide the bar back out. Keep the bar, screw, and washer together.
 
 </div>
 </div>
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** the bar slides end to end without force, does not pull
-through the groove opening, and has its metal nut facing the center of the
-rail. If it binds, deburr the rail and recheck the Batch 00 fit gate—do not
-hammer it.
+**Before you continue:** the bar slides freely, stays behind the slot lips, and
+has its metal nut facing the rail center. If it binds, stop: deburr the rail and
+repeat the Batch 00 fit gate. Never hammer it.
 
 </div>
 
