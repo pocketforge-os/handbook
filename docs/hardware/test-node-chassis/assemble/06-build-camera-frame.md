@@ -26,12 +26,21 @@ Build it flat on the bench so its orientation is easy to see.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>2 × loaded camera-frame uprights</strong><small>From Step 5</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>2 × loaded 306 mm crossbars</strong><small>Lower and upper</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × concealed metal L connectors</strong><small>With eight supplied set screws</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>4 × keyed camera-frame joint plates</strong><small>Print Batch 03 · one at each upright end</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>4 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the four upright nut bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>2 × loaded camera-frame uprights</strong><small>From Step 5</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>2 × loaded 306 mm crossbars</strong><small>Lower and upper</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--metal">Metal</span><span><strong>4 × concealed metal L connectors</strong><small>With eight supplied set screws</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × keyed camera-frame joint plates</strong><small>Print Batch 03 · one at each upright end</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>4 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the four upright nut bars</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--charcoal">Charcoal L</span><span>The concealed metal connector enters both rails at each of the four corners.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange frame</span><span>The destination drawing highlights the complete camera frame and its four keyed joint plates.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver cutaway</span><span>The translucent rail walls reveal the hidden L connector in the close-up.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

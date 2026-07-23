@@ -60,13 +60,16 @@ Every step page must include:
 - a large view of the action or destination, shown before prose on narrow
   screens;
 - **Get these parts**, with exact quantities and the bag, print batch, or cut
-  label that identifies each item;
+  label that identifies each item; use a visible category word such as
+  **Aluminum**, **Printed**, **M3**, **Tool**, or **Assembled**, never an
+  unlabeled color swatch;
 - one bounded action sequence—split the page again if it contains two
   independently reversible jobs;
 - plain-language names first, with the source/CAD term in parentheses only
   when it helps someone find the part;
-- matching visual and textual cues for direction, measurement, and
-  orientation;
+- a compact **Read the picture** key that pairs every instructional highlight,
+  arrow, line, label, or ghosted part with the same color and an explicit
+  local name such as **Blue arrow** or **Orange part**;
 - a prominent **Before you continue** state that a first-time builder can
   compare with the work in front of them.
 
@@ -89,9 +92,12 @@ operator/device orientation consistent across a chapter. Highlight the new
 part, fade completed context, and put arrows or circles directly on the feature
 named by the adjacent instruction.
 
-Never encode meaning by color alone. Pair color with a shape, arrow, caption,
-or explicit word. Alt text names the action and direction; captions explain
-the correctness cue rather than repeating the heading.
+Never encode meaning by color alone. Repeat each instructional color in the
+adjacent **Read the picture** key and pair it with a shape or explicit word.
+Use silver or light gray—not black—for aluminum, and keep CAD views on a
+light, bounded drawing surface so the rails remain legible in both light and
+dark themes. Alt text names the highlighted part, action, and direction;
+captions explain the correctness cue rather than repeating the heading.
 
 ### Maintenance
 

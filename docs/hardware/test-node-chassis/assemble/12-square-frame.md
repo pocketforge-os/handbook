@@ -13,7 +13,7 @@ from both outer rectangles before final tightening.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-05-square-diagonals.png" alt="Top-down outer frame with two blue crossing corner-to-corner measurements labeled A and B">
+    <img src="../../../../assets/generated/test-node-chassis/detail-05-square-diagonals.png" alt="Top-down silver outer frame with one blue diagonal A and one orange diagonal B crossing corner to corner">
     <figcaption>Measure corner to opposite corner along A and B. Shift the still-loose rectangle until the two dimensions differ by no more than 2 mm.</figcaption>
   </figure>
   <figure>
@@ -26,10 +26,20 @@ from both outer rectangles before final tightening.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the upper depth-rail nut bars</small></span></li>
-  <li><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>Tape measure and machinist square</strong><small>For paired diagonals and post plumb</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>Hex drivers for both connector types</strong><small>Tighten by hand; do not use an impact driver</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the upper depth-rail nut bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>Tape measure and machinist square</strong><small>For paired diagonals and post plumb</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>Hex drivers for both connector types</strong><small>Tighten by hand; do not use an impact driver</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--blue">Blue A</span><span>Measure one pair of opposite corners and record it as A.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange B</span><span>Measure the other pair as B; A and B must differ by no more than 2 mm.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rectangle</span><span>Repeat this diagonal comparison on both the lower and upper rail rings.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange frame parts</span><span>In the destination view, the upper ring, collars, and joint plates are carry-over context from earlier steps; add no new orange part here.</span></li>
+  </ul>
+</div>
 
 ## Attach the upper joints
 

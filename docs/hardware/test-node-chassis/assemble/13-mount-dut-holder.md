@@ -13,7 +13,7 @@ links go on top and the long links go on the bottom.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-06-carrier-link-lengths.png" alt="Two short upper DUT-holder links and two longer lower links shown separately with their lengths">
+    <img src="../../../../assets/generated/test-node-chassis/detail-06-carrier-link-lengths.png" alt="Orange-highlighted short upper DUT-holder link and longer lower link shown separately with 97.5 mm and 114.5 mm labels">
     <figcaption>Do not swap them: two 97.5 mm links at the upper rail; two 114.5 mm links at the lower rail. The round keyed hole meets aluminum and the long slot meets the holder.</figcaption>
   </figure>
   <figure>
@@ -26,12 +26,21 @@ links go on top and the long links go on the bottom.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × device-specific DUT holder</strong><small>TrimUI Smart Pro family holder in the example build</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>2 × 97.5 mm upper links</strong><small>Print Batch 03 · the shorter pair</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>2 × 114.5 mm lower links</strong><small>Print Batch 03 · the longer pair</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four already in the rail nut bars; four for the holder joints</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>4 × ordinary M3 hex nuts</strong><small>One at each link-to-holder joint</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × device-specific DUT holder</strong><small>TrimUI Smart Pro family holder in the example build</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × 97.5 mm upper links</strong><small>Print Batch 03 · the shorter pair</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × 114.5 mm lower links</strong><small>Print Batch 03 · the longer pair</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>Four already in the rail nut bars; four for the holder joints</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3 nut</span><span><strong>4 × ordinary M3 hex nuts</strong><small>One at each link-to-holder joint</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange parts</span><span>The two link lengths and the large device-side holder assembly are active. Small orange camera-frame collars and plates are prior work.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark hardware</span><span>The holder hooks and concealed frame connectors are installed context, not link-length cues.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver chassis</span><span>The device-side width rails receive the link ends while the rest of the squared frame stays fixed.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

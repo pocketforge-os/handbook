@@ -66,19 +66,23 @@ The tape labels made in [Cut the aluminum rails](../cut.md) remain on the parts
 until assembly is complete. Instructions always give the plain name first and
 the short tape code second.
 
-## Read the colors
+## Read the drawings
 
-The drawings and instructions use a small, consistent visual language:
+The drawings use instruction colors rather than literal finish colors. Every
+step repeats the exact local meaning in a **Read the picture** box beside the
+drawing:
 
 <div class="pf-visual-key">
-  <div><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>Orange:</strong> the part being added or positioned now.</span></div>
-  <div><span class="pf-key pf-key--blue" aria-hidden="true"></span><span><strong>Blue:</strong> movement, insertion, or a measurement direction.</span></div>
-  <div><span class="pf-key pf-key--green" aria-hidden="true"></span><span><strong>Green:</strong> the condition that must be correct before continuing.</span></div>
-  <div><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>Dark gray:</strong> metal connectors or work already completed.</span></div>
+  <div><span class="pf-cue pf-cue--orange">Orange highlight</span><span>The active geometry in focused views; finished references use orange for printed frame hardware. The local key distinguishes them.</span></div>
+  <div><span class="pf-cue pf-cue--blue">Blue cue</span><span>An arrow, measurement, orientation label, or service spare. The step names which one.</span></div>
+  <div><span class="pf-cue pf-cue--silver">Silver / gray</span><span>Aluminum or already-assembled context. It always sits on a light drawing panel, including in dark mode.</span></div>
+  <div><span class="pf-cue pf-cue--charcoal">Charcoal</span><span>A concealed metal connector or installed component named by the step.</span></div>
+  <div><span class="pf-cue pf-cue--green">Green check</span><span>The visible condition that must be correct before continuing.</span></div>
 </div>
 
-Color is never the only cue: every colored mark is also named in the adjacent
-instruction or caption.
+In **Get these parts**, the marker itself also carries a word such as
+**Aluminum**, **Printed**, **M3**, **Tool**, or **Assembled**. Color is therefore
+never the only way to identify either a bench part or a drawing instruction.
 
 ## Before Step 1
 

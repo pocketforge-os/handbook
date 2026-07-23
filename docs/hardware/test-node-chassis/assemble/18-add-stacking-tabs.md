@@ -26,10 +26,20 @@ second chassis from sliding sideways; the aluminum faces carry its weight.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>8 × stacking-registration tabs</strong><small>Print Batch 04 · two per upper corner</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>16 × M5 drop-in T-nut, screw, and washer sets</strong><small>Two lower holes per tab</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>Optional upper locking hardware stays aside</strong><small>Use only after a second chassis is physically stacked</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × stacking-registration tabs</strong><small>Print Batch 04 · two per upper corner</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M5</span><span><strong>16 × M5 drop-in T-nut, screw, and washer sets</strong><small>Two lower holes per tab</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M5 aside</span><span><strong>Optional upper locking hardware stays aside</strong><small>Use only after a second chassis is physically stacked</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange tabs</span><span>The close-up identifies the two tabs added at one corner. The finished reference also renders all previously installed printed frame hardware orange.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>A second chassis descends vertically between the tab lead-ins.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Ghosted chassis</span><span>The translucent rails belong to the chassis above; broad aluminum faces carry its weight.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark connector</span><span>The three-way corner connector is existing frame hardware, not a tab contact surface.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

@@ -22,12 +22,22 @@ device-name cartridge in from the right.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>2 × placard risers and 2 × keyed spacers</strong><small>Print Batch 04</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × 230 mm placard holder</strong><small>Print Batch 05</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>1 × device-name cartridge</strong><small>Print Batch 05 · TrimUI Smart Pro in the example</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the upper rail nut bars</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>2 × M3 × 12 mm flat-head screws and ordinary M3 nuts</strong><small>Holder-to-riser joints</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × placard risers and 2 × keyed spacers</strong><small>Print Batch 04</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × 230 mm placard holder</strong><small>Print Batch 05</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × device-name cartridge</strong><small>Print Batch 05 · TrimUI Smart Pro in the example</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the upper rail nut bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>2 × M3 × 12 mm flat-head screws and ordinary M3 nuts</strong><small>Holder-to-riser joints</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--yellow">Yellow cartridge</span><span>The readable device-name insert starts to the right of the holder.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>Slide the cartridge left into the stationary holder until its stop reaches the end.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange risers</span><span>The two risers and keyed spacers suspend the holder below the upper rail.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark holder</span><span>The 230 mm holder stays fixed while the cartridge remains removable to the right.</span></li>
+  </ul>
+</div>
 
 ## Do this
 

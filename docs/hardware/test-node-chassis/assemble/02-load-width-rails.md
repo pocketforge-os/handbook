@@ -26,10 +26,20 @@ while both cut ends are still open.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × 306 mm width rails</strong><small>Operator lower, operator upper, device lower, device upper</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>10 × short sliding nut bars</strong><small>Print Batch 01 · M3 nuts already installed</small></span></li>
-  <li><span class="pf-key pf-key--magenta" aria-hidden="true"></span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Temporary handles; the same hardware is used by the mounts later</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 306 mm width rails</strong><small>Operator lower, operator upper, device lower, device upper</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>10 × short sliding nut bars</strong><small>Print Batch 01 · M3 nuts already installed</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Temporary handles; the same hardware is used by the mounts later</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Use-now nut bars. This step loads the 10 blocks that belong in the four width rails.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>Parked service spares shown for the later whole-chassis count; do not add them to a width rail.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue words</span><span><strong>OPERATOR</strong> and <strong>DEVICE / WALL</strong> establish which way the rail faces.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>Transparent context in the first drawing; the four lower rails and their tape codes in the second.</span></li>
+  </ul>
+</div>
 
 ## Load this exact count
 

@@ -17,7 +17,7 @@ outer frame. The top must remain completely open.
     <figcaption>Every outer corner uses this topology. Each horizontal rail butts against one face of the post; the two horizontal rails do not overlap.</figcaption>
   </figure>
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/step-03-open-frame.png" alt="Lower rectangular outer frame with four upright posts and no upper ring">
+    <img src="../../../../assets/generated/test-node-chassis/step-03-open-frame.png" alt="Silver lower rectangular outer frame with four orange-highlighted upright posts and no upper ring">
     <figcaption>Destination: the complete lower rectangle and four vertical posts, with no upper rails installed.</figcaption>
   </figure>
 </div>
@@ -26,10 +26,19 @@ outer frame. The top must remain completely open.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>1 × correctly oriented lower rectangle</strong><small>From Step 7</small></span></li>
-  <li><span class="pf-key pf-key--orange" aria-hidden="true"></span><span><strong>4 × 360 mm vertical posts</strong><small>Operator-left, operator-right, device-left, device-right</small></span></li>
-  <li><span class="pf-key pf-key--black" aria-hidden="true"></span><span><strong>4 × metal three-way end connectors</strong><small>With their supplied set screws</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>1 × correctly oriented lower rectangle</strong><small>From Step 7</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 360 mm vertical posts</strong><small>Operator-left, operator-right, device-left, device-right</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--metal">Metal</span><span><strong>4 × metal three-way end connectors</strong><small>With their supplied set screws</small></span></li>
 </ul>
+
+<div class="pf-picture-key" role="group" aria-label="Picture annotations">
+  <p class="pf-picture-key__title">Read the picture</p>
+  <ul>
+    <li><span class="pf-cue pf-cue--orange">Orange posts</span><span>The four aluminum posts are highlighted because they are added now; orange is not their real finish.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver base</span><span>The correctly oriented lower rectangle is work already completed in Step 7.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark connector</span><span>One metal three-way connector sits inside every flush corner.</span></li>
+  </ul>
+</div>
 
 ## Do this
 
