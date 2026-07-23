@@ -45,8 +45,8 @@ before beginning the formal verification checklist.
 - [ ] Device side: DUT holder faces the operator and camera.
 - [ ] Inside: the complete camera frame is captive, square, and centered at the
       75 mm initial Y position.
-- [ ] Sliding nut bars: 22 are used by mounts and six blue-marked spares are
-      lightly parked.
+- [ ] Sliding nut bars: all 28 are orange; 22 are used by mounts and six have
+      blue tape on their screws and remain lightly parked.
 - [ ] Uprights: both center seams are fully closed under centered collars.
 - [ ] Outer envelope: approximately 346 mm wide × 358 mm deep × 368 mm tall.
 - [ ] Geometry: both diagonal pairs match within 2 mm and the chassis does not

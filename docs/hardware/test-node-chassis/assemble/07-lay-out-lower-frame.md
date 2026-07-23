@@ -24,8 +24,8 @@ and loose in this step.
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × operator lower width rail</strong><small>306 mm · <code>WIDTH-O-L</code> · four loaded bars</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × device lower width rail</strong><small>306 mm · <code>WIDTH-D-L</code> · two loaded bars</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × left lower depth rail</strong><small>318 mm · <code>DEPTH-L-L</code> · one active bar and one blue spare</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × right lower depth rail</strong><small>318 mm · <code>DEPTH-R-L</code> · one active bar and one blue spare</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × left lower depth rail</strong><small>318 mm · <code>DEPTH-L-L</code> · one loose bar and one blue-tape-tagged parked replacement</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × right lower depth rail</strong><small>318 mm · <code>DEPTH-R-L</code> · one loose bar and one blue-tape-tagged parked replacement</small></span></li>
 </ul>
 
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
@@ -49,8 +49,8 @@ and loose in this step.
 7. Turn the rails so the operator lower rail's four-bar groove faces into the
    rectangle, the device lower rail's two-bar groove faces into the rectangle,
    and each depth rail's loaded groove faces into the rectangle.
-8. Check that all six loose use-now bars remain present and that the two blue
-   spares remain lightly parked.
+8. Check that all six loose use-now bars remain present and that the two orange
+   bars with blue tape remain lightly parked.
 
 </div>
 </div>

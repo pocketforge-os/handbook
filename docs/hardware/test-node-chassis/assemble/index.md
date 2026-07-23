@@ -149,7 +149,7 @@ drawing:
 
 <div class="pf-visual-key">
   <div><span class="pf-cue pf-cue--orange">Orange highlight</span><span>The active geometry in focused views; finished references use orange for printed frame hardware. The local key distinguishes them.</span></div>
-  <div><span class="pf-cue pf-cue--blue">Blue cue</span><span>An arrow, measurement, orientation label, or service spare. The step names which one.</span></div>
+  <div><span class="pf-cue pf-cue--blue">Blue cue</span><span>An arrow, measurement, orientation label, or tape tag on an orange parked replacement. The step names which one.</span></div>
   <div><span class="pf-cue pf-cue--silver">Silver / gray</span><span>Aluminum or already-assembled context. It always sits on a light drawing panel, including in dark mode.</span></div>
   <div><span class="pf-cue pf-cue--charcoal">Charcoal</span><span>A concealed metal connector or installed component named by the step.</span></div>
   <div><span class="pf-cue pf-cue--green">Green check</span><span>The visible condition that must be correct before continuing.</span></div>
@@ -176,7 +176,7 @@ never the only way to identify either a bench part or a drawing instruction.
 <ol class="pf-step-list">
   <li><a href="01-learn-the-rail/"><strong>Learn the rail and nut bar</strong><small>Practice the only hidden interface before loading real frame parts.</small></a></li>
   <li><a href="02-load-width-rails/"><strong>Load the four width rails</strong><small>Place the first 10 sliding nut bars in the left-to-right rails.</small></a></li>
-  <li><a href="03-load-depth-rails/"><strong>Load the four depth rails</strong><small>Add four active bars and park four service spares.</small></a></li>
+  <li><a href="03-load-depth-rails/"><strong>Load the four depth rails</strong><small>Put two identical orange bars in each rail; tag and park one.</small></a></li>
   <li><a href="04-splice-uprights/"><strong>Splice the camera-frame uprights</strong><small>Join each pair of 164 mm halves into one straight rail.</small></a></li>
   <li><a href="05-load-camera-frame/"><strong>Load the camera-frame rails</strong><small>Add the final 10 bars and account for all 28.</small></a></li>
   <li><a href="06-build-camera-frame/"><strong>Build the camera frame</strong><small>Join the smaller adjustable rectangle while it lies flat.</small></a></li>

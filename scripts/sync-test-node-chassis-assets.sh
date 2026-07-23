@@ -165,6 +165,7 @@ required_assets=(
   preload-channel-bar.png
   preload-map.png
   preload-width-rails.png
+  preload-parked-replacement.png
   preload-depth-rails.png
   preload-camera-frame.png
   pocketforge-test-node.glb

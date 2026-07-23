@@ -297,9 +297,12 @@ def main() -> int:
 
     verify_page = guide_root / "verify" / "index.html"
     dedicated_preload_visuals = {
-        2: "preload-width-rails.png",
-        3: "preload-depth-rails.png",
-        5: "preload-camera-frame.png",
+        2: ("preload-width-rails.png",),
+        3: (
+            "preload-parked-replacement.png",
+            "preload-depth-rails.png",
+        ),
+        5: ("preload-camera-frame.png",),
     }
     step_count = len(assembly_steps)
     for index, step_page in enumerate(assembly_steps):
@@ -337,15 +340,31 @@ def main() -> int:
             raise SystemExit(
                 f"assembly step {step_number} has no generated CAD visual"
             )
-        dedicated_visual = dedicated_preload_visuals.get(step_number)
-        if dedicated_visual and not any(
-            Path(urlparse(source).path).name == dedicated_visual
-            for source in generated_pngs
+        for dedicated_visual in dedicated_preload_visuals.get(
+            step_number, ()
         ):
-            raise SystemExit(
-                f"assembly step {step_number} is missing its dedicated "
-                f"preload visual {dedicated_visual}"
-            )
+            if not any(
+                Path(urlparse(source).path).name == dedicated_visual
+                for source in generated_pngs
+            ):
+                raise SystemExit(
+                    f"assembly step {step_number} is missing its dedicated "
+                    f"preload visual {dedicated_visual}"
+                )
+
+        if step_number == 3:
+            normalized_step_html = " ".join(step_html.split())
+            for explanation in (
+                "no separate blue printed part",
+                "It attaches to <strong>nothing during this build</strong>",
+                "8 orange bars",
+                "blue tape on 4 of them",
+            ):
+                if explanation not in normalized_step_html:
+                    raise SystemExit(
+                        "assembly step 3 is missing the parked-replacement "
+                        f"explanation {explanation!r}"
+                    )
 
         resolved_links = {
             target
