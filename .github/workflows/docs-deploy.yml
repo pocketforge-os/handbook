@@ -38,10 +38,25 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build (strict — fails on any broken link or nav warning)
         run: mkdocs build --strict
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+      # NB: we inline the tar + upload rather than use actions/upload-pages-artifact,
+      # because that composite internally calls actions/upload-artifact@v4 by TAG,
+      # which the org's sha_pinning_required policy rejects (a nested ref we can't pin).
+      # This reproduces exactly what upload-pages-artifact does: tar the site dir to
+      # $RUNNER_TEMP/artifact.tar and upload it as an artifact named "github-pages",
+      # which actions/deploy-pages consumes.
+      - name: Archive site as the Pages artifact tarball
+        run: |
+          tar --dereference --hard-dereference \
+            --directory site \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git --exclude=.github .
+      - name: Upload Pages artifact (github-pages)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          path: site
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     name: deploy (GitHub Pages)
