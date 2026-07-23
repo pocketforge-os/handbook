@@ -7,14 +7,15 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 5 of 19</p>
 
-Load the final 10 short sliding nut bars into the two completed uprights and two
-camera-frame crossbars. This completes the full inventory of 28.
+Load the final 10 short sliding nut bars into the two completed **spliced
+uprights from Step 4** and two camera-frame crossbars. Each upright stays joined
+by its orange collar. This completes the full inventory of 28.
 
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-camera-frame.png" alt="Four separated camera-frame rails in operator view: each upright has two orange bars on the groove facing the other upright, the upper crossbar has a blue spare at left and two orange bars, and the lower crossbar has two orange bars and a blue spare at right">
-    <figcaption>Load the four rails while they are still separate. The two upright grooves face each other; both crossbar grooves face the operator. Ten blocks means ten bars. <a href="../../../../assets/generated/test-node-chassis/preload-camera-frame.png">Open the labeled drawing full size.</a></figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/preload-camera-frame.png" alt="Two completed spliced camera-frame uprights with large orange collars, plus two separated crossbars, in operator view: each upright has two small orange sliding bars on the groove facing the other upright, the upper crossbar has a blue spare at left and two orange bars, and the lower crossbar has two orange bars and a blue spare at right">
+    <figcaption>These are the completed spliced uprights from Step 4: keep both large orange collars installed. Load two small orange bars into each inward-facing upright groove; both crossbar grooves face the operator. The 10 small colored blocks are the 10 sliding bars. <a href="../../../../assets/generated/test-node-chassis/preload-camera-frame.png">Open the labeled drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -32,10 +33,11 @@ camera-frame crossbars. This completes the full inventory of 28.
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>Eight use-now bars: two in each upright and two in each crossbar.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Large orange collars</span><span>The installed Step 4 splices; keep both upright halves joined.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Small orange bars</span><span>Eight use-now sliding bars: two in each upright and two in each crossbar.</span></li>
     <li><span class="pf-cue pf-cue--blue">Blue blocks</span><span>Two service spares: upper crossbar at far left; lower crossbar at far right.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>The four rails are deliberately separated because Step 6 closes their ends.</span></li>
-    <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>Each rail label states its local count; the drawing total is 10 bars.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>Two joined upright assemblies and two loose crossbars; Step 6 connects all four.</span></li>
+    <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>Identify the Step 4 uprights, per-rail loads, and drawing total of 10 bars.</span></li>
   </ul>
 </div>
 
