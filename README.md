@@ -18,13 +18,15 @@ python3 -m venv .venv
 ## Generated mechanical assets
 
 The test-node chassis guide consumes static instruction renders, canonical
-print-bed STLs, a cut list, six interactive print-bed models, and a semantic
+print-bed STLs, a cut list, seven interactive print-bed models, and a semantic
 interactive full-chassis model generated from `pocketforge-os/test-node-hw`.
-The immutable source revision is recorded in `cad-assets.lock.json`.
+The exact source revision is the `cad/test-node-hw` gitlink; metadata and the
+project path are recorded in `cad-assets.lock.json`.
 
-Regenerate the ignored local assets from that revision:
+Initialize the pinned source and regenerate the ignored local assets:
 
 ```sh
+git submodule update --init
 scripts/sync-test-node-chassis-assets.sh
 ```
 
@@ -37,11 +39,14 @@ CAD_SOURCE_DIR=/path/to/test-node-hw \
 scripts/sync-test-node-chassis-assets.sh
 ```
 
-CI never sets that escape hatch. Publication fails when the lock is pending,
-the source revision differs, the CAD worktree is dirty, the semantic web model
-changes shape unexpectedly, or a noncanonical artifact leaks into the
-contributor downloads. After a strict build, verify the rendered local
-references, downloads, checksums, and interactive model with:
+CI never sets that escape hatch. Publication fails when the submodule is
+missing, dirty, on the wrong origin or revision, the semantic web model changes
+shape unexpectedly, or a noncanonical artifact leaks into the contributor
+downloads. Dependabot checks the public `test-node-hw` submodule hourly and
+opens a normal handbook PR when its `main` commit advances; that PR exercises
+the same regeneration, strict build, review, merge, and Pages deployment path.
+After a strict build, verify the rendered local references, downloads,
+checksums, and interactive model with:
 
 ```sh
 python3 scripts/verify-built-site.py site

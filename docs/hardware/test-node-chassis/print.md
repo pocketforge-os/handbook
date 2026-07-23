@@ -7,7 +7,7 @@
   });
 </script>
 
-Use the canonical beds below. Do not scale, auto-orient, split, or auto-arrange
+Use the canonical beds below. Do not scale, auto-orient, or auto-arrange
 these STLs.
 
 ## Slicer contract
@@ -177,13 +177,13 @@ Expected output:
 - two placard risers and two keyed placard spacers;
 - two identical power-strip mount blocks.
 
-## Batch 05 — identification
+## Batch 05 — placard holder
 
 <div class="pf-batch-model-shell">
   <model-viewer
-    src="../../../assets/generated/test-node-chassis/batch-05-identification.glb"
-    poster="../../../assets/generated/test-node-chassis/batch-05-identification.png"
-    alt="Interactive model of the separated Batch 05 placard holder and insert"
+    src="../../../assets/generated/test-node-chassis/batch-05-placard-holder.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-05-placard-holder.png"
+    alt="Interactive model of the single Batch 05 reusable placard holder"
     camera-controls
     touch-action="pan-y"
     loading="lazy"
@@ -195,11 +195,43 @@ Expected output:
   <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
 </div>
 
-[Download Batch 05 STL](../../assets/generated/test-node-chassis/production-batch-05-identification.stl){ .pf-download download="production-batch-05-identification.stl" }
+[Download Batch 05 STL](../../assets/generated/test-node-chassis/production-batch-05-placard-holder.stl){ .pf-download download="production-batch-05-placard-holder.stl" }
 
-Expected output: one fleet-width holder and one replaceable device-name
-cartridge. The default cartridge says `TrimUI Smart Pro`. Longer names shrink
-within the same standard holder instead of changing its mounting geometry.
+Expected output: one reusable fleet-width placard holder.
+
+## Batch 06 — device nameplate
+
+This bed contains only the nameplate so the filament change cannot recolor
+another part.
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-06-device-nameplate.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-06-device-nameplate.png"
+    alt="Interactive model of the Batch 06 white device nameplate with black raised TrimUI Smart Pro text"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="manual"
+    data-click-to-load
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 06 STL](../../assets/generated/test-node-chassis/production-batch-06-device-nameplate.stl){ .pf-download download="production-batch-06-device-nameplate.stl" }
+
+1. Load **white ABS** and slice the bed with the standard settings above.
+2. Add a filament/color change at **Z = 2.4 mm**, before the first raised-text
+   layer begins.
+3. Print the 2.4 mm nameplate body in white.
+4. At the pause, unload white and load **black ABS**.
+5. Resume to print the raised device name in black.
+
+Expected output: one replaceable white device-name cartridge with black raised
+text. The default cartridge says `TrimUI Smart Pro`. Longer names shrink within
+the same standard holder instead of changing its mounting geometry.
 
 ## Install the captive nuts
 
@@ -228,7 +260,8 @@ replaced.
 
 ## Print gate
 
-- [ ] All five production beds completed without supports.
+- [ ] All six production beds completed without supports.
+- [ ] Batch 06 has a white 2.4 mm body and black raised text.
 - [ ] Batch 01 channel surfaces are smooth and dimensionally unchanged.
 - [ ] Count: 28 short bars, four long bars, two collars.
 - [ ] All 36 captive nuts are square and fully seated.

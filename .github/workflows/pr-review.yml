@@ -47,7 +47,31 @@ permissions:
   pull-requests: write
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for trusted CAD dependency PR normalization
+        if: ${{ github.actor == 'dependabot[bot]' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            body=$(
+              gh api "repos/${REPOSITORY}/pulls/${PR_NUMBER}" --jq '.body // ""'
+            )
+            if grep -q 'Automated CAD dependency refresh' <<<"${body}"; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Dependabot CAD PR body was not normalized" >&2
+          exit 1
+
   pf-pr-review:
+    needs: prepare
     # Only body/base edits change what the gate judges — a title-only edit
     # skips (the skipped caller job creates no new "pf-pr-review / review"
     # check run, so the prior verdict stands). `changes.body`/`changes.base`

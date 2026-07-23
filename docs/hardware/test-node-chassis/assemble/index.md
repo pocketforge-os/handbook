@@ -86,7 +86,7 @@ never the only way to identify either a bench part or a drawing instruction.
 
 ## Before Step 1
 
-- [ ] All five production print beds passed the [print gate](../print.md#print-gate).
+- [ ] All six production print beds passed the [print gate](../print.md#print-gate).
 - [ ] All rail pieces passed the [cut gate](../cut.md#cut-gate) and still have
       their plain-language tape labels.
 - [ ] The ordinary M3 nuts are already seated in all 28 short sliding nut bars
