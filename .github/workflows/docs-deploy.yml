@@ -36,8 +36,16 @@ jobs:
           cache: pip
       - name: Install pinned docs toolchain
         run: pip install -r requirements.txt
+      - name: Install pinned CAD rendering toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes openscad xvfb
+      - name: Regenerate pinned test-node chassis assets
+        run: scripts/sync-test-node-chassis-assets.sh
       - name: Build (strict — fails on any broken link or nav warning)
         run: mkdocs build --strict
+      - name: Verify chassis pages, downloads, and interactive model
+        run: python3 scripts/verify-built-site.py site
       # NB: we inline the tar + upload rather than use actions/upload-pages-artifact,
       # because that composite internally calls actions/upload-artifact@v4 by TAG,
       # which the org's sha_pinning_required policy rejects (a nested ref we can't pin).

@@ -1,0 +1,9 @@
+Package: @google/model-viewer
+Version: 4.3.1
+Source: https://www.npmjs.com/package/@google/model-viewer/v/4.3.1
+Vendored file: dist/model-viewer.min.js
+License: LICENSE.txt
+
+The handbook vendors this exact browser component so the interactive chassis
+model does not depend on a runtime CDN. Update the version, JavaScript file,
+license, and this record together.

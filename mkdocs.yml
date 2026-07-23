@@ -101,7 +101,13 @@ nav:
   - Contributor onboarding: onboarding/index.md
   - Hardware:
       - hardware/index.md
-      - Build a DUT: hardware/build-a-dut.md
+      - Test-node chassis:
+          - Build overview: hardware/test-node-chassis/index.md
+          - Parts and tools: hardware/test-node-chassis/parts.md
+          - Print the hardware: hardware/test-node-chassis/print.md
+          - Cut the extrusion: hardware/test-node-chassis/cut.md
+          - Assemble the chassis: hardware/test-node-chassis/assemble.md
+          - Verify the build: hardware/test-node-chassis/verify.md
       - Per-DUT test node: hardware/test-node.md
       - Bill of materials: hardware/bom.md
   - Lab & infrastructure:
