@@ -18,6 +18,7 @@ class LocalReferenceParser(HTMLParser):
         super().__init__()
         self.references: list[tuple[str, str]] = []
         self.model_viewers: list[dict[str, str]] = []
+        self.model_hotspots: list[dict[str, str]] = []
         self.images: list[dict[str, str]] = []
         self.downloads: list[dict[str, str]] = []
 
@@ -37,6 +38,8 @@ class LocalReferenceParser(HTMLParser):
             self.model_viewers.append(attributes)
             if attributes.get("poster"):
                 self.references.append((tag, attributes["poster"]))
+        if attributes.get("slot", "").startswith("hotspot-"):
+            self.model_hotspots.append(attributes)
         if tag == "img":
             self.images.append(attributes)
 
@@ -238,6 +241,46 @@ def main() -> int:
         raise SystemExit(
             "assembly start page is missing the static no-JavaScript fallback"
         )
+    required_hotspot_slots = {
+        "hotspot-operator",
+        "hotspot-device",
+        "hotspot-post",
+        "hotspot-width",
+        "hotspot-depth",
+        "hotspot-camera-frame",
+    }
+    assembly_hotspots = page_references[assembly_page].model_hotspots
+    actual_hotspot_slots = {
+        hotspot.get("slot", "") for hotspot in assembly_hotspots
+    }
+    if actual_hotspot_slots != required_hotspot_slots:
+        raise SystemExit(
+            "assembly model hotspot labels changed: "
+            f"{sorted(actual_hotspot_slots)} != {sorted(required_hotspot_slots)}"
+        )
+    for hotspot in assembly_hotspots:
+        for required_attribute in ("data-position", "data-normal"):
+            if not hotspot.get(required_attribute):
+                raise SystemExit(
+                    "assembly model hotspot is missing "
+                    f"{required_attribute}: {hotspot.get('slot', '')}"
+                )
+    for required_fragment in (
+        "data-chassis-label-toggle",
+        'aria-controls="assembly-chassis-model"',
+        'aria-pressed="true"',
+        'data-labels-visible="true"',
+        "POST · 360 mm",
+        "WIDTH · 306 mm",
+        "DEPTH · 318 mm",
+        "DEVICE / WALL SIDE",
+        "toggle.addEventListener",
+    ):
+        if required_fragment not in assembly_html:
+            raise SystemExit(
+                "assembly model label interface is missing "
+                f"{required_fragment!r}"
+            )
     if 'class="pf-step-list"' not in assembly_html:
         raise SystemExit("assembly start page is missing the ordered step list")
 
