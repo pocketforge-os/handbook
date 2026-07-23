@@ -180,8 +180,10 @@ if provenance["source_revision"] != expected_revision:
     raise SystemExit("generated model provenance names the wrong revision")
 if provenance["source_dirty"] and not allow_dirty:
     raise SystemExit("generated model provenance is dirty")
-if len(provenance["semantic_layers"]) != 17:
+if len(provenance["semantic_layers"]) != 18:
     raise SystemExit("generated model semantic layer count changed")
+if "placard-labels" not in provenance["semantic_layers"]:
+    raise SystemExit("generated model is missing the placard-labels layer")
 PY
 
 (
