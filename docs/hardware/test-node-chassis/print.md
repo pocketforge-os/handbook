@@ -81,7 +81,7 @@ only the channel-contact surfaces until they move smoothly.
   <model-viewer
     src="../../../assets/generated/test-node-chassis/batch-01-ironed-interfaces.glb"
     poster="../../../assets/generated/test-node-chassis/batch-01-ironed-interfaces.png"
-    alt="Interactive model of the Batch 01 ironed channel-interface print bed"
+    alt="Interactive model of the Batch 01 ironed channel-interface print bed with 28 compact 18 mm single-nut carriers and four long splice bars"
     camera-controls
     touch-action="pan-y"
     loading="lazy"
@@ -97,8 +97,22 @@ only the channel-contact surfaces until they move smoothly.
 
 Expected output:
 
-- 28 short, single-nut M3 sliding nut bars;
+- 28 compact **18 mm**, single-nut M3 sliding nut carriers;
 - four long, double-nut upright-splice bars.
+
+### Check the short carrier length
+
+!!! warning "The short carrier is 18 mm—not 30 mm"
+    Measure one short, single-nut carrier end to end before continuing. The
+    current part is **18 mm long** so it stays inside a 20 mm camera-frame
+    upright landing. A superseded Batch 01 made this part 30 mm long; that
+    version can overhang the landing and catch during the top/bottom joints.
+
+    Reprinting the current Batch 01 is preferred. For an in-progress unpowered
+    bench build, a 30 mm carrier can be corrected off the rail: remove about
+    **6 mm of plastic from each end**, deburr it, and file a small lead-in
+    chamfer. Do not cut into the hex pocket; retain at least 3 mm of solid
+    plastic beyond it.
 
 ## Batch 02 — upright splice collars
 
@@ -245,12 +259,12 @@ tool—remove them after seating each nut.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut.png" alt="At left, an exploded orange short nut bar with a dark M3 hex nut above its pocket and a silver screw and washer entering from below beside a blue upward arrow; at right, the screw is removed and a green check marks the nut seated flat in the bar">
+    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut.png" alt="At left, an exploded orange 18 mm short nut carrier with a dark M3 hex nut above its pocket and a silver screw and washer entering from below beside a blue upward arrow; at right, the screw is removed and a green check marks the nut seated flat in the carrier">
     <figcaption>Left: pull the nut into the hex pocket from the smooth side. Right: remove the screw and keep the finished bar.</figcaption>
   </figure>
   <figure>
-    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png" alt="Four rows of seven orange short bars with one dark nut each beside four long orange splice bars with two dark nuts each, labeled 36 metal M3 nuts total">
-    <figcaption>Finish all 28 short bars and all four long bars now. <a href="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png">Open the count drawing full size.</a></figcaption>
+    <img src="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png" alt="Four rows of seven orange 18 mm short bars with one dark nut each beside four long orange splice bars with two dark nuts each, labeled 36 metal M3 nuts total">
+    <figcaption>Finish all 28 compact 18 mm bars and all four long bars now. <a href="../../../assets/generated/test-node-chassis/prep-captive-nut-count.png">Open the count drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -258,16 +272,16 @@ tool—remove them after seating each nut.
 ### Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>28 × short sliding nut bars</strong><small>Batch 01 · one hex pocket per bar</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>28 × compact 18 mm sliding nut carriers</strong><small>Batch 01 · one hex pocket per carrier</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>4 × long splice bars</strong><small>Batch 01 · two hex pockets per bar</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>36 × ordinary M3 hex nuts</strong><small>28 for the short bars + 8 for the long bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>36 × ordinary M3 hex nuts</strong><small>28 for the compact 18 mm carriers + 8 for the long bars</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>1 × M3 screw, wide washer, and 2.5 mm hex key</strong><small>Reuse the same screw and washer as the pull tool</small></span></li>
 </ul>
 
 <div class="pf-picture-key" role="group" aria-label="Captive nut picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange bar</span><span>The printed carrier has a hex-shaped pocket on one face and a smooth screw hole on the other.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange carrier</span><span>The compact 18 mm printed part has a hex-shaped pocket on one face and a smooth screw hole on the other.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Dark hex</span><span>This is the ordinary metal M3 nut. It belongs in the hex pocket, not on the smooth face.</span></li>
     <li><span class="pf-cue pf-cue--silver">Silver hardware</span><span>The screw and wide washer pull from the smooth side and come back out when the nut is seated.</span></li>
     <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>Thread the screw upward into the nut by hand; never hammer or press the nut from above.</span></li>
@@ -295,15 +309,16 @@ tool—remove them after seating each nut.
 
 ### Repeat the exact count
 
-- Seat **one nut in each of the 28 short bars**: 28 nuts.
+- Seat **one nut in each of the 28 compact 18 mm carriers**: 28 nuts.
 - Seat **two nuts in each of the four long splice bars**: 8 nuts.
-- Final total: **28 short bars + 4 long bars + 36 seated nuts**.
+- Final total: **28 short 18 mm bars + 4 long bars + 36 seated nuts**.
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** count four complete rows of seven short bars and four
-long bars. Every short bar shows one flat metal nut; every long bar shows two.
-The temporary screw and washer have been removed from all 32 printed bars.
+**Before you continue:** count four complete rows of seven compact 18 mm bars
+and four long bars. Every short bar shows one flat metal nut; every long bar
+shows two. The temporary screw and washer have been removed from all 32
+printed bars.
 
 </div>
 
@@ -323,7 +338,7 @@ The temporary screw and washer have been removed from all 32 printed bars.
 - [ ] All six production beds completed without supports.
 - [ ] Batch 06 has a white 2.4 mm body and black raised text.
 - [ ] Batch 01 channel surfaces are smooth and dimensionally unchanged.
-- [ ] Count: 28 short bars, four long bars, two collars.
+- [ ] Count: 28 short 18 mm bars, four long bars, two collars.
 - [ ] All 36 captive nuts are square and fully seated.
 - [ ] No split layers, lifted corners, or damaged screw holes are visible.
 - [ ] Every batch stayed at 100% scale and in its exported orientation.

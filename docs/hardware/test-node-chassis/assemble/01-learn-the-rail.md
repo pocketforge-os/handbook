@@ -8,12 +8,19 @@ hide:
 <p class="pf-step-count">Assembly · Step 1 of 19</p>
 
 The orange nut bars become hidden inside the aluminum. Practice this interface
-once before loading the labeled frame rails.
+once before loading the labeled frame rails. The corrected short carrier is
+**18 mm end to end**.
+
+!!! warning "Measure it before loading any rail"
+    If the short, single-nut carrier measures **30 mm**, it is the superseded
+    version that can interfere at a 20 mm camera-frame upright landing. Use the
+    current 18 mm Batch 01 part or follow the
+    [existing-part correction](../print.md#check-the-short-carrier-length).
 
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-channel-bar.png" alt="Orange sliding nut bar entering the open cut end of a silver 20 mm V-slot aluminum rail in the direction of a blue arrow">
+    <img src="../../../../assets/generated/test-node-chassis/preload-channel-bar.png" alt="Compact orange 18 mm sliding nut carrier entering the open cut end of a silver 20 mm V-slot aluminum rail in the direction of a blue arrow">
     <figcaption>Feed the whole bar through the open cut end. The long slot only exposes its screw hole.</figcaption>
   </figure>
 </div>
@@ -22,7 +29,7 @@ once before loading the labeled frame rails.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × short sliding nut bar</strong><small>Print Batch 01 · ordinary M3 nut already seated in its pocket</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × compact 18 mm sliding nut carrier</strong><small>Print Batch 01 · ordinary M3 nut already seated in its pocket</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>1 × M3 × 12 mm screw and wide washer</strong><small>Use these as a removable handle</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>1 × aluminum offcut or unlabeled rail</strong><small>Practice piece; do not use a labeled frame rail yet</small></span></li>
 </ul>
@@ -54,9 +61,10 @@ once before loading the labeled frame rails.
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** the bar slides freely, stays behind the slot lips, and
-has its metal nut facing the rail center. If it binds, stop: deburr the rail and
-repeat the Batch 00 fit gate. Never hammer it.
+**Before you continue:** the carrier measures **18 mm end to end**, slides
+freely, stays behind the slot lips, and has its metal nut facing the rail
+center. If it binds, stop: deburr the rail and repeat the Batch 00 fit gate.
+Never hammer it.
 
 </div>
 

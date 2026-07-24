@@ -11,7 +11,7 @@ electrical harness.
 | 20 mm square aluminum rail (2020 extrusion) | 6 × 1 m | 20.00 mm face-to-face with nominal 6 mm long grooves; the accepted design was calibrated against [SeekLiny B0DY7FKKMT](https://www.amazon.com/dp/B0DY7FKKMT) |
 | Metal three-way end connectors | 8 | Cap-flush, side-butt type for 2020/slot-6; [BLCCLOY B08C9Q2TGW](https://www.amazon.com/dp/B08C9Q2TGW) or dimensionally equivalent, with supplied set screws |
 | Concealed metal L-connectors | 4 | 26 × 26 × 9.5 mm for 2020/slot-6; [BLCCLOY B08D6T9CGN](https://www.amazon.com/dp/B08D6T9CGN) or equivalent, with eight supplied set screws |
-| ABS filament | Reserve 500 g | The six production beds total 412.6 cm³ of solid-model volume (about 429 g if printed completely solid); ordinary infill leaves reserve for calibration and failed starts |
+| ABS filament | Reserve 500 g | The six production beds total 398.8 cm³ of solid-model volume (about 415 g if printed completely solid); ordinary infill leaves reserve for calibration and failed starts |
 | Ordinary M3 hex nuts | 42 | 36 populate the sliding/splice nut bars, four join the DUT-holder links, and two join the placard holder; the accepted nuts measure 5.36 mm across flats × 2.30 mm thick |
 | M3 × 12 mm screws | 38 | Socket/button head for general mounts; use two flat-head screws at the placard-holder joint |
 | M3 × 30 mm flat-head screws | 4 | Power-strip blocks; choose the shortest stocked length that fully engages the captive nut without bottoming |
@@ -21,16 +21,18 @@ electrical harness.
 | Power strip wall-mount screws | 4 | Supplied with the selected strip; they drive only into printed ABS blocks |
 
 !!! note "Why both printed carriers and metal nuts?"
-    The large printed bars match the measured groove inside the aluminum rail,
-    prevent rotation, and spread a light clamp load. An ordinary metal nut
-    supplies the thread. The printed bars are not structural frame connectors.
+    The compact printed carriers match the measured groove inside the aluminum
+    rail, prevent rotation, and spread a light clamp load. An ordinary metal
+    nut supplies the thread. The printed carriers are not structural frame
+    connectors.
 
 ## Printed sets
 
 The canonical beds produce:
 
-- 28 identical orange short M3 sliding nut bars: 22 use-now mount positions
-  plus six parked replacements identified by blue tape on their screws;
+- 28 identical orange **18 mm** short M3 sliding nut carriers: 22 use-now
+  mount positions plus six parked replacements identified by blue tape on
+  their screws;
 - four long double-nut splice bars;
 - two full-wrap upright splice collars;
 - four camera-frame joint plates;

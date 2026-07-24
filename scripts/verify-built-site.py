@@ -207,7 +207,9 @@ def main() -> int:
         "prep-captive-nut.png",
         "prep-captive-nut-count.png",
         "36 seated nuts",
-        "28 short bars + 4 long bars",
+        "28 short 18 mm bars + 4 long bars",
+        "The short carrier is 18 mm—not 30 mm",
+        "6 mm of plastic from each end",
     ):
         if required_fragment not in print_html:
             raise SystemExit(
@@ -357,6 +359,8 @@ def main() -> int:
             for explanation in (
                 "no separate blue printed part",
                 "It attaches to <strong>nothing during this build</strong>",
+                "Why the 18 mm length matters here",
+                "superseded 30 mm carrier",
                 "8 orange bars",
                 "blue tape on 4 of them",
             ):

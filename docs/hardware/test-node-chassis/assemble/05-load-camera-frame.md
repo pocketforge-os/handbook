@@ -7,10 +7,10 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 5 of 19</p>
 
-Load the final 10 identical short orange sliding nut bars into the two completed
-**spliced uprights from Step 4** and two camera-frame crossbars. Keep each
-upright's orange splice collar installed. Two bars will be tagged and parked as
-replacements, completing the full inventory of 28.
+Load the final 10 identical compact 18 mm orange sliding nut carriers into the
+two completed **spliced uprights from Step 4** and two camera-frame crossbars.
+Keep each upright's orange splice collar installed. Two carriers will be tagged
+and parked as replacements, completing the full inventory of 28.
 
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
@@ -26,7 +26,7 @@ replacements, completing the full inventory of 28.
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--assembled">Assembled</span><span><strong>2 × completed camera-frame uprights</strong><small>From Step 4</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>2 × 306 mm camera-frame crossbars</strong><small>Lower and upper · tape codes <code>GANTRY-CROSS-L</code> and <code>GANTRY-CROSS-U</code></small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>10 × identical short orange sliding nut bars</strong><small>Four for the uprights and six for the crossbars · one seated M3 nut each</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>10 × identical compact 18 mm orange carriers</strong><small>Four for the uprights and six for the crossbars · one seated M3 nut each</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Handles and parked-bar retainers</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--tool">Marker</span><span><strong>2 × small pieces of blue removable tape</strong><small>Mark one parked orange bar in each crossbar</small></span></li>
 </ul>
@@ -78,7 +78,7 @@ replacements, completing the full inventory of 28.
 4. The two tagged bars attach to nothing during this build. Leave the other
    four crossbar bars loose.
 
-## Count all short bars
+## Count all short 18 mm bars
 
 - Width rails from Step 2: **10 use-now**.
 - Depth rails from Step 3: **4 use-now + 4 tagged parked replacements**.
@@ -88,7 +88,7 @@ replacements, completing the full inventory of 28.
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** count all **28 short orange sliding nut bars** now.
+**Before you continue:** count all **28 compact 18 mm orange carriers** now.
 Six have blue tape on their screws and are lightly parked; the other 22 remain
 movable. A missing bar is easy to fix now and requires disassembly after the
 rail ends close. The camera-frame group in front of you contains exactly **10

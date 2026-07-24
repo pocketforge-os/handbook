@@ -23,14 +23,14 @@ while both cut ends are still open.
 
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 306 mm width rails</strong><small>Operator lower, operator upper, device lower, device upper</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>10 × short sliding nut bars</strong><small>Print Batch 01 · M3 nuts already installed</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>10 × compact 18 mm sliding nut carriers</strong><small>Print Batch 01 · M3 nuts already installed</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>10 × M3 × 12 mm screws and wide washers</strong><small>Temporary handles; the same hardware is used by the mounts later</small></span></li>
 </ul>
 
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One block equals one short nut bar. A block touches the long face whose groove receives it.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange blocks</span><span>One block equals one compact 18 mm carrier. A block touches the long face whose groove receives it.</span></li>
     <li><span class="pf-cue pf-cue--blue">Blue words</span><span><strong>OPERATOR</strong> and <strong>DEVICE / WALL</strong> establish the rail orientation.</span></li>
     <li><span class="pf-cue pf-cue--silver">Silver rails</span><span>These are the four separate 306 mm width rails, grouped as the future lower and upper pairs.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Dark labels</span><span>Each tape code is followed by its exact bar count: 4, 2, 2, and 2.</span></li>
