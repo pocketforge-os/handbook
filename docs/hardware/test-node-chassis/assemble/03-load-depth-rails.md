@@ -8,8 +8,8 @@ hide:
 <p class="pf-step-count">Assembly · Step 3 of 19</p>
 
 The **depth rails** run from the operator side to the device side. Pick up
-**eight identical short orange sliding nut bars** from Print Batch 01. There is
-no separate blue printed part.
+**eight identical compact 18 mm orange sliding nut carriers** from Print Batch
+01. There is no separate blue printed part.
 
 Each rail receives two of those orange bars. One stays loose for a camera-frame
 joint later in this build. The other is lightly parked for possible future
@@ -22,10 +22,17 @@ service; a small piece of blue removable tape marks that bar's screw.
     inside the groove. If it is ever needed, loosen its screw and slide it into
     position. Otherwise, leave it parked.
 
+!!! warning "Why the 18 mm length matters here"
+    The carrier must stay inside the 20 mm landing beneath each camera-frame
+    upright joint. The superseded 30 mm carrier overhangs that landing and can
+    catch the top/bottom joint. Stop if any short carrier is longer than 18 mm;
+    use the corrected Batch 01 part or the
+    [existing-part correction](../print.md#check-the-short-carrier-length).
+
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/preload-parked-replacement.png" alt="Two identical short orange sliding nut bars, each with one metal M3 nut, screw, and washer; the parked replacement differs only by blue tape on its screw, and a rail diagram shows it parked near the device end">
+    <img src="../../../../assets/generated/test-node-chassis/preload-parked-replacement.png" alt="Two identical compact 18 mm orange sliding nut carriers, each with one metal M3 nut, screw, and washer; the parked replacement differs only by blue tape on its screw, and a rail diagram shows it parked near the device end">
     <figcaption>Same physical part, two jobs. Blue means removable tape on the parked bar's screw; the orange printed carrier does not change. <a href="../../../../assets/generated/test-node-chassis/preload-parked-replacement.png">Open the explanation full size.</a></figcaption>
   </figure>
   <figure>
@@ -39,7 +46,7 @@ service; a small piece of blue removable tape marks that bar's screw.
 
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--aluminum">Aluminum</span><span><strong>4 × 318 mm depth rails</strong><small>Left lower, left upper, right lower, right upper</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × identical short orange sliding nut bars</strong><small>Print Batch 01 · one seated M3 nut each · do not use the long two-nut splice bars</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × identical compact 18 mm orange carriers</strong><small>Print Batch 01 · one seated M3 nut each · do not use the long two-nut splice bars</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">M3</span><span><strong>8 × M3 × 12 mm screws and wide washers</strong><small>One screw-and-washer handle for every short bar</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--tool">Marker</span><span><strong>4 × small pieces of blue removable tape</strong><small>Role labels for four parked bars, not four different parts</small></span></li>
 </ul>

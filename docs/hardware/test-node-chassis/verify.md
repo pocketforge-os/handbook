@@ -9,7 +9,7 @@ Correct a failed mechanical gate before wiring anything.
 - [ ] Four concealed metal L-connectors secure the camera-frame crossbars.
 - [ ] Two splice collars bridge two fully butted 164 mm halves each.
 - [ ] Every collar has four aligned screws; no screw bears on aluminum.
-- [ ] All 22 use-now short sliding nut bars are accounted for.
+- [ ] All 22 use-now compact 18 mm sliding nut carriers are accounted for.
 - [ ] Six replacement bars are lightly parked under screws and wide washers.
 - [ ] No loose nut or printed bar rattles inside an aluminum rail.
 

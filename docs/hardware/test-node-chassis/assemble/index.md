@@ -132,8 +132,8 @@ special names used in the chapter:
   inside it. A supplier may call it a *T-slot*.
 - **Cut end:** either open end of a rail. A sliding nut bar enters through this
   end; it cannot enter through the narrow opening on the rail face.
-- **Sliding nut bar:** the orange printed piece with a metal M3 nut already
-  installed. The source files call it an *M3 channel bar*.
+- **Sliding nut bar:** the compact 18 mm orange printed carrier with a metal
+  M3 nut already installed. The source files call it an *M3 channel bar*.
 - **Camera frame:** the smaller movable rectangle inside the outer chassis. The
   CAD source calls it a *gantry*.
 
@@ -164,8 +164,8 @@ never the only way to identify either a bench part or a drawing instruction.
 - [ ] All six production print beds passed the [print gate](../print.md#print-gate).
 - [ ] All rail pieces passed the [cut gate](../cut.md#cut-gate) and still have
       their plain-language tape labels.
-- [ ] The ordinary M3 nuts are already seated in all 28 short sliding nut bars
-      and all four long splice bars.
+- [ ] The ordinary M3 nuts are already seated in all 28 compact 18 mm sliding
+      nut carriers and all four long splice bars.
 - [ ] The power strip and every source of DUT power are physically separate
       from the work area.
 - [ ] A ruler or tape measure, square, and the required hex drivers are within
