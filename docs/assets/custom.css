@@ -8,6 +8,24 @@
   --pf-paper: #fbfaf2;
 }
 
+/* mkdocs.yml pins the palette to `indigo`, so Material declares
+   --md-primary-fg-color / --md-accent-fg-color on the <body> element (via these
+   attribute selectors). That sits CLOSER to the content than the :root block
+   above, so by custom-property inheritance the brand navy/ember never won and the
+   header + accents rendered generic indigo. Re-declare them here — same selectors,
+   later in the cascade — so the header goes PocketForge navy and links/tabs/accents
+   go ember, matching the boot splash and org avatar. Applies in light and slate. */
+[data-md-color-primary="indigo"] {
+  --md-primary-fg-color:        #17364f;
+  --md-primary-fg-color--light: #24485f;
+  --md-primary-fg-color--dark:  #0f2637;
+}
+
+[data-md-color-accent="indigo"] {
+  --md-accent-fg-color:             #e96a0a;
+  --md-accent-fg-color--transparent: rgba(233, 106, 10, 0.1);
+}
+
 /* Overview hero wordmark lockup (docs/index.md). Centered above the H1; the
    -light / -dark SVG variants are swapped by Material's #only-light/#only-dark
    image fragments. */
