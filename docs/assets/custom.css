@@ -8,6 +8,20 @@
   --pf-paper: #fbfaf2;
 }
 
+/* Overview hero wordmark lockup (docs/index.md). Centered above the H1; the
+   -light / -dark SVG variants are swapped by Material's #only-light/#only-dark
+   image fragments. */
+.pf-hero {
+  margin: 0.25rem 0 1.75rem;
+  text-align: center;
+}
+
+.pf-hero img {
+  width: 340px;
+  max-width: 78%;
+  height: auto;
+}
+
 /* Give the 🚧 stub admonition a distinct, hard-to-miss look so unfinished
    pages read as unfinished at a glance. */
 .md-typeset .admonition.warning > .admonition-title {

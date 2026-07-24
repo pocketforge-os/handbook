@@ -1,3 +1,8 @@
+<div class="pf-hero" markdown>
+![PocketForge](assets/pocketforge-lockup-light.svg#only-light)
+![PocketForge](assets/pocketforge-lockup-dark.svg#only-dark)
+</div>
+
 # PocketForge Handbook
 
 Welcome to the **PocketForge Handbook** — the developer and operator onboarding
