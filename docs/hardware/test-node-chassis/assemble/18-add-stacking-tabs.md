@@ -64,6 +64,12 @@ above only after both aluminum frames are seated.
    **2 tabs × 4 corners = 8 tabs**. Every tab has two lower fasteners; every
    upper round hole remains empty until another chassis is present.
 
+!!! danger "Provisional two-chassis limit"
+    Stack no more than two populated chassis until a load test establishes a
+    rated count. Use a stable surface and positively restrain the pair against
+    tipping. The printed tabs provide lateral registration only; aluminum
+    carries the vertical load.
+
 ## B. Lock a chassis above
 
 1. Keep both chassis de-energized. Put the lower chassis on a stable surface

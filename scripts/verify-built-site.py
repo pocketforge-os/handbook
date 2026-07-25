@@ -525,6 +525,7 @@ def main() -> int:
                 "60 mm below the chassis's top aluminum surface",
                 "32 mm above that surface",
                 "2 tabs × 4 corners = 8 tabs",
+                "Provisional two-chassis limit",
                 "eight upper locking sets",
                 "aluminum touches aluminum at every corner",
             ):
