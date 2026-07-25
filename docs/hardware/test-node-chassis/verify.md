@@ -102,3 +102,7 @@ Record:
 The chassis is ready for the separate electrical test-node integration guide
 only after a second person or project owner reviews those records and explicitly
 accepts the mechanical build.
+
+Once the harness is defined and the complete node can be disconnected from
+every power and data source, continue to
+[manage the harness wiring](wire-management.md).

@@ -129,6 +129,7 @@ nav:
               - 18. Add stacking tabs: hardware/test-node-chassis/assemble/18-add-stacking-tabs.md
               - 19. Final comparison: hardware/test-node-chassis/assemble/19-final-check.md
           - Verify the build: hardware/test-node-chassis/verify.md
+          - Manage the harness wiring: hardware/test-node-chassis/wire-management.md
       - Per-DUT test node: hardware/test-node.md
       - Bill of materials: hardware/bom.md
   - Lab & infrastructure:
