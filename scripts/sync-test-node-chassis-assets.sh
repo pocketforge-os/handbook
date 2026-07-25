@@ -277,9 +277,35 @@ if provenance["source_revision"] != expected_revision:
     raise SystemExit("generated model provenance names the wrong revision")
 if provenance["source_dirty"] and not allow_dirty:
     raise SystemExit("generated model provenance is dirty")
-if len(provenance["semantic_layers"]) != 18:
+semantic_layers = provenance["semantic_layers"]
+# Permit the immutable pre-BPI pins while this consumer gate lands first. Every
+# other source revision must publish the complete 23-layer model.
+legacy_model_revisions = {
+    "c53312769ec9542e3b5293a96e13b978fac69f78",
+    "ef69746be01561e1d709ce1a9929f3acb75d6721",
+}
+is_legacy_model = expected_revision in legacy_model_revisions
+expected_layer_count = 18 if is_legacy_model else 23
+if len(semantic_layers) != expected_layer_count:
     raise SystemExit("generated model semantic layer count changed")
-if "placard-labels" not in provenance["semantic_layers"]:
+expected_bpi_layers = {
+    "fixture-bpi-pcb",
+    "fixture-bpi-dark",
+    "fixture-bpi-metal",
+    "fixture-bpi-gold",
+    "fixture-bpi-silkscreen",
+}
+missing_bpi_layers = (
+    set()
+    if is_legacy_model
+    else expected_bpi_layers.difference(semantic_layers)
+)
+if missing_bpi_layers:
+    raise SystemExit(
+        "generated model is missing Banana Pi semantic layers: "
+        + ", ".join(sorted(missing_bpi_layers))
+    )
+if "placard-labels" not in semantic_layers:
     raise SystemExit("generated model is missing the placard-labels layer")
 PY
 
