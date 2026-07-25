@@ -197,6 +197,7 @@ required_assets=(
   production-batch-04-frame-hardware.stl
   production-batch-05-placard-holder.stl
   production-batch-06-device-nameplate.stl
+  production-batch-07-wire-management.stl
   hero.png
   step-01-splice-uprights.png
   step-02-build-gantry.png
@@ -228,6 +229,7 @@ required_assets=(
   batch-04-frame-hardware.png
   batch-05-placard-holder.png
   batch-06-device-nameplate.png
+  batch-07-wire-management.png
   batch-00-calibration.glb
   batch-01-ironed-interfaces.glb
   batch-02-splice-collars.glb
@@ -235,6 +237,7 @@ required_assets=(
   batch-04-frame-hardware.glb
   batch-05-placard-holder.glb
   batch-06-device-nameplate.glb
+  batch-07-wire-management.glb
   prep-captive-nut.png
   prep-captive-nut-count.png
   preload-channel-bar.png
@@ -243,6 +246,7 @@ required_assets=(
   preload-parked-replacement.png
   preload-depth-rails.png
   preload-camera-frame.png
+  wire-management-anchor.png
   pocketforge-test-node.glb
   pocketforge-test-node.provenance.json
   cut-list.csv

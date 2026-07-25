@@ -18,7 +18,7 @@ python3 -m venv .venv
 ## Generated mechanical assets
 
 The test-node chassis guide consumes static instruction renders, canonical
-print-bed STLs, a cut list, seven interactive print-bed models, and a semantic
+print-bed STLs, a cut list, eight interactive print-bed models, and a semantic
 interactive full-chassis model generated from `pocketforge-os/test-node-hw`.
 The exact source revision is the `cad/test-node-hw` gitlink; metadata and the
 project path are recorded in `cad-assets.lock.json`.

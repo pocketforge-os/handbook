@@ -322,6 +322,43 @@ Expected output: one replaceable white device-name cartridge with black raised
 text. The default cartridge says `TrimUI Smart Pro`. Longer names shrink within
 the same standard holder instead of changing its mounting geometry.
 
+## Batch 07 — wire management
+
+This independent bed supplies the starter quantity of cable anchors. Repeat it
+later if a larger harness needs more anchors; unused anchors can remain as
+spares. Do not merge this bed into Batch 04—the frame can be assembled and
+accepted without deciding a device-specific cable route.
+
+<div class="pf-batch-model-shell">
+  <model-viewer
+    src="../../../assets/generated/test-node-chassis/batch-07-wire-management.glb"
+    poster="../../../assets/generated/test-node-chassis/batch-07-wire-management.png"
+    alt="Interactive model of the Batch 07 wire-management bed with eight identical orange rail-mounted cable anchors arranged in two rows of four"
+    camera-controls
+    touch-action="pan-y"
+    loading="lazy"
+    reveal="manual"
+    data-click-to-load
+    shadow-intensity="0.7"
+    shadow-softness="0.8">
+  </model-viewer>
+  <span class="pf-model-help">click to load · drag to rotate · scroll to zoom</span>
+</div>
+
+[Download Batch 07 STL](../../assets/generated/test-node-chassis/production-batch-07-wire-management.stl){ .pf-download download="production-batch-07-wire-management.stl" }
+
+Expected output: **eight identical cable anchors**, each 32 × 18 × 8.8 mm.
+Each anchor has one center M5 hole and two clear transverse zip-tie tunnels.
+Print the exported broad face on the bed with supports disabled. Do not add
+ironing: the rail-contact face is already the first-layer surface.
+
+Before committing the full bed, a slicer preview should show:
+
+- two rows of four separate anchors;
+- at least 4 mm between neighboring objects;
+- no support material inside either tunnel; and
+- all eight objects inside a 152 × 46 × 8.8 mm envelope.
+
 ## Prepare the captive nuts
 
 Do this at the bench before bringing over any aluminum rails.
@@ -410,8 +447,9 @@ printed bars.
 
 ## Print gate
 
-- [ ] All six production beds completed without supports.
+- [ ] All seven production beds completed without supports.
 - [ ] Batch 06 has a white 2.4 mm body and black raised text.
+- [ ] Batch 07 contains eight anchors with two open tie tunnels each.
 - [ ] Batch 01 channel surfaces are smooth and dimensionally unchanged.
 - [ ] Count: 28 short 18 mm bars, four long bars, two collars.
 - [ ] All 36 captive nuts are square and fully seated.

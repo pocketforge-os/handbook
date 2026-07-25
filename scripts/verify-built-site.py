@@ -173,7 +173,14 @@ def main() -> int:
     site = args.site.resolve()
 
     guide_root = site / "hardware" / "test-node-chassis"
-    base_page_names = ("index", "parts", "print", "cut", "verify")
+    base_page_names = (
+        "index",
+        "parts",
+        "print",
+        "cut",
+        "verify",
+        "wire-management",
+    )
     base_pages = [
         guide_root / "index.html"
         if name == "index"
@@ -259,6 +266,7 @@ def main() -> int:
             "batch-04-frame-hardware.glb": 1,
             "batch-05-placard-holder.glb": 1,
             "batch-06-device-nameplate.glb": 1,
+            "batch-07-wire-management.glb": 1,
         }
     )
     if viewer_sources != expected_viewer_counts:
@@ -287,6 +295,8 @@ def main() -> int:
         "28 short 18 mm bars + 4 long bars",
         "The short carrier is 18 mm—not 30 mm",
         "6 mm of plastic from each end",
+        "eight identical cable anchors",
+        "two open tie tunnels each",
         "Customize the device name",
         "data-nameplate-customizer",
         "nameplate-worker.mjs",
@@ -327,9 +337,9 @@ def main() -> int:
     if "auto-orient, split" in print_html:
         raise SystemExit("print page still prohibits splitting canonical beds")
     print_downloads = page_references[print_page].downloads
-    if len(print_downloads) != 7:
+    if len(print_downloads) != 8:
         raise SystemExit(
-            f"expected seven print-bed downloads, found {len(print_downloads)}"
+            f"expected eight print-bed downloads, found {len(print_downloads)}"
         )
     for download in print_downloads:
         linked_name = Path(urlparse(download.get("href", "")).path).name
@@ -395,6 +405,29 @@ def main() -> int:
             )
     if 'class="pf-step-list"' not in assembly_html:
         raise SystemExit("assembly start page is missing the ordered step list")
+
+    wire_page = guide_root / "wire-management" / "index.html"
+    wire_html = wire_page.read_text(encoding="utf-8")
+    normalized_wire_html = " ".join(wire_html.split())
+    for required_fragment in (
+        "wire-management-anchor.png",
+        "no fixed anchor map",
+        "fully de-energized harness",
+        "M5 × 10 mm",
+        "Eight is a starter quantity",
+        "Routing aid, not strain relief",
+        "cut the tail flush",
+    ):
+        if required_fragment not in normalized_wire_html:
+            raise SystemExit(
+                "wire-management page is missing its installation contract: "
+                f"{required_fragment!r}"
+            )
+    if page_viewer_sources[wire_page]:
+        raise SystemExit(
+            "wire-management page should use the generated annotated still, "
+            "not an unlabeled interactive model"
+        )
 
     verify_page = guide_root / "verify" / "index.html"
     dedicated_preload_visuals = {
@@ -512,8 +545,8 @@ def main() -> int:
 
     asset_dir = site / "assets" / "generated" / "test-node-chassis"
     batches = sorted(asset_dir.glob("production-batch-*.stl"))
-    if len(batches) != 7:
-        raise SystemExit(f"expected seven canonical STL beds, found {len(batches)}")
+    if len(batches) != 8:
+        raise SystemExit(f"expected eight canonical STL beds, found {len(batches)}")
     if any("print-group" in path.name for path in asset_dir.iterdir()):
         raise SystemExit("development print-group artifact reached the handbook")
 

@@ -40,11 +40,14 @@ replaceable node placard.
 | Adjustment | Movable camera frame adjusts in X, Y, and Z |
 | DUT carrier | Fixed to the device-side frame on the shared optical axis |
 | Stacking | Aluminum-on-aluminum load path with printed registration tabs |
+| Wire management | Eight repositionable M5 rail anchors for ordinary zip ties |
 
-!!! warning "Mechanical work only"
+!!! warning "Keep fabrication and cable work de-energized"
     This guide never energizes a DUT or the test node. Keep the power strip
     unplugged and all device/power wiring disconnected throughout fabrication.
-    Electrical integration belongs in the later test-node procedure.
+    The final wire-management page organizes an already defined harness only
+    after every source has been disconnected; electrical integration belongs
+    in the per-DUT test-node procedure.
 
 ## Learn the orientation once
 
@@ -68,10 +71,11 @@ dark.
 ## Build path
 
 1. [Collect the parts and tools](parts.md).
-2. [Print the six canonical beds](print.md).
+2. [Print the seven canonical production beds](print.md).
 3. [Cut and label the aluminum rails](cut.md).
 4. [Assemble the chassis in 19 bench-sized steps](assemble/index.md).
 5. [Run the unpowered verification gates](verify.md).
+6. [Secure the finished harness to the rails](wire-management.md).
 
 !!! tip "Build the chassis while the device ships"
     The carrier is the only device-specific mechanical layer. The standard

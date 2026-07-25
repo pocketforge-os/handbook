@@ -1,8 +1,9 @@
 # Parts and tools
 
-This list covers the reusable mechanical chassis and its mounts. It does not
-yet cover the SBC, relay board, programmable supply, wiring, or DUT-specific
-electrical harness.
+This list covers the reusable mechanical chassis, its mounts, and the printed
+anchors used to organize a completed harness. It does not yet specify the SBC,
+relay board, programmable supply, cable types, or DUT-specific electrical
+connections.
 
 ## Chassis materials
 
@@ -11,13 +12,15 @@ electrical harness.
 | 20 mm square aluminum rail (2020 extrusion) | 6 × 1 m | 20.00 mm face-to-face with nominal 6 mm long grooves; the accepted design was calibrated against [SeekLiny B0DY7FKKMT](https://www.amazon.com/dp/B0DY7FKKMT) |
 | Metal three-way end connectors | 8 | Cap-flush, side-butt type for 2020/slot-6; [BLCCLOY B08C9Q2TGW](https://www.amazon.com/dp/B08C9Q2TGW) or dimensionally equivalent, with supplied set screws |
 | Concealed metal L-connectors | 4 | 26 × 26 × 9.5 mm for 2020/slot-6; [BLCCLOY B08D6T9CGN](https://www.amazon.com/dp/B08D6T9CGN) or equivalent, with eight supplied set screws |
-| ABS filament | Reserve 500 g | The six production beds total 398.8 cm³ of solid-model volume (about 415 g if printed completely solid); ordinary infill leaves reserve for calibration and failed starts |
+| ABS filament | Reserve 500 g | The seven production beds total 426.1 cm³ of solid-model volume (about 443 g if printed completely solid); ordinary infill leaves reserve for calibration and failed starts |
 | Ordinary M3 hex nuts | 42 | 36 populate the sliding/splice nut bars, four join the DUT-holder links, and two join the placard holder; the accepted nuts measure 5.36 mm across flats × 2.30 mm thick |
 | M3 × 12 mm screws | 38 | Socket/button head for general mounts; use two flat-head screws at the placard-holder joint |
 | M3 × 30 mm flat-head screws | 4 | Power-strip blocks; choose the shortest stocked length that fully engages the captive nut without bottoming |
 | M3 wide flat washers | 42 | Spread clamp load on printed parts and lightly retain the six tagged parked replacements |
 | M5 drop-in T-nuts, screws, washers | 16 sets | Lower holes of the eight stacking-registration tabs |
 | Optional M5 drop-in hardware | Up to 8 sets | Positively locks one chassis to the chassis above it |
+| M5 drop-in T-nuts, M5 × 10 mm button-head screws, and flat washers | 8 sets | One face-loaded set per cable anchor; washer outside diameter must be no larger than 10 mm |
+| Zip ties | 8 minimum | Up to 4.8 mm wide × 1.6 mm thick; use one per anchor normally and keep extras for wider bundles |
 | Power strip wall-mount screws | 4 | Supplied with the selected strip; they drive only into printed ABS blocks |
 
 !!! note "Why both printed carriers and metal nuts?"
@@ -39,6 +42,7 @@ The canonical beds produce:
 - four fixture spacers;
 - two upper and two lower carrier links;
 - eight stacking-registration tabs;
+- eight rail-mounted cable anchors;
 - two placard risers and two placard rail spacers;
 - two power-strip blocks;
 - one reusable placard holder and one device-name cartridge.
@@ -59,6 +63,7 @@ chassis print beds.
 - one spare M3 screw and washer for pulling nuts into printed pockets;
 - drill and bits for adapting the power-strip block pilots to the root
   diameter of the strip's supplied screws;
+- flush cutters for trimming zip-tie tails;
 - eye and hearing protection;
 - ventilation suitable for ABS printing.
 
