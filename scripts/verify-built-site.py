@@ -90,6 +90,82 @@ def read_glb_json(path: Path) -> dict:
     return json.loads(chunk.decode("utf-8"))
 
 
+def verify_nameplate_runtime(site: Path) -> None:
+    vendor_dir = site / "assets" / "vendor" / "openscad"
+    expected_hashes = {
+        "openscad.js": "904a47f29e63afb597bedef747da3b457"
+        "d8ea17cc793c462c6c8b444e918a62e",
+        "openscad.wasm": "f72ce246c02c0e501990837102be38332"
+        "6b153fd761774ebfacce5c80c5ecf26",
+        "COPYING.txt": "1805a29c3bccbc0428ce0048a1dfdeb9"
+        "b1867677410e99c89c3c30932ae8c7d5",
+        "fonts/LiberationSans-Bold.ttf":
+            "d723d5a272970aedf296ef6fc628180df"
+            "6074bce7769701ea9e0d222c052668c",
+        "fonts/fonts.conf": "8b8c23ea9fc123db3f758872f76dbf84"
+        "1191bf751ddb7ef73a11a1eb3a1a25de",
+        "fonts/LICENSE.txt": "93fed46019c38bbe566b479d22148e2e8"
+        "a1e85ada614accb0211c37b2c61c19b",
+        "fonts/AUTHORS.txt": "d640bd6acfd5f7558507851f3e893685"
+        "7b390bbe7e10c662241161dd83dbe830",
+    }
+    for relative_name, expected_hash in expected_hashes.items():
+        path = vendor_dir / relative_name
+        if not path.is_file():
+            raise SystemExit(f"missing vendored OpenSCAD runtime file: {path}")
+        actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+        if actual_hash != expected_hash:
+            raise SystemExit(
+                f"vendored OpenSCAD runtime checksum changed: {path}"
+            )
+
+    provenance_path = vendor_dir / "PROVENANCE.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    if (
+        provenance.get("schema") != 1
+        or provenance.get("openscad", {}).get("version")
+        != "2025.03.25.wasm24456"
+        or provenance.get("openscad", {}).get("source_revision")
+        != "ce5039f8a9545ad5a8cf197b3ca11c0939bc67f1"
+        or provenance.get("liberation_sans", {}).get("license") != "OFL-1.1"
+    ):
+        raise SystemExit("vendored OpenSCAD runtime provenance changed")
+
+
+def verify_customizer_sources(asset_dir: Path) -> None:
+    customizer_dir = asset_dir / "customizer"
+    provenance_path = customizer_dir / "customizer-provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    if (
+        provenance.get("schema") != 1
+        or provenance.get("part")
+        != "production_batch_06_device_nameplate"
+        or provenance.get("parameter") != "DEVICE_LABEL"
+        or provenance.get("maximum_label_characters") != 29
+        or provenance.get("source_dirty")
+    ):
+        raise SystemExit("browser customizer source contract changed")
+    for relative_name, expected_hash in provenance.get("files", {}).items():
+        source = customizer_dir / relative_name
+        if not source.is_file():
+            raise SystemExit(f"missing browser customizer CAD source: {source}")
+        if hashlib.sha256(source.read_bytes()).hexdigest() != expected_hash:
+            raise SystemExit(f"browser customizer CAD source hash changed: {source}")
+
+    main_source = (
+        customizer_dir / provenance["entrypoint"]
+    ).read_text(encoding="utf-8")
+    for contract in (
+        'PART = "assembly"',
+        "DEVICE_LABEL =",
+        "module production_batch_06_device_nameplate()",
+    ):
+        if contract not in main_source:
+            raise SystemExit(
+                f"browser customizer source is missing {contract!r}"
+            )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("site", type=Path)
@@ -211,6 +287,7 @@ def main() -> int:
                 "print-bed model-viewer is missing manual click-to-load wiring"
             )
     print_html = print_page.read_text(encoding="utf-8")
+    normalized_print_html = " ".join(print_html.split())
     for required_fragment in (
         "prep-captive-nut.png",
         "prep-captive-nut-count.png",
@@ -220,12 +297,34 @@ def main() -> int:
         "6 mm of plastic from each end",
         "eight identical cable anchors",
         "two open tie tunnels each",
+        "Customize the device name",
+        "data-nameplate-customizer",
+        "nameplate-worker.mjs",
+        "Generate personalized STL",
+        "name is not uploaded",
+        "Z = 2.4 mm",
+        "pinned OpenSCAD chassis source",
     ):
-        if required_fragment not in print_html:
+        if required_fragment not in normalized_print_html:
             raise SystemExit(
                 "print page is missing captive-nut preparation detail: "
                 f"{required_fragment!r}"
             )
+    for customizer_asset in (
+        "assets/nameplate-customizer.mjs",
+        "assets/nameplate-customizer-core.mjs",
+        "assets/nameplate-worker.mjs",
+    ):
+        if not (site / customizer_asset).is_file():
+            raise SystemExit(
+                f"missing browser nameplate customizer asset: {customizer_asset}"
+            )
+    if "openscad.wasm" in print_html or "openscad.js" in print_html:
+        raise SystemExit(
+            "print page eagerly references the lazy OpenSCAD runtime"
+        )
+    if "<noscript>" not in print_html:
+        raise SystemExit("print page is missing the nameplate no-JavaScript fallback")
     if (
         'model-viewer[data-click-to-load]' not in print_html
         or "viewer.dismissPoster()" not in print_html
@@ -489,6 +588,8 @@ def main() -> int:
         )
 
     checksums = verify_hashes(asset_dir)
+    verify_customizer_sources(asset_dir)
+    verify_nameplate_runtime(site)
     guide_text = "\n".join(page.read_text(encoding="utf-8") for page in pages)
     if "build-a-dut" in guide_text.lower():
         raise SystemExit("retired build-a-dut terminology remains in the guide")

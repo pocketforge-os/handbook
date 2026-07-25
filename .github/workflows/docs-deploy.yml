@@ -36,8 +36,16 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: "20"
+          cache: npm
       - name: Install pinned docs toolchain
         run: pip install -r requirements.txt
+      - name: Install pinned browser-test toolchain
+        run: npm ci
+      - name: Verify the pinned browser OpenSCAD runtime
+        run: scripts/sync-nameplate-customizer-runtime.sh --verify
       - name: Install pinned CAD rendering toolchain
         run: |
           sudo apt-get update
@@ -48,6 +56,10 @@ jobs:
         run: mkdocs build --strict
       - name: Verify chassis pages, downloads, and interactive model
         run: python3 scripts/verify-built-site.py site
+      - name: Test the nameplate customizer
+        run: |
+          npm test
+          npm run test:e2e
       # NB: we inline the tar + upload rather than use actions/upload-pages-artifact,
       # because that composite internally calls actions/upload-artifact@v4 by TAG,
       # which the org's sha_pinning_required policy rejects (a nested ref we can't pin).

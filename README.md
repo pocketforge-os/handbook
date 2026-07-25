@@ -51,3 +51,34 @@ checksums, and interactive model with:
 ```sh
 python3 scripts/verify-built-site.py site
 ```
+
+## Browser nameplate customizer
+
+The Batch 06 print section can generate a personalized device-nameplate STL
+without a local CAD installation. It lazy-loads a self-hosted, revision-pinned
+OpenSCAD WebAssembly runtime in a Web Worker and compiles the same chassis SCAD
+source copied from the pinned `cad/test-node-hw` submodule. The device name
+never leaves the browser.
+
+The OpenSCAD runtime and Liberation Sans font are preserved under
+`docs/assets/vendor/openscad/` with checksums, upstream revisions, and license
+files in `PROVENANCE.json`. Verify the committed copies without network access:
+
+```sh
+scripts/sync-nameplate-customizer-runtime.sh --verify
+```
+
+Refresh those vendored files only as a deliberate dependency update:
+
+```sh
+scripts/sync-nameplate-customizer-runtime.sh
+```
+
+Run the JavaScript unit and real-browser generation tests after the strict
+MkDocs build:
+
+```sh
+npm ci
+npm test
+npm run test:e2e
+```

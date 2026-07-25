@@ -733,6 +733,179 @@
   color: #bdc8d0;
 }
 
+.pf-nameplate-customizer {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 0.95fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin: 1rem 0 1.4rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--pf-blue) 34%, transparent);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--pf-blue) 5%, var(--md-default-bg-color));
+}
+
+.pf-nameplate-customizer__controls,
+.pf-nameplate-customizer__controls form {
+  min-width: 0;
+}
+
+.pf-nameplate-customizer__input-row {
+  display: flex;
+  align-items: center;
+  margin-top: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 28%, transparent);
+  border-radius: 0.4rem;
+  background: var(--md-default-bg-color);
+  overflow: hidden;
+}
+
+.pf-nameplate-customizer__input-row:focus-within {
+  border-color: var(--pf-blue);
+  box-shadow: 0 0 0 0.15rem color-mix(in srgb, var(--pf-blue) 24%, transparent);
+}
+
+.md-typeset .pf-nameplate-customizer__input-row input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0.62rem 0.7rem;
+  border: 0;
+  outline: 0;
+  color: var(--md-default-fg-color);
+  background: transparent;
+  font: inherit;
+}
+
+.pf-nameplate-customizer__input-row input[aria-invalid="true"] {
+  color: #b3261e;
+}
+
+.pf-nameplate-customizer__count {
+  flex: none;
+  padding: 0 0.65rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset .pf-nameplate-customizer__help {
+  margin: 0.4rem 0 0.8rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+}
+
+.pf-nameplate-customizer__button,
+.md-typeset .pf-nameplate-customizer__download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.85rem;
+  border: 0;
+  border-radius: 0.4rem;
+  color: #fff;
+  background: var(--pf-blue);
+  font: inherit;
+  font-weight: 750;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pf-nameplate-customizer__button:hover,
+.pf-nameplate-customizer__button:focus-visible,
+.md-typeset .pf-nameplate-customizer__download:hover,
+.md-typeset .pf-nameplate-customizer__download:focus,
+.md-typeset .pf-nameplate-customizer__download:focus-visible {
+  color: #fff;
+  filter: brightness(1.08);
+}
+
+.md-typeset .pf-nameplate-customizer__download:focus-visible {
+  outline: 0.15rem solid var(--pf-orange);
+  outline-offset: 0.12rem;
+}
+
+.pf-nameplate-customizer__button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.md-typeset .pf-nameplate-customizer__status {
+  min-height: 2.2rem;
+  margin: 0.7rem 0 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+}
+
+.pf-nameplate-customizer__status[data-state="working"] {
+  color: var(--pf-blue);
+}
+
+.pf-nameplate-customizer__status[data-state="error"] {
+  color: #b3261e;
+}
+
+.pf-nameplate-customizer__status[data-state="ready"] {
+  color: #087854;
+}
+
+[data-md-color-scheme="slate"]
+  .pf-nameplate-customizer__status[data-state="ready"] {
+  color: #62d7ad;
+}
+
+.pf-nameplate-customizer__download[hidden] {
+  display: none;
+}
+
+.pf-nameplate-customizer__preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 9.5rem;
+  padding: 1rem 1.3rem;
+  border-radius: 0.45rem;
+  color: #080808;
+  background:
+    linear-gradient(#fffef6, #f1f0e8) padding-box,
+    linear-gradient(145deg, #fff, #c9c8be) border-box;
+  border: 0.22rem solid transparent;
+  box-shadow:
+    0.3rem 0.45rem 0 #d2d0c3,
+    0 0.7rem 1.4rem rgba(20, 30, 40, 0.2);
+  text-align: center;
+  transform: perspective(30rem) rotateX(3deg) rotateZ(-1deg);
+}
+
+.pf-nameplate-customizer__preview > span {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.75rem;
+  color: #6e6d66;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.pf-nameplate-customizer__preview strong {
+  overflow: hidden;
+  font-size: var(--pf-nameplate-font-size, 1.4rem);
+  line-height: 1;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.pf-nameplate-customizer__preview small {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.45rem;
+  color: #6e6d66;
+  font-size: 0.55rem;
+}
+
 @media screen and (max-width: 54rem) {
   .pf-step-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -744,6 +917,14 @@
 }
 
 @media screen and (max-width: 44rem) {
+  .pf-nameplate-customizer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pf-nameplate-customizer__preview {
+    min-height: 7.5rem;
+  }
+
   .chassis-model-shell,
   .chassis-model-shell model-viewer {
     min-height: 24rem;
