@@ -3,18 +3,19 @@ hide:
   - toc
 ---
 
-# 18. Add the stacking tabs
+# 18. Add and lock the stacking tabs
 
 <p class="pf-step-count">Assembly · Step 18 of 19</p>
 
-Install two orange registration tabs at every upper corner. They prevent a
-second chassis from sliding sideways; the aluminum faces carry its weight.
+Install two narrow orange guides at every upper corner. Each guide fastens to
+this chassis first; its third hole locks to the bottom rail of the chassis
+above only after both aluminum frames are seated.
 
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../assets/generated/test-node-chassis/detail-08-stacking-corner.png" alt="Upper outer-frame corner with two perpendicular orange registration tabs and a translucent second chassis descending along a blue arrow">
-    <figcaption>One upper corner shown. The two perpendicular tabs guide the chassis above until broad aluminum faces meet.</figcaption>
+    <img src="../../../../assets/generated/test-node-chassis/detail-08-stacking-corner.png" alt="One stacked corner with two perpendicular orange registration tabs, two lower silver fasteners per tab, a translucent upper chassis, and blue arrows at the two upper locking fasteners">
+    <figcaption>One corner shown. Each tab has two lower-chassis fasteners and one upper-chassis lock; the blue arrows identify the upper locks.</figcaption>
   </figure>
   <figure>
     <img src="../../../../assets/generated/test-node-chassis/step-08-complete.png" alt="Complete mechanical test-node chassis with orange stacking tabs at every upper corner">
@@ -26,41 +27,70 @@ second chassis from sliding sideways; the aluminum faces carry its weight.
 ## Get these parts
 
 <ul class="pf-part-list">
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × stacking-registration tabs</strong><small>Print Batch 04 · two per upper corner</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--fastener">M5</span><span><strong>16 × M5 drop-in T-nut, screw, and washer sets</strong><small>Two lower holes per tab</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--fastener">M5 aside</span><span><strong>Optional upper locking hardware stays aside</strong><small>Use only after a second chassis is physically stacked</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>8 × 18 × 92 × 4 mm stacking tabs</strong><small>Batch 04 · two perpendicular tabs at each of four corners</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">Lower M5</span><span><strong>16 × face-loaded M5 drop-in T-nuts, M5 × 10 mm button-head screws, and flat washers</strong><small>Two sets fasten every tab to this chassis</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">Upper M5</span><span><strong>8 × additional matching M5 sets when joining two chassis</strong><small>One set locks every tab to the chassis above; keep these aside until it is seated</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--tool">Tool</span><span><strong>M5 hex driver and a ruler</strong><small>Hand-tighten only; verify the 60 mm / 32 mm position</small></span></li>
 </ul>
 
 <div class="pf-picture-key" role="group" aria-label="Picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange tabs</span><span>The close-up identifies the two tabs added at one corner. The finished reference also renders all previously installed printed frame hardware orange.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue arrow</span><span>A second chassis descends vertically between the tab lead-ins.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Ghosted chassis</span><span>The translucent rails belong to the chassis above; broad aluminum faces carry its weight.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange tabs</span><span>The exact printed parts are 18 mm wide. Their tapered ends point up and extend 32 mm above this chassis.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver fasteners</span><span>The two lower fasteners on each tab attach to the vertical post. The third fastener attaches to the bottom rail of the chassis above.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrows</span><span>Install the third fastener from outside only after the upper chassis is fully seated aluminum-to-aluminum.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Translucent rails</span><span>These belong to the chassis above. The solid lower and translucent upper aluminum faces meet and carry the vertical load.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Dark connector</span><span>The three-way corner connector is existing frame hardware, not a tab contact surface.</span></li>
   </ul>
 </div>
 
-## Do this
+## A. Fasten the guides to this chassis
 
-1. At one upper corner, place one tab on each of the two exterior post faces.
-2. Orient both broad lead-ins upward.
-3. Use both lower slots in each tab with M5 drop-in hardware.
-4. Leave the tab's optional upper locking hole empty.
-5. Tighten the four fasteners at that corner.
-6. Repeat at the other three upper corners.
-7. Count **two tabs per corner × four corners = eight tabs**.
-8. Sight across the top: the tabs may protrude upward, but no printed surface
-   should cover the flat aluminum contact faces.
+1. Choose one upper corner. Hold one tab flat against each of its two exterior
+   post faces. The tapered ends and single round holes point up; the two long
+   slots sit below them.
+2. Through the open groove on one post face, insert two M5 drop-in T-nuts. Move
+   them behind the tab's two long slots.
+3. Put a flat washer on each M5 × 10 mm screw. Pass the screws through the
+   slots and turn them into the nuts by hand for two or three turns.
+4. Center the 18 mm tab on the 20 mm rail face. About 1 mm of aluminum remains
+   visible along each long edge.
+5. Set the lower end of the tab **60 mm below the chassis's top aluminum
+   surface**. Its tapered tip is then **32 mm above that surface**.
+6. Snug both lower screws only until the tab cannot slide by hand. Do not crush
+   the printed part.
+7. Install the perpendicular tab on the other exterior face in the same way.
+8. Repeat at the other three corners, then count
+   **2 tabs × 4 corners = 8 tabs**. Every tab has two lower fasteners; every
+   upper round hole remains empty until another chassis is present.
+
+## B. Lock a chassis above
+
+1. Keep both chassis de-energized. Put the lower chassis on a stable surface
+   and remove any loose object that could fall during stacking.
+2. With a second person when the chassis is populated, lower the upper chassis
+   straight down between the eight tapered guide ends. Stop if any corner
+   binds; do not pull the frames together with screws.
+3. At all four corners, confirm the upper chassis's bottom aluminum faces touch
+   the lower chassis's top aluminum faces. Printed plastic must not sit in that
+   horizontal joint.
+4. At one tab, push an M5 drop-in T-nut through the exposed outward groove of
+   the upper chassis's bottom rail. Slide it behind the tab's round third hole.
+5. Add a washer to an M5 × 10 mm screw, pass it through the round hole, and
+   thread it into the nut by hand. Snug it only until the two chassis cannot
+   slide sideways relative to each other.
+6. Repeat for all eight tabs. The completed stacked joint uses **eight upper
+   locking sets**, one per tab.
 
 </div>
 </div>
 
 <div class="pf-step-check" markdown="1">
 
-**Before you continue:** all eight tabs are present, every tab uses both lower
-slots, all broad lead-ins point upward, and a chassis above would stop on
-aluminum—not on printed plastic.
+**Before you continue:** all eight tabs measure 18 mm across the rail face,
+each extends 32 mm above the lower chassis, and each uses two lower fasteners.
+If a second chassis is installed, aluminum touches aluminum at every corner
+and all eight upper locks are snug.
 
 </div>
 

@@ -53,7 +53,9 @@ before beginning the formal verification checklist.
 - [ ] Geometry: both diagonal pairs match within 2 mm and the chassis does not
       rock.
 - [ ] Fixture: four plate spacers and four DUT-holder links all lie flat.
-- [ ] Top: two stacking tabs at every corner, eight total.
+- [ ] Top: two 18 mm-wide stacking tabs at every corner, eight total; each
+      projects 32 mm above the top aluminum surface and has two lower
+      fasteners.
 - [ ] Power: the DUT, power strip, and all power sources remain disconnected.
 
 ## If something differs

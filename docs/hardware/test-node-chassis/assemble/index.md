@@ -191,7 +191,7 @@ never the only way to identify either a bench part or a drawing instruction.
   <li><a href="15-aim-camera/"><strong>Aim the camera toward the DUT</strong><small>Check the optical direction without powering the DUT.</small></a></li>
   <li><a href="16-add-placard/"><strong>Add the node placard</strong><small>Mount the holder where the operator can read and service it.</small></a></li>
   <li><a href="17-mount-power-strip/"><strong>Mount the unplugged power strip</strong><small>Fit its wall-mount keyholes without drilling the enclosure.</small></a></li>
-  <li><a href="18-add-stacking-tabs/"><strong>Add the stacking tabs</strong><small>Install two guides at every upper corner.</small></a></li>
+  <li><a href="18-add-stacking-tabs/"><strong>Add and lock the stacking tabs</strong><small>Install two narrow guides per corner; add the upper locks only after aluminum faces meet.</small></a></li>
   <li><a href="19-final-check/"><strong>Compare the finished chassis</strong><small>Catch a missing part or reversed assembly before formal verification.</small></a></li>
 </ol>
 

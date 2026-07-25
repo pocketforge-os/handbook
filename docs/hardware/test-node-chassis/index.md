@@ -39,7 +39,7 @@ replaceable node placard.
 | Printed material | ABS, designed around a 0.8 mm nozzle |
 | Adjustment | Movable camera frame adjusts in X, Y, and Z |
 | DUT carrier | Fixed to the device-side frame on the shared optical axis |
-| Stacking | Aluminum-on-aluminum load path with printed registration tabs |
+| Stacking | Eight 18 × 92 × 4 mm registration tabs; aluminum-on-aluminum vertical load path |
 | Wire management | Eight repositionable M5 rail anchors for ordinary zip ties |
 
 !!! warning "Keep fabrication and cable work de-energized"

@@ -42,9 +42,10 @@ scripts/sync-test-node-chassis-assets.sh
 CI never sets that escape hatch. Publication fails when the submodule is
 missing, dirty, on the wrong origin or revision, the semantic web model changes
 shape unexpectedly, or a noncanonical artifact leaks into the contributor
-downloads. Dependabot checks the public `test-node-hw` submodule hourly and
-opens a normal handbook PR when its `main` commit advances; that PR exercises
-the same regeneration, strict build, review, merge, and Pages deployment path.
+downloads. A mechanical change merged to `test-node-hw/main` immediately opens
+or updates a normal handbook CAD-refresh PR; Dependabot's daily scan is the
+reconciliation fallback. That PR exercises the same regeneration, strict
+build, review, merge, and Pages deployment path.
 After a strict build, verify the rendered local references, downloads,
 checksums, and interactive model with:
 
