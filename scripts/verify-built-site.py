@@ -297,6 +297,8 @@ def main() -> int:
         "6 mm of plastic from each end",
         "eight identical cable anchors",
         "two open tie tunnels each",
+        "eight 18 × 92 × 4 mm stacking-registration tabs",
+        "all three holes in every tab are open",
         "Customize the device name",
         "data-nameplate-customizer",
         "nameplate-worker.mjs",
@@ -516,6 +518,23 @@ def main() -> int:
                         f"continuity instruction {continuity_instruction!r}"
                     )
 
+        if step_number == 18:
+            normalized_step_html = " ".join(step_html.split())
+            for stacking_instruction in (
+                "8 × 18 × 92 × 4 mm stacking tabs",
+                "60 mm below the chassis's top aluminum surface",
+                "32 mm above that surface",
+                "2 tabs × 4 corners = 8 tabs",
+                "Provisional two-chassis limit",
+                "eight upper locking sets",
+                "aluminum touches aluminum at every corner",
+            ):
+                if stacking_instruction not in normalized_step_html:
+                    raise SystemExit(
+                        "assembly step 18 is missing the stacking-tab "
+                        f"contract {stacking_instruction!r}"
+                    )
+
         resolved_links = {
             target
             for tag, reference in step_parser.references
@@ -593,6 +612,16 @@ def main() -> int:
     guide_text = "\n".join(page.read_text(encoding="utf-8") for page in pages)
     if "build-a-dut" in guide_text.lower():
         raise SystemExit("retired build-a-dut terminology remains in the guide")
+    for stale_registration_text in (
+        "24 × 72",
+        "72 × 24",
+        "superseded registration",
+    ):
+        if stale_registration_text.lower() in guide_text.lower():
+            raise SystemExit(
+                "stale stacking-registration text remains in the guide: "
+                f"{stale_registration_text!r}"
+            )
     if 'class="pf-key' in guide_text:
         raise SystemExit(
             "legacy unlabeled color swatch remains in the chassis guide"

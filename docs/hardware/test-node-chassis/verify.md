@@ -77,9 +77,14 @@ adjustment only to restore centering.
 - [ ] Its enclosure is undamaged and no supplied screw bottoms against
       aluminum.
 - [ ] It clears the fixture plate and the camera sight line.
-- [ ] Two registration tabs are installed at every upper corner.
-- [ ] Their broad lead-ins accept a second empty chassis without forcing.
+- [ ] Two 18 × 92 × 4 mm registration tabs are installed at every upper
+      corner, eight total.
+- [ ] Every tab is centered on its 20 mm rail face, extends 32 mm above the
+      lower chassis, and uses both lower fasteners.
+- [ ] The tapered guides accept a second empty chassis without forcing.
 - [ ] Aluminum top and bottom faces meet directly when stacked.
+- [ ] When two chassis are joined, all eight round upper holes contain one M5
+      locking set into the upper chassis's bottom rails.
 
 !!! danger "Provisional stacking limit"
     Until a populated load test establishes a rated stack count, stack no more

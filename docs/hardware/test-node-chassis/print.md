@@ -168,6 +168,10 @@ Expected output:
 
 ## Batch 04 — frame hardware
 
+The eight long, narrow parts on the left side of this bed are the stacking
+tabs. Each one must finish at **18 × 92 × 4 mm** with two elongated lower
+slots and one round upper hole open and clean.
+
 <div class="pf-batch-model-shell">
   <model-viewer
     src="../../../assets/generated/test-node-chassis/batch-04-frame-hardware.glb"
@@ -188,7 +192,7 @@ Expected output:
 
 Expected output:
 
-- eight stacking-registration tabs;
+- eight 18 × 92 × 4 mm stacking-registration tabs;
 - two placard risers and two keyed placard spacers;
 - two identical power-strip mount blocks.
 
@@ -450,6 +454,8 @@ printed bars.
 - [ ] All seven production beds completed without supports.
 - [ ] Batch 06 has a white 2.4 mm body and black raised text.
 - [ ] Batch 07 contains eight anchors with two open tie tunnels each.
+- [ ] Batch 04 contains eight 18 × 92 × 4 mm stacking tabs; all three holes in
+      every tab are open.
 - [ ] Batch 01 channel surfaces are smooth and dimensionally unchanged.
 - [ ] Count: 28 short 18 mm bars, four long bars, two collars.
 - [ ] All 36 captive nuts are square and fully seated.
