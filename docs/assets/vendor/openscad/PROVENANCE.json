@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "openscad": {
+    "version": "2025.03.25.wasm24456",
+    "source_repository": "https://github.com/openscad/openscad",
+    "source_revision": "ce5039f8a9545ad5a8cf197b3ca11c0939bc67f1",
+    "archive_url": "https://files.openscad.org/playground/OpenSCAD-2025.03.25.wasm24456-WebAssembly-web.zip",
+    "archive_sha256": "0968af31b9c9b3bba68d9031de1695ccae51c32231a1aab4ef27b18c86379f3b",
+    "license": "GPL-2.0-or-later with the OpenSCAD linking exception",
+    "license_file": "COPYING.txt"
+  },
+  "liberation_sans": {
+    "version": "2.1.5",
+    "source_repository": "https://github.com/liberationfonts/liberation-fonts",
+    "source_revision": "2.1.5",
+    "archive_url": "https://ochafik.com/openscad2/libraries/fonts.zip",
+    "archive_sha256": "7b0731569b3b815a144fe350b60aa52c12d0b97b3dbfeff0d72a5012f16622f0",
+    "font_file": "fonts/LiberationSans-Bold.ttf",
+    "license": "OFL-1.1",
+    "license_file": "fonts/LICENSE.txt"
+  }
+}

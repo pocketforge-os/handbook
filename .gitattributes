@@ -1,0 +1,3 @@
+# Preserve checksum-pinned third-party runtime and license files byte-for-byte.
+docs/assets/vendor/openscad/** -whitespace
+docs/assets/vendor/openscad/openscad.js binary

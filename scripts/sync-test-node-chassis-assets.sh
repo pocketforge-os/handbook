@@ -77,6 +77,42 @@ project_dir="${source_root}/${project_path}"
   exit 1
 }
 
+openscad_command=${OPENSCAD:-openscad}
+accepted_label="12345678901234567890123456789"
+rejected_label="${accepted_label}0"
+"${openscad_command}" \
+  --hardwarnings \
+  --check-parameters=true \
+  --check-parameter-ranges=true \
+  -o "${temporary_root}/accepted-nameplate.stl" \
+  -D 'PART="production_batch_06_device_nameplate"' \
+  -D "DEVICE_LABEL=\"${accepted_label}\"" \
+  "${project_dir}/pocketforge-node-chassis.scad" \
+  >"${temporary_root}/accepted-nameplate.stdout" \
+  2>"${temporary_root}/accepted-nameplate.stderr"
+[[ -s "${temporary_root}/accepted-nameplate.stl" ]] || {
+  echo "the browser customizer's 29-character label contract no longer exports" >&2
+  exit 1
+}
+if "${openscad_command}" \
+  --hardwarnings \
+  --check-parameters=true \
+  --check-parameter-ranges=true \
+  -o "${temporary_root}/rejected-nameplate.stl" \
+  -D 'PART="production_batch_06_device_nameplate"' \
+  -D "DEVICE_LABEL=\"${rejected_label}\"" \
+  "${project_dir}/pocketforge-node-chassis.scad" \
+  >"${temporary_root}/rejected-nameplate.stdout" \
+  2>"${temporary_root}/rejected-nameplate.stderr"; then
+  echo "the browser customizer's 30-character rejection contract changed" >&2
+  exit 1
+fi
+grep -q "Device label is too long" \
+  "${temporary_root}/rejected-nameplate.stderr" || {
+  echo "the browser customizer's overlong-label assertion changed" >&2
+  exit 1
+}
+
 python_env="${temporary_root}/asset-python"
 python3 -m venv "${python_env}"
 "${python_env}/bin/pip" install \
@@ -95,8 +131,10 @@ else
   "${make_command[@]}"
 fi
 
-mkdir -p "${asset_dir}"
-find "${asset_dir}" -mindepth 1 -maxdepth 1 -type f -delete
+if [[ -d "${asset_dir}" ]]; then
+  find "${asset_dir}" -mindepth 1 -depth -delete
+fi
+mkdir -p "${asset_dir}/customizer/lib"
 
 install -m 0644 "${project_dir}"/build/handbook/*.png "${asset_dir}/"
 install -m 0644 "${project_dir}"/build/handbook/batch-*.glb "${asset_dir}/"
@@ -113,6 +151,43 @@ install -m 0644 \
 install -m 0644 \
   "${project_dir}/build/cut-list.md" \
   "${asset_dir}/cut-list.generated.txt"
+install -m 0644 \
+  "${project_dir}/pocketforge-node-chassis.scad" \
+  "${asset_dir}/customizer/pocketforge-node-chassis.scad"
+install -m 0644 \
+  "${project_dir}/lib/pf-2020.scad" \
+  "${asset_dir}/customizer/lib/pf-2020.scad"
+
+python3 - \
+  "${asset_dir}/customizer/customizer-provenance.json" \
+  "${asset_dir}/customizer/pocketforge-node-chassis.scad" \
+  "${asset_dir}/customizer/lib/pf-2020.scad" \
+  "${actual_revision}" \
+  "${ALLOW_DIRTY_CAD:-0}" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+output = pathlib.Path(sys.argv[1])
+source = pathlib.Path(sys.argv[2])
+library = pathlib.Path(sys.argv[3])
+data = {
+    "schema": 1,
+    "source_revision": sys.argv[4],
+    "source_dirty": sys.argv[5] == "1",
+    "entrypoint": source.name,
+    "library": f"lib/{library.name}",
+    "part": "production_batch_06_device_nameplate",
+    "parameter": "DEVICE_LABEL",
+    "maximum_label_characters": 29,
+    "files": {
+        source.name: hashlib.sha256(source.read_bytes()).hexdigest(),
+        f"lib/{library.name}": hashlib.sha256(library.read_bytes()).hexdigest(),
+    },
+}
+output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+PY
 
 required_assets=(
   production-batch-00-calibration.stl
@@ -172,6 +247,9 @@ required_assets=(
   pocketforge-test-node.provenance.json
   cut-list.csv
   cut-list.generated.txt
+  customizer/pocketforge-node-chassis.scad
+  customizer/lib/pf-2020.scad
+  customizer/customizer-provenance.json
 )
 for required_asset in "${required_assets[@]}"; do
   [[ -s "${asset_dir}/${required_asset}" ]] || {
@@ -203,7 +281,7 @@ PY
 
 (
   cd "${asset_dir}"
-  find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 |
+  find . -type f ! -name SHA256SUMS -print0 |
     sort -z |
     xargs -0 sha256sum > SHA256SUMS
 )

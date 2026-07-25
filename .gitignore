@@ -1,8 +1,12 @@
 # MkDocs build output
 site/
+test-artifacts/
 
 # Rebuilt from the immutable test-node-hw revision during docs CI.
 docs/assets/generated/test-node-chassis/
+
+# JavaScript test dependencies
+node_modules/
 
 # Python / venv
 .venv/

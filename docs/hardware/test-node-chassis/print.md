@@ -1,6 +1,7 @@
 # Print the hardware
 
 <script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
+<script type="module" src="../../../assets/nameplate-customizer.mjs"></script>
 <script type="module">
   document.querySelectorAll("model-viewer[data-click-to-load]").forEach((viewer) => {
     viewer.addEventListener("click", () => viewer.dismissPoster(), { once: true });
@@ -235,6 +236,80 @@ another part.
 </div>
 
 [Download Batch 06 STL](../../assets/generated/test-node-chassis/production-batch-06-device-nameplate.stl){ .pf-download download="production-batch-06-device-nameplate.stl" }
+
+### Customize the device name
+
+The standard download says `TrimUI Smart Pro`. To label a different DUT, enter
+its name below. OpenSCAD runs entirely in this browser: the name is not
+uploaded, and there is no account or CAD installation.
+
+<div
+  class="pf-nameplate-customizer"
+  data-nameplate-customizer
+  data-worker-url="../../../assets/nameplate-worker.mjs">
+  <div class="pf-nameplate-customizer__controls">
+    <form data-nameplate-form novalidate>
+      <label for="device-nameplate-label"><strong>Device name</strong></label>
+      <div class="pf-nameplate-customizer__input-row">
+        <input
+          id="device-nameplate-label"
+          data-nameplate-input
+          name="device-name"
+          type="text"
+          value="TrimUI Smart Pro"
+          maxlength="29"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="device-nameplate-help device-nameplate-count">
+        <span id="device-nameplate-count" class="pf-nameplate-customizer__count">
+          <output data-nameplate-count>16</output>/29
+        </span>
+      </div>
+      <p id="device-nameplate-help" class="pf-nameplate-customizer__help">
+        Use letters, numbers, spaces, and
+        <code>. , - _ / + &amp; ( ) '</code>. Longer names shrink automatically.
+      </p>
+      <button
+        class="pf-nameplate-customizer__button"
+        data-nameplate-submit
+        type="submit">
+        Generate personalized STL
+      </button>
+    </form>
+    <p
+      class="pf-nameplate-customizer__status"
+      data-nameplate-status
+      role="status"
+      aria-live="polite">
+      Ready. The approximately 10 MB CAD engine loads only after you press Generate.
+    </p>
+    <a
+      class="pf-nameplate-customizer__download"
+      data-nameplate-download
+      hidden>
+      Download personalized STL
+    </a>
+    <noscript>
+      <p>
+        Browser customization requires JavaScript. Use the canonical Batch 06
+        STL above or the advanced OpenSCAD source below.
+      </p>
+    </noscript>
+  </div>
+  <div class="pf-nameplate-customizer__preview" aria-hidden="true">
+    <span>NAME PREVIEW</span>
+    <strong data-nameplate-preview>TrimUI Smart Pro</strong>
+    <small>white body · black from Z = 2.4 mm</small>
+  </div>
+</div>
+
+If the browser generator is unavailable, download the canonical STL above.
+Advanced users can instead download the exact
+[pinned OpenSCAD chassis source](../../assets/generated/test-node-chassis/customizer/pocketforge-node-chassis.scad)
+and its required
+[2020-profile library](../../assets/generated/test-node-chassis/customizer/lib/pf-2020.scad).
+Keep the library under `lib/`, override `DEVICE_LABEL`, and export
+`production_batch_06_device_nameplate`.
 
 1. Load **white ABS** and slice the bed with the standard settings above.
 2. Add a filament/color change at **Z = 2.4 mm**, before the first raised-text
