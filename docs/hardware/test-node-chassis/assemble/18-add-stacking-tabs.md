@@ -44,6 +44,9 @@ above only after both aluminum frames are seated.
   </ul>
 </div>
 
+</div>
+</div>
+
 ## A. Fasten the guides to this chassis
 
 1. Choose one upper corner. Hold one tab flat against each of its two exterior
@@ -87,9 +90,6 @@ above only after both aluminum frames are seated.
    slide sideways relative to each other.
 6. Repeat for all eight tabs. The completed stacked joint uses **eight upper
    locking sets**, one per tab.
-
-</div>
-</div>
 
 <div class="pf-step-check" markdown="1">
 
