@@ -18,6 +18,8 @@ const relayMigrationRevision = "f9cad6f9987eb298546033111698fbcf5192eb10";
 const boostMigrationRevision = "36e1b40a368f974a1fb445abf17d425b4e54d79d";
 const dp100MigrationRevision = "d2b526a48f90fe625eba3f31d186fdb08cf1a85c";
 const mosfetMigrationRevision = "5f3bb2d5c51cda7157befea43fd782bf0759aa7e";
+const finalComponentMigrationRevision =
+  "ad29d37a787cba645b3e7f56338d6d603b6992f3";
 
 const baseLayers = [
   "aluminum",
@@ -101,6 +103,22 @@ const mosfetLayers = [
   "fixture-mosfet-silkscreen",
 ];
 
+const finalComponentLayers = [
+  "fixture-antenna-dark",
+  "fixture-antenna-metal",
+  "fixture-antenna-markings",
+  "fixture-vienon-shell",
+  "fixture-vienon-dark",
+  "fixture-vienon-metal",
+  "fixture-vienon-blue",
+  "fixture-vienon-led",
+  "fixture-smays-shell",
+  "fixture-smays-dark",
+  "fixture-smays-metal",
+  "fixture-smays-led",
+  "fixture-smays-markings",
+];
+
 const c270EraLayers = [
   ...baseLayers.filter((layer) => layer !== "webcam"),
   ...bpiLayers,
@@ -112,6 +130,10 @@ const relayEraLayers = [...c270EraLayers, ...relayLayers];
 const boostEraLayers = [...relayEraLayers, ...boostLayers];
 const dp100EraLayers = [...boostEraLayers, ...dp100Layers];
 const mosfetEraLayers = [...dp100EraLayers, ...mosfetLayers];
+const finalComponentEraLayers = [
+  ...mosfetEraLayers,
+  ...finalComponentLayers,
+];
 
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
@@ -152,6 +174,7 @@ test("accepts each immutable semantic-layer era", async () => {
     [boostMigrationRevision, boostEraLayers],
     [dp100MigrationRevision, dp100EraLayers],
     [mosfetMigrationRevision, mosfetEraLayers],
+    [finalComponentMigrationRevision, finalComponentEraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -371,6 +394,55 @@ test("requires all six exact MTSD001 semantic layers", async () => {
   ]);
   assert.equal(duplicate.status, 1);
   assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("requires all 13 exact final-component semantic layers", async () => {
+  assert.equal(mosfetEraLayers.length, 57);
+  assert.equal(finalComponentEraLayers.length, 70);
+
+  const missing = await verify(
+    finalComponentMigrationRevision,
+    finalComponentEraLayers.filter(
+      (layer) => layer !== "fixture-smays-markings",
+    ),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: fixture-smays-markings/);
+
+  const extra = await verify(finalComponentMigrationRevision, [
+    ...finalComponentEraLayers,
+    "fixture-antenna-proxy",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: fixture-antenna-proxy/);
+
+  const misnamed = await verify(
+    finalComponentMigrationRevision,
+    finalComponentEraLayers.map((layer) =>
+      layer === "fixture-vienon-blue"
+        ? "fixture-vienon-usb3"
+        : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: fixture-vienon-blue/);
+  assert.match(misnamed.stderr, /unexpected: fixture-vienon-usb3/);
+
+  const duplicate = await verify(finalComponentMigrationRevision, [
+    ...finalComponentEraLayers,
+    "fixture-antenna-metal",
+  ]);
+  assert.equal(duplicate.status, 1);
+  assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("rejects final-component layers before the final-component pin", async () => {
+  const result = await verify(mosfetMigrationRevision, [
+    ...mosfetEraLayers,
+    "fixture-smays-shell",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /unexpected: fixture-smays-shell/);
 });
 
 test("rejects MTSD001 layers before the MTSD001-era pin", async () => {
