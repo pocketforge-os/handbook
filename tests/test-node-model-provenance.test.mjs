@@ -13,6 +13,7 @@ const verifier = new URL(
 const preBpiRevision = "c53312769ec9542e3b5293a96e13b978fac69f78";
 const bpiOnlyRevision = "4dd6dc261466249d4aed4f73ee690e3f9d8f8da6";
 const esp32MigrationRevision = "4425ef39a40ab53a426693cd0bf07df6b6c53b66";
+const c270MigrationRevision = "e05824d27773f7ee495b597d297839d3b2c54b44";
 
 const baseLayers = [
   "aluminum",
@@ -52,6 +53,21 @@ const esp32Layers = [
   "fixture-esp32-silkscreen",
 ];
 
+const c270Layers = [
+  "webcam-shell",
+  "webcam-dark",
+  "webcam-glass",
+  "webcam-led",
+  "webcam-labels",
+];
+
+const c270EraLayers = [
+  ...baseLayers.filter((layer) => layer !== "webcam"),
+  ...bpiLayers,
+  ...esp32Layers,
+  ...c270Layers,
+];
+
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
     join(tmpdir(), "test-node-provenance-"),
@@ -86,6 +102,7 @@ test("accepts each immutable semantic-layer era", async () => {
       esp32MigrationRevision,
       [...baseLayers, ...bpiLayers, ...esp32Layers],
     ],
+    [c270MigrationRevision, c270EraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -122,6 +139,39 @@ test("requires all six exact ESP32 semantic layers", async () => {
   assert.match(misnamed.stderr, /unexpected: fixture-esp32-silkscren/);
 });
 
+test("requires all five exact C270 semantic layers", async () => {
+  const missing = await verify(
+    c270MigrationRevision,
+    c270EraLayers.filter((layer) => layer !== "webcam-led"),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: webcam-led/);
+
+  const extra = await verify(c270MigrationRevision, [
+    ...c270EraLayers,
+    "webcam-mount",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: webcam-mount/);
+
+  const misnamed = await verify(
+    c270MigrationRevision,
+    c270EraLayers.map((layer) =>
+      layer === "webcam-labels" ? "webcam-label" : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: webcam-labels/);
+  assert.match(misnamed.stderr, /unexpected: webcam-label/);
+
+  const legacyProxy = await verify(c270MigrationRevision, [
+    ...c270EraLayers,
+    "webcam",
+  ]);
+  assert.equal(legacyProxy.status, 1);
+  assert.match(legacyProxy.stderr, /unexpected: webcam/);
+});
+
 test("rejects an ESP32 layer on the BPI-only pin", async () => {
   const result = await verify(bpiOnlyRevision, [
     ...baseLayers,
@@ -133,18 +183,19 @@ test("rejects an ESP32 layer on the BPI-only pin", async () => {
 });
 
 test("enforces revision and clean-source provenance", async () => {
-  const layers = [...baseLayers, ...bpiLayers, ...esp32Layers];
-  const wrongRevision = await verify(esp32MigrationRevision, layers, {
+  const wrongRevision = await verify(c270MigrationRevision, c270EraLayers, {
     expectedRevision: "0000000000000000000000000000000000000000",
   });
   assert.equal(wrongRevision.status, 1);
   assert.match(wrongRevision.stderr, /names the wrong revision/);
 
-  const dirty = await verify(esp32MigrationRevision, layers, { dirty: true });
+  const dirty = await verify(c270MigrationRevision, c270EraLayers, {
+    dirty: true,
+  });
   assert.equal(dirty.status, 1);
   assert.match(dirty.stderr, /provenance is dirty/);
 
-  const allowedDirty = await verify(esp32MigrationRevision, layers, {
+  const allowedDirty = await verify(c270MigrationRevision, c270EraLayers, {
     dirty: true,
     allowDirty: true,
   });
