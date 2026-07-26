@@ -41,6 +41,13 @@ RELAY_ONLY_REVISIONS = {
     "f9cad6f9987eb298546033111698fbcf5192eb10",
 }
 
+# This is the immutable source pin on handbook main while the ALIENTEK DP100
+# consumer contract lands. Every later/unlisted revision must publish the
+# seven exact DP100 material layers instead of the historical proxy.
+BOOST_ONLY_REVISIONS = {
+    "36e1b40a368f974a1fb445abf17d425b4e54d79d",
+}
+
 BASE_LAYERS = {
     "aluminum",
     "connectors",
@@ -104,6 +111,16 @@ BOOST_LAYERS = {
     "fixture-boost-silkscreen",
 }
 
+DP100_LAYERS = {
+    "fixture-dp100-shell",
+    "fixture-dp100-dark",
+    "fixture-dp100-controls",
+    "fixture-dp100-screen",
+    "fixture-dp100-accent",
+    "fixture-dp100-metal",
+    "fixture-dp100-markings",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -124,7 +141,10 @@ def expected_layers(revision: str) -> set[str]:
     relay_layers = c270_layers | RELAY_LAYERS
     if revision in RELAY_ONLY_REVISIONS:
         return relay_layers
-    return relay_layers | BOOST_LAYERS
+    boost_layers = relay_layers | BOOST_LAYERS
+    if revision in BOOST_ONLY_REVISIONS:
+        return boost_layers
+    return boost_layers | DP100_LAYERS
 
 
 def verify_provenance(
