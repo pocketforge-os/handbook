@@ -15,9 +15,16 @@ PRE_BPI_REVISIONS = {
 }
 
 # This is the immutable source pin on handbook main while the ESP32 consumer
-# contract lands. Every later/unlisted revision must publish the ESP32 layers.
+# contract lands.
 BPI_ONLY_REVISIONS = {
     "4dd6dc261466249d4aed4f73ee690e3f9d8f8da6",
+}
+
+# This is the immutable source pin on handbook main while the C270 consumer
+# contract lands. Every later/unlisted revision must publish the exact C270
+# material layers instead of the historical webcam proxy.
+ESP32_ONLY_REVISIONS = {
+    "4425ef39a40ab53a426693cd0bf07df6b6c53b66",
 }
 
 BASE_LAYERS = {
@@ -58,6 +65,14 @@ ESP32_LAYERS = {
     "fixture-esp32-silkscreen",
 }
 
+C270_LAYERS = {
+    "webcam-shell",
+    "webcam-dark",
+    "webcam-glass",
+    "webcam-led",
+    "webcam-labels",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -65,7 +80,14 @@ def expected_layers(revision: str) -> set[str]:
         return BASE_LAYERS
     if revision in BPI_ONLY_REVISIONS:
         return BASE_LAYERS | BPI_LAYERS
-    return BASE_LAYERS | BPI_LAYERS | ESP32_LAYERS
+    if revision in ESP32_ONLY_REVISIONS:
+        return BASE_LAYERS | BPI_LAYERS | ESP32_LAYERS
+    return (
+        (BASE_LAYERS - {"webcam"})
+        | BPI_LAYERS
+        | ESP32_LAYERS
+        | C270_LAYERS
+    )
 
 
 def verify_provenance(
