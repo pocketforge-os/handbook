@@ -34,6 +34,13 @@ C270_ONLY_REVISIONS = {
     "e05824d27773f7ee495b597d297839d3b2c54b44",
 }
 
+# This is the immutable source pin on handbook main while the HiLetgo XL6009
+# consumer contract lands. Every later/unlisted revision must publish the
+# five exact boost-module material layers instead of the historical proxy.
+RELAY_ONLY_REVISIONS = {
+    "f9cad6f9987eb298546033111698fbcf5192eb10",
+}
+
 BASE_LAYERS = {
     "aluminum",
     "connectors",
@@ -89,6 +96,14 @@ RELAY_LAYERS = {
     "fixture-relay-silkscreen",
 }
 
+BOOST_LAYERS = {
+    "fixture-boost-pcb",
+    "fixture-boost-dark",
+    "fixture-boost-adjuster",
+    "fixture-boost-metal",
+    "fixture-boost-silkscreen",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -106,7 +121,10 @@ def expected_layers(revision: str) -> set[str]:
     )
     if revision in C270_ONLY_REVISIONS:
         return c270_layers
-    return c270_layers | RELAY_LAYERS
+    relay_layers = c270_layers | RELAY_LAYERS
+    if revision in RELAY_ONLY_REVISIONS:
+        return relay_layers
+    return relay_layers | BOOST_LAYERS
 
 
 def verify_provenance(
