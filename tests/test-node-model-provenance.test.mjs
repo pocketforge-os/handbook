@@ -15,6 +15,7 @@ const bpiOnlyRevision = "4dd6dc261466249d4aed4f73ee690e3f9d8f8da6";
 const esp32MigrationRevision = "4425ef39a40ab53a426693cd0bf07df6b6c53b66";
 const c270MigrationRevision = "e05824d27773f7ee495b597d297839d3b2c54b44";
 const relayMigrationRevision = "f9cad6f9987eb298546033111698fbcf5192eb10";
+const boostMigrationRevision = "f6de2ce25c5e9c0e1bc056a78535eb0dd97274b8";
 
 const baseLayers = [
   "aluminum",
@@ -71,6 +72,14 @@ const relayLayers = [
   "fixture-relay-silkscreen",
 ];
 
+const boostLayers = [
+  "fixture-boost-pcb",
+  "fixture-boost-dark",
+  "fixture-boost-adjuster",
+  "fixture-boost-metal",
+  "fixture-boost-silkscreen",
+];
+
 const c270EraLayers = [
   ...baseLayers.filter((layer) => layer !== "webcam"),
   ...bpiLayers,
@@ -79,6 +88,7 @@ const c270EraLayers = [
 ];
 
 const relayEraLayers = [...c270EraLayers, ...relayLayers];
+const boostEraLayers = [...relayEraLayers, ...boostLayers];
 
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
@@ -116,6 +126,7 @@ test("accepts each immutable semantic-layer era", async () => {
     ],
     [c270MigrationRevision, c270EraLayers],
     [relayMigrationRevision, relayEraLayers],
+    [boostMigrationRevision, boostEraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -221,6 +232,53 @@ test("requires all six exact relay semantic layers", async () => {
   ]);
   assert.equal(duplicate.status, 1);
   assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("requires all five exact boost semantic layers", async () => {
+  assert.equal(relayEraLayers.length, 39);
+  assert.equal(boostEraLayers.length, 44);
+
+  const missing = await verify(
+    boostMigrationRevision,
+    boostEraLayers.filter((layer) => layer !== "fixture-boost-adjuster"),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: fixture-boost-adjuster/);
+
+  const extra = await verify(boostMigrationRevision, [
+    ...boostEraLayers,
+    "fixture-boost-copper",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: fixture-boost-copper/);
+
+  const misnamed = await verify(
+    boostMigrationRevision,
+    boostEraLayers.map((layer) =>
+      layer === "fixture-boost-silkscreen"
+        ? "fixture-boost-silkscren"
+        : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: fixture-boost-silkscreen/);
+  assert.match(misnamed.stderr, /unexpected: fixture-boost-silkscren/);
+
+  const duplicate = await verify(boostMigrationRevision, [
+    ...boostEraLayers,
+    "fixture-boost-metal",
+  ]);
+  assert.equal(duplicate.status, 1);
+  assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("rejects boost layers before the boost-era pin", async () => {
+  const result = await verify(relayMigrationRevision, [
+    ...relayEraLayers,
+    "fixture-boost-pcb",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /unexpected: fixture-boost-pcb/);
 });
 
 test("rejects relay layers before the relay-era pin", async () => {
