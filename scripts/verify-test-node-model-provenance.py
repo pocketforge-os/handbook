@@ -27,6 +27,13 @@ ESP32_ONLY_REVISIONS = {
     "4425ef39a40ab53a426693cd0bf07df6b6c53b66",
 }
 
+# This is the immutable source pin on handbook main while the ELEGOO relay
+# consumer contract lands. Every later/unlisted revision must publish the
+# six exact relay material layers instead of the historical relay proxy.
+C270_ONLY_REVISIONS = {
+    "e05824d27773f7ee495b597d297839d3b2c54b44",
+}
+
 BASE_LAYERS = {
     "aluminum",
     "connectors",
@@ -73,6 +80,15 @@ C270_LAYERS = {
     "webcam-labels",
 }
 
+RELAY_LAYERS = {
+    "fixture-relay-pcb",
+    "fixture-relay-blue",
+    "fixture-relay-dark",
+    "fixture-relay-metal",
+    "fixture-relay-led",
+    "fixture-relay-silkscreen",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -82,12 +98,15 @@ def expected_layers(revision: str) -> set[str]:
         return BASE_LAYERS | BPI_LAYERS
     if revision in ESP32_ONLY_REVISIONS:
         return BASE_LAYERS | BPI_LAYERS | ESP32_LAYERS
-    return (
+    c270_layers = (
         (BASE_LAYERS - {"webcam"})
         | BPI_LAYERS
         | ESP32_LAYERS
         | C270_LAYERS
     )
+    if revision in C270_ONLY_REVISIONS:
+        return c270_layers
+    return c270_layers | RELAY_LAYERS
 
 
 def verify_provenance(
