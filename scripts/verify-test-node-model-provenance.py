@@ -56,6 +56,15 @@ DP100_ONLY_REVISIONS = {
     "d2b526a48f90fe625eba3f31d186fdb08cf1a85c",
 }
 
+# These are the immutable MTSD001-era source revisions on handbook main while
+# the final antenna and dual USB-hub consumer contract lands. Every
+# later/unlisted revision must publish the 13 exact final-component material
+# layers instead of the historical antenna and hub proxies.
+MOSFET_ONLY_REVISIONS = {
+    "5f3bb2d5c51cda7157befea43fd782bf0759aa7e",
+    "0ac32466887ff00950748c2fb8983a31b1409bb6",
+}
+
 BASE_LAYERS = {
     "aluminum",
     "connectors",
@@ -138,6 +147,22 @@ MOSFET_LAYERS = {
     "fixture-mosfet-silkscreen",
 }
 
+FINAL_COMPONENT_LAYERS = {
+    "fixture-antenna-dark",
+    "fixture-antenna-metal",
+    "fixture-antenna-markings",
+    "fixture-vienon-shell",
+    "fixture-vienon-dark",
+    "fixture-vienon-metal",
+    "fixture-vienon-blue",
+    "fixture-vienon-led",
+    "fixture-smays-shell",
+    "fixture-smays-dark",
+    "fixture-smays-metal",
+    "fixture-smays-led",
+    "fixture-smays-markings",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -164,7 +189,10 @@ def expected_layers(revision: str) -> set[str]:
     dp100_layers = boost_layers | DP100_LAYERS
     if revision in DP100_ONLY_REVISIONS:
         return dp100_layers
-    return dp100_layers | MOSFET_LAYERS
+    mosfet_layers = dp100_layers | MOSFET_LAYERS
+    if revision in MOSFET_ONLY_REVISIONS:
+        return mosfet_layers
+    return mosfet_layers | FINAL_COMPONENT_LAYERS
 
 
 def verify_provenance(
