@@ -262,52 +262,16 @@ for required_asset in "${required_assets[@]}"; do
   }
 done
 
-python3 - \
-  "${asset_dir}/pocketforge-test-node.provenance.json" \
-  "$(git -C "${source_root}" rev-parse HEAD)" \
-  "${ALLOW_DIRTY_CAD:-0}" <<'PY'
-import json
-import pathlib
-import sys
-
-provenance = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
-expected_revision = sys.argv[2]
-allow_dirty = sys.argv[3] == "1"
-if provenance["source_revision"] != expected_revision:
-    raise SystemExit("generated model provenance names the wrong revision")
-if provenance["source_dirty"] and not allow_dirty:
-    raise SystemExit("generated model provenance is dirty")
-semantic_layers = provenance["semantic_layers"]
-# Permit the immutable pre-BPI pins while this consumer gate lands first. Every
-# other source revision must publish the complete 23-layer model.
-legacy_model_revisions = {
-    "c53312769ec9542e3b5293a96e13b978fac69f78",
-    "ef69746be01561e1d709ce1a9929f3acb75d6721",
-}
-is_legacy_model = expected_revision in legacy_model_revisions
-expected_layer_count = 18 if is_legacy_model else 23
-if len(semantic_layers) != expected_layer_count:
-    raise SystemExit("generated model semantic layer count changed")
-expected_bpi_layers = {
-    "fixture-bpi-pcb",
-    "fixture-bpi-dark",
-    "fixture-bpi-metal",
-    "fixture-bpi-gold",
-    "fixture-bpi-silkscreen",
-}
-missing_bpi_layers = (
-    set()
-    if is_legacy_model
-    else expected_bpi_layers.difference(semantic_layers)
+provenance_args=(
+  "${asset_dir}/pocketforge-test-node.provenance.json"
+  "$(git -C "${source_root}" rev-parse HEAD)"
 )
-if missing_bpi_layers:
-    raise SystemExit(
-        "generated model is missing Banana Pi semantic layers: "
-        + ", ".join(sorted(missing_bpi_layers))
-    )
-if "placard-labels" not in semantic_layers:
-    raise SystemExit("generated model is missing the placard-labels layer")
-PY
+if [[ "${ALLOW_DIRTY_CAD:-0}" == "1" ]]; then
+  provenance_args+=(--allow-dirty)
+fi
+python3 \
+  "${script_dir}/verify-test-node-model-provenance.py" \
+  "${provenance_args[@]}"
 
 (
   cd "${asset_dir}"
