@@ -8,8 +8,8 @@ sees a coherent gamepad. That learning is what the **on-device input bring-up
 and calibration app** does.
 
 Run it **after Linux boots and the device's input decoder is present**, not as
-a first step. It renders a generic gamepad face on the device's own screen,
-walks you through pressing each control in turn, and writes a candidate
+a first step. It renders the device's own body on its own screen, walks you
+through pressing each control in turn, and writes a candidate
 [`capabilities.toml`](../reference/glossary.md) for the new device from what it
 actually observed. The same tool re-runs later to verify buttons still work and
 stick ranges haven't drifted.
@@ -51,9 +51,14 @@ bring-up). The other two are covered by re-runs of the same tool.
     quirks. The most common quirk on our A133 handhelds is a trigger reported
     over an analog range (e.g. `EV_ABS`/`ABS_Z`, 0–128) that is *physically*
     binary; the shim re-emits it as a button.
-2. **Guided ground-truth collection.** Show a generic gamepad face on the
-    device's screen, highlight the control the wizard wants pressed, prompt
-    the user, and record the raw event(s) produced by that press. When every
+2. **Guided ground-truth collection.** Render the device's own body on its
+    screen — the same 3D model that generates the pf-hwprobe skin assets,
+    drift-gated in the platform repo — highlight the control the wizard wants
+    pressed, prompt the user, and record the raw event(s) produced by that
+    press. Because the face is the real device rendered from its model, the
+    wizard can highlight controls on surfaces a flat 2D sketch can't reach —
+    a top-edge trigger, a back-of-shell paddle, a bottom-edge button — even
+    though the A133 base unit itself has none on those surfaces. When every
     prompt has been answered, emit a candidate `capabilities.toml` describing
     the new device.
 3. **Verify / calibration re-run.** Re-drive the same prompt sequence against
@@ -86,30 +91,41 @@ You'll drive the deploy from the laptop; the app runs on the DUT.
 ## Deploy and launch
 
 Deploy the app to the live DUT with `pf-app-deploy.sh` from the laptop, then
-start it on-device. The exact CLI is being finalized alongside the app itself
-and is not yet the merged form; the shape is stable, the flags are not.
-
-!!! warning "🚧 Command details being finalized"
-    The exact `pf-collect-ui` invocation, its systemd unit name, and the
-    `--mode`/`--dump-dir` flag names are being finalized in tsp-bwrg.3
-    (guided-collection on-panel UI). Treat the commands below as **shape,
-    not exact syntax** — they will be updated on this page once tsp-bwrg.3
-    merges. The `pf-app-deploy.sh` invocation itself is stable
-    (`pf-app-deploy.sh <binary> [--unit <name>.service] [--start|--restart]`).
+start it on-device. The face the wizard renders is the real device's 3D model
+consumed at runtime, so the deploy stages **two** things next to each other:
+the static aarch64-musl binary, and the current platform skin (the device
+`capabilities.toml` + its `.scad`→skin PNGs). Ship the current skin — not a
+stale copy — so a `.scad` geometry fix propagates on the next deploy.
 
 === "Base (A133)"
 
     ```bash
     # From the laptop, holding the tsp-base place (brokered — see above).
+    # 1. Deploy the binary and install the systemd unit.
     pf-app-deploy.sh \
-      /path/to/pf-collect-ui \
-      --unit pf-collect-ui.service \
-      --start
+      target/aarch64-unknown-linux-musl/release/pf-collect-ui \
+      --name pf-collect-ui \
+      --unit crates/pf-collect-ui/deploy/pf-collect-ui.service \
+      --restart
+
+    # 2. Stage the CURRENT platform skin at /opt/pocketforge/skin, mirroring
+    #    the platform layout the unit's --descriptor / --skin-root expect:
+    #      /opt/pocketforge/skin/devices/a133/capabilities.toml
+    #      /opt/pocketforge/skin/skins/a133/*.png
     ```
 
-    The unit is authored to `Conflicts=` whichever other unit currently owns
-    `/dev/fb0` (typically the menu), so starting it takes the panel over
-    cleanly and stopping it hands control back.
+    The installed unit runs demo mode by default — `pf-collect-ui --mode demo
+    --fb /dev/fb0 --descriptor /opt/pocketforge/skin/devices/a133/capabilities.toml
+    --skin-root /opt/pocketforge/skin` — which synthesizes one press per
+    control so the full render + prompt sequence exercises the panel with no
+    live pad decoder required. To record against the real pad instead, run
+    `pf-collect-ui --mode live --source /dev/input/eventN --out
+    /tmp/candidate.toml` ad-hoc (or drop in a systemd unit override with the
+    live args), keeping the same `--descriptor` / `--skin-root` / `--fb`.
+
+    The unit sets `Conflicts=pocketforge-menu.service`, so starting it stops
+    the menu and takes `/dev/fb0` over cleanly; stopping the unit hands the
+    panel back.
 
 === "Pro S (A523)"
 
@@ -118,14 +134,17 @@ and is not yet the merged form; the shape is stable, the flags are not.
         handhelds (A523 Pro S included) follows once the A133 flow is proven
         end-to-end. This page will grow a Pro S tab when that work lands.
 
-Confirm the panel shows the gamepad face and the wizard prompt.
+Confirm the panel shows the device rendering and the wizard prompt.
 [Check the screen](../reference/troubleshooting.md) if it doesn't.
 
 ## Walk the guided prompts
 
-On the panel you'll see a generic gamepad face with one control highlighted in
-yellow and a prompt naming the control ("Press A", "Push LEFT stick fully
-right", …). For each prompt:
+On the panel you'll see the device's own body rendered from its 3D model,
+with one control highlighted in yellow and a prompt naming the control
+("Press A", "Push LEFT stick fully right", …). Controls on the device's top
+or back surfaces (triggers, shoulder buttons, paddles) are shown from the
+matching top or back camera angle, so a control the front face can't see is
+still visible. For each prompt:
 
 - [ ] Read which control is highlighted and named.
 - [ ] Press or move that control on the physical device.
