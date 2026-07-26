@@ -16,7 +16,8 @@ const esp32MigrationRevision = "4425ef39a40ab53a426693cd0bf07df6b6c53b66";
 const c270MigrationRevision = "e05824d27773f7ee495b597d297839d3b2c54b44";
 const relayMigrationRevision = "f9cad6f9987eb298546033111698fbcf5192eb10";
 const boostMigrationRevision = "36e1b40a368f974a1fb445abf17d425b4e54d79d";
-const dp100MigrationRevision = "291203fadee59c268e83772676212505f0a65d2d";
+const dp100MigrationRevision = "d2b526a48f90fe625eba3f31d186fdb08cf1a85c";
+const mosfetMigrationRevision = "5f3bb2d5c51cda7157befea43fd782bf0759aa7e";
 
 const baseLayers = [
   "aluminum",
@@ -91,6 +92,15 @@ const dp100Layers = [
   "fixture-dp100-markings",
 ];
 
+const mosfetLayers = [
+  "fixture-mosfet-pcb",
+  "fixture-mosfet-blue",
+  "fixture-mosfet-dark",
+  "fixture-mosfet-metal",
+  "fixture-mosfet-led",
+  "fixture-mosfet-silkscreen",
+];
+
 const c270EraLayers = [
   ...baseLayers.filter((layer) => layer !== "webcam"),
   ...bpiLayers,
@@ -101,6 +111,7 @@ const c270EraLayers = [
 const relayEraLayers = [...c270EraLayers, ...relayLayers];
 const boostEraLayers = [...relayEraLayers, ...boostLayers];
 const dp100EraLayers = [...boostEraLayers, ...dp100Layers];
+const mosfetEraLayers = [...dp100EraLayers, ...mosfetLayers];
 
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
@@ -140,6 +151,7 @@ test("accepts each immutable semantic-layer era", async () => {
     [relayMigrationRevision, relayEraLayers],
     [boostMigrationRevision, boostEraLayers],
     [dp100MigrationRevision, dp100EraLayers],
+    [mosfetMigrationRevision, mosfetEraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -321,6 +333,53 @@ test("requires all seven exact DP100 semantic layers", async () => {
   ]);
   assert.equal(duplicate.status, 1);
   assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("requires all six exact MTSD001 semantic layers", async () => {
+  assert.equal(dp100EraLayers.length, 51);
+  assert.equal(mosfetEraLayers.length, 57);
+
+  const missing = await verify(
+    mosfetMigrationRevision,
+    mosfetEraLayers.filter((layer) => layer !== "fixture-mosfet-led"),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: fixture-mosfet-led/);
+
+  const extra = await verify(mosfetMigrationRevision, [
+    ...mosfetEraLayers,
+    "fixture-mosfet-copper",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: fixture-mosfet-copper/);
+
+  const misnamed = await verify(
+    mosfetMigrationRevision,
+    mosfetEraLayers.map((layer) =>
+      layer === "fixture-mosfet-silkscreen"
+        ? "fixture-mosfet-silkscren"
+        : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: fixture-mosfet-silkscreen/);
+  assert.match(misnamed.stderr, /unexpected: fixture-mosfet-silkscren/);
+
+  const duplicate = await verify(mosfetMigrationRevision, [
+    ...mosfetEraLayers,
+    "fixture-mosfet-metal",
+  ]);
+  assert.equal(duplicate.status, 1);
+  assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("rejects MTSD001 layers before the MTSD001-era pin", async () => {
+  const result = await verify(dp100MigrationRevision, [
+    ...dp100EraLayers,
+    "fixture-mosfet-pcb",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /unexpected: fixture-mosfet-pcb/);
 });
 
 test("rejects DP100 layers before the DP100-era pin", async () => {

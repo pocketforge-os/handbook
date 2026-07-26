@@ -48,6 +48,14 @@ BOOST_ONLY_REVISIONS = {
     "36e1b40a368f974a1fb445abf17d425b4e54d79d",
 }
 
+# This is the immutable source pin on handbook main while the Ceksezx
+# MTSD001 consumer contract lands. Every later/unlisted revision must publish
+# the six exact MOSFET-module material layers instead of the historical proxy.
+DP100_ONLY_REVISIONS = {
+    "291203fadee59c268e83772676212505f0a65d2d",
+    "d2b526a48f90fe625eba3f31d186fdb08cf1a85c",
+}
+
 BASE_LAYERS = {
     "aluminum",
     "connectors",
@@ -121,6 +129,15 @@ DP100_LAYERS = {
     "fixture-dp100-markings",
 }
 
+MOSFET_LAYERS = {
+    "fixture-mosfet-pcb",
+    "fixture-mosfet-blue",
+    "fixture-mosfet-dark",
+    "fixture-mosfet-metal",
+    "fixture-mosfet-led",
+    "fixture-mosfet-silkscreen",
+}
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -144,7 +161,10 @@ def expected_layers(revision: str) -> set[str]:
     boost_layers = relay_layers | BOOST_LAYERS
     if revision in BOOST_ONLY_REVISIONS:
         return boost_layers
-    return boost_layers | DP100_LAYERS
+    dp100_layers = boost_layers | DP100_LAYERS
+    if revision in DP100_ONLY_REVISIONS:
+        return dp100_layers
+    return dp100_layers | MOSFET_LAYERS
 
 
 def verify_provenance(
