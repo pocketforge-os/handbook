@@ -15,7 +15,8 @@ const bpiOnlyRevision = "4dd6dc261466249d4aed4f73ee690e3f9d8f8da6";
 const esp32MigrationRevision = "4425ef39a40ab53a426693cd0bf07df6b6c53b66";
 const c270MigrationRevision = "e05824d27773f7ee495b597d297839d3b2c54b44";
 const relayMigrationRevision = "f9cad6f9987eb298546033111698fbcf5192eb10";
-const boostMigrationRevision = "f6de2ce25c5e9c0e1bc056a78535eb0dd97274b8";
+const boostMigrationRevision = "36e1b40a368f974a1fb445abf17d425b4e54d79d";
+const dp100MigrationRevision = "291203fadee59c268e83772676212505f0a65d2d";
 
 const baseLayers = [
   "aluminum",
@@ -80,6 +81,16 @@ const boostLayers = [
   "fixture-boost-silkscreen",
 ];
 
+const dp100Layers = [
+  "fixture-dp100-shell",
+  "fixture-dp100-dark",
+  "fixture-dp100-controls",
+  "fixture-dp100-screen",
+  "fixture-dp100-accent",
+  "fixture-dp100-metal",
+  "fixture-dp100-markings",
+];
+
 const c270EraLayers = [
   ...baseLayers.filter((layer) => layer !== "webcam"),
   ...bpiLayers,
@@ -89,6 +100,7 @@ const c270EraLayers = [
 
 const relayEraLayers = [...c270EraLayers, ...relayLayers];
 const boostEraLayers = [...relayEraLayers, ...boostLayers];
+const dp100EraLayers = [...boostEraLayers, ...dp100Layers];
 
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
@@ -127,6 +139,7 @@ test("accepts each immutable semantic-layer era", async () => {
     [c270MigrationRevision, c270EraLayers],
     [relayMigrationRevision, relayEraLayers],
     [boostMigrationRevision, boostEraLayers],
+    [dp100MigrationRevision, dp100EraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -270,6 +283,53 @@ test("requires all five exact boost semantic layers", async () => {
   ]);
   assert.equal(duplicate.status, 1);
   assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("requires all seven exact DP100 semantic layers", async () => {
+  assert.equal(boostEraLayers.length, 44);
+  assert.equal(dp100EraLayers.length, 51);
+
+  const missing = await verify(
+    dp100MigrationRevision,
+    dp100EraLayers.filter((layer) => layer !== "fixture-dp100-controls"),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: fixture-dp100-controls/);
+
+  const extra = await verify(dp100MigrationRevision, [
+    ...dp100EraLayers,
+    "fixture-dp100-copper",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: fixture-dp100-copper/);
+
+  const misnamed = await verify(
+    dp100MigrationRevision,
+    dp100EraLayers.map((layer) =>
+      layer === "fixture-dp100-markings"
+        ? "fixture-dp100-marking"
+        : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: fixture-dp100-markings/);
+  assert.match(misnamed.stderr, /unexpected: fixture-dp100-marking/);
+
+  const duplicate = await verify(dp100MigrationRevision, [
+    ...dp100EraLayers,
+    "fixture-dp100-metal",
+  ]);
+  assert.equal(duplicate.status, 1);
+  assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("rejects DP100 layers before the DP100-era pin", async () => {
+  const result = await verify(boostMigrationRevision, [
+    ...boostEraLayers,
+    "fixture-dp100-shell",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /unexpected: fixture-dp100-shell/);
 });
 
 test("rejects boost layers before the boost-era pin", async () => {
