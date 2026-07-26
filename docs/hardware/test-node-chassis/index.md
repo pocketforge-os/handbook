@@ -5,6 +5,14 @@ device, its inspection camera, and its control electronics. The result is a
 **test-node chassis**. The handheld installed in it is the **device under test
 (DUT)**.
 
+!!! info "Model the DUT first"
+    Complete the
+    [remote-evidence model gate](../model-handheld/index.md#finish-two-acceptance-gates)
+    before starting this fabrication flow. The reusable aluminum frame can
+    then be built while the handheld ships, but generate and print its
+    device-specific DUT holder only from the
+    [in-hand accepted model](../model-handheld/refine-and-accept.md).
+
 <script type="module" src="../../assets/vendor/model-viewer/model-viewer.min.js"></script>
 <div class="chassis-model-shell">
   <model-viewer
@@ -77,10 +85,11 @@ dark.
 5. [Run the unpowered verification gates](verify.md).
 6. [Secure the finished harness to the rails](wire-management.md).
 
-!!! tip "Build the chassis while the device ships"
-    The carrier is the only device-specific mechanical layer. The standard
-    chassis, movable camera frame, power-strip mount, and identification holder
-    can all be fabricated before a new handheld arrives.
+!!! tip "Parallelize after the first model gate"
+    Once the remote-evidence model establishes the DUT’s nominal envelope, the
+    standard chassis, movable camera frame, power-strip mount, and
+    identification holder can be fabricated while the handheld ships. Hold the
+    fitted DUT holder for the in-hand model gate.
 
 ## Source of truth
 

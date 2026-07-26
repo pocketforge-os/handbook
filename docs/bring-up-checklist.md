@@ -14,8 +14,9 @@ the artifact the whole guide exists to produce.
 The eventual checklist will read like this (illustrative shape only — **not** the
 real steps):
 
+- [ ] [Model and accept the handheld](hardware/model-handheld/index.md)
+- [ ] Generate the device-specific DUT holder from the accepted model
 - [ ] [Build and verify the test-node chassis](hardware/test-node-chassis/index.md)
-- [ ] Prepare the device-specific carrier and DUT
 - [ ] Wire it into a [per-DUT test node](hardware/test-node.md)
 - [ ] Confirm [relay power](lab/power.md) and [serial](hardware/test-node.md) control
 - [ ] Acquire the device [place](lab/labgrid.md)

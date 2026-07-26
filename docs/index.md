@@ -20,8 +20,8 @@ end-user manual; it is the read-me-first documentation for people who want to
 
 - **Contributors** who want to understand the org layout and start hacking on
   PocketForge OS.
-- **Hardware builders** who want to fabricate the reusable test-node chassis
-  and integrate a device under test (DUT).
+- **Hardware builders** who want to model a device under test (DUT), fabricate
+  its holder and reusable test-node chassis, and integrate the test node.
 - **Lab replicators** who want to stand up the same build/flash/serial/power
   automation that PocketForge runs.
 
@@ -34,7 +34,8 @@ procedure rather than an unstructured pile of docs.
 
 ```mermaid
 flowchart LR
-  HW[Hardware<br/>build the test-node chassis] --> LAB[Lab &amp; infra<br/>test node, power, net]
+  MODEL[Hardware<br/>model the handheld] --> HW[Hardware<br/>build the test-node chassis]
+  HW --> LAB[Lab &amp; infra<br/>test node, power, net]
   LAB --> BF[Build &amp; flash<br/>pf build → OTA/SD/FEL]
   BF --> BU[⭐ Bring-up<br/>checklist]
 ```
@@ -44,7 +45,7 @@ flowchart LR
 | Section | What's there |
 | --- | --- |
 | [Contributor onboarding](onboarding/index.md) | Org/repo layout, dev environment, the agent/beads workflow |
-| [Hardware](hardware/index.md) | Build the test-node chassis, add the DUT-specific carrier, and integrate the test node |
+| [Hardware](hardware/index.md) | Model the handheld, generate its DUT holder, build the test-node chassis, and integrate the test node |
 | [Lab & infrastructure](lab/index.md) | labgrid coordinator, relay power, networking |
 | [Build & flash](build-flash/index.md) | The `pf build` pipeline, the OTA→SD→FEL flashing ladder |
 | [⭐ Bring up a device](bring-up-checklist.md) | The end-to-end master checklist |

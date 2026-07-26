@@ -47,10 +47,12 @@ The canonical beds produce:
 - two power-strip blocks;
 - one reusable placard holder and one device-name cartridge.
 
-The device carrier and its six clamp hooks are device-specific outputs. For the
-example build, use the TrimUI Smart Pro family carrier from the same hardware
-repository. They are shown in the assembly model but are not duplicated in the
-chassis print beds.
+The device carrier and its six clamp hooks are device-specific outputs. Generate
+them only after the
+[handheld model’s in-hand acceptance gate](../model-handheld/refine-and-accept.md#before-fabricating-the-dut-holder).
+For the example build, use the accepted TrimUI Smart Pro family carrier from
+the same hardware repository. It is shown in the assembly model but is not
+duplicated in the chassis print beds.
 
 ## Fabrication tools
 
