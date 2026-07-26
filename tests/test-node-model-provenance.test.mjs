@@ -14,6 +14,7 @@ const preBpiRevision = "c53312769ec9542e3b5293a96e13b978fac69f78";
 const bpiOnlyRevision = "4dd6dc261466249d4aed4f73ee690e3f9d8f8da6";
 const esp32MigrationRevision = "4425ef39a40ab53a426693cd0bf07df6b6c53b66";
 const c270MigrationRevision = "e05824d27773f7ee495b597d297839d3b2c54b44";
+const relayMigrationRevision = "f9cad6f9987eb298546033111698fbcf5192eb10";
 
 const baseLayers = [
   "aluminum",
@@ -61,12 +62,23 @@ const c270Layers = [
   "webcam-labels",
 ];
 
+const relayLayers = [
+  "fixture-relay-pcb",
+  "fixture-relay-blue",
+  "fixture-relay-dark",
+  "fixture-relay-metal",
+  "fixture-relay-led",
+  "fixture-relay-silkscreen",
+];
+
 const c270EraLayers = [
   ...baseLayers.filter((layer) => layer !== "webcam"),
   ...bpiLayers,
   ...esp32Layers,
   ...c270Layers,
 ];
+
+const relayEraLayers = [...c270EraLayers, ...relayLayers];
 
 async function verify(revision, semanticLayers, options = {}) {
   const temporaryDirectory = await mkdtemp(
@@ -103,6 +115,7 @@ test("accepts each immutable semantic-layer era", async () => {
       [...baseLayers, ...bpiLayers, ...esp32Layers],
     ],
     [c270MigrationRevision, c270EraLayers],
+    [relayMigrationRevision, relayEraLayers],
   ]) {
     const result = await verify(revision, layers);
     assert.equal(result.status, 0, result.stderr);
@@ -170,6 +183,53 @@ test("requires all five exact C270 semantic layers", async () => {
   ]);
   assert.equal(legacyProxy.status, 1);
   assert.match(legacyProxy.stderr, /unexpected: webcam/);
+});
+
+test("requires all six exact relay semantic layers", async () => {
+  assert.equal(c270EraLayers.length, 33);
+  assert.equal(relayEraLayers.length, 39);
+
+  const missing = await verify(
+    relayMigrationRevision,
+    relayEraLayers.filter((layer) => layer !== "fixture-relay-led"),
+  );
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /missing: fixture-relay-led/);
+
+  const extra = await verify(relayMigrationRevision, [
+    ...relayEraLayers,
+    "fixture-relay-copper",
+  ]);
+  assert.equal(extra.status, 1);
+  assert.match(extra.stderr, /unexpected: fixture-relay-copper/);
+
+  const misnamed = await verify(
+    relayMigrationRevision,
+    relayEraLayers.map((layer) =>
+      layer === "fixture-relay-silkscreen"
+        ? "fixture-relay-silkscren"
+        : layer,
+    ),
+  );
+  assert.equal(misnamed.status, 1);
+  assert.match(misnamed.stderr, /missing: fixture-relay-silkscreen/);
+  assert.match(misnamed.stderr, /unexpected: fixture-relay-silkscren/);
+
+  const duplicate = await verify(relayMigrationRevision, [
+    ...relayEraLayers,
+    "fixture-relay-led",
+  ]);
+  assert.equal(duplicate.status, 1);
+  assert.match(duplicate.stderr, /duplicate semantic layers/);
+});
+
+test("rejects relay layers before the relay-era pin", async () => {
+  const result = await verify(c270MigrationRevision, [
+    ...c270EraLayers,
+    "fixture-relay-pcb",
+  ]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /unexpected: fixture-relay-pcb/);
 });
 
 test("rejects an ESP32 layer on the BPI-only pin", async () => {
