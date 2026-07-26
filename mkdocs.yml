@@ -146,6 +146,8 @@ nav:
       - build-flash/index.md
       - The pf build pipeline: build-flash/pf-build.md
       - Flashing ladder (OTA→SD→FEL): build-flash/flashing-ladder.md
+  - Input bring-up & calibration:
+      - input-bringup/index.md
   - ⭐ Bring up a device: bring-up-checklist.md
   - Reference:
       - reference/index.md
