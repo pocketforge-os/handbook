@@ -1,9 +1,90 @@
 # Generate and print the chassis pack
 
-Generate the complete device-selected pack from a clean
-`pocketforge-os/test-node-hw` checkout. Routine STLs are generated, not
-committed, so the verified manifest—not a loose download directory—is the
-manufacturing handoff.
+Choose a device and what you are building. OpenSCAD runs locally in this
+browser: the device list, part recipes, qualification state, and source files
+come from the same pinned registry as the command-line pack builder. No model
+is uploaded, and the handbook neither stores nor serves a pre-rendered STL.
+
+The first build downloads the approximately 10 MB CAD engine. Generate one
+part for a replacement, or generate the complete pack to receive one ZIP with
+every STL, a manifest, and `SHA256SUMS`.
+
+Before a download is offered, the browser rejects open meshes and checks the
+normalized geometry against a runtime-specific baseline. That baseline was
+cross-checked against the pinned source toolchain within 0.001 mm at the
+bounds and 0.02% by volume; a source, runtime, or geometry change stops here
+until its baseline is deliberately re-qualified.
+
+<script type="module" src="../../../assets/device-pack-generator.mjs"></script>
+<section
+  class="pf-device-pack-generator"
+  data-device-pack-generator
+  data-default-device="trimui-smart-pro-s"
+  data-catalog-url="../../../assets/generated/test-node-chassis/browser/catalog.json"
+  data-checksums-url="../../../assets/generated/test-node-chassis/browser/SHA256SUMS"
+  data-baseline-url="../../../assets/device-pack-browser-baselines.json"
+  data-worker-url="../../../assets/device-pack-worker.mjs"
+  data-runtime-url="../../../assets/vendor/openscad/openscad.js"
+  data-font-url="../../../assets/vendor/openscad/fonts/LiberationSans-Bold.ttf"
+  data-font-config-url="../../../assets/vendor/openscad/fonts/fonts.conf"
+  aria-labelledby="device-pack-generator-title"
+  aria-busy="false">
+  <div class="pf-device-pack-generator__heading">
+    <div>
+      <span class="pf-device-pack-generator__eyebrow">LOCAL CAD WORKBENCH</span>
+      <h2 id="device-pack-generator-title">Generate a device print pack</h2>
+    </div>
+    <span class="pf-device-pack-generator__privacy">runs on this device</span>
+  </div>
+  <div class="pf-device-pack-generator__selectors">
+    <label>
+      <span>Handheld</span>
+      <select data-pack-device disabled>
+        <option>Loading registered devices…</option>
+      </select>
+    </label>
+    <label>
+      <span>Build</span>
+      <select data-pack-mode disabled>
+        <option>Loading pack modes…</option>
+      </select>
+    </label>
+  </div>
+  <aside
+    class="pf-device-pack-generator__qualification"
+    data-pack-qualification
+    aria-live="polite">
+    <strong>Verifying the source catalog…</strong>
+  </aside>
+  <div class="pf-device-pack-generator__toolbar">
+    <button type="button" data-pack-generate-all disabled>
+      Generate complete pack
+    </button>
+    <button type="button" data-pack-cancel hidden>Cancel</button>
+    <a data-pack-download hidden>Download generated pack</a>
+  </div>
+  <progress data-pack-progress value="0" max="1" hidden></progress>
+  <p
+    class="pf-device-pack-generator__status"
+    data-pack-status
+    role="status"
+    aria-live="polite">
+    Loading the pinned device catalog…
+  </p>
+  <div
+    class="pf-device-pack-generator__inventory"
+    data-pack-inventory>
+  </div>
+</section>
+
+<noscript>
+  Browser generation requires JavaScript. Use the command-line path below.
+</noscript>
+
+## Command-line alternative
+
+For automation or independent source verification, generate the same
+device-selected plan from a clean `pocketforge-os/test-node-hw` checkout:
 
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
@@ -152,12 +233,6 @@ press **Generate personalized STL**.
       hidden>
       Download personalized STL
     </a>
-    <noscript>
-      <p>
-        Browser customization requires JavaScript. Use the generated device
-        pack's nameplate, or export one with the pinned source linked below.
-      </p>
-    </noscript>
   </div>
   <div class="pf-nameplate-customizer__preview" aria-hidden="true">
     <span>NAME PREVIEW</span>

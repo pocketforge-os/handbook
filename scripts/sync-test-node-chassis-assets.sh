@@ -135,10 +135,25 @@ else
   QT_QPA_PLATFORM=offscreen "${make_command[@]}"
 fi
 
+browser_bundle="${temporary_root}/browser-device-packs"
+python3 \
+  "${source_root}/mechanical/device-packs/export_browser_bundle.py" \
+  --root "${source_root}" \
+  build \
+  --output "${browser_bundle}"
+python3 \
+  "${source_root}/mechanical/device-packs/export_browser_bundle.py" \
+  --root "${source_root}" \
+  verify \
+  --bundle "${browser_bundle}"
+
 if [[ -d "${asset_dir}" ]]; then
   find "${asset_dir}" -mindepth 1 -depth -delete
 fi
-mkdir -p "${asset_dir}/customizer/lib" "${asset_dir}/topbar"
+mkdir -p \
+  "${asset_dir}/browser" \
+  "${asset_dir}/customizer/lib" \
+  "${asset_dir}/topbar"
 
 install -m 0644 \
   "${project_dir}/build/handbook/hero.png" \
@@ -159,6 +174,7 @@ install -m 0644 \
 install -m 0644 \
   "${project_dir}/lib/pf-2020.scad" \
   "${asset_dir}/customizer/lib/pf-2020.scad"
+cp -a "${browser_bundle}/." "${asset_dir}/browser/"
 
 python3 - \
   "${asset_dir}/customizer/customizer-provenance.json" \
@@ -201,6 +217,8 @@ required_assets=(
   topbar/layout-suspension-detail.png
   topbar/layout-upper-hangers.png
   topbar/cut-list.csv
+  browser/catalog.json
+  browser/SHA256SUMS
   customizer/pocketforge-node-chassis.scad
   customizer/lib/pf-2020.scad
   customizer/customizer-provenance.json
@@ -211,6 +229,28 @@ for required_asset in "${required_assets[@]}"; do
     exit 1
   }
 done
+
+python3 - "${asset_dir}/browser/catalog.json" "${asset_dir}/browser" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+catalog_path = pathlib.Path(sys.argv[1])
+browser_root = pathlib.Path(sys.argv[2])
+catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+if catalog.get("schema") != "pocketforge-browser-device-pack-catalog-v1":
+    raise SystemExit("browser device-pack catalog schema changed")
+if catalog.get("source", {}).get("dirty") is not False:
+    raise SystemExit("browser device-pack catalog was exported from dirty source")
+for record in catalog.get("sources", []):
+    path = browser_root / record["bundle_path"]
+    if not path.is_file():
+        raise SystemExit(f"missing browser OpenSCAD source: {path}")
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    if digest != record["sha256"]:
+        raise SystemExit(f"browser OpenSCAD source hash changed: {path}")
+PY
 
 if find "${asset_dir}" -type f -name '*.stl' | grep -q .; then
   echo "candidate STL leaked into the handbook publication" >&2
@@ -241,7 +281,7 @@ python3 \
 
 (
   cd "${asset_dir}"
-  find . -type f ! -name SHA256SUMS -print0 |
+  find . -type f ! -path ./SHA256SUMS -print0 |
     sort -z |
     xargs -0 sha256sum >"${temporary_root}/SHA256SUMS"
 )

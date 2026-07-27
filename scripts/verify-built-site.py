@@ -196,6 +196,261 @@ def verify_customizer_sources(asset_dir: Path) -> dict:
     return provenance
 
 
+def is_safe_relative_path(value: object) -> bool:
+    if not isinstance(value, str) or not value or "\\" in value:
+        return False
+    path = Path(value)
+    return (
+        not path.is_absolute()
+        and all(part not in {"", ".", ".."} for part in value.split("/"))
+    )
+
+
+def verify_browser_pack_sources(asset_dir: Path) -> dict:
+    browser_dir = asset_dir / "browser"
+    catalog_path = browser_dir / "catalog.json"
+    checksums_path = browser_dir / "SHA256SUMS"
+    if not catalog_path.is_file() or not checksums_path.is_file():
+        raise SystemExit("browser device-pack publication is incomplete")
+
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    if (
+        catalog.get("schema")
+        != "pocketforge-browser-device-pack-catalog-v1"
+        or catalog.get("bundle_schema")
+        != "pocketforge-browser-device-pack-bundle-v1"
+        or catalog.get("modes") != ["coupon", "retrofit", "full"]
+        or catalog.get("fingerprint_contract")
+        != {
+            "algorithm": "pocketforge-normalized-stl-v1",
+            "coordinate_quantum_mm": "0.0001",
+        }
+    ):
+        raise SystemExit("browser device-pack catalog contract changed")
+    source = catalog.get("source", {})
+    if (
+        source.get("repository")
+        != "https://github.com/pocketforge-os/test-node-hw"
+        or not re.fullmatch(r"[0-9a-f]{40}", source.get("commit", ""))
+        or source.get("dirty") is not False
+    ):
+        raise SystemExit("browser catalog lacks clean pinned source provenance")
+
+    source_paths: set[str] = set()
+    bundle_paths: set[str] = set()
+    for record in catalog.get("sources", []):
+        source_path = record.get("path")
+        bundle_path = record.get("bundle_path")
+        if (
+            not is_safe_relative_path(source_path)
+            or not str(source_path).endswith(".scad")
+            or not is_safe_relative_path(bundle_path)
+            or bundle_path != f"sources/{source_path}"
+            or source_path in source_paths
+            or bundle_path in bundle_paths
+            or not re.fullmatch(r"[0-9a-f]{64}", record.get("sha256", ""))
+            or not isinstance(record.get("size_bytes"), int)
+            or record["size_bytes"] <= 0
+        ):
+            raise SystemExit("browser catalog has an invalid source record")
+        path = browser_dir / bundle_path
+        if (
+            not path.is_file()
+            or path.stat().st_size != record["size_bytes"]
+            or hashlib.sha256(path.read_bytes()).hexdigest()
+            != record["sha256"]
+        ):
+            raise SystemExit(f"browser OpenSCAD source changed: {path}")
+        source_paths.add(source_path)
+        bundle_paths.add(bundle_path)
+    if not source_paths:
+        raise SystemExit("browser catalog has no OpenSCAD source closure")
+
+    devices = catalog.get("devices")
+    if not isinstance(devices, list) or not devices:
+        raise SystemExit("browser catalog has no registered devices")
+    slugs: set[str] = set()
+    expected_counts = {"coupon": 1, "retrofit": 6, "full": 12}
+    for device in devices:
+        slug = device.get("slug")
+        if (
+            not isinstance(slug, str)
+            or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug)
+            or slug in slugs
+            or not device.get("display_name")
+        ):
+            raise SystemExit("browser catalog has an invalid device record")
+        slugs.add(slug)
+        for owner in ("profile", "layout"):
+            qualification = device.get(owner, {}).get("qualification", {})
+            if (
+                not device.get(owner, {}).get("id")
+                or qualification.get("status")
+                not in {"candidate", "physically_qualified"}
+                or not qualification.get("acceptance_ref")
+            ):
+                raise SystemExit(
+                    f"browser catalog has invalid {owner} qualification: {slug}"
+                )
+        modes = device.get("modes", {})
+        if set(modes) != set(expected_counts):
+            raise SystemExit(f"browser catalog modes changed: {slug}")
+        for mode_name, expected_count in expected_counts.items():
+            mode = modes[mode_name]
+            artifacts = mode.get("artifacts")
+            if (
+                not isinstance(mode.get("production_eligible"), bool)
+                or not isinstance(mode.get("nonproduction_reasons"), list)
+                or not isinstance(mode.get("required_overrides"), list)
+                or not isinstance(artifacts, list)
+                or len(artifacts) != expected_count
+            ):
+                raise SystemExit(
+                    f"browser catalog mode policy changed: {slug}/{mode_name}"
+                )
+            artifact_ids: set[str] = set()
+            outputs: set[str] = set()
+            for artifact in artifacts:
+                artifact_id = artifact.get("id")
+                output = artifact.get("output")
+                definitions = artifact.get("definitions")
+                definition_names = [
+                    definition.get("name")
+                    for definition in definitions or []
+                ]
+                fingerprint = artifact.get("expected_normalized_sha256")
+                if (
+                    not isinstance(artifact_id, str)
+                    or artifact_id in artifact_ids
+                    or not is_safe_relative_path(output)
+                    or not str(output).endswith(".stl")
+                    or output in outputs
+                    or artifact.get("source") not in source_paths
+                    or not definitions
+                    or definition_names != sorted(definition_names)
+                    or len(definition_names) != len(set(definition_names))
+                    or "PART" not in definition_names
+                    or (
+                        fingerprint is not None
+                        and not re.fullmatch(r"[0-9a-f]{64}", fingerprint)
+                    )
+                ):
+                    raise SystemExit(
+                        "browser catalog artifact contract changed: "
+                        f"{slug}/{mode_name}/{artifact_id}"
+                    )
+                artifact_ids.add(artifact_id)
+                outputs.add(output)
+
+    checksum_records: dict[str, str] = {}
+    for line in checksums_path.read_text(encoding="utf-8").splitlines():
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+        if (
+            not match
+            or not is_safe_relative_path(match.group(2))
+            or match.group(2) in checksum_records
+        ):
+            raise SystemExit("browser bundle SHA256SUMS is invalid")
+        checksum_records[match.group(2)] = match.group(1)
+    expected_names = {"catalog.json", *bundle_paths}
+    if set(checksum_records) != expected_names:
+        raise SystemExit("browser bundle checksum coverage changed")
+    for relative_name, expected_hash in checksum_records.items():
+        path = browser_dir / relative_name
+        if (
+            not path.is_file()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected_hash
+        ):
+            raise SystemExit(f"browser bundle checksum mismatch: {path}")
+    actual_names = {
+        path.relative_to(browser_dir).as_posix()
+        for path in browser_dir.rglob("*")
+        if path.is_file() and path != checksums_path
+    }
+    if actual_names != expected_names:
+        raise SystemExit("browser device-pack source closure changed")
+    if any(path.suffix.lower() == ".stl" for path in browser_dir.rglob("*")):
+        raise SystemExit("browser bundle contains a pre-rendered STL")
+    return catalog
+
+
+def verify_browser_pack_baselines(site: Path, catalog: dict) -> dict:
+    baseline_path = site / "assets" / "device-pack-browser-baselines.json"
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    if (
+        baseline.get("schema")
+        != "pocketforge-browser-device-pack-baselines-v1"
+        or baseline.get("source") != catalog.get("source")
+        or baseline.get("generation_contract")
+        != {
+            "backend": "Manifold",
+            "canonicalizer": "pocketforge-browser-canonical-stl-v1",
+            "fingerprint": catalog.get("fingerprint_contract"),
+        }
+    ):
+        raise SystemExit("browser device-pack baseline contract changed")
+    equivalence = baseline.get("equivalence_gate", {})
+    if (
+        equivalence.get("maximum_bounds_delta_mm") != 0.001
+        or equivalence.get("maximum_absolute_volume_delta_percent") != 0.02
+        or equivalence.get("observed_maximum_bounds_delta_mm", 1) > 0.001
+        or equivalence.get(
+            "observed_maximum_absolute_volume_delta_percent", 1
+        )
+        > 0.02
+    ):
+        raise SystemExit("browser/source mesh equivalence gate changed")
+
+    runtime_dir = site / "assets" / "vendor" / "openscad"
+    runtime_provenance = json.loads(
+        (runtime_dir / "PROVENANCE.json").read_text(encoding="utf-8")
+    )["openscad"]
+    runtime = baseline.get("runtime", {})
+    if (
+        runtime.get("version") != runtime_provenance.get("version")
+        or runtime.get("source_revision")
+        != runtime_provenance.get("source_revision")
+        or runtime.get("javascript_sha256")
+        != hashlib.sha256(
+            (runtime_dir / "openscad.js").read_bytes()
+        ).hexdigest()
+        or runtime.get("wasm_sha256")
+        != hashlib.sha256(
+            (runtime_dir / "openscad.wasm").read_bytes()
+        ).hexdigest()
+    ):
+        raise SystemExit("browser baseline OpenSCAD runtime pin changed")
+
+    expected_artifacts: dict[str, dict] = {}
+    for device in catalog["devices"]:
+        for artifact in device["modes"]["full"]["artifacts"]:
+            expected_artifacts[f"{device['slug']}/{artifact['id']}"] = artifact
+    records = baseline.get("artifacts", {})
+    if set(records) != set(expected_artifacts):
+        raise SystemExit("browser baseline coverage differs from the catalog")
+    for key, artifact in expected_artifacts.items():
+        record = records[key]
+        expected_source_hash = artifact["expected_normalized_sha256"]
+        if (
+            record.get("output") != artifact["output"]
+            or not re.fullmatch(
+                r"[0-9a-f]{64}",
+                record.get("browser_normalized_sha256", ""),
+            )
+            or not re.fullmatch(
+                r"[0-9a-f]{64}",
+                record.get("source_normalized_sha256", ""),
+            )
+            or (
+                expected_source_hash is not None
+                and record.get("source_normalized_sha256")
+                != expected_source_hash
+            )
+        ):
+            raise SystemExit(f"browser baseline record changed: {key}")
+    return baseline
+
+
 def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
     expected_files = {
         "hero.png",
@@ -214,7 +469,11 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
     actual_files = {
         path.relative_to(asset_dir).as_posix()
         for path in asset_dir.rglob("*")
-        if path.is_file() and path.name != "SHA256SUMS"
+        if (
+            path.is_file()
+            and path.name != "SHA256SUMS"
+            and path.relative_to(asset_dir).parts[0] != "browser"
+        )
     }
     if actual_files != expected_files:
         raise SystemExit(
@@ -563,6 +822,14 @@ def main() -> int:
     print_html = print_page.read_text(encoding="utf-8")
     normalized_print_html = " ".join(print_html.split()).casefold()
     for required_fragment in (
+        "data-device-pack-generator",
+        "device-pack-generator.mjs",
+        "browser/catalog.json",
+        "device-pack-browser-baselines.json",
+        "generate a device print pack",
+        "generate complete pack",
+        "no model is uploaded",
+        "neither stores nor serves a pre-rendered stl",
         "data-nameplate-customizer",
         "nameplate-worker.mjs",
         "generate personalized stl",
@@ -579,6 +846,10 @@ def main() -> int:
                 f"print page is missing {required_fragment!r}"
             )
     for customizer_asset in (
+        "assets/device-pack-generator.mjs",
+        "assets/device-pack-generator-core.mjs",
+        "assets/device-pack-browser-baselines.json",
+        "assets/device-pack-worker.mjs",
         "assets/nameplate-customizer.mjs",
         "assets/nameplate-customizer-core.mjs",
         "assets/nameplate-worker.mjs",
@@ -587,10 +858,34 @@ def main() -> int:
             raise SystemExit(
                 f"missing browser nameplate customizer asset: {customizer_asset}"
             )
-    if "openscad.wasm" in print_html or "openscad.js" in print_html:
-        raise SystemExit("print page eagerly references the OpenSCAD runtime")
-    if "<noscript>" not in print_html:
-        raise SystemExit("print page is missing its no-JavaScript fallback")
+    generator_source = (
+        site / "assets" / "device-pack-generator.mjs"
+    ).read_text(encoding="utf-8")
+    for required_fragment in (
+        'coupon: "Fit coupon · 1 file"',
+        'retrofit: "Device retrofit · 6 files"',
+        'full: "Complete chassis · 12 files"',
+        "catalog.devices",
+        "mode.artifacts",
+        "createPackArchive",
+        "new Worker(workerUrl",
+    ):
+        if required_fragment not in generator_source:
+            raise SystemExit(
+                f"browser pack generator is missing {required_fragment!r}"
+            )
+    script_sources = {
+        reference
+        for tag, reference in page_references[print_page].references
+        if tag == "script"
+    }
+    if any(
+        source.endswith(("openscad.wasm", "openscad.js"))
+        for source in script_sources
+    ):
+        raise SystemExit("print page eagerly loads the OpenSCAD runtime")
+    if print_html.count("<noscript>") != 1:
+        raise SystemExit("print page must have one no-JavaScript fallback")
     if page_references[print_page].downloads:
         raise SystemExit("unverified static STL download remains on print page")
 
@@ -613,12 +908,16 @@ def main() -> int:
 
     asset_dir = site / "assets" / "generated" / "test-node-chassis"
     provenance, gltf = verify_chassis_assets(asset_dir)
+    browser_catalog = verify_browser_pack_sources(asset_dir)
+    browser_baselines = verify_browser_pack_baselines(site, browser_catalog)
     customizer_provenance = verify_customizer_sources(asset_dir)
     if (
         customizer_provenance.get("source_revision")
         != provenance.get("source_revision")
+        or browser_catalog.get("source", {}).get("commit")
+        != provenance.get("source_revision")
     ):
-        raise SystemExit("customizer and chassis model source pins diverged")
+        raise SystemExit("browser, customizer, and chassis source pins diverged")
     if len(gltf.get("materials", [])) != 70:
         raise SystemExit("current chassis GLB material count changed")
 
@@ -634,7 +933,9 @@ def main() -> int:
         f"pages={len(pages)} local_links=resolved "
         f"checksums={checksums} holder_pages={len(holder_pages)} "
         f"chassis_pages={len(chassis_pages)} "
-        f"interactive_models={viewer_count} semantic_layers=70"
+        f"interactive_models={viewer_count} semantic_layers=70 "
+        f"browser_devices={len(browser_catalog['devices'])} "
+        f"browser_baselines={len(browser_baselines['artifacts'])}"
     )
     return 0
 
