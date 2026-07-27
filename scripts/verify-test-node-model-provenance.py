@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import pathlib
+import struct
 from collections.abc import Sequence
 
 
@@ -63,6 +65,10 @@ DP100_ONLY_REVISIONS = {
 MOSFET_ONLY_REVISIONS = {
     "5f3bb2d5c51cda7157befea43fd782bf0759aa7e",
     "0ac32466887ff00950748c2fb8983a31b1409bb6",
+}
+
+FINAL_COMPONENT_REVISIONS = {
+    "ad29d37a787cba645b3e7f56338d6d603b6992f3",
 }
 
 BASE_LAYERS = {
@@ -163,6 +169,40 @@ FINAL_COMPONENT_LAYERS = {
     "fixture-smays-markings",
 }
 
+HISTORICAL_SCHEMA1_REVISIONS = (
+    PRE_BPI_REVISIONS
+    | BPI_ONLY_REVISIONS
+    | ESP32_ONLY_REVISIONS
+    | C270_ONLY_REVISIONS
+    | RELAY_ONLY_REVISIONS
+    | BOOST_ONLY_REVISIONS
+    | DP100_ONLY_REVISIONS
+    | MOSFET_ONLY_REVISIONS
+    | FINAL_COMPONENT_REVISIONS
+)
+
+CURRENT_SCENE = {
+    "device_slug": "trimui-smart-pro-s",
+    "chassis_variant": "topbar_v1",
+    "layout_id": "chassis-topbar-v1",
+    "layout_record": "mechanical/device-packs/layouts/chassis-topbar-v1.json",
+    "device_registry": "mechanical/device-packs/device-layouts.json",
+    "qualification": {
+        "status": "candidate",
+        "acceptance_ref": "tsp-t1zd.2",
+    },
+}
+
+DEVICE_MODEL_COMMIT = "80662c40bd7d878a19127899760bdafb1f149173"
+DEVICE_MODEL_SHA256 = (
+    "0d5c8153639537d5e70941492ad2cc930f5fb1c93f3694e9a160f5770693224d"
+)
+DEVICE_MODEL_URL = (
+    "https://raw.githubusercontent.com/pocketforge-os/platform/"
+    f"{DEVICE_MODEL_COMMIT}/device-models/trimui-smart-pro-s/"
+    "trimui-smart-pro-s.scad"
+)
+
 
 def expected_layers(revision: str) -> set[str]:
     """Return the exact semantic layer contract for a source revision."""
@@ -195,11 +235,152 @@ def expected_layers(revision: str) -> set[str]:
     return mosfet_layers | FINAL_COMPONENT_LAYERS
 
 
+def valid_sha256(value: object) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
+def verify_current_scene(provenance: dict, actual_layers: set[str]) -> None:
+    if provenance.get("schema") != 2:
+        raise SystemExit("current generated model provenance must use schema 2")
+    if (
+        provenance.get("source_repository")
+        != "https://github.com/pocketforge-os/test-node-hw"
+        or provenance.get("coordinate_transform")
+        != "OpenSCAD mm Z-up -> glTF m Y-up"
+    ):
+        raise SystemExit("current generated model source contract changed")
+
+    scene = provenance.get("scene")
+    if not isinstance(scene, dict):
+        raise SystemExit("current generated model has no scene contract")
+    for key, expected_value in CURRENT_SCENE.items():
+        if scene.get(key) != expected_value:
+            raise SystemExit(
+                f"current generated model scene {key} changed: "
+                f"{scene.get(key)!r} != {expected_value!r}"
+            )
+    for digest_name in ("layout_sha256", "device_registry_sha256"):
+        if not valid_sha256(scene.get(digest_name)):
+            raise SystemExit(
+                f"current generated model has invalid {digest_name}"
+            )
+
+    expected_device_model = {
+        "source_repository": DEVICE_MODEL_URL,
+        "source_commit": DEVICE_MODEL_COMMIT,
+        "source_sha256": DEVICE_MODEL_SHA256,
+    }
+    if scene.get("device_model") != expected_device_model:
+        raise SystemExit("current generated model device-model pin changed")
+
+    layer_hashes = provenance.get("layer_sha256")
+    if not isinstance(layer_hashes, dict) or set(layer_hashes) != actual_layers:
+        raise SystemExit("current generated model layer hashes changed shape")
+    if not all(valid_sha256(value) for value in layer_hashes.values()):
+        raise SystemExit("current generated model has an invalid layer hash")
+    if not valid_sha256(provenance.get("model_sha256")):
+        raise SystemExit("current generated model has an invalid model hash")
+
+    extents = provenance.get("model_extents_metres")
+    if (
+        not isinstance(extents, list)
+        or len(extents) != 3
+        or not all(
+            isinstance(value, (int, float)) and 0.05 < value < 1.0
+            for value in extents
+        )
+    ):
+        raise SystemExit("current generated model has invalid metre extents")
+
+
+def read_glb_json(path: pathlib.Path) -> dict:
+    data = path.read_bytes()
+    if len(data) < 20:
+        raise SystemExit("generated model GLB is truncated")
+    magic, version, declared_length = struct.unpack_from("<4sII", data)
+    if magic != b"glTF" or version != 2 or declared_length != len(data):
+        raise SystemExit("generated model GLB header changed")
+    chunk_length, chunk_type = struct.unpack_from("<I4s", data, 12)
+    if chunk_type != b"JSON":
+        raise SystemExit("generated model GLB has no leading JSON chunk")
+    chunk = data[20 : 20 + chunk_length].rstrip(b" \x00")
+    return json.loads(chunk.decode("utf-8"))
+
+
+def verify_glb(
+    model: pathlib.Path,
+    provenance: dict,
+    actual_layers: set[str],
+) -> None:
+    model_digest = hashlib.sha256(model.read_bytes()).hexdigest()
+    if model_digest != provenance.get("model_sha256"):
+        raise SystemExit("generated model GLB hash does not match provenance")
+
+    gltf = read_glb_json(model)
+    node_names = {
+        node.get("name")
+        for node in gltf.get("nodes", [])
+        if isinstance(node.get("name"), str)
+    }
+    expected_node_names = actual_layers | {"world"}
+    if node_names != expected_node_names:
+        missing = sorted(expected_node_names - node_names)
+        unexpected = sorted(node_names - expected_node_names)
+        raise SystemExit(
+            "generated model GLB semantic nodes changed "
+            f"(missing={missing!r}, unexpected={unexpected!r})"
+        )
+    nodes = gltf.get("nodes", [])
+    world_nodes = [
+        (index, node)
+        for index, node in enumerate(nodes)
+        if node.get("name") == "world"
+    ]
+    if (
+        len(world_nodes) != 1
+        or world_nodes[0][0] != 0
+        or set(world_nodes[0][1]) != {"name", "children"}
+        or world_nodes[0][1]["children"] != list(range(1, len(nodes)))
+        or gltf.get("scene") != 0
+        or gltf.get("scenes") != [{"nodes": [0]}]
+    ):
+        raise SystemExit("generated model GLB root hierarchy changed")
+    if len(gltf.get("meshes", [])) != len(actual_layers):
+        raise SystemExit("generated model GLB mesh count changed")
+
+    material_names = {
+        material.get("name") for material in gltf.get("materials", [])
+    }
+    required_materials = {
+        "Aluminum extrusion",
+        "Printed chassis hardware",
+        "Fixture plate",
+        "ELEGOO relay blue PCB",
+        "ALIENTEK DP100 enclosure",
+        "DUT carrier",
+        "DUT shell",
+        "DUT controls",
+        "DUT screen",
+        "Logitech C270 shell and articulated clip",
+        "Camera field of view",
+    }
+    if not required_materials.issubset(material_names):
+        raise SystemExit(
+            "generated model GLB is missing semantic materials: "
+            + ", ".join(sorted(required_materials - material_names))
+        )
+
+
 def verify_provenance(
     provenance: object,
     expected_revision: str,
     *,
     allow_dirty: bool = False,
+    model: pathlib.Path | None = None,
 ) -> None:
     """Raise SystemExit when provenance violates the publication contract."""
     if not isinstance(provenance, dict):
@@ -234,12 +415,18 @@ def verify_provenance(
             "generated model semantic layer contract changed (" + "; ".join(details) + ")"
         )
 
+    if expected_revision not in HISTORICAL_SCHEMA1_REVISIONS:
+        verify_current_scene(provenance, actual_layers)
+        if model is not None:
+            verify_glb(model, provenance, actual_layers)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("provenance", type=pathlib.Path)
     parser.add_argument("expected_revision")
     parser.add_argument("--allow-dirty", action="store_true")
+    parser.add_argument("--model", type=pathlib.Path)
     return parser.parse_args()
 
 
@@ -250,6 +437,7 @@ def main() -> None:
         provenance,
         args.expected_revision,
         allow_dirty=args.allow_dirty,
+        model=args.model,
     )
 
 
