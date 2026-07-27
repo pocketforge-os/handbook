@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the generated test-node chassis handbook surface."""
+"""Verify the generated mechanical-onboarding handbook surface."""
 
 from __future__ import annotations
 
@@ -172,6 +172,20 @@ def main() -> int:
     args = parser.parse_args()
     site = args.site.resolve()
 
+    holder_root = site / "hardware" / "dut-holder"
+    holder_page_names = (
+        "index",
+        "existing-mechanism",
+        "new-mechanism",
+        "qualify-and-release",
+    )
+    holder_pages = [
+        holder_root / "index.html"
+        if name == "index"
+        else holder_root / name / "index.html"
+        for name in holder_page_names
+    ]
+
     guide_root = site / "hardware" / "test-node-chassis"
     base_page_names = (
         "index",
@@ -214,10 +228,10 @@ def main() -> int:
         assembly_root / step_name / "index.html"
         for step_name in assembly_step_names
     ]
-    pages = [*base_pages, assembly_page, *assembly_steps]
+    pages = [*holder_pages, *base_pages, assembly_page, *assembly_steps]
     for page in pages:
         if not page.is_file():
-            raise SystemExit(f"missing chassis guide page: {page}")
+            raise SystemExit(f"missing mechanical onboarding page: {page}")
 
     missing: list[str] = []
     viewer_sources: Counter[str] = Counter()
@@ -256,6 +270,29 @@ def main() -> int:
 
     if missing:
         raise SystemExit("unresolved local references:\n" + "\n".join(missing))
+
+    holder_html = " ".join(
+        page.read_text(encoding="utf-8") for page in holder_pages
+    )
+    for required_fragment in (
+        "awaiting_holder_design",
+        "awaiting_physical_acceptance",
+        "physically_accepted",
+        "physically_qualified",
+        "perimeter_j_hook_v1",
+        "custom_openscad",
+        "normalized mesh fingerprint",
+        "Raw STL SHA-256",
+        "fixture_dependency_intake.py",
+        "build_device_pack.py",
+        "Routine STLs are generated, not committed",
+        "device integration profile",
+    ):
+        if required_fragment not in holder_html:
+            raise SystemExit(
+                "DUT-holder chapter is missing its workflow contract: "
+                f"{required_fragment!r}"
+            )
     expected_viewer_counts = Counter(
         {
             "pocketforge-test-node.glb": 2,
@@ -306,6 +343,8 @@ def main() -> int:
         "name is not uploaded",
         "Z = 2.4 mm",
         "pinned OpenSCAD chassis source",
+        "Use the pack for your device",
+        "Do not mix device-specific parts",
     ):
         if required_fragment not in normalized_print_html:
             raise SystemExit(
@@ -518,6 +557,18 @@ def main() -> int:
                         f"continuity instruction {continuity_instruction!r}"
                     )
 
+        if step_number == 13:
+            normalized_step_html = " ".join(step_html.split())
+            for device_pack_instruction in (
+                "one verified, qualified device pack",
+                "TrimUI Smart Pro family is the pictured example",
+            ):
+                if device_pack_instruction not in normalized_step_html:
+                    raise SystemExit(
+                        "assembly step 13 is missing the device-pack boundary "
+                        f"{device_pack_instruction!r}"
+                    )
+
         if step_number == 18:
             normalized_step_html = " ".join(step_html.split())
             for stacking_instruction in (
@@ -631,6 +682,7 @@ def main() -> int:
         "handbook_surface=pass "
         f"pages={len(pages)} local_links=resolved batches={len(batches)} "
         f"checksums={checksums} "
+        f"holder_pages={len(holder_pages)} "
         f"assembly_steps={len(assembly_steps)} "
         f"interactive_models={sum(viewer_sources.values())}"
     )

@@ -107,6 +107,11 @@ nav:
           - Gather model evidence: hardware/model-handheld/gather-evidence.md
           - Build the semantic model: hardware/model-handheld/build-model.md
           - Refine and accept it: hardware/model-handheld/refine-and-accept.md
+      - Design and qualify a DUT holder:
+          - Holder workflow: hardware/dut-holder/index.md
+          - Reuse a holder mechanism: hardware/dut-holder/existing-mechanism.md
+          - Create a reusable mechanism: hardware/dut-holder/new-mechanism.md
+          - Qualify and release it: hardware/dut-holder/qualify-and-release.md
       - Test-node chassis:
           - Build overview: hardware/test-node-chassis/index.md
           - Parts and tools: hardware/test-node-chassis/parts.md

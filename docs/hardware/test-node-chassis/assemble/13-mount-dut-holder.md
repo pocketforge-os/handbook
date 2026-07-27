@@ -10,6 +10,11 @@ hide:
 Attach the device-specific holder to the two device-side width rails. The short
 links go on top and the long links go on the bottom.
 
+!!! warning "Keep the device pack together"
+    Use the holder and links from one verified, qualified device pack. The
+    TrimUI Smart Pro family is the pictured example; do not substitute its
+    holder or hooks for another DUT.
+
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>

@@ -121,7 +121,7 @@ After approval:
 
 | Consumer | Handoff |
 | --- | --- |
-| Device-specific DUT holder | Accepted fit envelope, contact surfaces, port/button/thermal keep-outs, orientation datums, and remaining tolerance risks |
+| Device-specific DUT holder | Exact fixture-contract revision/hash, accepted fit envelope, contact surfaces, port/button/thermal keep-outs, orientation datums, and remaining tolerance risks |
 | Runtime skin / virtual device | Semantic IDs, neutral/lit atlases, display rectangle, alternate views, and render metadata |
 | Button visualizer or future actuator | Physical control centers, interactive crown/cap edges, travel/height measurements where available, and semantic IDs |
 | Camera and fixture planning | Screen bounds, full silhouette, reflective surfaces, ports, vents, and service clearances |
@@ -140,4 +140,5 @@ not silently authorize printable holder geometry or runtime descriptor changes.
 - [ ] The holder task consumes that merged revision rather than a working-tree
       copy.
 
-Continue to [Build the test-node chassis](../test-node-chassis/index.md).
+Continue to
+[Design and qualify the DUT holder](../dut-holder/index.md).

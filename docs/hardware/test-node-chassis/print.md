@@ -11,6 +11,15 @@
 Use the canonical beds below. Do not scale, auto-orient, or auto-arrange
 these STLs.
 
+!!! warning "Use the pack for your device"
+    The embedded downloads and pictures are the pinned, qualified TrimUI Smart
+    Pro worked example. For another DUT, first generate or download and verify
+    its qualified `full` pack from the
+    [holder workflow](../dut-holder/qualify-and-release.md#build-deterministic-production-packs).
+    Use the holder, hooks, links, nameplate, and shared beds selected by that
+    one manifest. Do not mix device-specific parts from this page with another
+    device's pack.
+
 ## Slicer contract
 
 | Setting | Value |
