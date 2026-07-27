@@ -1,5 +1,10 @@
 # Verify the build
 
+!!! info "Qualified Smart Pro gantry route"
+    This checklist verifies `trimui-smart-pro` / `chassis-core-v1`. Use the
+    [top-bar candidate checklist](pro-s-topbar/verify.md) for
+    `trimui-smart-pro-s`.
+
 Run every gate with the DUT, power strip, and test-node electronics unpowered.
 Correct a failed mechanical gate before wiring anything.
 

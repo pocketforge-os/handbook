@@ -1,5 +1,11 @@
 # Assemble the chassis
 
+!!! info "Qualified Smart Pro gantry route"
+    These 19 steps remain the frozen `trimui-smart-pro` /
+    `chassis-core-v1` build. A `trimui-smart-pro-s` candidate reuses named
+    outer-frame steps but replaces the gantry sequence with the
+    [top-bar assembly delta](../pro-s-topbar/assemble.md).
+
 Use this chapter at the workbench. It replaces one long assembly page with one
 small physical job per page. Open the current step, collect only the parts it
 names, compare your work with the picture, and pass the green check before

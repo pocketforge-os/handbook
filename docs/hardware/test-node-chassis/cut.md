@@ -1,5 +1,11 @@
 # Cut the aluminum rails
 
+!!! info "Qualified Smart Pro gantry route"
+    This six-stick plan belongs to `trimui-smart-pro` /
+    `chassis-core-v1`. For `trimui-smart-pro-s`, use the
+    [4,242 mm top-bar cut plan](pro-s-topbar/cut.md). Do not cut the working
+    base chassis apart.
+
 One chassis fits in six nominal 1 m sticks. Finished dimensions are measured
 aluminum lengths—connector caps are not included in the cut length.
 

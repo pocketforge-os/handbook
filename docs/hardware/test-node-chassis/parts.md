@@ -1,5 +1,12 @@
 # Parts and tools
 
+!!! info "Qualified Smart Pro gantry route"
+    This inventory belongs to `trimui-smart-pro` /
+    `chassis-core-v1`. For a new `trimui-smart-pro-s` build, use the
+    [material-reduced top-bar inventory and route](pro-s-topbar/index.md).
+    Do not use this page's gantry-only rails and printed parts for that
+    candidate.
+
 This list covers the reusable mechanical chassis, its mounts, and the printed
 anchors used to organize a completed harness. It does not yet specify the SBC,
 relay board, programmable supply, cable types, or DUT-specific electrical
