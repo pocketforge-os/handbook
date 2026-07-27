@@ -54,9 +54,9 @@ anchors as the current harness needs and keep the rest as spares.
    transferred into the plug or circuit board.
 3. Choose an exposed long groove where the bundle will not block a DUT
    control, connector, vent, placard, camera view, or power-strip switch.
-4. Keep the bundle clear of sharp rail ends and the adjustable camera frame.
-   If a cable must reach the moving frame, leave enough free loop for its full
-   adjustment range.
+4. Keep the bundle clear of sharp rail ends, the movable top bar, and the
+   suspended fixture board. If a cable must reach the moving assembly, leave
+   enough free loop for its full adjustment range.
 5. Use another anchor where the bundle would otherwise sag into the DUT,
    camera sight line, or work area. Eight is a starter quantity, not a required
    count or spacing rule.
@@ -90,7 +90,8 @@ anchors as the current harness needs and keep the rest as spares.
       load.
 - [ ] Zip ties contain the bundle without flattening or marking cable jackets.
 - [ ] No cut tail, printed edge, or aluminum edge can rub a cable.
-- [ ] The camera frame still reaches its required adjustment range.
+- [ ] The top bar and fixture board still reach their required adjustment
+      range.
 - [ ] DUT controls, vents, ports, the placard, camera view, and power switch
       remain accessible.
 

@@ -1,15 +1,8 @@
 # Cut the aluminum rails
 
-!!! info "Qualified Smart Pro gantry route"
-    This six-stick plan belongs to `trimui-smart-pro` /
-    `chassis-core-v1`. For `trimui-smart-pro-s`, use the
-    [4,242 mm top-bar cut plan](pro-s-topbar/cut.md). Do not cut the working
-    base chassis apart.
-
-One chassis fits in six nominal 1 m sticks. Finished dimensions are measured
-aluminum lengths—connector caps are not included in the cut length.
-
-![Six-stick cut plan](../../assets/test-node-chassis-cut-plan.svg)
+The current chassis uses **4,242 mm** of finished 2020 extrusion. Finished
+dimensions are aluminum lengths; do not add connector caps or blade kerf to a
+requested length.
 
 ## Finished-piece inventory
 
@@ -18,85 +11,75 @@ aluminum lengths—connector caps are not included in the cut length.
 | `POST-*` | 4 | 360 mm | Outer vertical posts |
 | `DEPTH-*` | 4 | 318 mm | Operator-to-device outer rails |
 | `WIDTH-*` | 4 | 306 mm | Left-to-right outer rails |
-| `GANTRY-*-HALF-*` | 4 | 164 mm | Two spliced fixture uprights |
-| `GANTRY-CROSS-*` | 2 | 306 mm | Movable fixture crossbars |
+| `TOPBAR` | 1 | 306 mm | Continuous fixture-support rail |
 
-!!! note "The 360 mm cuts are posts"
-    All four **360 mm** pieces stand vertically. The **356.4 mm** value at the
-    end of stock bar 6 is retained offcut, not a chassis rail or post.
+[Download the generated machine-readable cut list](../../assets/generated/test-node-chassis/topbar/cut-list.csv).
 
-Total finished aluminum rail is 5204 mm. The plan reserves 3.2 mm after every
-finished piece for kerf and retains 738.4 mm of combined offcut.
+## Use qualifying scrap first
 
-## What “kerf” means here
+Look for one straight, undamaged 2020 offcut at least **309.2 mm** long:
+306 mm finished length plus the conservative 3.2 mm kerf allowance. Use it for
+`TOPBAR`. Four fresh 1 m sticks then supply the complete outer frame.
 
-Kerf is the material removed by the blade. The lab's 0.094 inch blade removes
-about 2.39 mm, while this stock plan conservatively reserves 3.2 mm per
-finished piece.
+Each fresh outer-frame stick packs:
 
-Do not add kerf to the requested finished dimension. Mark a 360 mm post, place
-the blade on the waste side of that line, cut, then verify the finished post is
-360 mm. Measure each next piece from its new clean end. The extra allowance
-protects the stock plan from blade width and cleanup cuts.
+`360 mm post + 318 mm depth rail + 306 mm width rail + three 3.2 mm kerfs`
+
+That consumes 993.6 mm and leaves 6.4 mm.
+
+## If all stock is new
+
+Use four sticks for the outer frame. On the fifth stick, choose one of:
+
+- **single build:** cut one 306 mm top bar, consuming 309.2 mm and leaving
+  690.8 mm; or
+- **batch builds:** cut three 306 mm top bars, consuming 927.6 mm and leaving
+  **72.4 mm**. Use one now and label two for the next chassis builds.
+
+The five-stick single-build plan reserves 13 kerfs, or 41.6 mm total, and
+leaves 716.4 mm across all five sticks.
 
 ## Mark before cutting
 
-Use removable tape or a fine marker. The labels below make the preload
-instructions unambiguous:
+Use removable tape or a fine marker:
 
 | Finished part | Label |
 | --- | --- |
-| Operator lower width rail | `WIDTH-O-L` |
-| Operator upper width rail | `WIDTH-O-U` |
-| Device lower width rail | `WIDTH-D-L` |
-| Device upper width rail | `WIDTH-D-U` |
-| Left lower / left upper depth rails | `DEPTH-L-L`, `DEPTH-L-U` |
-| Right lower / right upper depth rails | `DEPTH-R-L`, `DEPTH-R-U` |
-| Operator-left / operator-right / device-left / device-right posts | `POST-OL`, `POST-OR`, `POST-DL`, `POST-DR` |
-| Left upright halves | `GANTRY-L-H1`, `GANTRY-L-H2` |
-| Right upright halves | `GANTRY-R-H1`, `GANTRY-R-H2` |
-| Lower / upper crossbars | `GANTRY-CROSS-L`, `GANTRY-CROSS-U` |
-
-## Six-stick cutting order
-
-| Stock bar | Cuts, in order | Conservative remainder |
-| ---: | --- | ---: |
-| 1 | 360, 360, 164 mm | 106.4 mm |
-| 2 | 360, 360, 164 mm | 106.4 mm |
-| 3 | 318, 318, 318 mm | 36.4 mm |
-| 4 | 318, 306, 306 mm | 60.4 mm |
-| 5 | 306, 306, 306 mm | 72.4 mm |
-| 6 | 306, 164, 164 mm | 356.4 mm |
-
-Retain the 356.4 mm offcut. It is long enough to be useful for future
-non-structural tooling.
+| Operator lower / upper width rails | `WIDTH-O-L`, `WIDTH-O-U` |
+| Device lower / upper width rails | `WIDTH-D-L`, `WIDTH-D-U` |
+| Left lower / upper depth rails | `DEPTH-L-L`, `DEPTH-L-U` |
+| Right lower / upper depth rails | `DEPTH-R-L`, `DEPTH-R-U` |
+| Operator-left / operator-right posts | `POST-OL`, `POST-OR` |
+| Device-left / device-right posts | `POST-DL`, `POST-DR` |
+| Fixture-support rail | `TOPBAR` |
 
 ## Cut procedure
 
-1. Measure the actual stock length and choose one square factory end as the
-   first datum.
-2. Mark every planned finished piece and its identity on the stock before
-   starting the saw.
-3. Clamp the aluminum rail.
-4. Align the blade on the waste side of the mark.
-5. Make one witnessed cut and measure the result before batch cutting.
-6. Continue by measuring the next finished piece from the new clean end.
-7. Deburr the cut and slot openings immediately.
-8. Verify and label the piece before placing it in the finished pile.
+1. Measure the actual stock and choose one square factory end as the datum.
+2. Mark every finished piece and its identity before starting the saw.
+3. Clamp the aluminum rail and align the blade on the waste side of the mark.
+4. Make one witnessed cut and measure it before batch cutting.
+5. Measure each next piece from the new clean end.
+6. Deburr the cut and all slot openings immediately.
+7. Verify the finished length and label before placing the part in the
+   completed pile.
 
-!!! warning "Do not hide an inaccurate cut in assembly"
-    The printed camera-frame collars join two 164 mm halves; they do not
-    correct a short outer-frame rail. Recut an out-of-tolerance structural
-    piece rather than forcing a connector or squaring the frame against it.
+Kerf is the material removed by the blade. Do not add it to the finished
+dimension: mark 360 mm, put the blade on the waste side, then verify that the
+resulting post is 360 mm. The stock plan's 3.2 mm allowance protects only the
+packing calculation.
+
+!!! warning "The top bar is continuous"
+    Use one straight 306 mm piece. Do not join two shorter offcuts or place a
+    printed connector in the fixture load path.
 
 ## Cut gate
 
 - [ ] 4 × 360 mm posts.
 - [ ] 4 × 318 mm depth rails.
 - [ ] 4 × 306 mm width rails.
-- [ ] 4 × 164 mm camera-frame upright halves.
-- [ ] 2 × 306 mm camera-frame crossbars.
+- [ ] 1 × continuous 306 mm `TOPBAR`.
 - [ ] Every cut is square, deburred, measured, and labeled.
-- [ ] The useful 356.4 mm offcut is retained.
+- [ ] Extra 306 mm top bars and any useful offcuts are labeled and retained.
 
-Next: [assemble the chassis in 19 bench steps](assemble/index.md).
+Next: [assemble the chassis](assemble/index.md).

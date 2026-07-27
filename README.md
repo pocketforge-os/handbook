@@ -17,14 +17,15 @@ python3 -m venv .venv
 
 ## Generated mechanical assets
 
-The test-node chassis guide consumes static instruction renders, the qualified
-gantry's canonical print-bed STLs and cut list, candidate top-bar review
-renders and cut data, eight interactive print-bed models, and a semantic
-interactive full-chassis model generated from `pocketforge-os/test-node-hw`.
-Candidate top-bar STLs are deliberately not published by the handbook; the
-documented device-pack command renders and verifies them from source. The exact
-source revision is the `cad/test-node-hw` gitlink; metadata and the project
-path are recorded in `cad-assets.lock.json`.
+The test-node chassis guide consumes focused instruction renders, current
+top-bar cut data, and one semantic interactive full-chassis model generated
+from `pocketforge-os/test-node-hw`. The model contains the selected handheld,
+its holder and J-hooks, the populated DUT test board, camera and field of view,
+printed suspension, and aluminum frame as named layers. Routine STLs are not
+published by the handbook; the documented device-pack command renders and
+verifies them from source. The exact source revision is the
+`cad/test-node-hw` gitlink; metadata and the project path are recorded in
+`cad-assets.lock.json`.
 
 Initialize the pinned source and regenerate the ignored local assets:
 

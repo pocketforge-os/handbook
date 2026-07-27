@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-repo_root=$(CDPATH= cd -- "${script_dir}/.." && pwd)
+script_dir=$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+repo_root=$(CDPATH='' cd -- "${script_dir}/.." && pwd)
 lock_file="${repo_root}/cad-assets.lock.json"
 asset_dir="${repo_root}/docs/assets/generated/test-node-chassis"
 
@@ -123,14 +123,16 @@ make_command=(
   make
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
-  handbook-assets
+  guide-model
   topbar-preview
   topbar-cutlist
+  build/handbook/hero.png
+  build/handbook/wire-management-anchor.png
 )
 if command -v xvfb-run >/dev/null 2>&1; then
   xvfb-run --auto-servernum "${make_command[@]}"
 else
-  "${make_command[@]}"
+  QT_QPA_PLATFORM=offscreen "${make_command[@]}"
 fi
 
 if [[ -d "${asset_dir}" ]]; then
@@ -138,28 +140,19 @@ if [[ -d "${asset_dir}" ]]; then
 fi
 mkdir -p "${asset_dir}/customizer/lib" "${asset_dir}/topbar"
 
-install -m 0644 "${project_dir}"/build/handbook/*.png "${asset_dir}/"
-install -m 0644 "${project_dir}"/build/handbook/batch-*.glb "${asset_dir}/"
 install -m 0644 \
+  "${project_dir}/build/handbook/hero.png" \
+  "${project_dir}/build/handbook/wire-management-anchor.png" \
   "${project_dir}/build/handbook/model/pocketforge-test-node.glb" \
   "${project_dir}/build/handbook/model/pocketforge-test-node.provenance.json" \
   "${asset_dir}/"
 install -m 0644 \
-  "${project_dir}"/build/production-batch-*.stl \
-  "${asset_dir}/"
-install -m 0644 \
-  "${project_dir}/build/cut-list.csv" \
-  "${asset_dir}/"
-install -m 0644 \
-  "${project_dir}/build/cut-list.md" \
-  "${asset_dir}/cut-list.generated.txt"
-install -m 0644 "${project_dir}"/build/topbar/*.png "${asset_dir}/topbar/"
-install -m 0644 \
+  "${project_dir}/build/topbar/layout-lower-backstays.png" \
+  "${project_dir}/build/topbar/layout-preload.png" \
+  "${project_dir}/build/topbar/layout-suspension-detail.png" \
+  "${project_dir}/build/topbar/layout-upper-hangers.png" \
   "${project_dir}/build/topbar/cut-list.csv" \
-  "${asset_dir}/topbar/cut-list.csv"
-install -m 0644 \
-  "${project_dir}/build/topbar/cut-list.md" \
-  "${asset_dir}/topbar/cut-list.generated.txt"
+  "${asset_dir}/topbar/"
 install -m 0644 \
   "${project_dir}/pocketforge-node-chassis.scad" \
   "${asset_dir}/customizer/pocketforge-node-chassis.scad"
@@ -198,127 +191,16 @@ data = {
 output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 PY
 
-python3 - \
-  "${asset_dir}/topbar/provenance.json" \
-  "${actual_revision}" \
-  "${ALLOW_DIRTY_CAD:-0}" \
-  "${project_dir}/pocketforge-node-chassis.scad" \
-  "${project_dir}/CUT_LIST_TOPBAR.md" \
-  "${source_root}/mechanical/device-packs/device-layouts.json" \
-  "${source_root}/mechanical/device-packs/layouts/chassis-topbar-v1.json" <<'PY'
-import hashlib
-import json
-import pathlib
-import sys
-
-output = pathlib.Path(sys.argv[1])
-revision = sys.argv[2]
-source_dirty = sys.argv[3] == "1"
-inputs = [pathlib.Path(value) for value in sys.argv[4:]]
-registry = json.loads(inputs[2].read_text(encoding="utf-8"))
-layout = json.loads(inputs[3].read_text(encoding="utf-8"))
-
-if registry.get("devices", {}).get("trimui-smart-pro-s", {}).get("layout") != (
-    "mechanical/device-packs/layouts/chassis-topbar-v1.json"
-):
-    raise SystemExit("Smart Pro S no longer selects chassis-topbar-v1")
-qualification = layout.get("qualification", {})
-if (
-    layout.get("layout_id") != "chassis-topbar-v1"
-    or qualification.get("status") != "candidate"
-    or qualification.get("acceptance_ref") != "tsp-t1zd.2"
-):
-    raise SystemExit("top-bar candidate qualification contract changed")
-
-data = {
-    "schema": 1,
-    "source_revision": revision,
-    "source_dirty": source_dirty,
-    "device_slug": "trimui-smart-pro-s",
-    "layout_id": layout["layout_id"],
-    "qualification": {
-        "status": qualification["status"],
-        "acceptance_ref": qualification["acceptance_ref"],
-    },
-    "inputs": {
-        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
-        for path in inputs
-    },
-}
-output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-PY
-
 required_assets=(
-  production-batch-00-calibration.stl
-  production-batch-01-ironed-interfaces.stl
-  production-batch-02-splice-collars.stl
-  production-batch-03-movable-mounts.stl
-  production-batch-04-frame-hardware.stl
-  production-batch-05-placard-holder.stl
-  production-batch-06-device-nameplate.stl
-  production-batch-07-wire-management.stl
   hero.png
-  step-01-splice-uprights.png
-  step-02-build-gantry.png
-  step-03-open-frame.png
-  step-04-install-gantry.png
-  step-05-close-frame.png
-  step-06-mount-carrier.png
-  step-07-mount-fixture.png
-  step-08-complete.png
-  detail-01-splice-xray.png
-  detail-02-crossbar-corner.png
-  detail-03-lower-frame-layout.png
-  detail-03-flush-corner.png
-  detail-04-lower-gantry.png
-  detail-04-joint-plate.png
-  detail-04-gantry-position.png
-  detail-05-lower-top-ring.png
-  detail-05-square-diagonals.png
-  detail-06-carrier-link-lengths.png
-  detail-07-fixture-spacers.png
-  detail-07-optical-axis.png
-  detail-08-placard.png
-  detail-08-power-strip.png
-  detail-08-stacking-corner.png
-  batch-00-calibration.png
-  batch-01-ironed-interfaces.png
-  batch-02-splice-collars.png
-  batch-03-movable-mounts.png
-  batch-04-frame-hardware.png
-  batch-05-placard-holder.png
-  batch-06-device-nameplate.png
-  batch-07-wire-management.png
-  batch-00-calibration.glb
-  batch-01-ironed-interfaces.glb
-  batch-02-splice-collars.glb
-  batch-03-movable-mounts.glb
-  batch-04-frame-hardware.glb
-  batch-05-placard-holder.glb
-  batch-06-device-nameplate.glb
-  batch-07-wire-management.glb
-  prep-captive-nut.png
-  prep-captive-nut-count.png
-  preload-channel-bar.png
-  preload-map.png
-  preload-width-rails.png
-  preload-parked-replacement.png
-  preload-depth-rails.png
-  preload-camera-frame.png
   wire-management-anchor.png
-  topbar/layout-assembly.png
-  topbar/layout-front.png
-  topbar/layout-suspension-detail.png
-  topbar/layout-preload.png
-  topbar/layout-upper-hangers.png
-  topbar/layout-lower-backstays.png
-  topbar/cut-list.csv
-  topbar/cut-list.generated.txt
-  topbar/provenance.json
   pocketforge-test-node.glb
   pocketforge-test-node.provenance.json
-  cut-list.csv
-  cut-list.generated.txt
+  topbar/layout-lower-backstays.png
+  topbar/layout-preload.png
+  topbar/layout-suspension-detail.png
+  topbar/layout-upper-hangers.png
+  topbar/cut-list.csv
   customizer/pocketforge-node-chassis.scad
   customizer/lib/pf-2020.scad
   customizer/customizer-provenance.json
@@ -330,9 +212,25 @@ for required_asset in "${required_assets[@]}"; do
   }
 done
 
+if find "${asset_dir}" -type f -name '*.stl' | grep -q .; then
+  echo "candidate STL leaked into the handbook publication" >&2
+  exit 1
+fi
+for retired_asset in \
+  layout-assembly.png \
+  layout-front.png \
+  step-08-complete.png; do
+  if find "${asset_dir}" -type f -name "${retired_asset}" | grep -q .; then
+    echo "standalone full-chassis still leaked into publication: ${retired_asset}" >&2
+    exit 1
+  fi
+done
+
 provenance_args=(
   "${asset_dir}/pocketforge-test-node.provenance.json"
-  "$(git -C "${source_root}" rev-parse HEAD)"
+  "${actual_revision}"
+  --model
+  "${asset_dir}/pocketforge-test-node.glb"
 )
 if [[ "${ALLOW_DIRTY_CAD:-0}" == "1" ]]; then
   provenance_args+=(--allow-dirty)
@@ -345,12 +243,8 @@ python3 \
   cd "${asset_dir}"
   find . -type f ! -name SHA256SUMS -print0 |
     sort -z |
-    xargs -0 sha256sum > SHA256SUMS
+    xargs -0 sha256sum >"${temporary_root}/SHA256SUMS"
 )
+install -m 0644 "${temporary_root}/SHA256SUMS" "${asset_dir}/SHA256SUMS"
 
-if find "${asset_dir}" -maxdepth 1 -type f -name '*print-group*' | grep -q .; then
-  echo "historical print-group artifact leaked into canonical handbook assets" >&2
-  exit 1
-fi
-
-echo "cad_assets=pass revision=$(git -C "${source_root}" rev-parse HEAD) destination=${asset_dir}"
+echo "cad_assets=pass revision=${actual_revision} destination=${asset_dir}"

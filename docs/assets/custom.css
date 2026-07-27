@@ -156,7 +156,11 @@
   transform: translate(-50%, -115%);
 }
 
-.pf-model-hotspot--camera-frame {
+.pf-model-hotspot--topbar {
+  transform: translate(0.55rem, -50%);
+}
+
+.pf-model-hotspot--handheld {
   transform: translate(-100%, -50%);
 }
 
@@ -951,7 +955,12 @@
     font-size: 0.54rem;
   }
 
-  .pf-model-hotspot--camera-frame {
+  .pf-model-hotspot--topbar {
+    max-width: 7.5rem;
+    transform: translate(0.45rem, -50%);
+  }
+
+  .pf-model-hotspot--handheld {
     max-width: 7.5rem;
     transform: translate(-55%, -50%);
   }

@@ -38,6 +38,7 @@ function contentType(filePath) {
       ".html": "text/html; charset=utf-8",
       ".js": "text/javascript; charset=utf-8",
       ".mjs": "text/javascript; charset=utf-8",
+      ".glb": "model/gltf-binary",
       ".png": "image/png",
       ".scad": "text/plain; charset=utf-8",
       ".ttf": "font/ttf",
@@ -172,12 +173,84 @@ try {
   const requests = [];
   page.on("request", (request) => requests.push(new URL(request.url()).pathname));
 
+  await mkdir(artifactRoot, { recursive: true });
+  for (const [route, viewerId, screenshotName] of [
+    [
+      "/hardware/test-node-chassis/",
+      "overview-chassis-model",
+      "chassis-model-overview.png",
+    ],
+    [
+      "/hardware/test-node-chassis/assemble/",
+      "assembly-chassis-model",
+      "chassis-model-assembly.png",
+    ],
+  ]) {
+    await page.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
+    const viewer = page.locator(`#${viewerId}`);
+    await viewer.waitFor({ state: "visible" });
+    await page.waitForFunction(
+      (selector) => document.querySelector(selector)?.loaded === true,
+      `#${viewerId}`,
+      { timeout: 120_000 },
+    );
+    assert.equal(
+      await viewer.locator('[slot^="hotspot-"]').count(),
+      8,
+      `${route} must expose all eight chassis labels`,
+    );
+    assert.equal(
+      await viewer.getAttribute("data-labels-visible"),
+      "true",
+      `${route} must show chassis labels initially`,
+    );
+    const labelToggle = page.locator("[data-chassis-label-toggle]");
+    await labelToggle.waitFor({ state: "visible" });
+    await labelToggle.click();
+    assert.equal(
+      await viewer.getAttribute("data-labels-visible"),
+      "false",
+      `${route} label toggle did not hide labels`,
+    );
+    assert.equal(await labelToggle.textContent(), "Show labels");
+    assert.equal(
+      await viewer
+        .locator('[slot="hotspot-post"]')
+        .evaluate((hotspot) => getComputedStyle(hotspot).display),
+      "none",
+      `${route} label toggle did not visually hide hotspots`,
+    );
+    await labelToggle.click();
+    assert.equal(
+      await viewer.getAttribute("data-labels-visible"),
+      "true",
+      `${route} label toggle did not restore labels`,
+    );
+    assert.equal(
+      await viewer
+        .locator('[slot="hotspot-post"]')
+        .evaluate((hotspot) => getComputedStyle(hotspot).display),
+      "flex",
+      `${route} label toggle did not visually restore hotspots`,
+    );
+    await viewer.screenshot({
+      path: path.join(artifactRoot, screenshotName),
+    });
+  }
+  assert.equal(
+    requests.some((requestPath) =>
+      requestPath.endsWith("/pocketforge-test-node.glb")
+    ),
+    true,
+    "the full-chassis pages must load the canonical GLB",
+  );
+
   await page.goto(`${baseUrl}/hardware/test-node-chassis/print/`, {
     waitUntil: "networkidle",
   });
-  await page
-    .locator('a[download="production-batch-06-device-nameplate.stl"]')
-    .waitFor({ state: "visible" });
+  await page.locator("[data-nameplate-customizer]").waitFor({
+    state: "visible",
+  });
   assert.equal(
     await page.locator("noscript").count(),
     1,
@@ -240,7 +313,6 @@ try {
   assert.ok(downloadStat.size > 100_000, "generated STL is unexpectedly small");
   const triangleCount = inspectStl(await readFile(downloadPath));
 
-  await mkdir(artifactRoot, { recursive: true });
   const customizer = page.locator("[data-nameplate-customizer]");
   await page.emulateMedia({ colorScheme: "light" });
   await customizer.screenshot({
