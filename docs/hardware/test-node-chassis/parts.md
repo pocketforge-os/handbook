@@ -48,8 +48,8 @@ The canonical beds produce:
 - one reusable placard holder and one device-name cartridge.
 
 The device carrier and its six clamp hooks are device-specific outputs. Generate
-them only after the
-[handheld model’s in-hand acceptance gate](../model-handheld/refine-and-accept.md#before-fabricating-the-dut-holder).
+them only after the handheld model’s in-hand acceptance gate and the
+[DUT-holder physical qualification](../dut-holder/qualify-and-release.md).
 For the example build, use the accepted TrimUI Smart Pro family carrier from
 the same hardware repository. It is shown in the assembly model but is not
 duplicated in the chassis print beds.

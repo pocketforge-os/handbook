@@ -9,9 +9,9 @@ device, its inspection camera, and its control electronics. The result is a
     Complete the
     [remote-evidence model gate](../model-handheld/index.md#finish-two-acceptance-gates)
     before starting this fabrication flow. The reusable aluminum frame can
-    then be built while the handheld ships, but generate and print its
-    device-specific DUT holder only from the
-    [in-hand accepted model](../model-handheld/refine-and-accept.md).
+    then be built while the handheld ships. Before printing device-specific
+    parts, complete the in-hand model gate and
+    [qualify the DUT holder](../dut-holder/index.md).
 
 <script type="module" src="../../assets/vendor/model-viewer/model-viewer.min.js"></script>
 <div class="chassis-model-shell">
@@ -33,8 +33,10 @@ device, its inspection camera, and its control electronics. The result is a
 
 The model above is generated from the same OpenSCAD assembly that generates
 the printable files. It includes the current fixture board, Logitech C270
-camera envelope and field of view, TrimUI Smart Pro carrier, power strip, and
-replaceable node placard.
+camera envelope and field of view, power strip, replaceable node placard, and
+the qualified TrimUI Smart Pro carrier as the worked device example. A
+different DUT uses its own qualified holder/profile without changing the
+reusable frame.
 
 ## What you will build
 
@@ -79,17 +81,20 @@ dark.
 ## Build path
 
 1. [Collect the parts and tools](parts.md).
-2. [Print the seven canonical production beds](print.md).
-3. [Cut and label the aluminum rails](cut.md).
-4. [Assemble the chassis in 19 bench-sized steps](assemble/index.md).
-5. [Run the unpowered verification gates](verify.md).
-6. [Secure the finished harness to the rails](wire-management.md).
+2. Select and verify the qualified `full` device pack from the
+   [holder workflow](../dut-holder/qualify-and-release.md#build-deterministic-production-packs).
+3. [Print the seven canonical production beds](print.md).
+4. [Cut and label the aluminum rails](cut.md).
+5. [Assemble the chassis in 19 bench-sized steps](assemble/index.md).
+6. [Run the unpowered verification gates](verify.md).
+7. [Secure the finished harness to the rails](wire-management.md).
 
 !!! tip "Parallelize after the first model gate"
     Once the remote-evidence model establishes the DUT’s nominal envelope, the
     standard chassis, movable camera frame, power-strip mount, and
     identification holder can be fabricated while the handheld ships. Hold the
-    fitted DUT holder for the in-hand model gate.
+    fitted DUT holder and production device pack for the in-hand model and
+    physical-qualification gates.
 
 ## Source of truth
 

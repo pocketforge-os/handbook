@@ -4,11 +4,14 @@ Create the device-accurate semantic 3D model **before** fabricating its
 device-specific DUT holder. This is the first mechanical artifact in a new
 handheld onboarding: it establishes the physical envelope, visible controls,
 ports, screen, and stable semantic input IDs that every later consumer shares.
+Its separate fixture contract turns measured manufacturing facts into the
+versioned interface consumed by holder design.
 
 ```mermaid
 flowchart LR
   E[Public references<br/>and owner measurements] --> M[Semantic OpenSCAD<br/>device model]
-  M --> H[Device-specific<br/>DUT holder]
+  M --> F[Manufacturing<br/>fixture contract]
+  F --> H[Device-specific<br/>DUT holder]
   M --> V[Virtual device<br/>and runtime skin]
   M --> A[Control visualizer<br/>and actuator planning]
   H --> C[Test-node<br/>chassis]
@@ -43,6 +46,8 @@ The source-model task produces:
 - one semantic OpenSCAD package under `device-models/<slug>/`;
 - a README with identity, coordinate system, dimensions, provenance,
   confidence, reproduction commands, and known limits;
+- a fixture contract with datums, contact regions, keep-outs, tolerances,
+  evidence, and explicit unresolved manufacturing values;
 - deterministic front, rear, top, bottom, left, and right evidence views;
 - independently selectable/highlightable physical controls;
 - a renderer and a privacy-safe comparison tool;
@@ -74,8 +79,9 @@ Another agent can follow the same `SKILL.md` directly.
 2. [Build the semantic model](build-model.md) with the repository skill.
 3. [Refine and accept the model](refine-and-accept.md) when the device is in
    hand.
-4. Continue to [Build the test-node chassis](../test-node-chassis/index.md)
-   only after the applicable model gate passes.
+4. Continue to
+   [Design and qualify the DUT holder](../dut-holder/index.md) only after the
+   applicable model gate passes.
 
 ## Before you continue
 
