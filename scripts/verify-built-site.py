@@ -63,17 +63,35 @@ def verify_hashes(asset_dir: Path) -> int:
     if not manifest.is_file():
         raise SystemExit(f"missing checksum manifest: {manifest}")
 
-    count = 0
+    manifest_names: set[str] = set()
     for line in manifest.read_text(encoding="utf-8").splitlines():
         digest, relative_name = line.split(maxsplit=1)
-        asset = asset_dir / relative_name.removeprefix("./")
+        normalized_name = relative_name.removeprefix("./")
+        if normalized_name in manifest_names:
+            raise SystemExit(
+                f"checksum manifest repeats asset: {normalized_name}"
+            )
+        manifest_names.add(normalized_name)
+        asset = asset_dir / normalized_name
         if not asset.is_file():
             raise SystemExit(f"checksum names missing asset: {asset}")
         actual = hashlib.sha256(asset.read_bytes()).hexdigest()
         if actual != digest:
             raise SystemExit(f"checksum mismatch: {asset}")
-        count += 1
-    return count
+
+    actual_names = {
+        path.relative_to(asset_dir).as_posix()
+        for path in asset_dir.rglob("*")
+        if path.is_file() and path != manifest
+    }
+    if manifest_names != actual_names:
+        missing = sorted(actual_names - manifest_names)
+        unexpected = sorted(manifest_names - actual_names)
+        raise SystemExit(
+            "checksum manifest coverage changed "
+            f"(missing={missing!r}, unexpected={unexpected!r})"
+        )
+    return len(manifest_names)
 
 
 def read_glb_json(path: Path) -> dict:
@@ -166,6 +184,86 @@ def verify_customizer_sources(asset_dir: Path) -> None:
             )
 
 
+def verify_topbar_assets(asset_dir: Path) -> None:
+    topbar_dir = asset_dir / "topbar"
+    expected_files = {
+        "cut-list.csv",
+        "cut-list.generated.txt",
+        "layout-assembly.png",
+        "layout-front.png",
+        "layout-lower-backstays.png",
+        "layout-preload.png",
+        "layout-suspension-detail.png",
+        "layout-upper-hangers.png",
+        "provenance.json",
+    }
+    actual_files = {
+        path.relative_to(topbar_dir).as_posix()
+        for path in topbar_dir.rglob("*")
+        if path.is_file()
+    }
+    if actual_files != expected_files:
+        raise SystemExit(
+            "top-bar handbook asset set changed: "
+            f"{sorted(actual_files)!r} != {sorted(expected_files)!r}"
+        )
+    if any(path.suffix.lower() == ".stl" for path in topbar_dir.rglob("*")):
+        raise SystemExit(
+            "candidate top-bar STL leaked into the handbook publication"
+        )
+
+    provenance = json.loads(
+        (topbar_dir / "provenance.json").read_text(encoding="utf-8")
+    )
+    customizer_provenance = json.loads(
+        (asset_dir / "customizer" / "customizer-provenance.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    if (
+        provenance.get("schema") != 1
+        or provenance.get("source_dirty")
+        or provenance.get("source_revision")
+        != customizer_provenance.get("source_revision")
+        or provenance.get("device_slug") != "trimui-smart-pro-s"
+        or provenance.get("layout_id") != "chassis-topbar-v1"
+        or provenance.get("qualification")
+        != {"status": "candidate", "acceptance_ref": "tsp-t1zd.2"}
+        or set(provenance.get("inputs", {}))
+        != {
+            "pocketforge-node-chassis.scad",
+            "CUT_LIST_TOPBAR.md",
+            "device-layouts.json",
+            "chassis-topbar-v1.json",
+        }
+    ):
+        raise SystemExit("top-bar source/qualification provenance changed")
+    if not all(
+        isinstance(digest, str)
+        and len(digest) == 64
+        and all(character in "0123456789abcdef" for character in digest)
+        for digest in provenance["inputs"].values()
+    ):
+        raise SystemExit("top-bar provenance contains an invalid input digest")
+
+    cut_text = (topbar_dir / "cut-list.generated.txt").read_text(
+        encoding="utf-8"
+    )
+    for required_fragment in (
+        "Stock bars required with no reusable offcut: **5**",
+        "Fresh stock required with the retained 356.40 mm offcut: **4 bars**",
+        "Finished extrusion: 4242.00 mm",
+        "Finished-extrusion savings versus legacy gantry: 962.00 mm",
+        "Three finished bars plus three kerfs consume 927.60 mm",
+        "leave **72.40 mm**",
+    ):
+        if required_fragment not in cut_text:
+            raise SystemExit(
+                "generated top-bar cut list is missing "
+                f"{required_fragment!r}"
+            )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("site", type=Path)
@@ -201,6 +299,20 @@ def main() -> int:
         else guide_root / name / "index.html"
         for name in base_page_names
     ]
+    topbar_root = guide_root / "pro-s-topbar"
+    topbar_page_names = (
+        "index",
+        "cut",
+        "print",
+        "assemble",
+        "verify",
+    )
+    topbar_pages = [
+        topbar_root / "index.html"
+        if name == "index"
+        else topbar_root / name / "index.html"
+        for name in topbar_page_names
+    ]
     assembly_root = guide_root / "assemble"
     assembly_page = assembly_root / "index.html"
     assembly_step_names = (
@@ -228,7 +340,13 @@ def main() -> int:
         assembly_root / step_name / "index.html"
         for step_name in assembly_step_names
     ]
-    pages = [*holder_pages, *base_pages, assembly_page, *assembly_steps]
+    pages = [
+        *holder_pages,
+        *base_pages,
+        *topbar_pages,
+        assembly_page,
+        *assembly_steps,
+    ]
     for page in pages:
         if not page.is_file():
             raise SystemExit(f"missing mechanical onboarding page: {page}")
@@ -293,6 +411,74 @@ def main() -> int:
                 "DUT-holder chapter is missing its workflow contract: "
                 f"{required_fragment!r}"
             )
+
+    topbar_html = " ".join(
+        page.read_text(encoding="utf-8") for page in topbar_pages
+    )
+    normalized_topbar_html = " ".join(topbar_html.split())
+    for required_fragment in (
+        "trimui-smart-pro-s",
+        "chassis-topbar-v1",
+        "--allow-unqualified",
+        "production_eligible",
+        "layout_unqualified",
+        "tsp-t1zd.2",
+        "Routine STLs are generated, not committed",
+        "4,242 mm",
+        "962 mm",
+        "309.2 mm",
+        "356.4 mm",
+        "927.6 mm",
+        "72.4 mm",
+        "12 active + 6 parked = 18",
+        "2.5 + 2.5 mm = 5 mm",
+        "One continuous 306 mm top bar",
+        "two metal L-connectors",
+        "Two upper hangers and two lower backstays",
+        "print-pack-trimui-smart-pro-family-v1",
+    ):
+        if required_fragment not in normalized_topbar_html:
+            raise SystemExit(
+                "Smart Pro S top-bar route is missing "
+                f"{required_fragment!r}"
+            )
+
+    expected_topbar_images = {
+        topbar_pages[0]: {"layout-assembly.png"},
+        topbar_pages[1]: {"layout-front.png"},
+        topbar_pages[2]: {
+            "layout-upper-hangers.png",
+            "layout-lower-backstays.png",
+            "layout-preload.png",
+        },
+        topbar_pages[3]: {"layout-suspension-detail.png"},
+        topbar_pages[4]: set(),
+    }
+    for page, expected_images in expected_topbar_images.items():
+        actual_images = {
+            Path(urlparse(image.get("src", "")).path).name
+            for image in page_references[page].images
+            if "/topbar/" in image.get("src", "")
+        }
+        if actual_images != expected_images:
+            raise SystemExit(
+                f"top-bar images changed on {page.relative_to(site)}: "
+                f"{sorted(actual_images)!r} != {sorted(expected_images)!r}"
+            )
+
+    for page, expected_next in zip(topbar_pages, topbar_pages[1:]):
+        resolved_links = {
+            target
+            for tag, reference in page_references[page].references
+            if tag == "a"
+            and (target := resolve_reference(site, page, reference)) is not None
+        }
+        if expected_next not in resolved_links:
+            raise SystemExit(
+                f"{page.relative_to(site)} does not link to "
+                f"{expected_next.relative_to(site)}"
+            )
+
     expected_viewer_counts = Counter(
         {
             "pocketforge-test-node.glb": 2,
@@ -659,6 +845,7 @@ def main() -> int:
 
     checksums = verify_hashes(asset_dir)
     verify_customizer_sources(asset_dir)
+    verify_topbar_assets(asset_dir)
     verify_nameplate_runtime(site)
     guide_text = "\n".join(page.read_text(encoding="utf-8") for page in pages)
     if "build-a-dut" in guide_text.lower():

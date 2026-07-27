@@ -3,7 +3,8 @@
 Build the reusable, stackable mechanical frame that holds one PocketForge
 device, its inspection camera, and its control electronics. The result is a
 **test-node chassis**. The handheld installed in it is the **device under test
-(DUT)**.
+(DUT)**. Choose the registered chassis layout for that DUT before cutting or
+printing.
 
 !!! info "Model the DUT first"
     Complete the
@@ -34,9 +35,24 @@ device, its inspection camera, and its control electronics. The result is a
 The model above is generated from the same OpenSCAD assembly that generates
 the printable files. It includes the current fixture board, Logitech C270
 camera envelope and field of view, power strip, replaceable node placard, and
-the qualified TrimUI Smart Pro carrier as the worked device example. A
-different DUT uses its own qualified holder/profile without changing the
-reusable frame.
+the qualified TrimUI Smart Pro gantry as the worked example. The Smart Pro S
+uses the separate material-reduced top-bar route below.
+
+## Choose the registered layout
+
+| Device slug | Chassis layout | Status | Instructions |
+| --- | --- | --- | --- |
+| `trimui-smart-pro` | `chassis-core-v1` | Physically qualified and frozen | Continue with the qualified gantry pages in this chapter |
+| `trimui-smart-pro-s` | `chassis-topbar-v1` | Candidate pending `tsp-t1zd.2` | [Use the Smart Pro S top-bar route](pro-s-topbar/index.md) |
+
+The device-pack builder makes this selection automatically. An explicit
+layout argument may only confirm the registry; it cannot swap one device onto
+the other layout.
+
+!!! warning "Do not convert the working base chassis"
+    The physically working Smart Pro gantry and its immutable v1 print pack
+    remain unchanged. The top-bar design is for new Smart Pro S candidate
+    builds and must pass its own physical acceptance gate.
 
 ## What you will build
 
@@ -45,7 +61,8 @@ reusable frame.
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Aluminum | 20 × 20 mm square rail, also sold as 2020 slot-6 extrusion |
-| Stock consumed | Six nominal 1 m sticks |
+| Qualified gantry stock | Six nominal 1 m sticks; 5,204 mm finished extrusion |
+| Top-bar candidate stock | Five new sticks, or four plus qualifying scrap; 4,242 mm finished extrusion |
 | Printed material | ABS, designed around a 0.8 mm nozzle |
 | Adjustment | Movable camera frame adjusts in X, Y, and Z |
 | DUT carrier | Fixed to the device-side frame on the shared optical axis |
@@ -80,14 +97,16 @@ dark.
 
 ## Build path
 
-1. [Collect the parts and tools](parts.md).
-2. Select and verify the qualified `full` device pack from the
+1. Select the canonical device slug and finish the
    [holder workflow](../dut-holder/qualify-and-release.md#build-deterministic-production-packs).
-3. [Print the seven canonical production beds](print.md).
-4. [Cut and label the aluminum rails](cut.md).
-5. [Assemble the chassis in 19 bench-sized steps](assemble/index.md).
-6. [Run the unpowered verification gates](verify.md).
-7. [Secure the finished harness to the rails](wire-management.md).
+2. For `trimui-smart-pro`, [collect the qualified gantry parts](parts.md),
+   print its canonical beds, cut six-stick rail plan, complete all 19 assembly
+   steps, and run the qualified verification page.
+3. For `trimui-smart-pro-s`, follow the separate
+   [top-bar candidate route](pro-s-topbar/index.md) for its cut, pack, preload,
+   assembly-delta, and physical checks.
+4. [Secure the finished harness to the rails](wire-management.md) only after
+   the selected mechanical route is accepted and everything is de-energized.
 
 !!! tip "Parallelize after the first model gate"
     Once the remote-evidence model establishes the DUT’s nominal envelope, the

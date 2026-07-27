@@ -1,5 +1,11 @@
 # Print the hardware
 
+!!! info "Qualified Smart Pro gantry route"
+    These embedded beds belong to `trimui-smart-pro` /
+    `chassis-core-v1`. For `trimui-smart-pro-s`, generate and verify the
+    [separate top-bar candidate pack](pro-s-topbar/print.md). Never mix
+    Batches 01–03 between the two layouts.
+
 <script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
 <script type="module" src="../../../assets/nameplate-customizer.mjs"></script>
 <script type="module">

@@ -124,6 +124,8 @@ make_command=(
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
   handbook-assets
+  topbar-preview
+  topbar-cutlist
 )
 if command -v xvfb-run >/dev/null 2>&1; then
   xvfb-run --auto-servernum "${make_command[@]}"
@@ -134,7 +136,7 @@ fi
 if [[ -d "${asset_dir}" ]]; then
   find "${asset_dir}" -mindepth 1 -depth -delete
 fi
-mkdir -p "${asset_dir}/customizer/lib"
+mkdir -p "${asset_dir}/customizer/lib" "${asset_dir}/topbar"
 
 install -m 0644 "${project_dir}"/build/handbook/*.png "${asset_dir}/"
 install -m 0644 "${project_dir}"/build/handbook/batch-*.glb "${asset_dir}/"
@@ -151,6 +153,13 @@ install -m 0644 \
 install -m 0644 \
   "${project_dir}/build/cut-list.md" \
   "${asset_dir}/cut-list.generated.txt"
+install -m 0644 "${project_dir}"/build/topbar/*.png "${asset_dir}/topbar/"
+install -m 0644 \
+  "${project_dir}/build/topbar/cut-list.csv" \
+  "${asset_dir}/topbar/cut-list.csv"
+install -m 0644 \
+  "${project_dir}/build/topbar/cut-list.md" \
+  "${asset_dir}/topbar/cut-list.generated.txt"
 install -m 0644 \
   "${project_dir}/pocketforge-node-chassis.scad" \
   "${asset_dir}/customizer/pocketforge-node-chassis.scad"
@@ -184,6 +193,56 @@ data = {
     "files": {
         source.name: hashlib.sha256(source.read_bytes()).hexdigest(),
         f"lib/{library.name}": hashlib.sha256(library.read_bytes()).hexdigest(),
+    },
+}
+output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+PY
+
+python3 - \
+  "${asset_dir}/topbar/provenance.json" \
+  "${actual_revision}" \
+  "${ALLOW_DIRTY_CAD:-0}" \
+  "${project_dir}/pocketforge-node-chassis.scad" \
+  "${project_dir}/CUT_LIST_TOPBAR.md" \
+  "${source_root}/mechanical/device-packs/device-layouts.json" \
+  "${source_root}/mechanical/device-packs/layouts/chassis-topbar-v1.json" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+output = pathlib.Path(sys.argv[1])
+revision = sys.argv[2]
+source_dirty = sys.argv[3] == "1"
+inputs = [pathlib.Path(value) for value in sys.argv[4:]]
+registry = json.loads(inputs[2].read_text(encoding="utf-8"))
+layout = json.loads(inputs[3].read_text(encoding="utf-8"))
+
+if registry.get("devices", {}).get("trimui-smart-pro-s", {}).get("layout") != (
+    "mechanical/device-packs/layouts/chassis-topbar-v1.json"
+):
+    raise SystemExit("Smart Pro S no longer selects chassis-topbar-v1")
+qualification = layout.get("qualification", {})
+if (
+    layout.get("layout_id") != "chassis-topbar-v1"
+    or qualification.get("status") != "candidate"
+    or qualification.get("acceptance_ref") != "tsp-t1zd.2"
+):
+    raise SystemExit("top-bar candidate qualification contract changed")
+
+data = {
+    "schema": 1,
+    "source_revision": revision,
+    "source_dirty": source_dirty,
+    "device_slug": "trimui-smart-pro-s",
+    "layout_id": layout["layout_id"],
+    "qualification": {
+        "status": qualification["status"],
+        "acceptance_ref": qualification["acceptance_ref"],
+    },
+    "inputs": {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in inputs
     },
 }
 output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
@@ -247,6 +306,15 @@ required_assets=(
   preload-depth-rails.png
   preload-camera-frame.png
   wire-management-anchor.png
+  topbar/layout-assembly.png
+  topbar/layout-front.png
+  topbar/layout-suspension-detail.png
+  topbar/layout-preload.png
+  topbar/layout-upper-hangers.png
+  topbar/layout-lower-backstays.png
+  topbar/cut-list.csv
+  topbar/cut-list.generated.txt
+  topbar/provenance.json
   pocketforge-test-node.glb
   pocketforge-test-node.provenance.json
   cut-list.csv

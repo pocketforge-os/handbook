@@ -114,31 +114,38 @@ nav:
           - Qualify and release it: hardware/dut-holder/qualify-and-release.md
       - Test-node chassis:
           - Build overview: hardware/test-node-chassis/index.md
-          - Parts and tools: hardware/test-node-chassis/parts.md
-          - Print the hardware: hardware/test-node-chassis/print.md
-          - Cut the aluminum rails: hardware/test-node-chassis/cut.md
-          - Assemble the chassis:
-              - Assembly start: hardware/test-node-chassis/assemble/index.md
-              - 1. Learn the rail and nut bar: hardware/test-node-chassis/assemble/01-learn-the-rail.md
-              - 2. Load the width rails: hardware/test-node-chassis/assemble/02-load-width-rails.md
-              - 3. Load the depth rails: hardware/test-node-chassis/assemble/03-load-depth-rails.md
-              - 4. Splice the uprights: hardware/test-node-chassis/assemble/04-splice-uprights.md
-              - 5. Load the camera frame: hardware/test-node-chassis/assemble/05-load-camera-frame.md
-              - 6. Build the camera frame: hardware/test-node-chassis/assemble/06-build-camera-frame.md
-              - 7. Lay out the lower frame: hardware/test-node-chassis/assemble/07-lay-out-lower-frame.md
-              - 8. Add the posts: hardware/test-node-chassis/assemble/08-add-posts.md
-              - 9. Lower the camera frame: hardware/test-node-chassis/assemble/09-lower-camera-frame.md
-              - 10. Set the camera frame: hardware/test-node-chassis/assemble/10-set-camera-frame.md
-              - 11. Close the outer frame: hardware/test-node-chassis/assemble/11-close-outer-frame.md
-              - 12. Square the frame: hardware/test-node-chassis/assemble/12-square-frame.md
-              - 13. Mount the DUT holder: hardware/test-node-chassis/assemble/13-mount-dut-holder.md
-              - 14. Mount the electronics plate: hardware/test-node-chassis/assemble/14-mount-electronics-plate.md
-              - 15. Aim the camera: hardware/test-node-chassis/assemble/15-aim-camera.md
-              - 16. Add the placard: hardware/test-node-chassis/assemble/16-add-placard.md
-              - 17. Mount the power strip: hardware/test-node-chassis/assemble/17-mount-power-strip.md
-              - 18. Add stacking tabs: hardware/test-node-chassis/assemble/18-add-stacking-tabs.md
-              - 19. Final comparison: hardware/test-node-chassis/assemble/19-final-check.md
-          - Verify the build: hardware/test-node-chassis/verify.md
+          - Smart Pro S top-bar candidate:
+              - Route and status: hardware/test-node-chassis/pro-s-topbar/index.md
+              - Cut the lean rail set: hardware/test-node-chassis/pro-s-topbar/cut.md
+              - Generate and print: hardware/test-node-chassis/pro-s-topbar/print.md
+              - Assemble the delta: hardware/test-node-chassis/pro-s-topbar/assemble.md
+              - Verify the candidate: hardware/test-node-chassis/pro-s-topbar/verify.md
+          - Qualified Smart Pro gantry:
+              - Parts and tools: hardware/test-node-chassis/parts.md
+              - Print the hardware: hardware/test-node-chassis/print.md
+              - Cut the aluminum rails: hardware/test-node-chassis/cut.md
+              - Assemble the chassis:
+                  - Assembly start: hardware/test-node-chassis/assemble/index.md
+                  - 1. Learn the rail and nut bar: hardware/test-node-chassis/assemble/01-learn-the-rail.md
+                  - 2. Load the width rails: hardware/test-node-chassis/assemble/02-load-width-rails.md
+                  - 3. Load the depth rails: hardware/test-node-chassis/assemble/03-load-depth-rails.md
+                  - 4. Splice the uprights: hardware/test-node-chassis/assemble/04-splice-uprights.md
+                  - 5. Load the camera frame: hardware/test-node-chassis/assemble/05-load-camera-frame.md
+                  - 6. Build the camera frame: hardware/test-node-chassis/assemble/06-build-camera-frame.md
+                  - 7. Lay out the lower frame: hardware/test-node-chassis/assemble/07-lay-out-lower-frame.md
+                  - 8. Add the posts: hardware/test-node-chassis/assemble/08-add-posts.md
+                  - 9. Lower the camera frame: hardware/test-node-chassis/assemble/09-lower-camera-frame.md
+                  - 10. Set the camera frame: hardware/test-node-chassis/assemble/10-set-camera-frame.md
+                  - 11. Close the outer frame: hardware/test-node-chassis/assemble/11-close-outer-frame.md
+                  - 12. Square the frame: hardware/test-node-chassis/assemble/12-square-frame.md
+                  - 13. Mount the DUT holder: hardware/test-node-chassis/assemble/13-mount-dut-holder.md
+                  - 14. Mount the electronics plate: hardware/test-node-chassis/assemble/14-mount-electronics-plate.md
+                  - 15. Aim the camera: hardware/test-node-chassis/assemble/15-aim-camera.md
+                  - 16. Add the placard: hardware/test-node-chassis/assemble/16-add-placard.md
+                  - 17. Mount the power strip: hardware/test-node-chassis/assemble/17-mount-power-strip.md
+                  - 18. Add stacking tabs: hardware/test-node-chassis/assemble/18-add-stacking-tabs.md
+                  - 19. Final comparison: hardware/test-node-chassis/assemble/19-final-check.md
+              - Verify the build: hardware/test-node-chassis/verify.md
           - Manage the harness wiring: hardware/test-node-chassis/wire-management.md
       - Per-DUT test node: hardware/test-node.md
       - Bill of materials: hardware/bom.md
