@@ -1167,7 +1167,40 @@
   }
 }
 
+.pf-cut-plan-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 0.45rem;
+  scrollbar-gutter: stable;
+  overscroll-behavior-inline: contain;
+}
+
+.pf-cut-plan-scroll:focus-visible {
+  outline: 0.16rem solid var(--md-accent-fg-color);
+  outline-offset: 0.12rem;
+}
+
+.md-typeset .pf-cut-plan-image {
+  display: block;
+  width: 100%;
+  min-width: 33.5rem;
+  max-width: none;
+  height: auto;
+  margin: 0;
+}
+
+.pf-cut-plan-scroll-hint {
+  display: none;
+}
+
 @media screen and (max-width: 44rem) {
+  .pf-cut-plan-scroll-hint {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.68rem;
+  }
+
   .pf-device-pack-generator__heading {
     align-items: center;
   }

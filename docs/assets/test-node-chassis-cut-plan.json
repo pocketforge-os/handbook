@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "stock_length_mm": 1000,
+  "kerf_mm": 3.2,
+  "bars": [
+    {
+      "number": 1,
+      "pieces": [
+        {
+          "part": "outer_vertical_rail",
+          "label": "POST-OL",
+          "length_mm": 360,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_depth_rail",
+          "label": "DEPTH-L-L",
+          "length_mm": 318,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_width_rail",
+          "label": "WIDTH-O-L",
+          "length_mm": 306,
+          "disposition": "use-now"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "pieces": [
+        {
+          "part": "outer_vertical_rail",
+          "label": "POST-OR",
+          "length_mm": 360,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_depth_rail",
+          "label": "DEPTH-R-L",
+          "length_mm": 318,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_width_rail",
+          "label": "WIDTH-O-U",
+          "length_mm": 306,
+          "disposition": "use-now"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "pieces": [
+        {
+          "part": "outer_vertical_rail",
+          "label": "POST-DL",
+          "length_mm": 360,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_depth_rail",
+          "label": "DEPTH-L-U",
+          "length_mm": 318,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_width_rail",
+          "label": "WIDTH-D-L",
+          "length_mm": 306,
+          "disposition": "use-now"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "pieces": [
+        {
+          "part": "outer_vertical_rail",
+          "label": "POST-DR",
+          "length_mm": 360,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_depth_rail",
+          "label": "DEPTH-R-U",
+          "length_mm": 318,
+          "disposition": "use-now"
+        },
+        {
+          "part": "outer_width_rail",
+          "label": "WIDTH-D-U",
+          "length_mm": 306,
+          "disposition": "use-now"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "pieces": [
+        {
+          "part": "fixture_topbar",
+          "label": "TOPBAR",
+          "length_mm": 306,
+          "disposition": "use-now"
+        },
+        {
+          "part": "fixture_topbar",
+          "label": "TOPBAR",
+          "length_mm": 306,
+          "disposition": "reserve"
+        },
+        {
+          "part": "fixture_topbar",
+          "label": "TOPBAR",
+          "length_mm": 306,
+          "disposition": "reserve"
+        }
+      ]
+    }
+  ]
+}

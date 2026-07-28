@@ -35,6 +35,17 @@ git submodule update --init
 scripts/sync-test-node-chassis-assets.sh
 ```
 
+The 1 m stock diagram is a tracked deterministic render of
+`docs/assets/test-node-chassis-cut-plan.json`. Normal asset synchronization
+checks its active pieces against the generated CAD cut-list CSV and fails if
+the SVG is stale, a piece is missing, or a bar overruns 1000 mm. After an
+intentional source cut-plan change, update the JSON and regenerate the SVG
+while synchronizing:
+
+```sh
+UPDATE_CUT_PLAN=1 scripts/sync-test-node-chassis-assets.sh
+```
+
 While developing both repositories together, an explicitly dirty local source
 may be used for preview only:
 

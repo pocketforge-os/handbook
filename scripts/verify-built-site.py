@@ -689,6 +689,8 @@ def main() -> int:
         "309.2 mm",
         "927.6 mm",
         "72.4 mm",
+        "25.6 mm",
+        "Five-stick cut plan",
         "12 active + 6 parked = 18",
         "2.5 + 2.5 mm = 5 mm",
         "One continuous 306 mm top bar",
