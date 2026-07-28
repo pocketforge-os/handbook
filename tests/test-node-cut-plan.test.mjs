@@ -27,7 +27,7 @@ const cutListPath = join(
   "assets",
   "generated",
   "test-node-chassis",
-  "topbar",
+  "dualbar",
   "cut-list.csv",
 );
 const svgPath = join(

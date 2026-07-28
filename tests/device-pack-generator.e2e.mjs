@@ -8,6 +8,9 @@ import { fileURLToPath } from "node:url";
 
 import { chromium } from "playwright-core";
 
+import {
+  cableAnchorBoundsWithinEnvelope,
+} from "../docs/assets/cable-anchor-customizer-core.mjs";
 import { inspectStl } from "../docs/assets/device-pack-generator-core.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -277,7 +280,7 @@ try {
   assert.deepEqual(await modeSelect.locator("option").allTextContents(), [
     "Fit coupon · 1 file",
     "Device retrofit · 6 files",
-    "Complete chassis · 12 files",
+    "Complete chassis · device-selected files",
   ]);
   assert.equal(
     requests.some((requestPath) => requestPath.endsWith("/openscad.wasm")),
@@ -290,13 +293,15 @@ try {
     "OpenSCAD JavaScript must be lazy",
   );
 
-  for (const [mode, count] of [
-    ["coupon", 1],
-    ["retrofit", 6],
-    ["full", 12],
-  ]) {
+  const defaultDevice = catalog.devices.find(
+    (device) => device.slug === "trimui-smart-pro-s",
+  );
+  for (const mode of catalog.modes) {
     await modeSelect.selectOption(mode);
-    assert.equal(await inventory.locator("[data-artifact-id]").count(), count);
+    assert.equal(
+      await inventory.locator("[data-artifact-id]").count(),
+      defaultDevice.modes[mode].artifacts.length,
+    );
   }
   await deviceSelect.selectOption("trimui-smart-pro-s");
   await modeSelect.selectOption("full");
@@ -381,7 +386,118 @@ try {
     ].browser_normalized_sha256,
   );
 
+  const anchorCustomizer = page.locator("[data-cable-anchor-customizer]");
+  const anchorFastener = page.locator("[data-anchor-fastener]");
+  const anchorHardware = page.locator("[data-anchor-hardware]");
+  const anchorStatus = page.locator("[data-anchor-status]");
+  const anchorDownload = page.locator("[data-anchor-download]");
+  const anchorPreview = page.locator("[data-anchor-preview]");
+  await anchorCustomizer.waitFor({ state: "visible" });
+  assert.match(
+    await anchorPreview.evaluate((preview) => preview.src),
+    /cable-anchor-m5\.glb$/,
+  );
+  assert.match(
+    await anchorPreview.evaluate((preview) => preview.poster),
+    /cable-anchor-m5\.png$/,
+  );
+  assert.match(
+    await anchorHardware.textContent(),
+    /M5 drop-in T-nut.*10 mm OD/i,
+  );
+
+  async function generateAnchor(fastener) {
+    await anchorFastener.selectOption(fastener);
+    assert.match(
+      await anchorPreview.evaluate((preview) => preview.src),
+      new RegExp(`cable-anchor-${fastener.toLowerCase()}\\.glb$`),
+    );
+    assert.match(
+      await anchorPreview.evaluate((preview) => preview.poster),
+      new RegExp(`cable-anchor-${fastener.toLowerCase()}\\.png$`),
+    );
+    await page.locator("[data-anchor-generate]").click();
+    await page.waitForFunction(
+      () => {
+        const node = document.querySelector("[data-anchor-status]");
+        return ["ready", "error"].includes(node?.dataset.state);
+      },
+      undefined,
+      { timeout: 120_000 },
+    );
+    if ((await anchorStatus.getAttribute("data-state")) === "error") {
+      throw new Error(
+        `browser cable-anchor generation failed for ${fastener}: ` +
+          `${await anchorStatus.textContent()}`,
+      );
+    }
+    await anchorDownload.waitFor({ state: "visible" });
+    assert.equal(await anchorStatus.getAttribute("data-state"), "ready");
+    assert.match(
+      await anchorStatus.textContent(),
+      new RegExp(`closed ${fastener} anchor.*32 × 18 × 8\\.8 mm`, "i"),
+    );
+    const downloadPromise = page.waitForEvent("download");
+    await anchorDownload.click();
+    const download = await downloadPromise;
+    assert.equal(
+      download.suggestedFilename(),
+      `pocketforge-rail-cable-anchor-${fastener.toLowerCase()}.stl`,
+    );
+    const downloadPath = await download.path();
+    assert.ok(downloadPath);
+    const metrics = await inspectStl(await readFile(downloadPath));
+    assert.equal(metrics.component_count, 1);
+    assert.equal(cableAnchorBoundsWithinEnvelope(metrics.bounds_mm), true);
+    return metrics;
+  }
+
+  const m3AnchorMetrics = await generateAnchor("M3");
+  assert.match(
+    await anchorHardware.textContent(),
+    /M3 drop-in T-nut.*7 mm OD/i,
+  );
+  assert.equal(
+    m3AnchorMetrics.normalized_sha256,
+    "a0cf2279a77c02356afbbfeb739be939808e370e8437becf92a50c7a09eba193",
+  );
+  const m5AnchorMetrics = await generateAnchor("M5");
+  assert.equal(
+    m5AnchorMetrics.normalized_sha256,
+    "3b249814d8e78d4467591edf94b51be9f4ef450aad258bb58d3f0b55b54d9678",
+  );
+  assert.notEqual(
+    m3AnchorMetrics.normalized_sha256,
+    m5AnchorMetrics.normalized_sha256,
+  );
+
   await mkdir(artifactRoot, { recursive: true });
+  const printPreviews = page.locator(".pf-print-preview-grid");
+  assert.equal(
+    await printPreviews.locator(".pf-print-preview").count(),
+    7,
+    "the print page must expose all seven interactive print-bed previews",
+  );
+  assert.deepEqual(
+    await printPreviews
+      .locator("model-viewer")
+      .evaluateAll((previews) => previews.map((preview) => preview.alt)),
+    [
+      "Interactive preview of the optional chassis calibration bed",
+      "Interactive preview of 20 compact channel bars",
+      "Interactive preview of four identical keyed fixture links",
+      "Interactive preview of the frame hardware print bed",
+      "Interactive preview of the reusable placard holder",
+      "Interactive preview of the two-color device nameplate bed",
+      "Interactive preview of eight rail-mounted cable and zip-tie anchors",
+    ],
+  );
+  await anchorCustomizer.screenshot({
+    path: path.join(artifactRoot, "cable-anchor-customizer-light.png"),
+  });
+  await printPreviews.screenshot({
+    path: path.join(artifactRoot, "print-bed-previews-light.png"),
+  });
   await modeSelect.selectOption("full");
   await generator.screenshot({
     path: path.join(artifactRoot, "device-pack-generator-light.png"),
@@ -400,7 +516,11 @@ try {
   for (const device of catalog.devices) {
     await deviceSelect.selectOption(device.slug);
     await modeSelect.selectOption("full");
-    assert.equal(await inventory.locator("[data-artifact-id]").count(), 12);
+    const expectedCount = device.modes.full.artifacts.length;
+    assert.equal(
+      await inventory.locator("[data-artifact-id]").count(),
+      expectedCount,
+    );
     await page.locator("[data-pack-generate-all]").click();
     await page.waitForFunction(
       () => {
@@ -419,14 +539,17 @@ try {
           `generated=${await inventory.locator('[data-generated="true"]').count()})`,
       );
     }
-    assert.match(await status.textContent(), /12 verified STL files/i);
+    assert.match(
+      await status.textContent(),
+      new RegExp(`${expectedCount} verified STL files`, "i"),
+    );
     assert.equal(
       await inventory.locator('[data-generated="true"]').count(),
-      12,
+      expectedCount,
     );
     assert.equal(
       await inventory.locator("[data-pack-artifact-download]:visible").count(),
-      12,
+      expectedCount,
     );
     const downloadPromise = page.waitForEvent("download");
     await packDownload.click();
@@ -465,13 +588,27 @@ try {
   await generator.screenshot({
     path: path.join(artifactRoot, "device-pack-generator-mobile.png"),
   });
-  assert.equal(await generator.evaluate((node) => node.scrollWidth <= node.clientWidth), true);
+  await anchorCustomizer.screenshot({
+    path: path.join(artifactRoot, "cable-anchor-customizer-mobile.png"),
+  });
+  await printPreviews.screenshot({
+    path: path.join(artifactRoot, "print-bed-previews-mobile.png"),
+  });
+  for (const surface of [generator, anchorCustomizer, printPreviews]) {
+    assert.equal(
+      await surface.evaluate((node) => node.scrollWidth <= node.clientWidth),
+      true,
+      "print controls and previews must not overflow a narrow viewport",
+    );
+  }
   assert.deepEqual(pageErrors, []);
 
   console.log(
     `device_pack_e2e=pass devices=${catalog.devices.length} ` +
       `recipes=${allRecipes.size} packs=${totals.packs} ` +
-      `bytes=${totals.bytes} triangles=${totals.triangles}`,
+      `bytes=${totals.bytes} triangles=${totals.triangles} ` +
+      `anchor_m3=${m3AnchorMetrics.normalized_sha256} ` +
+      `anchor_m5=${m5AnchorMetrics.normalized_sha256}`,
   );
 } finally {
   await browser.close();

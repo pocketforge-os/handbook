@@ -194,10 +194,34 @@ try {
       `#${viewerId}`,
       { timeout: 120_000 },
     );
-    assert.equal(
-      await viewer.locator('[slot^="hotspot-"]').count(),
-      8,
-      `${route} must expose all eight chassis labels`,
+    await page.waitForFunction(
+      (selector) => document.querySelector(selector)?.modelIsVisible === true,
+      `#${viewerId}`,
+      { timeout: 120_000 },
+    );
+    await viewer.evaluate(
+      () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
+    const expectedHotspots = [
+      "hotspot-operator",
+      "hotspot-device",
+      "hotspot-post",
+      "hotspot-width",
+      "hotspot-depth",
+      "hotspot-upper-fixture-bar",
+      "hotspot-lower-fixture-bar",
+      "hotspot-fixture",
+      "hotspot-handheld",
+    ];
+    assert.deepEqual(
+      await viewer
+        .locator('[slot^="hotspot-"]')
+        .evaluateAll((hotspots) => hotspots.map((hotspot) => hotspot.slot)),
+      expectedHotspots,
+      `${route} must expose every current chassis label in a stable order`,
     );
     assert.equal(
       await viewer.getAttribute("data-labels-visible"),

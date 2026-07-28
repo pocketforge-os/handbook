@@ -85,7 +85,15 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
   for (const device of catalog.devices) {
     assert.equal(device.modes.coupon.artifacts.length, 1);
     assert.equal(device.modes.retrofit.artifacts.length, 6);
-    assert.equal(device.modes.full.artifacts.length, 12);
+    assert.ok(device.modes.full.artifacts.length > 6);
+    const fullIds = new Set(
+      device.modes.full.artifacts.map((artifact) => artifact.id),
+    );
+    assert.equal(
+      device.modes.retrofit.artifacts.every((artifact) =>
+        fullIds.has(artifact.id)),
+      true,
+    );
   }
 });
 

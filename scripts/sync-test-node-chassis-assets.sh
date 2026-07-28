@@ -124,10 +124,20 @@ make_command=(
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
   guide-model
-  topbar-preview
-  topbar-cutlist
+  dualbar-preview
+  dualbar-cutlist
+  guide-batch-models
   build/handbook/hero.png
   build/handbook/wire-management-anchor.png
+  build/handbook/batch-00-calibration.png
+  build/handbook/batch-01-ironed-interfaces.png
+  build/handbook/batch-02-fixture-links.png
+  build/handbook/batch-04-frame-hardware.png
+  build/handbook/batch-05-placard-holder.png
+  build/handbook/batch-06-device-nameplate.png
+  build/handbook/batch-07-wire-management.png
+  build/handbook/cable-anchor-m5.png
+  build/handbook/cable-anchor-m3.png
 )
 if command -v xvfb-run >/dev/null 2>&1; then
   xvfb-run --auto-servernum "${make_command[@]}"
@@ -136,11 +146,17 @@ else
 fi
 
 browser_bundle="${temporary_root}/browser-device-packs"
-python3 \
-  "${source_root}/mechanical/device-packs/export_browser_bundle.py" \
-  --root "${source_root}" \
-  build \
+browser_build_command=(
+  python3
+  "${source_root}/mechanical/device-packs/export_browser_bundle.py"
+  --root "${source_root}"
+  build
   --output "${browser_bundle}"
+)
+if [[ "${ALLOW_DIRTY_CAD:-0}" == "1" ]]; then
+  browser_build_command+=(--allow-dirty)
+fi
+"${browser_build_command[@]}"
 python3 \
   "${source_root}/mechanical/device-packs/export_browser_bundle.py" \
   --root "${source_root}" \
@@ -153,7 +169,8 @@ fi
 mkdir -p \
   "${asset_dir}/browser" \
   "${asset_dir}/customizer/lib" \
-  "${asset_dir}/topbar"
+  "${asset_dir}/dualbar" \
+  "${asset_dir}/print-batches"
 
 install -m 0644 \
   "${project_dir}/build/handbook/hero.png" \
@@ -162,12 +179,16 @@ install -m 0644 \
   "${project_dir}/build/handbook/model/pocketforge-test-node.provenance.json" \
   "${asset_dir}/"
 install -m 0644 \
-  "${project_dir}/build/topbar/layout-lower-backstays.png" \
-  "${project_dir}/build/topbar/layout-preload.png" \
-  "${project_dir}/build/topbar/layout-suspension-detail.png" \
-  "${project_dir}/build/topbar/layout-upper-hangers.png" \
-  "${project_dir}/build/topbar/cut-list.csv" \
-  "${asset_dir}/topbar/"
+  "${project_dir}/build/dualbar/layout-preload.png" \
+  "${project_dir}/build/dualbar/layout-suspension-detail.png" \
+  "${project_dir}/build/dualbar/cut-list.csv" \
+  "${asset_dir}/dualbar/"
+install -m 0644 \
+  "${project_dir}"/build/handbook/batch-*.png \
+  "${project_dir}"/build/handbook/batch-*.glb \
+  "${project_dir}"/build/handbook/cable-anchor-*.png \
+  "${project_dir}"/build/handbook/cable-anchor-*.glb \
+  "${asset_dir}/print-batches/"
 
 cut_plan_mode=--check
 if [[ "${UPDATE_CUT_PLAN:-0}" == "1" ]]; then
@@ -176,7 +197,7 @@ fi
 python3 \
   "${script_dir}/render-test-node-cut-plan.py" \
   --plan "${repo_root}/docs/assets/test-node-chassis-cut-plan.json" \
-  --cut-list "${asset_dir}/topbar/cut-list.csv" \
+  --cut-list "${asset_dir}/dualbar/cut-list.csv" \
   --output "${repo_root}/docs/assets/test-node-chassis-cut-plan.svg" \
   "${cut_plan_mode}"
 
@@ -211,6 +232,10 @@ data = {
     "part": "production_batch_06_device_nameplate",
     "parameter": "DEVICE_LABEL",
     "maximum_label_characters": 29,
+    "cable_anchor": {
+        "part": "cable_tie_anchor",
+        "fasteners": ["M5", "M3"],
+    },
     "files": {
         source.name: hashlib.sha256(source.read_bytes()).hexdigest(),
         f"lib/{library.name}": hashlib.sha256(library.read_bytes()).hexdigest(),
@@ -224,11 +249,27 @@ required_assets=(
   wire-management-anchor.png
   pocketforge-test-node.glb
   pocketforge-test-node.provenance.json
-  topbar/layout-lower-backstays.png
-  topbar/layout-preload.png
-  topbar/layout-suspension-detail.png
-  topbar/layout-upper-hangers.png
-  topbar/cut-list.csv
+  dualbar/layout-preload.png
+  dualbar/layout-suspension-detail.png
+  dualbar/cut-list.csv
+  print-batches/batch-00-calibration.png
+  print-batches/batch-00-calibration.glb
+  print-batches/batch-01-ironed-interfaces.png
+  print-batches/batch-01-ironed-interfaces.glb
+  print-batches/batch-02-fixture-links.png
+  print-batches/batch-02-fixture-links.glb
+  print-batches/batch-04-frame-hardware.png
+  print-batches/batch-04-frame-hardware.glb
+  print-batches/batch-05-placard-holder.png
+  print-batches/batch-05-placard-holder.glb
+  print-batches/batch-06-device-nameplate.png
+  print-batches/batch-06-device-nameplate.glb
+  print-batches/batch-07-wire-management.png
+  print-batches/batch-07-wire-management.glb
+  print-batches/cable-anchor-m5.png
+  print-batches/cable-anchor-m5.glb
+  print-batches/cable-anchor-m3.png
+  print-batches/cable-anchor-m3.glb
   browser/catalog.json
   browser/SHA256SUMS
   customizer/pocketforge-node-chassis.scad
@@ -242,7 +283,10 @@ for required_asset in "${required_assets[@]}"; do
   }
 done
 
-python3 - "${asset_dir}/browser/catalog.json" "${asset_dir}/browser" <<'PY'
+python3 - \
+  "${asset_dir}/browser/catalog.json" \
+  "${asset_dir}/browser" \
+  "${ALLOW_DIRTY_CAD:-0}" <<'PY'
 import hashlib
 import json
 import pathlib
@@ -253,8 +297,9 @@ browser_root = pathlib.Path(sys.argv[2])
 catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
 if catalog.get("schema") != "pocketforge-browser-device-pack-catalog-v1":
     raise SystemExit("browser device-pack catalog schema changed")
-if catalog.get("source", {}).get("dirty") is not False:
-    raise SystemExit("browser device-pack catalog was exported from dirty source")
+expected_dirty = sys.argv[3] == "1"
+if catalog.get("source", {}).get("dirty") is not expected_dirty:
+    raise SystemExit("browser device-pack catalog dirty state changed")
 for record in catalog.get("sources", []):
     path = browser_root / record["bundle_path"]
     if not path.is_file():

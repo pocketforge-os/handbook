@@ -171,6 +171,8 @@ def verify_customizer_sources(asset_dir: Path) -> dict:
         != "production_batch_06_device_nameplate"
         or provenance.get("parameter") != "DEVICE_LABEL"
         or provenance.get("maximum_label_characters") != 29
+        or provenance.get("cable_anchor")
+        != {"part": "cable_tie_anchor", "fasteners": ["M5", "M3"]}
         or provenance.get("source_dirty")
     ):
         raise SystemExit("browser customizer source contract changed")
@@ -187,7 +189,9 @@ def verify_customizer_sources(asset_dir: Path) -> dict:
     for contract in (
         'PART = "assembly"',
         "DEVICE_LABEL =",
+        "CABLE_ANCHOR_FASTENER =",
         "module production_batch_06_device_nameplate()",
+        "module cable_tie_anchor()",
     ):
         if contract not in main_source:
             raise SystemExit(
@@ -270,14 +274,19 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
     if not isinstance(devices, list) or not devices:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
-    expected_counts = {"coupon": 1, "retrofit": 6, "full": 12}
+    expected_counts_by_slug = {
+        "trimui-smart-pro": {"coupon": 1, "retrofit": 6, "full": 12},
+        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 6, "full": 11},
+    }
     for device in devices:
         slug = device.get("slug")
+        expected_counts = expected_counts_by_slug.get(slug)
         if (
             not isinstance(slug, str)
             or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug)
             or slug in slugs
             or not device.get("display_name")
+            or expected_counts is None
         ):
             raise SystemExit("browser catalog has an invalid device record")
         slugs.add(slug)
@@ -341,6 +350,8 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
                     )
                 artifact_ids.add(artifact_id)
                 outputs.add(output)
+    if slugs != set(expected_counts_by_slug):
+        raise SystemExit(f"browser catalog device set changed: {sorted(slugs)!r}")
 
     checksum_records: dict[str, str] = {}
     for line in checksums_path.read_text(encoding="utf-8").splitlines():
@@ -457,11 +468,27 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "wire-management-anchor.png",
         "pocketforge-test-node.glb",
         "pocketforge-test-node.provenance.json",
-        "topbar/cut-list.csv",
-        "topbar/layout-lower-backstays.png",
-        "topbar/layout-preload.png",
-        "topbar/layout-suspension-detail.png",
-        "topbar/layout-upper-hangers.png",
+        "dualbar/cut-list.csv",
+        "dualbar/layout-preload.png",
+        "dualbar/layout-suspension-detail.png",
+        "print-batches/batch-00-calibration.png",
+        "print-batches/batch-00-calibration.glb",
+        "print-batches/batch-01-ironed-interfaces.png",
+        "print-batches/batch-01-ironed-interfaces.glb",
+        "print-batches/batch-02-fixture-links.png",
+        "print-batches/batch-02-fixture-links.glb",
+        "print-batches/batch-04-frame-hardware.png",
+        "print-batches/batch-04-frame-hardware.glb",
+        "print-batches/batch-05-placard-holder.png",
+        "print-batches/batch-05-placard-holder.glb",
+        "print-batches/batch-06-device-nameplate.png",
+        "print-batches/batch-06-device-nameplate.glb",
+        "print-batches/batch-07-wire-management.png",
+        "print-batches/batch-07-wire-management.glb",
+        "print-batches/cable-anchor-m5.png",
+        "print-batches/cable-anchor-m5.glb",
+        "print-batches/cable-anchor-m3.png",
+        "print-batches/cable-anchor-m3.glb",
         "customizer/pocketforge-node-chassis.scad",
         "customizer/lib/pf-2020.scad",
         "customizer/customizer-provenance.json",
@@ -484,7 +511,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
     if any(path.suffix.lower() == ".stl" for path in asset_dir.rglob("*")):
         raise SystemExit("candidate STL leaked into handbook assets")
 
-    with (asset_dir / "topbar" / "cut-list.csv").open(
+    with (asset_dir / "dualbar" / "cut-list.csv").open(
         encoding="utf-8", newline=""
     ) as stream:
         rows = list(csv.DictReader(stream))
@@ -492,7 +519,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         ("outer_vertical_rail", "4", "360.00", "1440.00"),
         ("outer_width_rail", "4", "306.00", "1224.00"),
         ("outer_depth_rail", "4", "318.00", "1272.00"),
-        ("fixture_topbar", "1", "306.00", "306.00"),
+        ("fixture_support_bar", "2", "306.00", "612.00"),
     ]
     actual_cut_rows = [
         (
@@ -518,8 +545,8 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         provenance.get("schema") != 2
         or provenance.get("source_dirty")
         or scene.get("device_slug") != "trimui-smart-pro-s"
-        or scene.get("layout_id") != "chassis-topbar-v1"
-        or scene.get("chassis_variant") != "topbar_v1"
+        or scene.get("layout_id") != "chassis-dualbar-v1"
+        or scene.get("chassis_variant") != "dualbar_v1"
         or scene.get("qualification")
         != {"status": "candidate", "acceptance_ref": "tsp-t1zd.2"}
         or len(provenance.get("semantic_layers", [])) != 70
@@ -609,12 +636,11 @@ def main() -> int:
         if not page.is_file():
             raise SystemExit(f"missing mechanical onboarding page: {page}")
 
-    removed_routes = [guide_root / "pro-s-topbar"]
-    removed_routes.extend(
+    removed_routes = [
         path
         for path in (guide_root / "assemble").iterdir()
         if path.is_dir()
-    )
+    ]
     if any(path.exists() for path in removed_routes):
         raise SystemExit(
             "removed chassis route reached the built site: "
@@ -679,23 +705,22 @@ def main() -> int:
     normalized_chassis_html = " ".join(chassis_html.split())
     for required_fragment in (
         "trimui-smart-pro-s",
-        "chassis-topbar-v1",
+        "chassis-dualbar-v1",
         "--allow-unqualified",
         "production_eligible",
         "layout_unqualified",
         "tsp-t1zd.2",
         "Routine STLs are generated, not committed",
-        "4,242 mm",
+        "4,548 mm",
         "309.2 mm",
         "927.6 mm",
         "72.4 mm",
-        "25.6 mm",
+        "381.6 mm",
         "Five-stick cut plan",
-        "12 active + 6 parked = 18",
-        "2.5 + 2.5 mm = 5 mm",
-        "One continuous 306 mm top bar",
-        "two metal L-connectors",
-        "Two upper hangers and two lower backstays",
+        "14 active + 6 parked = 20",
+        "Two continuous 306 mm fixture bars",
+        "four metal L-connectors",
+        "Four identical 71.5 mm keyed links",
         "Move the four active channel bars",
     ):
         if required_fragment not in normalized_chassis_html:
@@ -708,7 +733,6 @@ def main() -> int:
         r"\blegacy\b",
         r"\bretired\b",
         r"chassis-core-v1",
-        r"pro-s-topbar",
         r"camera[- ]frame",
         r"splice collar",
     )
@@ -739,7 +763,8 @@ def main() -> int:
         "hotspot-post",
         "hotspot-width",
         "hotspot-depth",
-        "hotspot-topbar",
+        "hotspot-upper-fixture-bar",
+        "hotspot-lower-fixture-bar",
         "hotspot-fixture",
         "hotspot-handheld",
     }
@@ -795,7 +820,8 @@ def main() -> int:
                 "POST · 360 mm",
                 "WIDTH · 306 mm",
                 "DEPTH · 318 mm",
-                "TOP BAR · 306 mm",
+                "UPPER FIXTURE BAR · 306 mm",
+                "LOWER FIXTURE BAR · 306 mm",
                 "DUT TEST BOARD",
                 "MODELED HANDHELD",
             ):
@@ -803,6 +829,11 @@ def main() -> int:
                     raise SystemExit(
                         f"{page.relative_to(site)} is missing {fragment!r}"
                     )
+        elif page == print_page:
+            if len(viewers) != 8:
+                raise SystemExit(
+                    f"{page.relative_to(site)} must contain eight print previews"
+                )
         elif viewers:
             raise SystemExit(
                 f"unexpected full model on {page.relative_to(site)}"
@@ -838,15 +869,61 @@ def main() -> int:
         "name is not uploaded",
         "z = 2.4 mm",
         "pinned openscad chassis source",
-        "18 compact m3 channel bars",
-        "two keyed upper hangers",
-        "two 244 mm lower backstays",
+        "20 compact m3 channel bars",
+        "four identical 71.5 mm keyed links",
+        "interactive print-bed previews",
+        "data-cable-anchor-customizer",
+        "cable-anchor-worker.mjs",
+        "generate one cable anchor",
+        "m3 · smaller drop-in hardware",
+        "print-batches/batch-07-wire-management.glb",
         "do not scale, auto-orient, or auto-arrange",
     ):
         if required_fragment not in normalized_print_html:
             raise SystemExit(
                 f"print page is missing {required_fragment!r}"
             )
+    expected_print_previews = {
+        ("batch-00-calibration.glb", "batch-00-calibration.png"),
+        (
+            "batch-01-ironed-interfaces.glb",
+            "batch-01-ironed-interfaces.png",
+        ),
+        ("batch-02-fixture-links.glb", "batch-02-fixture-links.png"),
+        ("batch-04-frame-hardware.glb", "batch-04-frame-hardware.png"),
+        ("batch-05-placard-holder.glb", "batch-05-placard-holder.png"),
+        ("batch-06-device-nameplate.glb", "batch-06-device-nameplate.png"),
+        ("batch-07-wire-management.glb", "batch-07-wire-management.png"),
+        ("cable-anchor-m5.glb", "cable-anchor-m5.png"),
+    }
+    actual_print_previews = {
+        (
+            Path(urlparse(viewer["src"]).path).name,
+            Path(urlparse(viewer["poster"]).path).name,
+        )
+        for viewer in page_references[print_page].model_viewers
+    }
+    if actual_print_previews != expected_print_previews:
+        raise SystemExit(
+            f"print preview set changed: {sorted(actual_print_previews)!r}"
+        )
+    anchor_viewer = next(
+        viewer
+        for viewer in page_references[print_page].model_viewers
+        if Path(urlparse(viewer["src"]).path).name == "cable-anchor-m5.glb"
+    )
+    expected_anchor_variants = {
+        "data-m5-model": "cable-anchor-m5.glb",
+        "data-m5-poster": "cable-anchor-m5.png",
+        "data-m3-model": "cable-anchor-m3.glb",
+        "data-m3-poster": "cable-anchor-m3.png",
+    }
+    if any(
+        Path(urlparse(anchor_viewer.get(attribute, "")).path).name
+        != expected_name
+        for attribute, expected_name in expected_anchor_variants.items()
+    ):
+        raise SystemExit("cable-anchor preview variants changed")
     for customizer_asset in (
         "assets/device-pack-generator.mjs",
         "assets/device-pack-generator-core.mjs",
@@ -855,6 +932,9 @@ def main() -> int:
         "assets/nameplate-customizer.mjs",
         "assets/nameplate-customizer-core.mjs",
         "assets/nameplate-worker.mjs",
+        "assets/cable-anchor-customizer.mjs",
+        "assets/cable-anchor-customizer-core.mjs",
+        "assets/cable-anchor-worker.mjs",
     ):
         if not (site / customizer_asset).is_file():
             raise SystemExit(
@@ -866,7 +946,7 @@ def main() -> int:
     for required_fragment in (
         'coupon: "Fit coupon · 1 file"',
         'retrofit: "Device retrofit · 6 files"',
-        'full: "Complete chassis · 12 files"',
+        'full: "Complete chassis · device-selected files"',
         "catalog.devices",
         "mode.artifacts",
         "createPackArchive",
@@ -898,7 +978,9 @@ def main() -> int:
         "wire-management-anchor.png",
         "no fixed anchor map",
         "fully de-energized harness",
-        "M5 × 10 mm",
+        "Generate one M3 or M5 replacement",
+        "M3/M5",
+        "no larger than 7 mm for M3 or 10 mm for M5",
         "Eight is a starter quantity",
         "Routing aid, not strain relief",
         "cut the tail flush",

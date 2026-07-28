@@ -1,6 +1,6 @@
 # Cut the aluminum rails
 
-The current chassis uses **4,242 mm** of finished 2020 extrusion. Finished
+The current chassis uses **4,548 mm** of finished 2020 extrusion. Finished
 dimensions are aluminum lengths; do not add connector caps or blade kerf to a
 requested length.
 
@@ -11,9 +11,9 @@ requested length.
 | `POST-*` | 4 | 360 mm | Outer vertical posts |
 | `DEPTH-*` | 4 | 318 mm | Operator-to-device outer rails |
 | `WIDTH-*` | 4 | 306 mm | Left-to-right outer rails |
-| `TOPBAR` | 1 | 306 mm | Continuous fixture-support rail |
+| `FIXTURE-L`, `FIXTURE-U` | 2 | 306 mm | Continuous lower and upper fixture-support rails |
 
-[Download the generated machine-readable cut list](../../assets/generated/test-node-chassis/topbar/cut-list.csv).
+[Download the generated machine-readable cut list](../../assets/generated/test-node-chassis/dualbar/cut-list.csv).
 
 ## Five-stick cut plan
 
@@ -22,13 +22,13 @@ requested length.
      tabindex="0">
   <img class="pf-cut-plan-image"
        src="../../../assets/test-node-chassis-cut-plan.svg"
-       alt="Five 1000 mm aluminum bars divided into four labeled frame-part sets and one batch of three labeled top bars, with 3.2 mm kerfs and the remaining scrap shown to scale">
+       alt="Five 1000 mm aluminum bars divided into four labeled outer-frame sets and one lower-and-upper fixture-bar pair, with 3.2 mm kerfs and every remainder shown to scale">
 </div>
 <p class="pf-cut-plan-scroll-hint">Swipe sideways to inspect every scaled segment.</p>
 
-Bars 1–4 make this chassis's outer frame. Bar 5 is the recommended batch
-route when no qualifying offcut exists: use one top bar now and label two for
-the next two chassis.
+Bars 1–4 make the outer frame. Bar 5 makes both fixture-support rails and
+leaves a straight **381.6 mm** offcut that is long enough to become one
+fixture bar on a later chassis.
 
 | Stock bar | Cuts, in order | Conservative remainder |
 | ---: | --- | ---: |
@@ -36,17 +36,25 @@ the next two chassis.
 | 2 | `POST-OR` 360, `DEPTH-R-L` 318, `WIDTH-O-U` 306 mm | 6.4 mm |
 | 3 | `POST-DL` 360, `DEPTH-L-U` 318, `WIDTH-D-L` 306 mm | 6.4 mm |
 | 4 | `POST-DR` 360, `DEPTH-R-U` 318, `WIDTH-D-U` 306 mm | 6.4 mm |
-| 5 | `TOPBAR` 306 mm use now, then 2 × `TOPBAR` 306 mm reserve | 72.4 mm |
+| 5 | `FIXTURE-L` 306, `FIXTURE-U` 306 mm | 381.6 mm |
 
 The four frame sticks are already 99.36% allocated: their four 6.4 mm
-remainders total only **25.6 mm**. They cannot supply the 306 mm top bar, with
-or without a joint.
+remainders total only **25.6 mm**. They cannot supply a fixture bar.
 
 ## Use qualifying scrap first
 
-Look for one straight, undamaged 2020 offcut at least **309.2 mm** long:
-306 mm finished length plus the conservative 3.2 mm kerf allowance. Use it for
-`TOPBAR`. Four fresh 1 m sticks then supply the complete outer frame.
+Each fixture bar needs one straight, undamaged 2020 offcut at least
+**309.2 mm** long: 306 mm finished length plus the conservative 3.2 mm kerf
+allowance.
+
+- With **two qualifying offcuts**, make `FIXTURE-L` and `FIXTURE-U` from
+  scrap. Four fresh sticks then supply the complete outer frame; Bar 5 is not
+  needed.
+- With **one qualifying offcut**, use it. A fifth fresh stick is still needed
+  for the second fixture bar, but cutting only one 306 mm piece preserves a
+  **690.8 mm** remainder.
+- The known 356.4 mm retained offcut makes one fixture bar and leaves 47.2 mm.
+  It cannot make the matched pair by itself.
 
 Each fresh outer-frame stick packs:
 
@@ -56,15 +64,16 @@ That consumes 993.6 mm and leaves 6.4 mm.
 
 ## If all stock is new
 
-Use four sticks for the outer frame. On the fifth stick, choose one of:
+Use four sticks for the outer frame. On the fifth stick:
 
-- **single build:** cut one 306 mm top bar, consuming 309.2 mm and leaving
-  690.8 mm; or
-- **batch builds:** cut three 306 mm top bars, consuming 927.6 mm and leaving
-  **72.4 mm**. Use one now and label two for the next chassis builds.
+- **one chassis:** cut two 306 mm fixture bars, consuming 618.4 mm including
+  kerfs and leaving the reusable **381.6 mm** offcut shown above; or
+- **batch work:** cut three 306 mm fixture bars, consuming 927.6 mm and
+  leaving **72.4 mm**. Use two now and label the third as the first fixture
+  bar for the next chassis.
 
-The five-stick single-build plan reserves 13 kerfs, or 41.6 mm total, and
-leaves 716.4 mm across all five sticks.
+The one-chassis plan reserves 14 kerfs, or 44.8 mm total, and leaves
+**407.2 mm** across all five sticks.
 
 ## Mark before cutting
 
@@ -78,7 +87,7 @@ Use removable tape or a fine marker:
 | Right lower / upper depth rails | `DEPTH-R-L`, `DEPTH-R-U` |
 | Operator-left / operator-right posts | `POST-OL`, `POST-OR` |
 | Device-left / device-right posts | `POST-DL`, `POST-DR` |
-| Fixture-support rail | `TOPBAR` |
+| Lower / upper fixture-support rails | `FIXTURE-L`, `FIXTURE-U` |
 
 ## Cut procedure
 
@@ -96,17 +105,18 @@ dimension: mark 360 mm, put the blade on the waste side, then verify that the
 resulting post is 360 mm. The stock plan's 3.2 mm allowance protects only the
 packing calculation.
 
-!!! warning "The top bar is continuous"
-    Use one straight 306 mm piece. Do not join two shorter offcuts or place a
-    printed connector in the fixture load path.
+!!! warning "Both fixture bars are continuous"
+    Use two straight 306 mm pieces. Do not join shorter offcuts or place a
+    printed connector in either fixture load path.
 
 ## Cut gate
 
 - [ ] 4 × 360 mm posts.
 - [ ] 4 × 318 mm depth rails.
 - [ ] 4 × 306 mm width rails.
-- [ ] 1 × continuous 306 mm `TOPBAR`.
+- [ ] 1 × continuous 306 mm `FIXTURE-L`.
+- [ ] 1 × continuous 306 mm `FIXTURE-U`.
 - [ ] Every cut is square, deburred, measured, and labeled.
-- [ ] Extra 306 mm top bars and any useful offcuts are labeled and retained.
+- [ ] Every reusable offcut or extra fixture bar is labeled and retained.
 
 Next: [assemble the chassis](assemble/index.md).

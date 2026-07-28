@@ -156,7 +156,7 @@
   transform: translate(-50%, -115%);
 }
 
-.pf-model-hotspot--topbar {
+.pf-model-hotspot--fixture-bar {
   transform: translate(0.55rem, -50%);
 }
 
@@ -984,6 +984,141 @@
   min-width: 6.8rem;
 }
 
+.pf-cable-anchor-customizer {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.9fr) minmax(16rem, 1.1fr);
+  gap: 1rem;
+  margin: 1rem 0 1.4rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--pf-blue) 34%, transparent);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--pf-blue) 5%, var(--md-default-bg-color));
+}
+
+.md-typeset .pf-cable-anchor-customizer h3 {
+  margin: 0 0 0.8rem;
+}
+
+.pf-cable-anchor-customizer__controls {
+  min-width: 0;
+}
+
+.pf-cable-anchor-customizer__controls label {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  font-weight: 760;
+}
+
+.md-typeset .pf-cable-anchor-customizer__controls select {
+  display: block;
+  width: 100%;
+  min-height: 2.55rem;
+  margin: 0.3rem 0 0.65rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 27%, transparent);
+  border-radius: 0.4rem;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  font: inherit;
+  font-size: 0.72rem;
+}
+
+.md-typeset .pf-cable-anchor-customizer__controls p {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.pf-cable-anchor-customizer__controls button,
+.md-typeset .pf-cable-anchor-customizer__controls a {
+  display: inline-flex;
+  min-height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--pf-blue);
+  border-radius: 0.4rem;
+  color: #fff;
+  background: var(--pf-blue);
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 780;
+  cursor: pointer;
+}
+
+.md-typeset .pf-cable-anchor-customizer__controls a {
+  border-color: #087854;
+  background: #087854;
+}
+
+.md-typeset .pf-cable-anchor-customizer__controls [hidden] {
+  display: none;
+}
+
+.pf-cable-anchor-customizer__controls button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.pf-cable-anchor-customizer__controls [data-state="error"] {
+  color: #b3261e;
+}
+
+.pf-cable-anchor-customizer__controls [data-state="ready"] {
+  color: #087854;
+}
+
+.pf-cable-anchor-customizer__preview {
+  position: relative;
+  overflow: hidden;
+  min-height: 15rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
+  border-radius: 0.5rem;
+  background: var(--pf-paper);
+}
+
+.pf-cable-anchor-customizer__preview model-viewer {
+  display: block;
+  width: 100%;
+  height: 15rem;
+  --poster-color: var(--pf-paper);
+}
+
+.pf-print-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.pf-print-preview {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
+  border-radius: 0.5rem;
+  background: var(--pf-paper);
+}
+
+.pf-print-preview model-viewer {
+  display: block;
+  width: 100%;
+  height: 13rem;
+  --poster-color: var(--pf-paper);
+}
+
+.md-typeset .pf-print-preview figcaption {
+  display: grid;
+  gap: 0.08rem;
+  padding: 0.55rem 0.65rem 0.65rem;
+  border-top: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+  font-size: 0.68rem;
+}
+
+.pf-print-preview figcaption span {
+  color: var(--md-default-fg-color--light);
+}
+
 .pf-nameplate-customizer {
   display: grid;
   grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 0.95fr);
@@ -1223,6 +1358,17 @@
     min-width: 0;
   }
 
+  .pf-cable-anchor-customizer,
+  .pf-print-preview-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pf-cable-anchor-customizer__preview,
+  .pf-cable-anchor-customizer__preview model-viewer {
+    min-height: 13rem;
+    height: 13rem;
+  }
+
   .pf-nameplate-customizer {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1257,7 +1403,7 @@
     font-size: 0.54rem;
   }
 
-  .pf-model-hotspot--topbar {
+  .pf-model-hotspot--fixture-bar {
     max-width: 7.5rem;
     transform: translate(0.45rem, -50%);
   }

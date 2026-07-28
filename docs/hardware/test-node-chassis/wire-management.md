@@ -5,6 +5,10 @@ exposed chassis rails. Anchor positions are deliberately chosen at the bench:
 different devices put their USB, serial, power, relay, and camera connections
 in different places, so there is **no fixed anchor map**.
 
+Need another anchor? [Generate one M3 or M5 replacement in your
+browser](print.md#generate-one-cable-anchor). The complete pack still includes
+the default eight-piece M5 starter bed.
+
 !!! danger "Work only on a fully de-energized harness"
     Shut the node down. Unplug the power strip and disconnect bench-supply,
     USB, relay, and other power or data sources at their source ends before
@@ -14,7 +18,7 @@ in different places, so there is **no fixed anchor map**.
 <div class="pf-step-visual">
   <figure>
     <img src="../../../assets/generated/test-node-chassis/wire-management-anchor.png" alt="Two-panel cable-anchor instruction drawing: at left a silver M5 drop-in nut sits in the top groove of a gray 2020 rail while an orange printed anchor, silver washer, and button-head screw move downward along a blue arrow; at right the installed orange anchor supports a three-cable bundle while a blue zip tie passes through one transverse tunnel and wraps loosely around the bundle">
-    <figcaption>Left: face-load one M5 nut and bolt down the anchor. Right: pass one zip tie through either tunnel and around the cable bundle. <a href="../../../assets/generated/test-node-chassis/wire-management-anchor.png">Open the drawing full size.</a></figcaption>
+    <figcaption>Left: the default M5 hardware face-loads into the rail. The individually generated M3 anchor installs the same way with matching M3 hardware. Right: pass one zip tie through either tunnel and around the cable bundle. <a href="../../../assets/generated/test-node-chassis/wire-management-anchor.png">Open the drawing full size.</a></figcaption>
   </figure>
 </div>
 <div class="pf-step-copy" markdown="1">
@@ -25,8 +29,8 @@ For each location:
 
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × rail-mounted cable anchor</strong><small>Batch 07 · 32 × 18 × 8.8 mm · the starter bed contains eight</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--fastener">M5</span><span><strong>1 × face-loaded M5 drop-in T-nut</strong><small>It enters through the open rail groove; no rail end needs to be opened</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--fastener">M5</span><span><strong>1 × M5 × 10 mm button-head screw and flat washer</strong><small>Washer outside diameter must be no larger than 10 mm</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3/M5</span><span><strong>1 × face-loaded drop-in T-nut matching the generated hole</strong><small>It enters through the open rail groove; no rail end needs to be opened</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--fastener">M3/M5</span><span><strong>1 × matching low-profile button-head screw and flat washer</strong><small>Washer outside diameter: no larger than 7 mm for M3 or 10 mm for M5</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">Tie</span><span><strong>1 × zip tie, normally</strong><small>Up to 4.8 mm wide × 1.6 mm thick · a second tie may use the other tunnel</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--tool">Tools</span><span><strong>Matching hex driver and flush cutters</strong><small>Hand-tighten the screw and cut every tie tail flush</small></span></li>
 </ul>
@@ -35,8 +39,8 @@ For each location:
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
     <li><span class="pf-cue pf-cue--orange">Orange anchor</span><span>This is the printed Batch 07 part. Its broad flat face touches the rail; its two raised bridges contain the zip-tie tunnels.</span></li>
-    <li><span class="pf-cue pf-cue--silver">Silver / gray</span><span>The long shape is the aluminum rail. The small silver pieces are the M5 nut, washer, and button-head screw.</span></li>
-    <li><span class="pf-cue pf-cue--blue">Blue arrow and loop</span><span>The arrow shows the M5 assembly direction. The blue loop is the zip tie passing through one tunnel and around the bundle.</span></li>
+    <li><span class="pf-cue pf-cue--silver">Silver / gray</span><span>The long shape is the aluminum rail. The small silver pieces show the default M5 nut, washer, and button-head screw; use the matching M3 set with an M3 anchor.</span></li>
+    <li><span class="pf-cue pf-cue--blue">Blue arrow and loop</span><span>The arrow shows the fastener assembly direction. The blue loop is the zip tie passing through one tunnel and around the bundle.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Three cable colors</span><span>They identify the cable bundle only; they do not prescribe a port, voltage, or cable type.</span></li>
   </ul>
 </div>
@@ -54,7 +58,7 @@ anchors as the current harness needs and keep the rest as spares.
    transferred into the plug or circuit board.
 3. Choose an exposed long groove where the bundle will not block a DUT
    control, connector, vent, placard, camera view, or power-strip switch.
-4. Keep the bundle clear of sharp rail ends, the movable top bar, and the
+4. Keep the bundle clear of sharp rail ends, both movable fixture bars, and the
    suspended fixture board. If a cable must reach the moving assembly, leave
    enough free loop for its full adjustment range.
 5. Use another anchor where the bundle would otherwise sag into the DUT,
@@ -63,13 +67,14 @@ anchors as the current harness needs and keep the rest as spares.
 
 ## Install one anchor
 
-1. Push one M5 drop-in T-nut through the open face of the chosen rail groove.
-   Hold its threaded hole approximately where the anchor will sit.
+1. Push the selected M3 or M5 drop-in T-nut through the open face of the
+   chosen rail groove. Hold its threaded hole approximately where the anchor
+   will sit.
 2. Put the anchor's broad flat face against the rail. Point its 32 mm length
    along the intended cable run; the two tie tunnels then cross that run.
-3. Put the washer on the M5 × 10 mm button-head screw. Pass the screw through
-   the center hole and turn it into the drop-in nut by hand for two or three
-   turns.
+3. Put the matching washer on the low-profile button-head screw. Pass the
+   screw through the center hole and turn it into the drop-in nut by hand for
+   two or three turns.
 4. Slide the loose assembly to its final position. Tighten the screw by hand
    only until the anchor no longer slides or rotates. Do not crush the printed
    base or use the anchor as a structural clamp.
@@ -90,8 +95,8 @@ anchors as the current harness needs and keep the rest as spares.
       load.
 - [ ] Zip ties contain the bundle without flattening or marking cable jackets.
 - [ ] No cut tail, printed edge, or aluminum edge can rub a cable.
-- [ ] The top bar and fixture board still reach their required adjustment
-      range.
+- [ ] Both fixture bars and the fixture board still reach their required
+      adjustment range.
 - [ ] DUT controls, vents, ports, the placard, camera view, and power switch
       remain accessible.
 

@@ -213,11 +213,22 @@ export function validateCatalog(catalog) {
           Array.isArray(modeRecord.artifacts),
         `${modeLabel} policy is invalid.`,
       );
-      const expectedCount = { coupon: 1, retrofit: 6, full: 12 }[mode];
-      assert(
-        modeRecord.artifacts.length === expectedCount,
-        `${modeLabel} must contain ${expectedCount} artifacts.`,
-      );
+      if (mode === "coupon") {
+        assert(
+          modeRecord.artifacts.length === 1,
+          `${modeLabel} must contain one artifact.`,
+        );
+      } else if (mode === "retrofit") {
+        assert(
+          modeRecord.artifacts.length === 6,
+          `${modeLabel} must contain six artifacts.`,
+        );
+      } else {
+        assert(
+          modeRecord.artifacts.length > 6,
+          `${modeLabel} must extend the retrofit plan.`,
+        );
+      }
       const ids = new Set();
       const outputs = new Set();
       modeRecord.artifacts.forEach((artifact, artifactIndex) => {
@@ -229,6 +240,17 @@ export function validateCatalog(catalog) {
         outputs.add(artifact.output);
       });
     }
+    const retrofitIds = new Set(
+      device.modes.retrofit.artifacts.map((artifact) => artifact.id),
+    );
+    const fullIds = new Set(
+      device.modes.full.artifacts.map((artifact) => artifact.id),
+    );
+    assert(
+      [...retrofitIds].every((id) => fullIds.has(id)) &&
+        fullIds.size > retrofitIds.size,
+      `${label}.modes.full must strictly extend retrofit artifacts.`,
+    );
   }
   return catalog;
 }

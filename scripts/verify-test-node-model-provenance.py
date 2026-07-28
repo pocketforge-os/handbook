@@ -183,9 +183,9 @@ HISTORICAL_SCHEMA1_REVISIONS = (
 
 CURRENT_SCENE = {
     "device_slug": "trimui-smart-pro-s",
-    "chassis_variant": "topbar_v1",
-    "layout_id": "chassis-topbar-v1",
-    "layout_record": "mechanical/device-packs/layouts/chassis-topbar-v1.json",
+    "chassis_variant": "dualbar_v1",
+    "layout_id": "chassis-dualbar-v1",
+    "layout_record": "mechanical/device-packs/layouts/chassis-dualbar-v1.json",
     "device_registry": "mechanical/device-packs/device-layouts.json",
     "qualification": {
         "status": "candidate",

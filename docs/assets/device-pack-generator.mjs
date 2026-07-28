@@ -7,7 +7,7 @@ import {
 const MODE_LABELS = {
   coupon: "Fit coupon · 1 file",
   retrofit: "Device retrofit · 6 files",
-  full: "Complete chassis · 12 files",
+  full: "Complete chassis · device-selected files",
 };
 
 function initializeGenerator(root) {
