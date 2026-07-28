@@ -1,23 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 463" role="img" aria-labelledby="cut-plan-title cut-plan-desc">
-  <title id="cut-plan-title">Five-stick test-node chassis batch cut plan</title>
-  <desc id="cut-plan-desc">Five 1000 millimetre extrusion bars. Bars one through four each yield one 360 millimetre post, one 318 millimetre depth rail, and one 306 millimetre width rail, leaving 6.4 millimetres. Bar five yields one 306 millimetre top bar for this chassis and two reserved top bars, leaving 72.4 millimetres.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 463" role="img" aria-labelledby="cut-plan-title cut-plan-desc">
+  <title id="cut-plan-title">Five-stick dual-bar test-node chassis cut plan</title>
+  <desc id="cut-plan-desc">Five 1000 millimetre extrusion bars. Bars one through four each yield one 360 millimetre post, one 318 millimetre depth rail, and one 306 millimetre width rail, leaving 6.4 millimetres. Bar five yields the 306 millimetre lower and upper fixture-support bars, leaving a reusable 381.6 millimetre offcut.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; fill: #17212b; }
     .stock { fill: #f5f3e8; stroke: #17212b; stroke-width: 2; }
     .post { fill: #c95508; }
     .depth { fill: #2f6f91; }
     .width { fill: #4f8057; }
-    .topbar { fill: #694b94; }
+    .fixture { fill: #694b94; }
     .reserve { fill: #baa8d1; }
     .kerf { fill: #17212b; }
     .offcut { fill: #d8d8d2; }
     .piece-label { fill: white; font-size: 16px; font-weight: 700; text-anchor: middle; }
     .reserve-label { fill: #17212b; }
     .bar-label { font-size: 17px; font-weight: 700; text-anchor: end; dominant-baseline: middle; }
-    .remainder-label { font-size: 14px; text-anchor: middle; dominant-baseline: middle; }
+    .remainder-label { font-size: 14px; text-anchor: start; dominant-baseline: middle; }
     .legend { font-size: 15px; dominant-baseline: middle; }
   </style>
-  <rect x="1" y="1" width="1118" height="461" rx="10" fill="#fbfaf2" stroke="#d5d8dc" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="461" rx="10" fill="#fbfaf2" stroke="#d5d8dc" stroke-width="2"/>
   <text x="105" y="28" font-size="22" font-weight="700">Current five-stick batch plan · every bar is 1000 mm</text>
   <text x="105" y="50" font-size="15">Finished lengths; each narrow black divider reserves 3.2 mm of saw kerf</text>
   <g class="stock-bar" data-stock-bar="1" data-stock-length-mm="1000">
@@ -33,7 +33,7 @@
     <text class="piece-label" x="858.66" y="88"><tspan x="858.66">WIDTH-O-L</tspan><tspan x="858.66" dy="16">306 mm</tspan></text>
     <rect class="kerf" x="996.36" y="72" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
     <rect class="offcut" x="999.24" y="72" width="5.76" height="40" data-kind="offcut" data-length-mm="6.4"/>
-    <text class="remainder-label" x="1065" y="92">6.4 mm scrap</text>
+    <text class="remainder-label" x="1021" y="92">6.4 mm scrap</text>
   </g>
   <g class="stock-bar" data-stock-bar="2" data-stock-length-mm="1000">
     <text class="bar-label" x="93" y="147">Bar 2</text>
@@ -48,7 +48,7 @@
     <text class="piece-label" x="858.66" y="143"><tspan x="858.66">WIDTH-O-U</tspan><tspan x="858.66" dy="16">306 mm</tspan></text>
     <rect class="kerf" x="996.36" y="127" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
     <rect class="offcut" x="999.24" y="127" width="5.76" height="40" data-kind="offcut" data-length-mm="6.4"/>
-    <text class="remainder-label" x="1065" y="147">6.4 mm scrap</text>
+    <text class="remainder-label" x="1021" y="147">6.4 mm scrap</text>
   </g>
   <g class="stock-bar" data-stock-bar="3" data-stock-length-mm="1000">
     <text class="bar-label" x="93" y="202">Bar 3</text>
@@ -63,7 +63,7 @@
     <text class="piece-label" x="858.66" y="198"><tspan x="858.66">WIDTH-D-L</tspan><tspan x="858.66" dy="16">306 mm</tspan></text>
     <rect class="kerf" x="996.36" y="182" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
     <rect class="offcut" x="999.24" y="182" width="5.76" height="40" data-kind="offcut" data-length-mm="6.4"/>
-    <text class="remainder-label" x="1065" y="202">6.4 mm scrap</text>
+    <text class="remainder-label" x="1021" y="202">6.4 mm scrap</text>
   </g>
   <g class="stock-bar" data-stock-bar="4" data-stock-length-mm="1000">
     <text class="bar-label" x="93" y="257">Bar 4</text>
@@ -78,35 +78,30 @@
     <text class="piece-label" x="858.66" y="253"><tspan x="858.66">WIDTH-D-U</tspan><tspan x="858.66" dy="16">306 mm</tspan></text>
     <rect class="kerf" x="996.36" y="237" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
     <rect class="offcut" x="999.24" y="237" width="5.76" height="40" data-kind="offcut" data-length-mm="6.4"/>
-    <text class="remainder-label" x="1065" y="257">6.4 mm scrap</text>
+    <text class="remainder-label" x="1021" y="257">6.4 mm scrap</text>
   </g>
   <g class="stock-bar" data-stock-bar="5" data-stock-length-mm="1000">
     <text class="bar-label" x="93" y="312">Bar 5</text>
     <rect class="stock" x="105" y="292" width="900" height="40" rx="3"/>
-    <rect class="topbar" x="105" y="292" width="275.4" height="40" data-part="fixture_topbar" data-label="TOPBAR" data-disposition="use-now" data-length-mm="306"/>
-    <text class="piece-label" x="242.7" y="308"><tspan x="242.7">TOPBAR</tspan><tspan x="242.7" dy="16">306 mm · USE NOW</tspan></text>
+    <rect class="fixture" x="105" y="292" width="275.4" height="40" data-part="fixture_support_bar" data-label="FIXTURE-L" data-disposition="use-now" data-length-mm="306"/>
+    <text class="piece-label" x="242.7" y="308"><tspan x="242.7">FIXTURE-L</tspan><tspan x="242.7" dy="16">306 mm · USE NOW</tspan></text>
     <rect class="kerf" x="380.4" y="292" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
-    <rect class="topbar reserve" x="383.28" y="292" width="275.4" height="40" data-part="fixture_topbar" data-label="TOPBAR" data-disposition="reserve" data-length-mm="306"/>
-    <text class="piece-label reserve-label" x="520.98" y="308"><tspan x="520.98">TOPBAR</tspan><tspan x="520.98" dy="16">306 mm · RESERVE</tspan></text>
+    <rect class="fixture" x="383.28" y="292" width="275.4" height="40" data-part="fixture_support_bar" data-label="FIXTURE-U" data-disposition="use-now" data-length-mm="306"/>
+    <text class="piece-label" x="520.98" y="308"><tspan x="520.98">FIXTURE-U</tspan><tspan x="520.98" dy="16">306 mm · USE NOW</tspan></text>
     <rect class="kerf" x="658.68" y="292" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
-    <rect class="topbar reserve" x="661.56" y="292" width="275.4" height="40" data-part="fixture_topbar" data-label="TOPBAR" data-disposition="reserve" data-length-mm="306"/>
-    <text class="piece-label reserve-label" x="799.26" y="308"><tspan x="799.26">TOPBAR</tspan><tspan x="799.26" dy="16">306 mm · RESERVE</tspan></text>
-    <rect class="kerf" x="936.96" y="292" width="2.88" height="40" data-kind="kerf" data-length-mm="3.2"/>
-    <rect class="offcut" x="939.84" y="292" width="65.16" height="40" data-kind="offcut" data-length-mm="72.4"/>
-    <text class="remainder-label" x="1065" y="312">72.4 mm scrap</text>
+    <rect class="offcut" x="661.56" y="292" width="343.44" height="40" data-kind="offcut" data-length-mm="381.6"/>
+    <text class="remainder-label" x="1021" y="312">381.6 mm scrap</text>
   </g>
   <rect class="post" x="105" y="355" width="16" height="16"/>
   <text class="legend" x="128" y="363">vertical post</text>
-  <rect class="depth" x="257" y="355" width="16" height="16"/>
-  <text class="legend" x="280" y="363">depth rail</text>
-  <rect class="width" x="409" y="355" width="16" height="16"/>
-  <text class="legend" x="432" y="363">width rail</text>
-  <rect class="topbar" x="561" y="355" width="16" height="16"/>
-  <text class="legend" x="584" y="363">top bar · use now</text>
-  <rect class="reserve" x="713" y="355" width="16" height="16"/>
-  <text class="legend" x="736" y="363">top bar · reserve</text>
-  <rect class="offcut" x="883" y="355" width="16" height="16"/>
-  <text class="legend" x="906" y="363">scrap</text>
-  <text x="105" y="397" font-size="15" font-weight="700">13 pieces build this chassis; 2 top bars are labeled for later nodes.</text>
-  <text x="105" y="418" font-size="15">Already have one straight offcut at least 309.2 mm long? Use it for TOPBAR and omit Bar 5.</text>
+  <rect class="depth" x="280" y="355" width="16" height="16"/>
+  <text class="legend" x="303" y="363">depth rail</text>
+  <rect class="width" x="455" y="355" width="16" height="16"/>
+  <text class="legend" x="478" y="363">width rail</text>
+  <rect class="fixture" x="630" y="355" width="16" height="16"/>
+  <text class="legend" x="653" y="363">fixture-support bar</text>
+  <rect class="offcut" x="870" y="355" width="16" height="16"/>
+  <text class="legend" x="893" y="363">scrap</text>
+  <text x="105" y="397" font-size="15" font-weight="700">14 pieces build this chassis; retain Bar 5's 381.6 mm offcut.</text>
+  <text x="105" y="418" font-size="15">Already have two straight offcuts at least 309.2 mm long? Use them for FIXTURE-L / FIXTURE-U and omit Bar 5.</text>
 </svg>

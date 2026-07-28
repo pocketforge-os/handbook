@@ -18,7 +18,8 @@ python3 -m venv .venv
 ## Generated mechanical assets
 
 The test-node chassis guide consumes focused instruction renders, current
-top-bar cut data, and one semantic interactive full-chassis model generated
+dual-bar cut data, interactive print-bed previews, and one semantic
+interactive full-chassis model generated
 from `pocketforge-os/test-node-hw`. The model contains the selected handheld,
 its holder and J-hooks, the populated DUT test board, camera and field of view,
 printed suspension, and aluminum frame as named layers. Routine STLs are not
@@ -71,9 +72,10 @@ python3 scripts/verify-built-site.py site
 
 ## Browser CAD generators
 
-The print page can generate one device-pack part, a complete ZIP, or a
-personalized device-nameplate STL without a local CAD installation. It
-lazy-loads a self-hosted, revision-pinned OpenSCAD WebAssembly runtime in Web
+The print page can generate one device-pack part, a complete ZIP, one M3 or
+M5 cable anchor, or a personalized device-nameplate STL without a local CAD
+installation. It lazy-loads a self-hosted, revision-pinned OpenSCAD
+WebAssembly runtime in Web
 Workers and compiles the same hashed SCAD closure copied from the pinned
 `cad/test-node-hw` submodule. Geometry never leaves the browser.
 

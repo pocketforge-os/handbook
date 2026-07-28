@@ -10,25 +10,20 @@
       "output": "chassis/core-05-placard-holder.stl",
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
+    "trimui-smart-pro-s/chassis_dualbar_01_ironed_interfaces": {
+      "browser_normalized_sha256": "dd7002b378530e84837214d2730cfe91342fb1ddd1680f2ec3c0bd9611a81feb",
+      "output": "chassis/core-01-ironed-interfaces.stl",
+      "source_normalized_sha256": "d76a67ea8a46b1165501ced833eee47a1c6376c5fd1ea2f91ecfe4ed0814a146"
+    },
+    "trimui-smart-pro-s/chassis_dualbar_02_fixture_links": {
+      "browser_normalized_sha256": "8a318d66124268a7a00992281cdea4bf1101d2976a6db2b9a418e1c72a8e0290",
+      "output": "chassis/core-02-fixture-links.stl",
+      "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
+    },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "13fb38c44a81708f62e48fd275a2cbc942d64f4d15d1b5f403562bba18c80543",
+      "browser_normalized_sha256": "313a18ff301ce0f1db4d160a598310809baf8e08c35befadb8972f5a77d886ac",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
-    },
-    "trimui-smart-pro-s/chassis_topbar_01_ironed_interfaces": {
-      "browser_normalized_sha256": "5982806904135643515ae96687f502368aab593b1b9264ec85576f5bcee089fd",
-      "output": "chassis/core-01-ironed-interfaces.stl",
-      "source_normalized_sha256": "d177762a2ec60d4769a29177ac705c34af00e0074bf38cb68a6ad1daa0867664"
-    },
-    "trimui-smart-pro-s/chassis_topbar_02_upper_hangers": {
-      "browser_normalized_sha256": "6768e10f37f25ebea13140f4465638bd72634b30a7f738b8197fd876b08a7a91",
-      "output": "chassis/core-02-upper-hangers.stl",
-      "source_normalized_sha256": "adc5c0d8a5a198e8cfc4642b22409f62cb75f098e86b70d4b7de57d82d690594"
-    },
-    "trimui-smart-pro-s/chassis_topbar_03_lower_backstays": {
-      "browser_normalized_sha256": "17fa73785e75e5e6b5a005d20af2383dc6b89f1900f1bc71deef87c9ad994d2c",
-      "output": "chassis/core-03-lower-backstays.stl",
-      "source_normalized_sha256": "90501e02506179c71d1912569a23671aec890def6268a5fbeacfbac036524195"
     },
     "trimui-smart-pro-s/device_carrier": {
       "browser_normalized_sha256": "409028146ebee5a31cf921ffd9054fa6ac690588937d2ccb40896ba8b75610fd",
@@ -51,7 +46,7 @@
       "source_normalized_sha256": "db9f498c95a2d70d96f5272714f745382ef87b908a939a3bfd2dd47246be12fd"
     },
     "trimui-smart-pro-s/device_wire_anchors": {
-      "browser_normalized_sha256": "084483a191b7788d46a04a3d2f24cdc251ac31b2f791a10c3849da02f54bc5f8",
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
@@ -86,7 +81,7 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "b4220b00a19964754c4884ed4944fcb71955b467b36d0c4c72add93b16e2e01c",
+      "browser_normalized_sha256": "004bc151baf7479c8c142b811b6625a1eac4c080b9c0c0cc48580d9e286a9851",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -111,7 +106,7 @@
       "source_normalized_sha256": "9205e8b1a12298036ced3bc2ecba50cc6397e19dcc32e92cf69ae0dadeed7107"
     },
     "trimui-smart-pro/device_wire_anchors": {
-      "browser_normalized_sha256": "084483a191b7788d46a04a3d2f24cdc251ac31b2f791a10c3849da02f54bc5f8",
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
@@ -124,7 +119,7 @@
   "equivalence_gate": {
     "maximum_absolute_volume_delta_percent": 0.02,
     "maximum_bounds_delta_mm": 0.001,
-    "observed_maximum_absolute_volume_delta_percent": 0.014799,
+    "observed_maximum_absolute_volume_delta_percent": 0.01478,
     "observed_maximum_bounds_delta_mm": 0.000038,
     "source_toolchain": "OpenSCAD 2021.01 with Manifold"
   },
@@ -144,7 +139,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "c971bf8bf782e23754a58d47e489826bbce16756",
+    "commit": "c76bd496108bb3b4285c987810d01ef619f6a0ef",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

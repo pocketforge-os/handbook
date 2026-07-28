@@ -2,8 +2,9 @@
 
 Build the reusable aluminum frame that holds one PocketForge device, its
 inspection camera, and its populated DUT test board. New chassis builds use one
-continuous top bar to suspend the fixture board. The Smart Pro S is the worked
-example and selects the registered `chassis-topbar-v1` layout.
+continuous upper bar and one continuous lower bar to suspend the fixture
+board. The Smart Pro S is the worked example and selects the registered
+`chassis-dualbar-v1` layout.
 
 !!! info "Model the DUT first"
     Complete the
@@ -13,7 +14,7 @@ example and selects the registered `chassis-topbar-v1` layout.
     [qualify the DUT holder](../dut-holder/index.md).
 
 !!! warning "Candidate mechanical layout"
-    `chassis-topbar-v1` is deterministic and reviewable, but its printed
+    `chassis-dualbar-v1` is deterministic and reviewable, but its printed
     suspension still needs the physical fit, loaded-sag, racking, service, and
     camera checks tracked by `tsp-t1zd.2`. Generate it only with the explicit
     non-production override until that acceptance record is complete.
@@ -38,7 +39,7 @@ example and selects the registered `chassis-topbar-v1` layout.
     data-labels-visible="true"
     src="../../assets/generated/test-node-chassis/pocketforge-test-node.glb"
     poster="../../assets/generated/test-node-chassis/hero.png"
-    alt="Interactive Smart Pro S top-bar test-node chassis with modeled handheld, populated DUT test board, camera, carrier, and frame"
+    alt="Interactive Smart Pro S dual-bar test-node chassis with modeled handheld, populated DUT test board, camera, carrier, and frame"
     camera-controls
     touch-action="pan-y"
     shadow-intensity="0.7"
@@ -88,12 +89,20 @@ example and selects the registered `chassis-topbar-v1` layout.
       <span>4 operator-to-device rails</span>
     </span>
     <span
-      class="pf-model-hotspot pf-model-hotspot--topbar"
-      slot="hotspot-topbar"
+      class="pf-model-hotspot pf-model-hotspot--fixture-bar"
+      slot="hotspot-upper-fixture-bar"
       data-position="0.173m 0.358m -0.075m"
       data-normal="0 1 0">
-      <strong>TOP BAR · 306 mm</strong>
-      <span>1 fixture-support rail</span>
+      <strong>UPPER FIXTURE BAR · 306 mm</strong>
+      <span>1 continuous support rail</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--fixture-bar"
+      slot="hotspot-lower-fixture-bar"
+      data-position="0.173m 0.010m -0.075m"
+      data-normal="0 -1 0">
+      <strong>LOWER FIXTURE BAR · 306 mm</strong>
+      <span>1 continuous support rail</span>
     </span>
     <span
       class="pf-model-hotspot pf-model-hotspot--fixture"
@@ -118,7 +127,7 @@ example and selects the registered `chassis-topbar-v1` layout.
   <img
     class="pf-step-render"
     src="../../assets/generated/test-node-chassis/hero.png"
-    alt="Static fallback view of the Smart Pro S top-bar test-node chassis">
+    alt="Static fallback view of the Smart Pro S dual-bar test-node chassis">
 </noscript>
 
 Use **Hide labels** for an unobstructed view. The model is not a generic
@@ -132,17 +141,17 @@ view; and every current suspension and frame part.
 | Property | Current value |
 | --- | ---: |
 | Registered device example | `trimui-smart-pro-s` |
-| Registered chassis layout | `chassis-topbar-v1` |
+| Registered chassis layout | `chassis-dualbar-v1` |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Aluminum | 20 × 20 mm square slot-6 extrusion |
-| Finished extrusion | 4,242 mm |
-| Fresh stock | Five nominal 1 m sticks, or four plus one qualifying offcut |
-| Fixture support | One continuous 306 mm top bar |
-| Printed suspension | Two upper hangers and two lower backstays |
+| Finished extrusion | 4,548 mm |
+| Fresh stock | Five nominal 1 m sticks, or four plus two qualifying offcuts |
+| Fixture support | Two continuous 306 mm bars |
+| Printed suspension | Four identical 71.5 mm keyed fixture links |
 | DUT carrier | Device-selected holder pack on the device-side rails |
 | Stacking | Eight 18 × 92 × 4 mm registration tabs |
-| Wire management | Eight repositionable M5 rail anchors to start |
+| Wire management | Eight repositionable M5 rail anchors to start; individual M3 or M5 replacements |
 
 Routine STLs are generated, not committed. The repository commits semantic
 OpenSCAD source, device/layout records, normalized geometry locks, tests, and
@@ -173,8 +182,8 @@ depending on where someone stands.
 
 1. [Collect the parts and tools](parts.md).
 2. [Generate, verify, and print the device-selected pack](print.md).
-3. [Use scrap first and cut the 13 rails](cut.md).
-4. [Assemble the complete top-bar chassis](assemble/index.md).
+3. [Use scrap first and cut the 14 rails](cut.md).
+4. [Assemble the complete dual-bar chassis](assemble/index.md).
 5. [Run and record the candidate checks](verify.md).
 6. [Secure the finished harness to the rails](wire-management.md) only after
    the mechanical layout is accepted and every source is disconnected.

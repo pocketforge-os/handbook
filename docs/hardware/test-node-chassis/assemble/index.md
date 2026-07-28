@@ -1,7 +1,7 @@
-# Assemble the top-bar chassis
+# Assemble the dual-bar chassis
 
 Use this page at the workbench after the verified device pack is printed and
-all 13 aluminum pieces pass the cut gate. Keep every power source physically
+all 14 aluminum pieces pass the cut gate. Keep every power source physically
 disconnected.
 
 <div class="pf-chapter-meta">
@@ -31,7 +31,7 @@ disconnected.
     data-labels-visible="true"
     src="../../../assets/generated/test-node-chassis/pocketforge-test-node.glb"
     poster="../../../assets/generated/test-node-chassis/hero.png"
-    alt="Interactive Smart Pro S top-bar test-node chassis with modeled handheld, populated DUT test board, camera, carrier, and frame"
+    alt="Interactive Smart Pro S dual-bar test-node chassis with modeled handheld, populated DUT test board, camera, carrier, and frame"
     camera-controls
     touch-action="pan-y"
     shadow-intensity="0.7"
@@ -81,12 +81,20 @@ disconnected.
       <span>4 operator-to-device rails</span>
     </span>
     <span
-      class="pf-model-hotspot pf-model-hotspot--topbar"
-      slot="hotspot-topbar"
+      class="pf-model-hotspot pf-model-hotspot--fixture-bar"
+      slot="hotspot-upper-fixture-bar"
       data-position="0.173m 0.358m -0.075m"
       data-normal="0 1 0">
-      <strong>TOP BAR · 306 mm</strong>
-      <span>1 fixture-support rail</span>
+      <strong>UPPER FIXTURE BAR · 306 mm</strong>
+      <span>1 continuous support rail</span>
+    </span>
+    <span
+      class="pf-model-hotspot pf-model-hotspot--fixture-bar"
+      slot="hotspot-lower-fixture-bar"
+      data-position="0.173m 0.010m -0.075m"
+      data-normal="0 -1 0">
+      <strong>LOWER FIXTURE BAR · 306 mm</strong>
+      <span>1 continuous support rail</span>
     </span>
     <span
       class="pf-model-hotspot pf-model-hotspot--fixture"
@@ -111,7 +119,7 @@ disconnected.
   <img
     class="pf-step-render"
     src="../../../assets/generated/test-node-chassis/hero.png"
-    alt="Static fallback view of the Smart Pro S top-bar test-node chassis">
+    alt="Static fallback view of the Smart Pro S dual-bar test-node chassis">
 </noscript>
 
 The outer frame is 346 mm wide, 358 mm deep, and approximately 368 mm high.
@@ -141,11 +149,13 @@ Then:
 
 1. Put one blue-tape-tagged parked bar in the inward groove of each 318 mm
    depth rail: four parked bars total.
-2. Orient `TOPBAR` left to right with its loaded groove facing the operator.
-3. Load two active bars at the fixture plate's upper-slot X positions.
-4. Park one blue-tape-tagged bar near each top-bar end.
-5. Count **10 active width + 4 parked depth + 2 active top-bar + 2 parked
-   top-bar = 18** before installing any metal connector.
+2. Orient `FIXTURE-L` and `FIXTURE-U` left to right with their loaded grooves
+   facing the operator.
+3. Load two active bars in each fixture bar at the plate-slot X positions:
+   four active bars total.
+4. Park one blue-tape-tagged bar near an end of each fixture bar.
+5. Count **10 active width + 4 parked depth + 4 active fixture + 2 parked
+   fixture = 20** before installing any metal connector.
 
 Parked screws remain only finger-snug. All active bars stay loose until their
 mounting part is installed.
@@ -161,29 +171,35 @@ On a flat bench, stand at the operator edge and arrange:
 
 At each corner, install one metal three-way connector so the width rail butts
 against one post face and the depth rail butts against the adjacent face.
-Neither horizontal rail crosses the other. Raise all four posts, keep every
-joint finger-snug, and confirm:
+Neither horizontal rail crosses the other. Before raising the posts, install
+`FIXTURE-L` between the lower depth rails with two concealed metal
+L-connectors. Set its centerline 75 mm from the operator-side outside plane,
+keep its loaded groove facing the operator, and keep it square to both depth
+rails. Raise all four posts, keep every outer-frame joint finger-snug, and
+confirm:
 
 - the operator width rail's four-bar groove faces the chassis interior;
 - the device width rail's two-bar groove faces the operator;
 - each depth rail's parked-bar groove faces the interior; and
+- the lower fixture bar has two active bars plus one blue-tagged parked bar;
+  and
 - all four post tops remain open.
 
-## 3. Build the upper ring with the top bar
+## 3. Build the upper ring with the upper fixture bar
 
 Arrange `WIDTH-O-U`, `WIDTH-D-U`, `DEPTH-L-U`, and `DEPTH-R-U` as a flat upper
 rectangle. Install its four three-way connectors loosely.
 
 Before placing the ring on the posts:
 
-1. Put one concealed metal L-connector at each end of `TOPBAR`, using the
-   lower grooves of the top bar and upper depth rails.
-2. Keep the top bar continuous and square between the depth rails.
+1. Put one concealed metal L-connector at each end of `FIXTURE-U`, using the
+   lower grooves of the fixture bar and upper depth rails.
+2. Keep the fixture bar continuous and square between the depth rails.
 3. Set its centerline **75 mm from the operator-side outside plane**.
-4. Confirm its loaded groove faces the operator and both active hanger bars
+4. Confirm its loaded groove faces the operator and both active link bars
    remain accessible.
-5. Tighten the two metal L-connectors evenly. These connectors carry the top
-   bar.
+5. Tighten the two metal L-connectors evenly. These connectors secure the
+   upper fixture bar.
 6. With a helper if available, lower the complete upper ring evenly onto all
    four posts. Stop and realign if one corner resists.
 
@@ -198,8 +214,8 @@ torque yet.
 4. Use a machinist square to make all four posts plumb.
 5. Tighten opposite corners in a cross pattern, rechecking both diagonal pairs
    after every pass.
-6. Confirm the chassis sits without rocking and the top bar remains at the
-   75 mm datum.
+6. Confirm the chassis sits without rocking and both fixture bars remain at
+   the 75 mm datum.
 
 ## 5. Mount the verified DUT holder
 
@@ -217,31 +233,30 @@ same verified device pack.
    must clear its controls, ports, speakers, vents, triggers, and screen.
 6. Remove the handheld again if later work could drop hardware onto it.
 
-## 6. Hang and brace the populated fixture board
+## 6. Join the populated fixture board to both bars
 
-![Installed top-bar fixture suspension detail](../../../assets/generated/test-node-chassis/topbar/layout-suspension-detail.png)
+![Installed upper and lower fixture-bar links](../../../assets/generated/test-node-chassis/dualbar/layout-suspension-detail.png)
 
 Turn the fixture board so its components face the operator and the Logitech
 C270 lens points toward the DUT. At each left/right side:
 
-1. Seat one upper hanger's 16 × 6.43 mm key in the top bar's operator-facing
-   groove.
-2. Move an active channel bar under its round hole and clamp it with an
-   M3 × 12 mm screw and wide washer.
-3. Bring the hanger's **2.5 mm lower lap** against the board's upper slot.
-4. Flip one lower backstay from its print orientation. Put its **2.5 mm upper
-   lap** on the rail-side half of the same upper joint.
-5. Clamp the hanger lap, fixture-board slot, and complementary backstay lap
-   with one through-fastener, wide washers, and a metal locknut. The printed
-   halves form one flat **2.5 + 2.5 mm = 5 mm** strap.
-6. Clamp the backstay's lower round hole through the board's lower slot with
-   the same washer-and-locknut arrangement.
-7. Repeat on the other side. Leave all four board joints just loose enough to
+1. Seat one link's 16 × 6.43 mm key in the upper fixture bar's
+   operator-facing groove. Move an active channel bar under its rail-side
+   hole and clamp it with an M3 × 12 mm screw and wide washer.
+2. Put the link below the upper plate slot, then clamp its plate-side hole
+   through that slot with a through-fastener, wide washers, and a metal
+   locknut.
+3. Seat a second identical link in the lower fixture bar's operator-facing
+   groove. The link rises from the bar to the lower plate slot. Clamp its
+   rail-side hole to the active channel bar.
+4. Put the lower link above the lower plate slot and clamp its plate-side hole
+   through the slot with the same washer-and-locknut arrangement.
+5. Repeat on the other side. Leave all four plate joints just loose enough to
    remove twist, then tighten them evenly by hand.
 
-Both hangers carry the board. Both backstays are required to prevent swing and
-racking. No printed lap, fastener, or rail may touch a fixture component,
-connector, or cable.
+All four identical links are required. The upper and lower aluminum bars
+prevent swing and racking; no printed link, fastener, or rail may touch a
+fixture component, connector, or cable.
 
 ## 7. Add the placard, power-strip mounts, and stacking tabs
 
@@ -267,12 +282,13 @@ connector, or cable.
 
 ## 8. Align the camera and finish the mechanical build
 
-1. Confirm the top-bar centerline remains at 75 mm and the fixture board lies
-   flat.
-2. To adjust operator-to-device position, loosen both metal L-connectors,
-   move the complete top bar without skewing it, then retighten both sides.
+1. Confirm both fixture-bar centerlines remain at 75 mm and the fixture board
+   lies flat.
+2. To adjust operator-to-device position, loosen all four metal L-connectors,
+   move the upper and lower bars to the same new datum without skewing either
+   one, then retighten all four connectors.
 3. Use the fixture-board slots only for final left/right centering. Keep every
-   printed lap flat and every key seated.
+   printed link flat and every key seated.
 4. Connect only the Logitech C270 to a safe viewing computer if needed.
 5. Confirm the complete unpowered handheld is visible with margin on all four
    sides and the screen is not keystoned.
@@ -281,10 +297,11 @@ connector, or cable.
 
 Before leaving the bench:
 
-- [ ] all 18 channel bars are accounted for;
+- [ ] all 20 channel bars are accounted for;
 - [ ] every outer-frame joint is flush, square, and tight;
-- [ ] the continuous top bar is square and locked at its recorded datum;
-- [ ] two hangers and two backstays are installed without fixture collisions;
+- [ ] both continuous fixture bars are square and locked at the same recorded
+      datum;
+- [ ] four identical links are installed without fixture collisions;
 - [ ] the DUT holder is centered, correctly oriented, and unobstructed;
 - [ ] placard, power-strip switch, service corridors, and stacking interfaces
       remain accessible; and

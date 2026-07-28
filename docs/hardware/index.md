@@ -9,8 +9,8 @@ around it:
 - The **fixture contract** is the versioned manufacturing interface derived
   from evidence and in-hand measurements: datums, safe contacts, keep-outs,
   tolerances, and unresolved fit values.
-- The **test-node chassis** is the stackable aluminum frame, top-bar fixture
-  suspension, carrier, and mechanical mounting hardware.
+- The **test-node chassis** is the stackable aluminum frame, matched lower
+  and upper fixture-bar suspension, carrier, and mechanical mounting hardware.
 - The **test node** is the completed chassis after its power, USB, console,
   camera, and control electronics are installed.
 

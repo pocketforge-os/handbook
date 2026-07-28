@@ -81,6 +81,57 @@ until its baseline is deliberately re-qualified.
   Browser generation requires JavaScript. Use the command-line path below.
 </noscript>
 
+## Generate one cable anchor
+
+The complete pack includes eight default M5 rail anchors. Use this control
+when you need one replacement or prefer an M3 drop-in T-nut. Only the center
+clearance changes; the 32 × 18 × 8.8 mm body and both zip-tie tunnels remain
+the same.
+
+<script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
+<script type="module" src="../../../assets/cable-anchor-customizer.mjs"></script>
+<section
+  class="pf-cable-anchor-customizer"
+  data-cable-anchor-customizer
+  data-worker-url="../../../assets/cable-anchor-worker.mjs"
+  aria-labelledby="cable-anchor-customizer-title">
+  <div class="pf-cable-anchor-customizer__controls">
+    <h3 id="cable-anchor-customizer-title">One rail cable / zip-tie anchor</h3>
+    <label>
+      <span>Drop-in T-nut and screw</span>
+      <select data-anchor-fastener>
+        <option value="M5">M5 · default starter-pack hardware</option>
+        <option value="M3">M3 · smaller drop-in hardware</option>
+      </select>
+    </label>
+    <p data-anchor-hardware></p>
+    <button type="button" data-anchor-generate>Generate one anchor</button>
+    <p data-anchor-status role="status" aria-live="polite"></p>
+    <a data-anchor-download hidden>Download cable-anchor STL</a>
+  </div>
+  <div class="pf-cable-anchor-customizer__preview">
+    <model-viewer
+      data-anchor-preview
+      data-m5-model="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m5.glb"
+      data-m5-poster="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m5.png"
+      data-m3-model="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m3.glb"
+      data-m3-poster="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m3.png"
+      src="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m5.glb"
+      poster="../../../assets/generated/test-node-chassis/print-batches/cable-anchor-m5.png"
+      alt="Interactive preview of one rail cable anchor with an M5 center hole"
+      camera-controls
+      touch-action="pan-y"
+      shadow-intensity="0.6"
+      camera-orbit="35deg 60deg 0.12m">
+    </model-viewer>
+    <span class="pf-model-help">drag to rotate · scroll to zoom</span>
+  </div>
+</section>
+
+The generated part prints broad rail-contact face down in ABS, at 100% scale,
+with supports disabled. Pair it with the selected M3 or M5 hardware; do not
+drill one variant into the other.
+
 ## Command-line alternative
 
 For automation or independent source verification, generate the same
@@ -96,13 +147,13 @@ python3 mechanical/device-packs/build_device_pack.py verify \
   --pack mechanical/device-packs/build/trimui-smart-pro-s/full
 ```
 
-The device slug selects `chassis-topbar-v1`. The explicit override permits
+The device slug selects `chassis-dualbar-v1`. The explicit override permits
 candidate generation; it does not qualify the layout. Before slicing, inspect
 `manifest.json` and confirm:
 
 - `production_eligible` is `false`;
 - `nonproduction_reasons` is exactly `["layout_unqualified"]`;
-- the selected layout is `chassis-topbar-v1`; and
+- the selected layout is `chassis-dualbar-v1`; and
 - `layout.qualification.acceptance_ref` is `tsp-t1zd.2`.
 
 Stop if any value differs.
@@ -128,30 +179,62 @@ known-good ABS profile. Do not scale, auto-orient, or auto-arrange these beds.
 The exported placement is part of the geometry contract.
 
 !!! warning "Check the usable bed, not the advertised bed"
-    The 244 mm backstay axis intentionally uses almost all of the 247 mm
-    validated X envelope. Confirm every object remains inside the slicer's
-    usable area.
+    Confirm every exported object remains inside the validated 247 × 207 mm
+    usable area. Do not let a slicer move, rotate, or scale an object to match
+    a different advertised envelope.
 
 ## Inspect the generated chassis beds
 
 | Pack output | Expected contents | Special handling |
 | --- | --- | --- |
 | `calibration/chassis-process-calibration.stl` | Rail-key, channel-bar, and placard coupons | Conditional after a process or interface change |
-| `chassis/core-01-ironed-interfaces.stl` | 18 compact M3 channel bars | Iron topmost channel-contact surfaces |
-| `chassis/core-02-upper-hangers.stl` | Two keyed upper hangers | Keep the exported keyed faces upward |
-| `chassis/core-03-lower-backstays.stl` | Two 244 mm lower backstays | Keep the 244 mm axis on the long bed axis |
+| `chassis/core-01-ironed-interfaces.stl` | 20 compact M3 channel bars | Iron topmost channel-contact surfaces |
+| `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links | Keep the exported broad faces on the bed and keys upward |
 | `chassis/core-04-frame-hardware.stl` | Stacking, placard, and power-strip hardware | Inspect every slot and through-hole |
 | `chassis/core-05-placard-holder.stl` | One reusable placard holder | Check the slide channel before installing it |
 
-![Two upper hangers in their support-free exported orientation](../../assets/generated/test-node-chassis/topbar/layout-upper-hangers.png)
+### Interactive print-bed previews
 
-![Two 244 mm lower backstays aligned to the long bed axis](../../assets/generated/test-node-chassis/topbar/layout-lower-backstays.png)
+Each poster is generated from the same pinned OpenSCAD source as the browser
+recipe. Select or drag a preview to inspect the actual exported arrangement;
+no STL is stored on the site.
+
+<div class="pf-print-preview-grid">
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-00-calibration.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-00-calibration.png" alt="Interactive preview of the optional chassis calibration bed" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Calibration</strong><span>Conditional interface coupons</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.png" alt="Interactive preview of 20 compact channel bars" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 01</strong><span>20 ironed channel bars</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.png" alt="Interactive preview of four identical keyed fixture links" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 02</strong><span>4 identical fixture links</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.png" alt="Interactive preview of the frame hardware print bed" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 04</strong><span>Frame completion hardware</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-05-placard-holder.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-05-placard-holder.png" alt="Interactive preview of the reusable placard holder" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 05</strong><span>Reusable placard holder</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-06-device-nameplate.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-06-device-nameplate.png" alt="Interactive preview of the two-color device nameplate bed" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Device 06</strong><span>Two-color nameplate</span></figcaption>
+  </figure>
+  <figure class="pf-print-preview">
+    <model-viewer src="../../../assets/generated/test-node-chassis/print-batches/batch-07-wire-management.glb" poster="../../../assets/generated/test-node-chassis/print-batches/batch-07-wire-management.png" alt="Interactive preview of eight rail-mounted cable and zip-tie anchors" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Device 07</strong><span>8 cable / zip-tie anchors</span></figcaption>
+  </figure>
+</div>
 
 The same manifest selects the Smart Pro S holder, six J-hooks, holder fit
 coupon, four carrier links, device nameplate, and eight starter wire anchors.
 Use every device-specific piece from this one verified pack.
 
-## Seat and account for all 18 channel-bar nuts
+## Seat and account for all 20 channel-bar nuts
 
 A channel bar is the compact orange 18 mm carrier with one ordinary metal M3
 nut seated in its hex pocket. The metal nut supplies the thread; the printed
@@ -163,18 +246,18 @@ carrier keeps it aligned inside the rail.
    carrier, then turn it into the nut by hand.
 4. Tighten only until the nut reaches the bottom of the pocket.
 5. Remove the screw and washer. Confirm the nut lies flat and cannot rotate.
-6. Repeat for all 18 carriers. Do not glue, hammer, melt, or encapsulate a nut.
+6. Repeat for all 20 carriers. Do not glue, hammer, melt, or encapsulate a nut.
 
-![Top-bar channel-bar preload map](../../assets/generated/test-node-chassis/topbar/layout-preload.png)
+![Dual-bar channel-bar preload map](../../assets/generated/test-node-chassis/dualbar/layout-preload.png)
 
-The exact inventory is **12 active + 6 parked = 18**:
+The exact inventory is **14 active + 6 parked = 20**:
 
 | Destination | Active | Parked with removable blue tape |
 | --- | ---: | ---: |
 | Four outer width rails | 10 | 0 |
 | Four outer depth rails | 0 | 4 |
-| Continuous top bar | 2 | 2 |
-| **Total** | **12** | **6** |
+| Lower and upper fixture bars | 4 | 2 |
+| **Total** | **14** | **6** |
 
 Parked bars are identical service spares. Blue tape marks the retaining screw;
 there is no separately printed blue part. Keep each parked screw only tight
@@ -257,14 +340,13 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
       manifest.
 - [ ] The manifest remains non-production with only `layout_unqualified`.
 - [ ] Every bed stayed at 100% scale in its exported support-free orientation.
-- [ ] Core 01 contains exactly 18 compact channel bars.
-- [ ] Core 02 contains exactly two keyed upper hangers.
-- [ ] Core 03 contains exactly two undamaged 244 mm backstays.
-- [ ] All 18 captive nuts sit flat and cannot rotate.
-- [ ] The preload count balances to 12 active and 6 blue-tagged parked bars.
+- [ ] Core 01 contains exactly 20 compact channel bars.
+- [ ] Core 02 contains exactly four identical keyed fixture links.
+- [ ] All 20 captive nuts sit flat and cannot rotate.
+- [ ] The preload count balances to 14 active and 6 blue-tagged parked bars.
 - [ ] The holder, J-hooks, carrier links, and nameplate all come from the same
       verified device pack.
-- [ ] Every stacking-tab hole, hanger key, backstay hole, and zip-tie tunnel
+- [ ] Every stacking-tab hole, fixture-link key, link hole, and zip-tie tunnel
       is open and undamaged.
 
 Next: [cut the aluminum rails](cut.md).

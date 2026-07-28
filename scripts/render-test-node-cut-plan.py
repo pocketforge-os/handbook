@@ -17,7 +17,7 @@ PART_PRESENTATION = {
     "outer_vertical_rail": ("post", "vertical post"),
     "outer_depth_rail": ("depth", "depth rail"),
     "outer_width_rail": ("width", "width rail"),
-    "fixture_topbar": ("topbar", "fixture top bar"),
+    "fixture_support_bar": ("fixture", "fixture-support bar"),
 }
 DISPOSITIONS = {"use-now", "reserve"}
 ZERO = Decimal("0")
@@ -194,10 +194,10 @@ def svg_number(value: float) -> str:
 def render_svg(plan: dict, bars: list[dict]) -> str:
     stock_length: Decimal = plan["stock_length_mm"]
     kerf: Decimal = plan["kerf_mm"]
-    canvas_width = 1120
+    canvas_width = 1200
     bar_x = 105.0
     bar_width = 900.0
-    remainder_x = 1065.0
+    remainder_x = bar_x + bar_width + 16.0
     row_height = 55.0
     first_row_y = 72.0
     bar_height = 40.0
@@ -209,18 +209,13 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
         for bar in bars
         for piece in bar["pieces"]
     )
-    reserve_count = sum(
-        piece["disposition"] == "reserve"
-        for bar in bars
-        for piece in bar["pieces"]
-    )
-    title = "Five-stick test-node chassis batch cut plan"
+    title = "Five-stick dual-bar test-node chassis cut plan"
     description = (
         f"Five 1000 millimetre extrusion bars. Bars one through four each "
         "yield one 360 millimetre post, one 318 millimetre depth rail, and "
         "one 306 millimetre width rail, leaving 6.4 millimetres. Bar five "
-        "yields one 306 millimetre top bar for this chassis and two reserved "
-        "top bars, leaving 72.4 millimetres."
+        "yields the 306 millimetre lower and upper fixture-support bars, "
+        "leaving a reusable 381.6 millimetre offcut."
     )
 
     lines = [
@@ -240,7 +235,7 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
         "    .post { fill: #c95508; }",
         "    .depth { fill: #2f6f91; }",
         "    .width { fill: #4f8057; }",
-        "    .topbar { fill: #694b94; }",
+        "    .fixture { fill: #694b94; }",
         "    .reserve { fill: #baa8d1; }",
         "    .kerf { fill: #17212b; }",
         "    .offcut { fill: #d8d8d2; }",
@@ -254,7 +249,7 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
             "text-anchor: end; dominant-baseline: middle; }"
         ),
         (
-            "    .remainder-label { font-size: 14px; text-anchor: middle; "
+            "    .remainder-label { font-size: 14px; text-anchor: start; "
             "dominant-baseline: middle; }"
         ),
         "    .legend { font-size: 15px; dominant-baseline: middle; }",
@@ -311,7 +306,7 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
                 decimal_text(piece["length"]) + " mm · RESERVE"
                 if piece["disposition"] == "reserve"
                 else decimal_text(piece["length"]) + " mm · USE NOW"
-                if piece["part"] == "fixture_topbar"
+                if piece["part"] == "fixture_support_bar"
                 else decimal_text(piece["length"]) + " mm"
             )
             lines.extend(
@@ -375,12 +370,13 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
         ("post", "vertical post"),
         ("depth", "depth rail"),
         ("width", "width rail"),
-        ("topbar", "top bar · use now"),
-        ("reserve", "top bar · reserve"),
+        ("fixture", "fixture-support bar"),
         ("offcut", "scrap"),
     ]
-    legend_x = 105.0
-    for css_class, label in legend_items:
+    legend_positions = (105.0, 280.0, 455.0, 630.0, 870.0)
+    for (css_class, label), legend_x in zip(
+        legend_items, legend_positions, strict=True
+    ):
         lines.extend(
             [
                 (
@@ -393,20 +389,19 @@ def render_svg(plan: dict, bars: list[dict]) -> str:
                 ),
             ]
         )
-        legend_x += 152.0 if css_class != "reserve" else 170.0
-
     footer_y = legend_y + 42
     lines.extend(
         [
             (
                 f'  <text x="105" y="{svg_number(footer_y)}" font-size="15" '
                 f'font-weight="700">{active_count} pieces build this chassis; '
-                f'{reserve_count} top bars are labeled for later nodes.</text>'
+                "retain Bar 5's 381.6 mm offcut.</text>"
             ),
             (
                 f'  <text x="105" y="{svg_number(footer_y + 21)}" '
-                'font-size="15">Already have one straight offcut at least '
-                "309.2 mm long? Use it for TOPBAR and omit Bar 5.</text>"
+                'font-size="15">Already have two straight offcuts at least '
+                "309.2 mm long? Use them for FIXTURE-L / FIXTURE-U and omit "
+                "Bar 5.</text>"
             ),
             "</svg>",
             "",

@@ -99,22 +99,16 @@
       "number": 5,
       "pieces": [
         {
-          "part": "fixture_topbar",
-          "label": "TOPBAR",
+          "part": "fixture_support_bar",
+          "label": "FIXTURE-L",
           "length_mm": 306,
           "disposition": "use-now"
         },
         {
-          "part": "fixture_topbar",
-          "label": "TOPBAR",
+          "part": "fixture_support_bar",
+          "label": "FIXTURE-U",
           "length_mm": 306,
-          "disposition": "reserve"
-        },
-        {
-          "part": "fixture_topbar",
-          "label": "TOPBAR",
-          "length_mm": 306,
-          "disposition": "reserve"
+          "disposition": "use-now"
         }
       ]
     }
