@@ -168,6 +168,18 @@ install -m 0644 \
   "${project_dir}/build/topbar/layout-upper-hangers.png" \
   "${project_dir}/build/topbar/cut-list.csv" \
   "${asset_dir}/topbar/"
+
+cut_plan_mode=--check
+if [[ "${UPDATE_CUT_PLAN:-0}" == "1" ]]; then
+  cut_plan_mode=--write
+fi
+python3 \
+  "${script_dir}/render-test-node-cut-plan.py" \
+  --plan "${repo_root}/docs/assets/test-node-chassis-cut-plan.json" \
+  --cut-list "${asset_dir}/topbar/cut-list.csv" \
+  --output "${repo_root}/docs/assets/test-node-chassis-cut-plan.svg" \
+  "${cut_plan_mode}"
+
 install -m 0644 \
   "${project_dir}/pocketforge-node-chassis.scad" \
   "${asset_dir}/customizer/pocketforge-node-chassis.scad"

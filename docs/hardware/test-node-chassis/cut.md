@@ -15,6 +15,33 @@ requested length.
 
 [Download the generated machine-readable cut list](../../assets/generated/test-node-chassis/topbar/cut-list.csv).
 
+## Five-stick cut plan
+
+<div class="pf-cut-plan-scroll" role="region"
+     aria-label="Five-stick cut-plan diagram; scroll horizontally on a narrow screen"
+     tabindex="0">
+  <img class="pf-cut-plan-image"
+       src="../../../assets/test-node-chassis-cut-plan.svg"
+       alt="Five 1000 mm aluminum bars divided into four labeled frame-part sets and one batch of three labeled top bars, with 3.2 mm kerfs and the remaining scrap shown to scale">
+</div>
+<p class="pf-cut-plan-scroll-hint">Swipe sideways to inspect every scaled segment.</p>
+
+Bars 1–4 make this chassis's outer frame. Bar 5 is the recommended batch
+route when no qualifying offcut exists: use one top bar now and label two for
+the next two chassis.
+
+| Stock bar | Cuts, in order | Conservative remainder |
+| ---: | --- | ---: |
+| 1 | `POST-OL` 360, `DEPTH-L-L` 318, `WIDTH-O-L` 306 mm | 6.4 mm |
+| 2 | `POST-OR` 360, `DEPTH-R-L` 318, `WIDTH-O-U` 306 mm | 6.4 mm |
+| 3 | `POST-DL` 360, `DEPTH-L-U` 318, `WIDTH-D-L` 306 mm | 6.4 mm |
+| 4 | `POST-DR` 360, `DEPTH-R-U` 318, `WIDTH-D-U` 306 mm | 6.4 mm |
+| 5 | `TOPBAR` 306 mm use now, then 2 × `TOPBAR` 306 mm reserve | 72.4 mm |
+
+The four frame sticks are already 99.36% allocated: their four 6.4 mm
+remainders total only **25.6 mm**. They cannot supply the 306 mm top bar, with
+or without a joint.
+
 ## Use qualifying scrap first
 
 Look for one straight, undamaged 2020 offcut at least **309.2 mm** long:
