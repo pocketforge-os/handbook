@@ -10,22 +10,38 @@ chapter, and verification gate.
     different chassis chapter. Return here and start from the matching build
     sheet whenever the DUT changes.
 
-## Select the DUT
+## Generate the instructions for your DUT
 
-<div class="pf-device-grid">
-  <a class="pf-device-card" href="devices/trimui-smart-pro/" data-device-slug="trimui-smart-pro" data-layout-id="chassis-core-v1">
-    <span class="pf-device-card__eyebrow">PHYSICALLY QUALIFIED</span>
-    <strong>TrimUI Smart Pro</strong>
-    <span>Smart Pro family holder and integration route</span>
-    <small>Qualified gantry chassis · <code>chassis-core-v1</code></small>
-  </a>
-  <a class="pf-device-card" href="devices/trimui-smart-pro-s/" data-device-slug="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1">
-    <span class="pf-device-card__eyebrow">CANDIDATE · OWNER GATE REQUIRED</span>
-    <strong>TrimUI Smart Pro S</strong>
-    <span>Smart Pro family holder and integration route</span>
-    <small>Dual-bar chassis · <code>chassis-dualbar-v1</code></small>
-  </a>
-</div>
+<script type="module" src="../../assets/test-node-guide-selector.mjs"></script>
+<section
+  class="pf-guide-selector"
+  data-test-node-guide-selector=""
+  data-profiles-url="../../assets/test-node-guide-profiles.json">
+  <div class="pf-guide-selector__control">
+    <label for="pf-guide-device">Choose the handheld you are building around</label>
+    <select
+      id="pf-guide-device"
+      data-guide-device-select=""
+      aria-describedby="pf-guide-status"
+      disabled>
+      <option value="">Choose a DUT…</option>
+    </select>
+    <p id="pf-guide-status" data-guide-status="" role="status" aria-live="polite">
+      Loading the registered devices…
+    </p>
+  </div>
+  <div class="pf-guide-result" data-guide-result="" hidden></div>
+</section>
+
+<noscript>
+  <div class="admonition info">
+    <p class="admonition-title">Device build sheets</p>
+    <p>The dropdown needs JavaScript. Continue directly with the
+    <a href="devices/trimui-smart-pro/">TrimUI Smart Pro build sheet</a> or the
+    <a href="devices/trimui-smart-pro-s/">TrimUI Smart Pro S build sheet</a>;
+    each sheet links its complete instruction sequence.</p>
+  </div>
+</noscript>
 
 The two current devices are close relatives and share the
 `trimui-smart-pro-family` holder mechanism and
