@@ -124,6 +124,7 @@ make_command=(
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
   guide-model
+  guide-dualbar-assembly-steps
   dualbar-preview
   dualbar-cutlist
   guide-batch-models
@@ -167,6 +168,7 @@ if [[ -d "${asset_dir}" ]]; then
   find "${asset_dir}" -mindepth 1 -depth -delete
 fi
 mkdir -p \
+  "${asset_dir}/assembly" \
   "${asset_dir}/browser" \
   "${asset_dir}/customizer/lib" \
   "${asset_dir}/dualbar" \
@@ -183,6 +185,9 @@ install -m 0644 \
   "${project_dir}/build/dualbar/layout-suspension-detail.png" \
   "${project_dir}/build/dualbar/cut-list.csv" \
   "${asset_dir}/dualbar/"
+install -m 0644 \
+  "${project_dir}"/build/handbook/assembly-*.png \
+  "${asset_dir}/assembly/"
 install -m 0644 \
   "${project_dir}"/build/handbook/batch-*.png \
   "${project_dir}"/build/handbook/batch-*.glb \
@@ -252,6 +257,23 @@ required_assets=(
   dualbar/layout-preload.png
   dualbar/layout-suspension-detail.png
   dualbar/cut-list.csv
+  assembly/assembly-01-channel-bar.png
+  assembly/assembly-02-width-rails.png
+  assembly/assembly-03-depth-rails.png
+  assembly/assembly-04-fixture-bars.png
+  assembly/assembly-05-lower-frame.png
+  assembly/assembly-06-lower-fixture-bar.png
+  assembly/assembly-07-posts.png
+  assembly/assembly-08-upper-ring.png
+  assembly/assembly-09-upper-fixture-bar.png
+  assembly/assembly-10-close-frame.png
+  assembly/assembly-11-square-frame.png
+  assembly/assembly-12-dut-holder.png
+  assembly/assembly-13-fixture-board.png
+  assembly/assembly-14-placard.png
+  assembly/assembly-15-power-strip.png
+  assembly/assembly-16-stacking-tabs.png
+  assembly/assembly-17-final.png
   print-batches/batch-00-calibration.png
   print-batches/batch-00-calibration.glb
   print-batches/batch-01-ironed-interfaces.png
