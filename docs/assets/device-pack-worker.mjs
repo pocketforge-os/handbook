@@ -72,11 +72,12 @@ async function loadEngineInputs(request, catalog, baselines) {
       return { path: record.path, bytes };
     }),
   );
-  const [runtimeSourceBytes, runtimeBytes, font, fontConfig] =
+  const [runtimeSourceBytes, runtimeBytes, boldFont, regularFont, fontConfig] =
     await Promise.all([
       fetchBytes(request.runtimeUrl),
       fetchBytes(new URL("openscad.wasm", request.runtimeUrl)),
       fetchBytes(request.fontUrl),
+      fetchBytes(request.regularFontUrl),
       fetchText(request.fontConfigUrl),
     ]);
   if (
@@ -87,7 +88,14 @@ async function loadEngineInputs(request, catalog, baselines) {
     throw new Error("The pinned browser OpenSCAD runtime hash changed.");
   }
   const runtimeModule = await import(request.runtimeUrl);
-  return { sourceFiles, runtimeModule, runtimeBytes, font, fontConfig };
+  return {
+    sourceFiles,
+    runtimeModule,
+    runtimeBytes,
+    boldFont,
+    regularFont,
+    fontConfig,
+  };
 }
 
 async function initializeEngine(request, inputs) {
@@ -113,7 +121,11 @@ async function initializeEngine(request, inputs) {
   }
   instance.FS.writeFile(
     "/work/fonts/LiberationSans-Bold.ttf",
-    inputs.font,
+    inputs.boldFont,
+  );
+  instance.FS.writeFile(
+    "/work/fonts/LiberationSans-Regular.ttf",
+    inputs.regularFont,
   );
   instance.FS.writeFile("/work/fonts/fonts.conf", inputs.fontConfig);
   instance.FS.chdir("/work");

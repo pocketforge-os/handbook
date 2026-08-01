@@ -104,8 +104,8 @@ measurements and obtain the owner's explicit fit/rigidity decision under
 
 - [ ] The placard reads from the operator side and its cartridge remains
       replaceable.
-- [ ] The unplugged power strip hangs inside the operator lower rail without
-      enclosure damage or a bottomed screw.
+- [ ] The unplugged power strip runs front-to-back inside the lower
+      operator-right depth rail without enclosure damage or a bottomed screw.
 - [ ] Two 18 × 92 × 4 mm registration tabs are installed at every upper
       corner, eight total.
 - [ ] Every tab engages 60 mm below the top aluminum surface, extends 32 mm

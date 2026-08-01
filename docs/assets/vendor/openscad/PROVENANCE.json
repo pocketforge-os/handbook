@@ -15,7 +15,10 @@
     "source_revision": "2.1.5",
     "archive_url": "https://ochafik.com/openscad2/libraries/fonts.zip",
     "archive_sha256": "7b0731569b3b815a144fe350b60aa52c12d0b97b3dbfeff0d72a5012f16622f0",
-    "font_file": "fonts/LiberationSans-Bold.ttf",
+    "font_files": [
+      "fonts/LiberationSans-Bold.ttf",
+      "fonts/LiberationSans-Regular.ttf"
+    ],
     "license": "OFL-1.1",
     "license_file": "fonts/LICENSE.txt"
   }

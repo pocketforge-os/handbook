@@ -140,22 +140,26 @@ Load the four width rails:
 
 | Rail | Loaded groove faces | Active bars |
 | --- | --- | ---: |
-| `WIDTH-O-L` | Device / inside | 4 |
+| `WIDTH-O-L` | None | 0 |
 | `WIDTH-O-U` | Operator / outside | 2 |
 | `WIDTH-D-L` | Operator / inside | 2 |
 | `WIDTH-D-U` | Operator / inside | 2 |
 
 Then:
 
-1. Put one blue-tape-tagged parked bar in the inward groove of each 318 mm
-   depth rail: four parked bars total.
-2. Orient `FIXTURE-L` and `FIXTURE-U` left to right with their loaded grooves
+1. Load four active bars into the inward groove of `DEPTH-R-L`, the lower
+   right rail as viewed from the operator side. These become the two mounting
+   holes for each power-strip block.
+2. Put one blue-tape-tagged parked bar in the inward groove of each 318 mm
+   depth rail: four parked bars total. `DEPTH-R-L` now carries four active
+   bars plus its one parked spare.
+3. Orient `FIXTURE-L` and `FIXTURE-U` left to right with their loaded grooves
    facing the operator.
-3. Load two active bars in each fixture bar at the plate-slot X positions:
+4. Load two active bars in each fixture bar at the plate-slot X positions:
    four active bars total.
-4. Park one blue-tape-tagged bar near an end of each fixture bar.
-5. Count **10 active width + 4 parked depth + 4 active fixture + 2 parked
-   fixture = 20** before installing any metal connector.
+5. Park one blue-tape-tagged bar near an end of each fixture bar.
+6. Count **6 active width + 4 active right-depth + 4 parked depth + 4 active
+   fixture + 2 parked fixture = 20** before installing any metal connector.
 
 Parked screws remain only finger-snug. All active bars stay loose until their
 mounting part is installed.
@@ -263,9 +267,10 @@ fixture component, connector, or cable.
 - Mount the reusable placard holder below the operator upper width rail with
   its two risers/spacers and flat-head M3 fasteners. The name cartridge must
   slide out without disturbing the fixture board.
-- Keep the power strip unplugged. Move the four active channel bars in the
-  operator lower width rail under the two mounting holes in each printed
-  block, then clamp the blocks with four M3 × 12 mm screws and wide washers.
+- Keep the power strip unplugged. On the lower operator-right depth rail, move
+  the four active channel bars under the two mounting holes in each printed
+  block. Clamp the blocks with four M3 × 12 mm screws and wide washers, with
+  the strip's long axis running front-to-back inside the chassis.
   Use the strip's supplied wall-mount screws only between the strip and the
   printed blocks. A supplied screw must not bottom against aluminum or pierce
   the enclosure.

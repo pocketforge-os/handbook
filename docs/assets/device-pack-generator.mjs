@@ -26,6 +26,10 @@ function initializeGenerator(root) {
   const workerUrl = new URL(root.dataset.workerUrl, document.baseURI);
   const runtimeUrl = new URL(root.dataset.runtimeUrl, document.baseURI);
   const fontUrl = new URL(root.dataset.fontUrl, document.baseURI);
+  const regularFontUrl = new URL(
+    root.dataset.regularFontUrl,
+    document.baseURI,
+  );
   const fontConfigUrl = new URL(root.dataset.fontConfigUrl, document.baseURI);
   const objectUrls = new Set();
   let catalog;
@@ -293,6 +297,7 @@ function initializeGenerator(root) {
       baselineUrl: baselineUrl.href,
       runtimeUrl: runtimeUrl.href,
       fontUrl: fontUrl.href,
+      regularFontUrl: regularFontUrl.href,
       fontConfigUrl: fontConfigUrl.href,
       deviceSlug: activeSelection.device.slug,
       mode: activeSelection.modeName,
