@@ -26,6 +26,7 @@ until its baseline is deliberately re-qualified.
   data-worker-url="../../../assets/device-pack-worker.mjs"
   data-runtime-url="../../../assets/vendor/openscad/openscad.js"
   data-font-url="../../../assets/vendor/openscad/fonts/LiberationSans-Bold.ttf"
+  data-regular-font-url="../../../assets/vendor/openscad/fonts/LiberationSans-Regular.ttf"
   data-font-config-url="../../../assets/vendor/openscad/fonts/fonts.conf"
   aria-labelledby="device-pack-generator-title"
   aria-busy="false">

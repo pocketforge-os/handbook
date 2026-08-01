@@ -19,6 +19,7 @@ declare -A expected_sha256=(
   ["openscad.wasm"]="f72ce246c02c0e501990837102be383326b153fd761774ebfacce5c80c5ecf26"
   ["COPYING.txt"]="1805a29c3bccbc0428ce0048a1dfdeb9b1867677410e99c89c3c30932ae8c7d5"
   ["fonts/LiberationSans-Bold.ttf"]="d723d5a272970aedf296ef6fc628180df6074bce7769701ea9e0d222c052668c"
+  ["fonts/LiberationSans-Regular.ttf"]="e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49"
   ["fonts/fonts.conf"]="8b8c23ea9fc123db3f758872f76dbf841191bf751ddb7ef73a11a1eb3a1a25de"
   ["fonts/LICENSE.txt"]="93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b"
   ["fonts/AUTHORS.txt"]="d640bd6acfd5f7558507851f3e8936857b390bbe7e10c662241161dd83dbe830"
@@ -64,6 +65,10 @@ expected = {
     "openscad_source_revision": sys.argv[3],
     "openscad_archive_sha256": sys.argv[4],
     "font_archive_sha256": sys.argv[5],
+    "font_files": [
+        "fonts/LiberationSans-Bold.ttf",
+        "fonts/LiberationSans-Regular.ttf",
+    ],
 }
 actual = {
     "schema": data.get("schema"),
@@ -71,6 +76,7 @@ actual = {
     "openscad_source_revision": data.get("openscad", {}).get("source_revision"),
     "openscad_archive_sha256": data.get("openscad", {}).get("archive_sha256"),
     "font_archive_sha256": data.get("liberation_sans", {}).get("archive_sha256"),
+    "font_files": data.get("liberation_sans", {}).get("font_files"),
 }
 if actual != expected:
     raise SystemExit(
@@ -121,7 +127,8 @@ printf '%s  %s\n' \
 mkdir -p "${temporary_root}/openscad" "${temporary_root}/fonts"
 unzip -q "${temporary_root}/openscad.zip" -d "${temporary_root}/openscad"
 unzip -q "${temporary_root}/fonts.zip" \
-  LiberationSans-Bold.ttf fonts.conf LICENSE AUTHORS \
+  LiberationSans-Bold.ttf LiberationSans-Regular.ttf \
+  fonts.conf LICENSE AUTHORS \
   -d "${temporary_root}/fonts"
 curl --fail --location --silent --show-error \
   "${openscad_copying_url}" \
@@ -140,6 +147,9 @@ install -m 0644 \
 install -m 0644 \
   "${temporary_root}/fonts/LiberationSans-Bold.ttf" \
   "${vendor_dir}/fonts/LiberationSans-Bold.ttf"
+install -m 0644 \
+  "${temporary_root}/fonts/LiberationSans-Regular.ttf" \
+  "${vendor_dir}/fonts/LiberationSans-Regular.ttf"
 install -m 0644 \
   "${temporary_root}/fonts/fonts.conf" \
   "${vendor_dir}/fonts/fonts.conf"

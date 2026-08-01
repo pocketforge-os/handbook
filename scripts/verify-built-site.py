@@ -131,6 +131,9 @@ def verify_nameplate_runtime(site: Path) -> None:
         "fonts/LiberationSans-Bold.ttf":
             "d723d5a272970aedf296ef6fc628180df"
             "6074bce7769701ea9e0d222c052668c",
+        "fonts/LiberationSans-Regular.ttf":
+            "e5b0af421ea2bfbc1ac8d251d6472680"
+            "87ae82786234c57f757d1f0b90fa8b49",
         "fonts/fonts.conf": "8b8c23ea9fc123db3f758872f76dbf84"
         "1191bf751ddb7ef73a11a1eb3a1a25de",
         "fonts/LICENSE.txt": "93fed46019c38bbe566b479d22148e2e8"
@@ -157,6 +160,11 @@ def verify_nameplate_runtime(site: Path) -> None:
         or provenance.get("openscad", {}).get("source_revision")
         != "ce5039f8a9545ad5a8cf197b3ca11c0939bc67f1"
         or provenance.get("liberation_sans", {}).get("license") != "OFL-1.1"
+        or provenance.get("liberation_sans", {}).get("font_files")
+        != [
+            "fonts/LiberationSans-Bold.ttf",
+            "fonts/LiberationSans-Regular.ttf",
+        ]
     ):
         raise SystemExit("vendored OpenSCAD runtime provenance changed")
 
