@@ -24,8 +24,9 @@ the accepted fixture contract to design the device-specific DUT holder.
 2. [Design and qualify the DUT holder](dut-holder/index.md) — turn the
    manufacturing fixture contract into source-owned retention geometry and an
    immutable device print pack.
-3. [Build the test-node chassis](test-node-chassis/index.md) — cut, print,
-   preload, assemble, and inspect the reusable frame plus qualified DUT holder.
+3. [Choose the DUT and build its test-node chassis](test-node-chassis/index.md)
+   — resolve the device family, integration route, chassis size, parts, cut
+   list, and assembly chapter before fabrication.
 4. [Integrate the per-DUT test node](test-node.md) — add the wired
    serial/FEL/power/camera harness.
 5. [Use the bill of materials](bom.md) for project-wide parts and sourcing.

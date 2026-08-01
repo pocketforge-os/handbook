@@ -124,7 +124,7 @@ make_command=(
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
   guide-model
-  guide-dualbar-assembly-steps
+  guide-static
   dualbar-preview
   dualbar-cutlist
   guide-batch-models
@@ -172,6 +172,7 @@ mkdir -p \
   "${asset_dir}/browser" \
   "${asset_dir}/customizer/lib" \
   "${asset_dir}/dualbar" \
+  "${asset_dir}/legacy" \
   "${asset_dir}/print-batches"
 
 install -m 0644 \
@@ -188,6 +189,15 @@ install -m 0644 \
 install -m 0644 \
   "${project_dir}"/build/handbook/assembly-*.png \
   "${asset_dir}/assembly/"
+install -m 0644 \
+  "${project_dir}"/build/handbook/prep-*.png \
+  "${project_dir}"/build/handbook/preload-*.png \
+  "${project_dir}"/build/handbook/step-0[1-7]-*.png \
+  "${project_dir}"/build/handbook/detail-*.png \
+  "${asset_dir}/legacy/"
+install -m 0644 \
+  "${project_dir}/build/handbook/step-08-complete.png" \
+  "${asset_dir}/legacy/qualified-gantry-complete.png"
 install -m 0644 \
   "${project_dir}"/build/handbook/batch-*.png \
   "${project_dir}"/build/handbook/batch-*.glb \
@@ -274,6 +284,37 @@ required_assets=(
   assembly/assembly-15-power-strip.png
   assembly/assembly-16-stacking-tabs.png
   assembly/assembly-17-final.png
+  legacy/prep-captive-nut.png
+  legacy/prep-captive-nut-count.png
+  legacy/preload-channel-bar.png
+  legacy/preload-map.png
+  legacy/preload-width-rails.png
+  legacy/preload-parked-replacement.png
+  legacy/preload-depth-rails.png
+  legacy/preload-camera-frame.png
+  legacy/step-01-splice-uprights.png
+  legacy/step-02-build-gantry.png
+  legacy/step-03-open-frame.png
+  legacy/step-04-install-gantry.png
+  legacy/step-05-close-frame.png
+  legacy/step-06-mount-carrier.png
+  legacy/step-07-mount-fixture.png
+  legacy/qualified-gantry-complete.png
+  legacy/detail-01-splice-xray.png
+  legacy/detail-02-crossbar-corner.png
+  legacy/detail-03-lower-frame-layout.png
+  legacy/detail-03-flush-corner.png
+  legacy/detail-04-lower-gantry.png
+  legacy/detail-04-joint-plate.png
+  legacy/detail-04-gantry-position.png
+  legacy/detail-05-lower-top-ring.png
+  legacy/detail-05-square-diagonals.png
+  legacy/detail-06-carrier-link-lengths.png
+  legacy/detail-07-fixture-spacers.png
+  legacy/detail-07-optical-axis.png
+  legacy/detail-08-placard.png
+  legacy/detail-08-power-strip.png
+  legacy/detail-08-stacking-corner.png
   print-batches/batch-00-calibration.png
   print-batches/batch-00-calibration.glb
   print-batches/batch-01-ironed-interfaces.png

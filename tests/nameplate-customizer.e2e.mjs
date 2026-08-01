@@ -176,12 +176,12 @@ try {
   await mkdir(artifactRoot, { recursive: true });
   for (const [route, viewerId, screenshotName] of [
     [
-      "/hardware/test-node-chassis/",
+      "/hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
       "overview-chassis-model",
       "chassis-model-overview.png",
     ],
     [
-      "/hardware/test-node-chassis/assemble/",
+      "/hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/",
       "assembly-chassis-model",
       "chassis-model-assembly.png",
     ],
@@ -269,9 +269,12 @@ try {
     "the full-chassis pages must load the canonical GLB",
   );
 
-  await page.goto(`${baseUrl}/hardware/test-node-chassis/print/`, {
-    waitUntil: "networkidle",
-  });
+  await page.goto(
+    `${baseUrl}/hardware/test-node-chassis/devices/trimui-smart-pro-s/print/`,
+    {
+      waitUntil: "networkidle",
+    },
+  );
   await page.locator("[data-nameplate-customizer]").waitFor({
     state: "visible",
   });

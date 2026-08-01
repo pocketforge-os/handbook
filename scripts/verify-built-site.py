@@ -13,25 +13,40 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
 
+from verify_test_node_guide_profiles import (
+    GuideProfileError,
+    load_json as load_guide_json,
+    verify_guide_profiles,
+)
+
 
 class LocalReferenceParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
         self.references: list[tuple[str, str]] = []
+        self.content_references: list[tuple[str, str]] = []
+        self.content_anchors: list[dict[str, str]] = []
         self.model_viewers: list[dict[str, str]] = []
         self.model_hotspots: list[dict[str, str]] = []
         self.images: list[dict[str, str]] = []
         self.downloads: list[dict[str, str]] = []
         self._noscript_depth = 0
+        self._article_depth = 0
 
     def handle_starttag(
         self, tag: str, attrs: list[tuple[str, str | None]]
     ) -> None:
+        if tag == "article":
+            self._article_depth += 1
         if tag == "noscript":
             self._noscript_depth += 1
         attributes = {key: value or "" for key, value in attrs}
         if tag in {"a", "link"} and attributes.get("href"):
             self.references.append((tag, attributes["href"]))
+            if self._article_depth:
+                self.content_references.append((tag, attributes["href"]))
+        if tag == "a" and self._article_depth:
+            self.content_anchors.append(attributes)
         if tag == "a" and "pf-download" in attributes.get("class", "").split():
             self.downloads.append(attributes)
         if tag in {"img", "script", "source", "model-viewer"} and attributes.get(
@@ -53,6 +68,8 @@ class LocalReferenceParser(HTMLParser):
     def handle_endtag(self, tag: str) -> None:
         if tag == "noscript":
             self._noscript_depth = max(0, self._noscript_depth - 1)
+        if tag == "article":
+            self._article_depth = max(0, self._article_depth - 1)
 
 
 def resolve_reference(site: Path, page: Path, reference: str) -> Path | None:
@@ -67,6 +84,19 @@ def resolve_reference(site: Path, page: Path, reference: str) -> Path | None:
     if resolved_url.endswith("/"):
         candidate /= "index.html"
     return candidate
+
+
+def read_article_html(page: Path) -> str:
+    """Return only authored page content, excluding global navigation chrome."""
+    html = page.read_text(encoding="utf-8")
+    match = re.search(
+        r'<article class="md-content__inner md-typeset">.*?</article>',
+        html,
+        flags=re.DOTALL,
+    )
+    if match is None:
+        raise SystemExit(f"built page has no authored article: {page}")
+    return match.group(0)
 
 
 def verify_hashes(asset_dir: Path) -> int:
@@ -496,6 +526,37 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "assembly/assembly-15-power-strip.png",
         "assembly/assembly-16-stacking-tabs.png",
         "assembly/assembly-17-final.png",
+        "legacy/prep-captive-nut.png",
+        "legacy/prep-captive-nut-count.png",
+        "legacy/preload-channel-bar.png",
+        "legacy/preload-map.png",
+        "legacy/preload-width-rails.png",
+        "legacy/preload-parked-replacement.png",
+        "legacy/preload-depth-rails.png",
+        "legacy/preload-camera-frame.png",
+        "legacy/step-01-splice-uprights.png",
+        "legacy/step-02-build-gantry.png",
+        "legacy/step-03-open-frame.png",
+        "legacy/step-04-install-gantry.png",
+        "legacy/step-05-close-frame.png",
+        "legacy/step-06-mount-carrier.png",
+        "legacy/step-07-mount-fixture.png",
+        "legacy/qualified-gantry-complete.png",
+        "legacy/detail-01-splice-xray.png",
+        "legacy/detail-02-crossbar-corner.png",
+        "legacy/detail-03-lower-frame-layout.png",
+        "legacy/detail-03-flush-corner.png",
+        "legacy/detail-04-lower-gantry.png",
+        "legacy/detail-04-joint-plate.png",
+        "legacy/detail-04-gantry-position.png",
+        "legacy/detail-05-lower-top-ring.png",
+        "legacy/detail-05-square-diagonals.png",
+        "legacy/detail-06-carrier-link-lengths.png",
+        "legacy/detail-07-fixture-spacers.png",
+        "legacy/detail-07-optical-axis.png",
+        "legacy/detail-08-placard.png",
+        "legacy/detail-08-power-strip.png",
+        "legacy/detail-08-stacking-corner.png",
         "print-batches/batch-00-calibration.png",
         "print-batches/batch-00-calibration.glb",
         "print-batches/batch-01-ironed-interfaces.png",
@@ -640,30 +701,72 @@ def main() -> int:
     ]
 
     guide_root = site / "hardware" / "test-node-chassis"
-    overview_page = guide_root / "index.html"
-    parts_page = guide_root / "parts" / "index.html"
-    print_page = guide_root / "print" / "index.html"
-    cut_page = guide_root / "cut" / "index.html"
-    assembly_root = guide_root / "assemble"
+    profiles_path = site / "assets" / "test-node-guide-profiles.json"
+    catalog_path = (
+        site
+        / "assets"
+        / "generated"
+        / "test-node-chassis"
+        / "browser"
+        / "catalog.json"
+    )
+    try:
+        guide_profiles = load_guide_json(profiles_path)
+        routing_contract = verify_guide_profiles(
+            guide_profiles,
+            load_guide_json(catalog_path),
+            site,
+        )
+    except GuideProfileError as error:
+        raise SystemExit(f"device-first guide profile failed: {error}") from error
+
+    selector_page = guide_root / "index.html"
+    device_pages = [
+        guide_root / "devices" / slug / "index.html"
+        for slug in guide_profiles["devices"]
+    ]
+    device_print_pages = [
+        site / device["print_route"] / "index.html"
+        for device in guide_profiles["devices"].values()
+    ]
+    integration_pages = sorted(
+        {
+            site / profile["guide_route"] / "index.html"
+            for profile in guide_profiles["integration_profiles"].values()
+        }
+    )
+    compatibility_pages = [
+        guide_root / name / "index.html"
+        for name in (
+            "parts",
+            "print",
+            "cut",
+            "assemble",
+            "verify",
+            "wire-management",
+        )
+    ]
+    compatibility_step_pages = [
+        guide_root / "assemble" / step / "index.html"
+        for step in guide_profiles["layouts"]["chassis-dualbar-v1"][
+            "assembly_steps"
+        ]
+    ]
+
+    layout_root = guide_root / "layouts"
+    dualbar_root = layout_root / "chassis-dualbar-v1"
+    overview_page = dualbar_root / "index.html"
+    parts_page = dualbar_root / "parts" / "index.html"
+    print_page = (
+        site
+        / guide_profiles["devices"]["trimui-smart-pro-s"]["print_route"]
+        / "index.html"
+    )
+    cut_page = dualbar_root / "cut" / "index.html"
+    assembly_root = dualbar_root / "assemble"
     assembly_page = assembly_root / "index.html"
-    assembly_step_names = (
-        "01-learn-the-rail",
-        "02-load-width-rails",
-        "03-load-depth-rails",
-        "04-load-fixture-bars",
-        "05-lay-out-lower-frame",
-        "06-install-lower-fixture-bar",
-        "07-add-posts",
-        "08-build-upper-ring",
-        "09-install-upper-fixture-bar",
-        "10-close-outer-frame",
-        "11-square-frame",
-        "12-mount-dut-holder",
-        "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check",
+    assembly_step_names = tuple(
+        guide_profiles["layouts"]["chassis-dualbar-v1"]["assembly_steps"]
     )
     assembly_image_names = (
         "assembly-01-channel-bar.png",
@@ -688,8 +791,8 @@ def main() -> int:
         assembly_root / step_name / "index.html"
         for step_name in assembly_step_names
     ]
-    verify_page = guide_root / "verify" / "index.html"
-    wire_page = guide_root / "wire-management" / "index.html"
+    verify_page = dualbar_root / "verify" / "index.html"
+    wire_page = dualbar_root / "wire-management" / "index.html"
     chassis_pages = [
         overview_page,
         parts_page,
@@ -699,21 +802,70 @@ def main() -> int:
         verify_page,
         wire_page,
     ]
-    pages = [*holder_pages, *chassis_pages, *assembly_steps]
+
+    legacy_root = layout_root / "chassis-core-v1"
+    legacy_print_page = (
+        site
+        / guide_profiles["devices"]["trimui-smart-pro"]["print_route"]
+        / "index.html"
+    )
+    legacy_assembly_root = legacy_root / "assemble"
+    legacy_step_names = tuple(
+        guide_profiles["layouts"]["chassis-core-v1"]["assembly_steps"]
+    )
+    legacy_steps = [
+        legacy_assembly_root / step / "index.html"
+        for step in legacy_step_names
+    ]
+    legacy_chassis_pages = [
+        legacy_root / "index.html",
+        legacy_root / "parts" / "index.html",
+        legacy_print_page,
+        legacy_root / "cut" / "index.html",
+        legacy_assembly_root / "index.html",
+        legacy_root / "verify" / "index.html",
+        legacy_root / "wire-management" / "index.html",
+    ]
+    layout_print_stops = [
+        legacy_root / "print" / "index.html",
+        dualbar_root / "print" / "index.html",
+    ]
+    pages = list(
+        dict.fromkeys(
+            (
+                *holder_pages,
+                selector_page,
+                *device_pages,
+                *device_print_pages,
+                *integration_pages,
+                *compatibility_pages,
+                *compatibility_step_pages,
+                *layout_print_stops,
+                *legacy_chassis_pages,
+                *legacy_steps,
+                *chassis_pages,
+                *assembly_steps,
+            )
+        )
+    )
     for page in pages:
         if not page.is_file():
             raise SystemExit(f"missing mechanical onboarding page: {page}")
 
-    actual_step_routes = {
-        path.name for path in assembly_root.iterdir() if path.is_dir()
-    }
-    expected_step_routes = set(assembly_step_names)
-    if actual_step_routes != expected_step_routes:
-        raise SystemExit(
-            "assembly step route set changed "
-            f"(missing={sorted(expected_step_routes - actual_step_routes)!r}, "
-            f"unexpected={sorted(actual_step_routes - expected_step_routes)!r})"
-        )
+    for route_root, step_names in (
+        (assembly_root, assembly_step_names),
+        (legacy_assembly_root, legacy_step_names),
+    ):
+        actual_step_routes = {
+            path.name for path in route_root.iterdir() if path.is_dir()
+        }
+        expected_step_routes = set(step_names)
+        if actual_step_routes != expected_step_routes:
+            raise SystemExit(
+                f"{route_root.relative_to(site)} step route set changed "
+                f"(missing={sorted(expected_step_routes - actual_step_routes)!r}, "
+                f"unexpected={sorted(actual_step_routes - expected_step_routes)!r})"
+            )
 
     missing: list[str] = []
     page_references: dict[Path, LocalReferenceParser] = {}
@@ -740,6 +892,158 @@ def main() -> int:
     if missing:
         raise SystemExit("unresolved local references:\n" + "\n".join(missing))
 
+    selector_html = selector_page.read_text(encoding="utf-8")
+    selector_cards = [
+        anchor
+        for anchor in page_references[selector_page].content_anchors
+        if "pf-device-card" in anchor.get("class", "").split()
+    ]
+    selector_links = [
+        target
+        for anchor in selector_cards
+        if (
+            target := resolve_reference(
+                site, selector_page, anchor.get("href", "")
+            )
+        )
+        is not None
+    ]
+    if len(selector_links) != len(device_pages) or set(selector_links) != set(
+        device_pages
+    ):
+        raise SystemExit("device selector does not link every build sheet exactly once")
+    if any(layout_root in target.parents for target in selector_links):
+        raise SystemExit("device selector bypasses a device build sheet")
+    for slug, device in guide_profiles["devices"].items():
+        for fragment in (
+            f'data-device-slug="{slug}"',
+            f'data-layout-id="{device["layout"]}"',
+            device["display_name"],
+        ):
+            if fragment not in selector_html:
+                raise SystemExit(f"device selector is missing {fragment!r}")
+
+    for device_page, (slug, device) in zip(
+        device_pages,
+        guide_profiles["devices"].items(),
+        strict=True,
+    ):
+        page_html = device_page.read_text(encoding="utf-8")
+        family = guide_profiles["families"][device["family"]]
+        integration = guide_profiles["integration_profiles"][
+            device["integration_profile"]
+        ]
+        layout = guide_profiles["layouts"][device["layout"]]
+        for fragment in (
+            f'data-guide-device="{slug}"',
+            f'data-layout-id="{device["layout"]}"',
+            family["holder_profile"],
+            device["integration_profile"],
+            integration["status"],
+            layout["qualification_status"],
+            "Outside envelope",
+            "Clear inside envelope",
+            "Follow this path in order",
+        ):
+            if fragment not in page_html:
+                raise SystemExit(
+                    f"{device_page.relative_to(site)} is missing {fragment!r}"
+                )
+        layout_page = site / layout["guide_route"] / "index.html"
+        integration_page = site / integration["guide_route"] / "index.html"
+        device_print_page = site / device["print_route"] / "index.html"
+        print_html = read_article_html(device_print_page)
+        for fragment in (
+            f'data-guide-device="{slug}"',
+            f'data-layout-id="{device["layout"]}"',
+            f'data-locked-device="{slug}"',
+            "locked by build sheet",
+        ):
+            if fragment not in print_html:
+                raise SystemExit(
+                    f"{device_print_page.relative_to(site)} is missing "
+                    f"{fragment!r}"
+                )
+        resolved_links = {
+            target
+            for tag, reference in page_references[device_page].content_references
+            if tag == "a"
+            and (target := resolve_reference(site, device_page, reference))
+            is not None
+        }
+        if not {
+            layout_page,
+            integration_page,
+            device_print_page,
+            selector_page,
+        }.issubset(resolved_links):
+            raise SystemExit(
+                f"{device_page.relative_to(site)} does not connect its "
+                "selector, print pack, layout, and integration profile"
+            )
+
+    integration_html = " ".join(
+        read_article_html(page) for page in integration_pages
+    )
+    for profile_id, profile in guide_profiles["integration_profiles"].items():
+        integration_page = site / profile["guide_route"] / "index.html"
+        page_html = read_article_html(integration_page)
+        for fragment in (
+            f'data-integration-profile="{profile_id}"',
+            profile_id,
+            profile["display_name"],
+            profile["status"],
+        ):
+            if fragment not in page_html:
+                raise SystemExit(
+                    f"{integration_page.relative_to(site)} is missing "
+                    f"{fragment!r}"
+                )
+        targets = {
+            target
+            for tag, reference in page_references[
+                integration_page
+            ].content_references
+            if tag == "a"
+            and (
+                target := resolve_reference(site, integration_page, reference)
+            )
+            is not None
+        }
+        expected_device_pages = {
+            guide_root / "devices" / slug / "index.html"
+            for slug in profile["devices"]
+        }
+        if selector_page not in targets or not expected_device_pages.issubset(
+            targets
+        ):
+            raise SystemExit(
+                f"{integration_page.relative_to(site)} does not route all "
+                "registered devices"
+            )
+
+    for compatibility_page in (
+        *compatibility_pages,
+        *compatibility_step_pages,
+        *layout_print_stops,
+    ):
+        targets = {
+            target
+            for tag, reference in page_references[
+                compatibility_page
+            ].content_references
+            if tag == "a"
+            and (
+                target := resolve_reference(site, compatibility_page, reference)
+            )
+            is not None
+        }
+        if selector_page not in targets:
+            raise SystemExit(
+                f"compatibility route does not stop at the device selector: "
+                f"{compatibility_page.relative_to(site)}"
+            )
+
     holder_html = " ".join(
         page.read_text(encoding="utf-8") for page in holder_pages
     )
@@ -764,7 +1068,7 @@ def main() -> int:
             )
 
     chassis_html = " ".join(
-        page.read_text(encoding="utf-8")
+        read_article_html(page)
         for page in (*chassis_pages, *assembly_steps)
     )
     normalized_chassis_html = " ".join(chassis_html.split())
@@ -805,6 +1109,131 @@ def main() -> int:
         if re.search(pattern, chassis_html, flags=re.IGNORECASE):
             raise SystemExit(
                 f"removed chassis terminology remains in built HTML: {pattern!r}"
+            )
+
+    legacy_html = " ".join(
+        read_article_html(page)
+        for page in (*legacy_chassis_pages, *legacy_steps)
+    )
+    normalized_legacy_html = " ".join(legacy_html.split())
+    for required_fragment in (
+        "trimui-smart-pro",
+        "chassis-core-v1",
+        "physically_qualified",
+        "production_eligible=true",
+        "5,204 mm",
+        "28 short",
+        "22 use-now + 6 spares = 28",
+        "four long",
+        "4 × 164 mm",
+        "2 × 306 mm",
+        "DEPTH-R-L",
+        "19 bench steps",
+        "75 mm",
+    ):
+        if required_fragment not in normalized_legacy_html:
+            raise SystemExit(
+                f"qualified gantry route is missing {required_fragment!r}"
+            )
+
+    legacy_assembly_page = legacy_assembly_root / "index.html"
+    legacy_assembly_html = legacy_assembly_page.read_text(encoding="utf-8")
+    legacy_step_list_match = re.search(
+        r'<ol class="pf-step-list">.*?</ol>',
+        legacy_assembly_html,
+        flags=re.DOTALL,
+    )
+    if legacy_step_list_match is None:
+        raise SystemExit("qualified assembly start page has no bounded step list")
+    legacy_step_list_parser = LocalReferenceParser()
+    legacy_step_list_parser.feed(legacy_step_list_match.group(0))
+    actual_legacy_order = [
+        target
+        for tag, reference in legacy_step_list_parser.references
+        if tag == "a"
+        and (
+            target := resolve_reference(site, legacy_assembly_page, reference)
+        )
+        is not None
+    ]
+    if actual_legacy_order != legacy_steps:
+        raise SystemExit(
+            "qualified assembly landing-page order changed: "
+            f"{[path.parent.name for path in actual_legacy_order]!r}"
+        )
+
+    legacy_verify_page = legacy_root / "verify" / "index.html"
+    for index, step_page in enumerate(legacy_steps):
+        step_number = index + 1
+        step_html = step_page.read_text(encoding="utf-8")
+        for required_fragment in (
+            f"Step {step_number} of {len(legacy_steps)}",
+            'data-guide-device="trimui-smart-pro"',
+            'data-layout-id="chassis-core-v1"',
+            'class="pf-step-layout"',
+            'class="pf-part-list"',
+            'class="pf-step-check"',
+            'class="pf-step-nav"',
+            "Get these parts",
+            "Before you continue:",
+        ):
+            if required_fragment not in step_html:
+                raise SystemExit(
+                    f"qualified assembly step {step_number} is missing "
+                    f"{required_fragment!r}"
+                )
+        if step_number != len(legacy_steps) and "Do this" not in step_html:
+            raise SystemExit(
+                f"qualified assembly step {step_number} has no exact actions"
+            )
+        if step_number == len(legacy_steps) and "Do this" not in step_html:
+            raise SystemExit("qualified final comparison has no action heading")
+
+        step_parser = page_references[step_page]
+        legacy_images = [
+            image
+            for image in step_parser.images
+            if "/generated/test-node-chassis/legacy/" in image.get("src", "")
+        ]
+        if not legacy_images or any(
+            len(image.get("alt", "").split()) < 8 for image in legacy_images
+        ):
+            raise SystemExit(
+                f"qualified assembly step {step_number} lacks a useful source image"
+            )
+
+        nav_match = re.search(
+            r'<nav class="pf-step-nav".*?</nav>',
+            step_html,
+            flags=re.DOTALL,
+        )
+        if nav_match is None:
+            raise SystemExit(
+                f"qualified assembly step {step_number} has no bounded navigation"
+            )
+        nav_parser = LocalReferenceParser()
+        nav_parser.feed(nav_match.group(0))
+        nav_targets = [
+            target
+            for tag, reference in nav_parser.references
+            if tag == "a"
+            and (
+                target := resolve_reference(site, step_page, reference)
+            )
+            is not None
+        ]
+        expected_previous = (
+            legacy_assembly_page if index == 0 else legacy_steps[index - 1]
+        )
+        expected_next = (
+            legacy_verify_page
+            if index == len(legacy_steps) - 1
+            else legacy_steps[index + 1]
+        )
+        if nav_targets != [expected_previous, expected_next]:
+            raise SystemExit(
+                f"qualified assembly step {step_number} navigation changed: "
+                f"{[path.relative_to(site) for path in nav_targets]!r}"
             )
 
     for current_page, next_page in zip(chassis_pages, chassis_pages[1:]):
@@ -984,6 +1413,8 @@ def main() -> int:
         step_html = step_page.read_text(encoding="utf-8")
         for required_fragment in (
             f"Step {step_number} of {step_count}",
+            'data-guide-device="trimui-smart-pro-s"',
+            'data-layout-id="chassis-dualbar-v1"',
             'class="pf-step-layout"',
             'class="pf-part-list"',
             'class="pf-part-tag ',
@@ -1215,7 +1646,16 @@ def main() -> int:
 
     checksums = verify_hashes(asset_dir)
     verify_nameplate_runtime(site)
-    if "build-a-dut" in chassis_html.lower():
+    all_chassis_html = " ".join(
+        (
+            selector_html,
+            *(page.read_text(encoding="utf-8") for page in device_pages),
+            integration_html,
+            legacy_html,
+            chassis_html,
+        )
+    )
+    if "build-a-dut" in all_chassis_html.lower():
         raise SystemExit("retired build-a-dut terminology remains in the guide")
     if 'class="pf-key' in chassis_html:
         raise SystemExit("unlabeled color swatch remains in the chassis guide")
@@ -1224,9 +1664,12 @@ def main() -> int:
         "handbook_surface=pass "
         f"pages={len(pages)} local_links=resolved "
         f"checksums={checksums} holder_pages={len(holder_pages)} "
-        f"chassis_pages={len(chassis_pages)} "
-        f"assembly_steps={len(assembly_steps)} "
+        f"chassis_pages={len(chassis_pages) + len(legacy_chassis_pages)} "
+        f"assembly_steps={len(assembly_steps) + len(legacy_steps)} "
         f"interactive_models={viewer_count} semantic_layers=70 "
+        f"guide_devices={routing_contract['devices']} "
+        f"guide_integrations={routing_contract['integration_profiles']} "
+        f"guide_layouts={routing_contract['layouts']} "
         f"browser_devices={len(browser_catalog['devices'])} "
         f"browser_baselines={len(browser_baselines['artifacts'])}"
     )

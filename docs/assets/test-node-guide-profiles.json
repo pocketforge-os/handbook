@@ -1,0 +1,114 @@
+{
+  "schema": "pocketforge-test-node-guide-profiles-v1",
+  "families": {
+    "trimui-smart-pro-family": {
+      "display_name": "TrimUI Smart Pro family",
+      "holder_profile": "trimui-smart-pro-family",
+      "devices": [
+        "trimui-smart-pro",
+        "trimui-smart-pro-s"
+      ]
+    }
+  },
+  "devices": {
+    "trimui-smart-pro": {
+      "display_name": "TrimUI Smart Pro",
+      "family": "trimui-smart-pro-family",
+      "integration_profile": "trimui-smart-pro-family-v1",
+      "layout": "chassis-core-v1",
+      "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro/",
+      "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro/print/"
+    },
+    "trimui-smart-pro-s": {
+      "display_name": "TrimUI Smart Pro S",
+      "family": "trimui-smart-pro-family",
+      "integration_profile": "trimui-smart-pro-family-v1",
+      "layout": "chassis-dualbar-v1",
+      "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/",
+      "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/print/"
+    }
+  },
+  "integration_profiles": {
+    "trimui-smart-pro-family-v1": {
+      "display_name": "TrimUI Smart Pro family harness and I/O",
+      "status": "structure_only",
+      "guide_route": "hardware/test-node/",
+      "devices": [
+        "trimui-smart-pro",
+        "trimui-smart-pro-s"
+      ]
+    }
+  },
+  "layouts": {
+    "chassis-core-v1": {
+      "display_name": "Qualified gantry chassis",
+      "qualification_status": "physically_qualified",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v1/",
+      "outside_envelope_mm": {
+        "width": 346,
+        "depth": 358,
+        "height": 368
+      },
+      "inside_envelope_mm": {
+        "width": 306,
+        "depth": 318,
+        "height": 328
+      },
+      "assembly_steps": [
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-splice-uprights",
+        "05-load-camera-frame",
+        "06-build-camera-frame",
+        "07-lay-out-lower-frame",
+        "08-add-posts",
+        "09-lower-camera-frame",
+        "10-set-camera-frame",
+        "11-close-outer-frame",
+        "12-square-frame",
+        "13-mount-dut-holder",
+        "14-mount-electronics-plate",
+        "15-aim-camera",
+        "16-add-placard",
+        "17-mount-power-strip",
+        "18-add-stacking-tabs",
+        "19-final-check"
+      ]
+    },
+    "chassis-dualbar-v1": {
+      "display_name": "Dual-bar chassis candidate",
+      "qualification_status": "candidate",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
+      "outside_envelope_mm": {
+        "width": 346,
+        "depth": 358,
+        "height": 368
+      },
+      "inside_envelope_mm": {
+        "width": 306,
+        "depth": 318,
+        "height": 328
+      },
+      "assembly_steps": [
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-load-fixture-bars",
+        "05-lay-out-lower-frame",
+        "06-install-lower-fixture-bar",
+        "07-add-posts",
+        "08-build-upper-ring",
+        "09-install-upper-fixture-bar",
+        "10-close-outer-frame",
+        "11-square-frame",
+        "12-mount-dut-holder",
+        "13-mount-fixture-board",
+        "14-add-placard",
+        "15-mount-power-strip",
+        "16-add-stacking-tabs",
+        "17-final-check"
+      ]
+    }
+  }
+}

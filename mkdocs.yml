@@ -113,31 +113,66 @@ nav:
           - Create a reusable mechanism: hardware/dut-holder/new-mechanism.md
           - Qualify and release it: hardware/dut-holder/qualify-and-release.md
       - Test-node chassis:
-          - Build overview: hardware/test-node-chassis/index.md
-          - Parts and tools: hardware/test-node-chassis/parts.md
-          - Generate and print: hardware/test-node-chassis/print.md
-          - Cut the aluminum rails: hardware/test-node-chassis/cut.md
-          - Assemble the chassis:
-              - Start here: hardware/test-node-chassis/assemble/index.md
-              - 1. Learn the rail: hardware/test-node-chassis/assemble/01-learn-the-rail.md
-              - 2. Load width rails: hardware/test-node-chassis/assemble/02-load-width-rails.md
-              - 3. Load depth rails: hardware/test-node-chassis/assemble/03-load-depth-rails.md
-              - 4. Load fixture bars: hardware/test-node-chassis/assemble/04-load-fixture-bars.md
-              - 5. Lay out lower frame: hardware/test-node-chassis/assemble/05-lay-out-lower-frame.md
-              - 6. Install lower fixture bar: hardware/test-node-chassis/assemble/06-install-lower-fixture-bar.md
-              - 7. Add posts: hardware/test-node-chassis/assemble/07-add-posts.md
-              - 8. Build upper ring: hardware/test-node-chassis/assemble/08-build-upper-ring.md
-              - 9. Install upper fixture bar: hardware/test-node-chassis/assemble/09-install-upper-fixture-bar.md
-              - 10. Close outer frame: hardware/test-node-chassis/assemble/10-close-outer-frame.md
-              - 11. Square frame: hardware/test-node-chassis/assemble/11-square-frame.md
-              - 12. Mount DUT holder: hardware/test-node-chassis/assemble/12-mount-dut-holder.md
-              - 13. Mount fixture board: hardware/test-node-chassis/assemble/13-mount-fixture-board.md
-              - 14. Add placard: hardware/test-node-chassis/assemble/14-add-placard.md
-              - 15. Mount power strip: hardware/test-node-chassis/assemble/15-mount-power-strip.md
-              - 16. Add stacking tabs: hardware/test-node-chassis/assemble/16-add-stacking-tabs.md
-              - 17. Final check: hardware/test-node-chassis/assemble/17-final-check.md
-          - Verify the candidate: hardware/test-node-chassis/verify.md
-          - Manage the harness wiring: hardware/test-node-chassis/wire-management.md
+          - Choose the DUT: hardware/test-node-chassis/index.md
+          - Device build sheets:
+              - TrimUI Smart Pro:
+                  - Build sheet: hardware/test-node-chassis/devices/trimui-smart-pro/index.md
+                  - Generate and print: hardware/test-node-chassis/devices/trimui-smart-pro/print.md
+              - TrimUI Smart Pro S:
+                  - Build sheet: hardware/test-node-chassis/devices/trimui-smart-pro-s/index.md
+                  - Generate and print: hardware/test-node-chassis/devices/trimui-smart-pro-s/print.md
+          - Smart Pro · qualified gantry:
+              - Layout overview: hardware/test-node-chassis/layouts/chassis-core-v1/index.md
+              - Parts and tools: hardware/test-node-chassis/layouts/chassis-core-v1/parts.md
+              - Cut the aluminum rails: hardware/test-node-chassis/layouts/chassis-core-v1/cut.md
+              - Assemble in 19 steps:
+                  - Start here: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/index.md
+                  - 1. Learn the rail: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/01-learn-the-rail.md
+                  - 2. Load width rails: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/02-load-width-rails.md
+                  - 3. Load depth rails: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/03-load-depth-rails.md
+                  - 4. Splice uprights: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/04-splice-uprights.md
+                  - 5. Load fixture frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/05-load-camera-frame.md
+                  - 6. Build fixture frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/06-build-camera-frame.md
+                  - 7. Lay out lower frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/07-lay-out-lower-frame.md
+                  - 8. Add posts: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/08-add-posts.md
+                  - 9. Lower fixture frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/09-lower-camera-frame.md
+                  - 10. Set fixture frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/10-set-camera-frame.md
+                  - 11. Close outer frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/11-close-outer-frame.md
+                  - 12. Square frame: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/12-square-frame.md
+                  - 13. Mount DUT holder: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/13-mount-dut-holder.md
+                  - 14. Mount fixture board: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/14-mount-electronics-plate.md
+                  - 15. Aim camera: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/15-aim-camera.md
+                  - 16. Add placard: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/16-add-placard.md
+                  - 17. Mount power strip: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/17-mount-power-strip.md
+                  - 18. Add stacking tabs: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/18-add-stacking-tabs.md
+                  - 19. Final check: hardware/test-node-chassis/layouts/chassis-core-v1/assemble/19-final-check.md
+              - Verify the qualified build: hardware/test-node-chassis/layouts/chassis-core-v1/verify.md
+              - Manage harness wiring: hardware/test-node-chassis/layouts/chassis-core-v1/wire-management.md
+          - Smart Pro S · dual-bar candidate:
+              - Layout overview: hardware/test-node-chassis/layouts/chassis-dualbar-v1/index.md
+              - Parts and tools: hardware/test-node-chassis/layouts/chassis-dualbar-v1/parts.md
+              - Cut the aluminum rails: hardware/test-node-chassis/layouts/chassis-dualbar-v1/cut.md
+              - Assemble in 17 steps:
+                  - Start here: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/index.md
+                  - 1. Learn the rail: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/01-learn-the-rail.md
+                  - 2. Load width rails: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/02-load-width-rails.md
+                  - 3. Load depth rails: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/03-load-depth-rails.md
+                  - 4. Load fixture bars: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/04-load-fixture-bars.md
+                  - 5. Lay out lower frame: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/05-lay-out-lower-frame.md
+                  - 6. Install lower fixture bar: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/06-install-lower-fixture-bar.md
+                  - 7. Add posts: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/07-add-posts.md
+                  - 8. Build upper ring: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/08-build-upper-ring.md
+                  - 9. Install upper fixture bar: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/09-install-upper-fixture-bar.md
+                  - 10. Close outer frame: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/10-close-outer-frame.md
+                  - 11. Square frame: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/11-square-frame.md
+                  - 12. Mount DUT holder: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/12-mount-dut-holder.md
+                  - 13. Mount fixture board: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/13-mount-fixture-board.md
+                  - 14. Add placard: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/14-add-placard.md
+                  - 15. Mount power strip: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/15-mount-power-strip.md
+                  - 16. Add stacking tabs: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/16-add-stacking-tabs.md
+                  - 17. Final check: hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/17-final-check.md
+              - Verify the candidate: hardware/test-node-chassis/layouts/chassis-dualbar-v1/verify.md
+              - Manage harness wiring: hardware/test-node-chassis/layouts/chassis-dualbar-v1/wire-management.md
       - Per-DUT test node: hardware/test-node.md
       - Bill of materials: hardware/bom.md
   - Lab & infrastructure:

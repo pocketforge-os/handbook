@@ -194,4 +194,4 @@ resources, per-node bindings, and physical harness evidence.
 
 Do not infer wiring or live-power settings from the holder profile.
 
-Next: [print the qualified device pack and reusable chassis](../test-node-chassis/print.md).
+Next: [choose the DUT build sheet, then print its registered pack and chassis](../test-node-chassis/index.md).
