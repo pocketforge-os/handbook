@@ -31,6 +31,7 @@ function initializeGenerator(root) {
     document.baseURI,
   );
   const fontConfigUrl = new URL(root.dataset.fontConfigUrl, document.baseURI);
+  const lockedDevice = root.dataset.lockedDevice || "";
   const objectUrls = new Set();
   let catalog;
   let activeWorker;
@@ -61,7 +62,7 @@ function initializeGenerator(root) {
   }
 
   function setBusy(busy) {
-    deviceSelect.disabled = busy;
+    deviceSelect.disabled = busy || Boolean(lockedDevice);
     modeSelect.disabled = busy;
     generateAll.disabled = busy;
     inventory
@@ -125,6 +126,9 @@ function initializeGenerator(root) {
 
   function renderSelection() {
     resetDownloads();
+    if (lockedDevice) {
+      deviceSelect.value = lockedDevice;
+    }
     const selection = selectDeviceMode(
       catalog,
       deviceSelect.value,
@@ -322,17 +326,25 @@ function initializeGenerator(root) {
         option.textContent = MODE_LABELS[mode];
         modeSelect.append(option);
       }
-      const requestedDevice = root.dataset.defaultDevice;
-      deviceSelect.value = catalog.devices.some(
+      const requestedDevice = lockedDevice || root.dataset.defaultDevice;
+      const requestedDeviceExists = catalog.devices.some(
         (device) => device.slug === requestedDevice,
-      )
+      );
+      if (lockedDevice && !requestedDeviceExists) {
+        throw new Error(
+          `The build sheet locks an unknown device: ${lockedDevice}.`,
+        );
+      }
+      deviceSelect.value = requestedDeviceExists
         ? requestedDevice
         : catalog.devices[0].slug;
       modeSelect.value = "full";
-      deviceSelect.disabled = false;
+      deviceSelect.disabled = Boolean(lockedDevice);
       modeSelect.disabled = false;
       generateAll.disabled = false;
-      deviceSelect.addEventListener("change", renderSelection);
+      if (!lockedDevice) {
+        deviceSelect.addEventListener("change", renderSelection);
+      }
       modeSelect.addEventListener("change", renderSelection);
       generateAll.addEventListener("click", () =>
         startGeneration(

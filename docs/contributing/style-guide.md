@@ -28,11 +28,29 @@ technically capable while having no vocabulary for the material or fastener in
 front of them. Do not make them learn the designer's naming system before they
 can complete the first action.
 
-Use the [test-node chassis assembly](../hardware/test-node-chassis/assemble/index.md)
-as the local reference implementation. The step discipline is informed by
+Use the [device-first test-node chassis guide](../hardware/test-node-chassis/index.md)
+and its layout-scoped assembly chapters as the local reference. The step
+discipline is informed by
 [Prusa's Y-axis assembly guide](https://help.prusa3d.com/guide/2-y-axis-assembly_25488):
 show a bounded working set, make the picture and text point to the same thing,
 and verify the result before advancing.
+
+### Route the exact device before the chapter
+
+Never make a print, cut, or assembly page guess which DUT is on the bench.
+Register the exact device in `test-node-guide-profiles.json`, give it a build
+sheet, and resolve these independent modules there:
+
+- holder family;
+- component, side-board, harness, and I/O integration profile;
+- chassis layout and physical envelope; and
+- qualification state plus the ordered assembly route.
+
+Several devices may deliberately select the same module. Reusing a holder
+does not force them to share an integration profile or chassis, and reusing a
+chassis does not make their side boards interchangeable. Give a genuinely new
+frame size or assembly history a new layout namespace; never rewrite an
+existing qualified layout chapter to accommodate another device.
 
 ### Chapter architecture
 

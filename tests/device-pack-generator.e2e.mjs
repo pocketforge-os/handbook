@@ -232,9 +232,10 @@ try {
   const pageErrors = [];
   page.on("request", (request) => requests.push(new URL(request.url()).pathname));
   page.on("pageerror", (error) => pageErrors.push(String(error)));
-  await page.goto(`${baseUrl}/hardware/test-node-chassis/print/`, {
-    waitUntil: "networkidle",
-  });
+  await page.goto(
+    `${baseUrl}/hardware/test-node-chassis/devices/trimui-smart-pro-s/print/`,
+    { waitUntil: "networkidle" },
+  );
 
   const generator = page.locator("[data-device-pack-generator]");
   const deviceSelect = page.locator("[data-pack-device]");
@@ -250,8 +251,14 @@ try {
     }).count(),
     1,
   );
-  assert.equal(await generator.getByLabel("Handheld").count(), 1);
-  assert.equal(await generator.getByLabel("Build").count(), 1);
+  assert.match(
+    await deviceSelect.evaluate((select) => select.labels[0]?.textContent || ""),
+    /Handheld · locked by build sheet/,
+  );
+  assert.match(
+    await modeSelect.evaluate((select) => select.labels[0]?.textContent || ""),
+    /^\s*Build\s*/,
+  );
   try {
     await page.waitForFunction(
       (expected) =>
@@ -282,6 +289,12 @@ try {
     "Device retrofit · 6 files",
     "Complete chassis · device-selected files",
   ]);
+  assert.equal(await deviceSelect.isDisabled(), true);
+  assert.equal(await deviceSelect.inputValue(), "trimui-smart-pro-s");
+  assert.equal(
+    await generator.getAttribute("data-locked-device"),
+    "trimui-smart-pro-s",
+  );
   assert.equal(
     requests.some((requestPath) => requestPath.endsWith("/openscad.wasm")),
     false,
@@ -303,7 +316,6 @@ try {
       defaultDevice.modes[mode].artifacts.length,
     );
   }
-  await deviceSelect.selectOption("trimui-smart-pro-s");
   await modeSelect.selectOption("full");
   assert.equal(
     (await inventory
@@ -513,8 +525,31 @@ try {
   });
 
   const totals = { bytes: 0, triangles: 0, packs: 0 };
+  const printRoutes = new Map([
+    [
+      "trimui-smart-pro",
+      "/hardware/test-node-chassis/devices/trimui-smart-pro/print/",
+    ],
+    [
+      "trimui-smart-pro-s",
+      "/hardware/test-node-chassis/devices/trimui-smart-pro-s/print/",
+    ],
+  ]);
   for (const device of catalog.devices) {
-    await deviceSelect.selectOption(device.slug);
+    await page.goto(`${baseUrl}${printRoutes.get(device.slug)}`, {
+      waitUntil: "networkidle",
+    });
+    await page.waitForFunction(
+      (expected) =>
+        document.querySelector("[data-pack-device]")?.options.length === expected,
+      catalog.devices.length,
+    );
+    assert.equal(await deviceSelect.isDisabled(), true);
+    assert.equal(await deviceSelect.inputValue(), device.slug);
+    assert.equal(
+      await generator.getAttribute("data-locked-device"),
+      device.slug,
+    );
     await modeSelect.selectOption("full");
     const expectedCount = device.modes.full.artifacts.length;
     assert.equal(
@@ -583,7 +618,6 @@ try {
   assert.deepEqual(fullRecipes, allRecipes);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await deviceSelect.selectOption("trimui-smart-pro-s");
   await modeSelect.selectOption("full");
   await generator.screenshot({
     path: path.join(artifactRoot, "device-pack-generator-mobile.png"),

@@ -8,6 +8,64 @@
   --pf-paper: #fbfaf2;
 }
 
+/* Device-first test-node routing. */
+.pf-device-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.pf-device-card {
+  display: grid;
+  gap: 0.42rem;
+  padding: 1.05rem 1.15rem;
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  border: 1px solid
+    color-mix(in srgb, var(--md-primary-fg-color) 30%, transparent);
+  border-radius: 0.7rem;
+  background: color-mix(
+    in srgb,
+    var(--md-default-bg-color) 94%,
+    var(--md-primary-fg-color)
+  );
+  box-shadow: 0 0.2rem 0.65rem rgb(0 0 0 / 8%);
+}
+
+.pf-device-card:hover,
+.pf-device-card:focus-visible {
+  color: var(--md-typeset-a-color);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 0.35rem 0.9rem rgb(0 0 0 / 14%);
+}
+
+.pf-device-card strong {
+  font-size: 1.15rem;
+}
+
+.pf-device-card__eyebrow {
+  color: var(--md-typeset-a-color);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+}
+
+.pf-device-card small {
+  color: var(--md-default-fg-color--light);
+}
+
+.pf-profile-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.72rem 0.9rem;
+  border-left: 0.25rem solid var(--md-primary-fg-color);
+  border-radius: 0.3rem;
+  background: var(--md-code-bg-color);
+}
+
 /* mkdocs.yml pins the palette to `indigo`, so Material declares
    --md-primary-fg-color / --md-accent-fg-color on the <body> element (via these
    attribute selectors). That sits CLOSER to the content than the :root block
