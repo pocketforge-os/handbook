@@ -117,7 +117,25 @@ nav:
           - Parts and tools: hardware/test-node-chassis/parts.md
           - Generate and print: hardware/test-node-chassis/print.md
           - Cut the aluminum rails: hardware/test-node-chassis/cut.md
-          - Assemble the chassis: hardware/test-node-chassis/assemble/index.md
+          - Assemble the chassis:
+              - Start here: hardware/test-node-chassis/assemble/index.md
+              - 1. Learn the rail: hardware/test-node-chassis/assemble/01-learn-the-rail.md
+              - 2. Load width rails: hardware/test-node-chassis/assemble/02-load-width-rails.md
+              - 3. Load depth rails: hardware/test-node-chassis/assemble/03-load-depth-rails.md
+              - 4. Load fixture bars: hardware/test-node-chassis/assemble/04-load-fixture-bars.md
+              - 5. Lay out lower frame: hardware/test-node-chassis/assemble/05-lay-out-lower-frame.md
+              - 6. Install lower fixture bar: hardware/test-node-chassis/assemble/06-install-lower-fixture-bar.md
+              - 7. Add posts: hardware/test-node-chassis/assemble/07-add-posts.md
+              - 8. Build upper ring: hardware/test-node-chassis/assemble/08-build-upper-ring.md
+              - 9. Install upper fixture bar: hardware/test-node-chassis/assemble/09-install-upper-fixture-bar.md
+              - 10. Close outer frame: hardware/test-node-chassis/assemble/10-close-outer-frame.md
+              - 11. Square frame: hardware/test-node-chassis/assemble/11-square-frame.md
+              - 12. Mount DUT holder: hardware/test-node-chassis/assemble/12-mount-dut-holder.md
+              - 13. Mount fixture board: hardware/test-node-chassis/assemble/13-mount-fixture-board.md
+              - 14. Add placard: hardware/test-node-chassis/assemble/14-add-placard.md
+              - 15. Mount power strip: hardware/test-node-chassis/assemble/15-mount-power-strip.md
+              - 16. Add stacking tabs: hardware/test-node-chassis/assemble/16-add-stacking-tabs.md
+              - 17. Final check: hardware/test-node-chassis/assemble/17-final-check.md
           - Verify the candidate: hardware/test-node-chassis/verify.md
           - Manage the harness wiring: hardware/test-node-chassis/wire-management.md
       - Per-DUT test node: hardware/test-node.md

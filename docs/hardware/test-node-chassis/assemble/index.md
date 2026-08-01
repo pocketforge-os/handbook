@@ -1,17 +1,23 @@
 # Assemble the dual-bar chassis
 
-Use this page at the workbench after the verified device pack is printed and
-all 14 aluminum pieces pass the cut gate. Keep every power source physically
-disconnected.
+Use this chapter at the workbench after the verified device pack is printed
+and all 14 aluminum pieces pass the cut gate. Each page is one small physical
+job: collect its parts, match the picture, follow the numbered actions, and
+pass the green check before moving on.
 
 <div class="pf-chapter-meta">
-  <span>8 bench stages</span>
+  <span>17 bench steps</span>
   <span>Mechanical work only</span>
-  <span>Two-person lift recommended</span>
-  <span>Candidate acceptance required</span>
+  <span>First-time builder friendly</span>
+  <span>Phone-friendly step pages</span>
 </div>
 
-## Keep the destination visible
+!!! danger "Keep the entire build unpowered"
+    Leave the power strip unplugged. Do not connect a programmable supply, DUT,
+    USB power, battery emulator, relay supply, or mains input during this
+    chapter.
+
+## See the destination
 
 <script type="module" src="../../../assets/vendor/model-viewer/model-viewer.min.js"></script>
 <script type="module" src="../../../assets/chassis-model.mjs"></script>
@@ -122,194 +128,88 @@ disconnected.
     alt="Static fallback view of the Smart Pro S dual-bar test-node chassis">
 </noscript>
 
-The outer frame is 346 mm wide, 358 mm deep, and approximately 368 mm high.
-Stand at the operator side: width rails run left to right, depth rails run away
-from you, and the Smart Pro S holder sits on the device side.
+The outside envelope is 346 mm wide, 358 mm deep, and approximately 368 mm
+high. Stand at the **operator side**: width rails run left to right, depth
+rails run away from you, and the Smart Pro S holder sits on the far device
+side.
 
-!!! danger "No power during assembly"
-    Leave the power strip unplugged. Do not connect a programmable supply, DUT,
-    USB power, battery emulator, relay supply, or mains input.
+## Five names you need
 
-## 1. Preload every rail before closing its cut ends
+- **Aluminum rail:** one labeled cut length of the 20 mm square material.
+- **Long groove:** a channel along a rail face. Printed channel bars and metal
+  fasteners slide behind its narrow opening.
+- **Cut end:** either open end of a rail. A channel bar enters here; it cannot
+  pass through the long groove opening.
+- **M3 channel bar:** the compact 18 mm printed carrier with an ordinary metal
+  M3 nut seated inside. A loose screw and wide washer make a temporary handle.
+- **Fixture bar:** either continuous 306 mm support rail (`FIXTURE-L` or
+  `FIXTURE-U`) that holds the populated fixture board.
 
-A channel bar enters through an open cut end; it cannot pass through the narrow
-slot mouth. Put an M3 × 12 mm screw and wide washer one turn into each bar as a
-temporary handle.
+Keep the tape labels from [Cut the aluminum rails](../cut.md) on every part
+until assembly is complete. Instructions give the tape code whenever
+orientation matters.
 
-Load the four width rails:
+## Read the drawings
 
-| Rail | Loaded groove faces | Active bars |
-| --- | --- | ---: |
-| `WIDTH-O-L` | None | 0 |
-| `WIDTH-O-U` | Operator / outside | 2 |
-| `WIDTH-D-L` | Operator / inside | 2 |
-| `WIDTH-D-U` | Operator / inside | 2 |
+The pictures use instruction colors rather than literal finish colors. Every
+step repeats the local meaning beside its drawing.
 
-Then:
+<div class="pf-visual-key">
+  <div><span class="pf-cue pf-cue--orange">Orange highlight</span><span>The part, hardware, or position being added or handled now.</span></div>
+  <div><span class="pf-cue pf-cue--blue">Blue cue</span><span>An insertion arrow, movement direction, measurement, or parked-spare tag.</span></div>
+  <div><span class="pf-cue pf-cue--silver">Silver / gray</span><span>Aluminum or work that is already assembled.</span></div>
+  <div><span class="pf-cue pf-cue--charcoal">Charcoal</span><span>A metal connector or installed component named by the step.</span></div>
+  <div><span class="pf-cue pf-cue--green">Green check</span><span>The condition that must be true before continuing.</span></div>
+</div>
 
-1. Load four active bars into the inward groove of `DEPTH-R-L`, the lower
-   right rail as viewed from the operator side. These become the two mounting
-   holes for each power-strip block.
-2. Put one blue-tape-tagged parked bar in the inward groove of each 318 mm
-   depth rail: four parked bars total. `DEPTH-R-L` now carries four active
-   bars plus its one parked spare.
-3. Orient `FIXTURE-L` and `FIXTURE-U` left to right with their loaded grooves
-   facing the operator.
-4. Load two active bars in each fixture bar at the plate-slot X positions:
-   four active bars total.
-5. Park one blue-tape-tagged bar near an end of each fixture bar.
-6. Count **6 active width + 4 active right-depth + 4 parked depth + 4 active
-   fixture + 2 parked fixture = 20** before installing any metal connector.
+Part markers also carry words such as **Aluminum**, **Printed**, **M3**,
+**Tool**, or **Assembled**. Color is never the only way to identify a part or
+an action.
 
-Parked screws remain only finger-snug. All active bars stay loose until their
-mounting part is installed.
+## Before Step 1
 
-## 2. Build the lower outer frame and add the posts
+- [ ] The complete Smart Pro S device pack passed the [print gate](../print.md#print-gate).
+- [ ] Four 360 mm posts, four 318 mm depth rails, four 306 mm width rails, and
+      two continuous 306 mm fixture bars passed the [cut gate](../cut.md#cut-gate).
+- [ ] One ordinary M3 nut is fully seated in each of the 20 compact channel
+      bars.
+- [ ] The 8 metal three-way connectors and four metal L-connectors are present.
+- [ ] Four identical 71.5 mm keyed links, all holder parts, placard parts,
+      power-strip blocks, and eight stacking tabs are present.
+- [ ] The power strip and every source of DUT power are physically separate
+      from the work area.
+- [ ] A tape measure, square, and the required M3/M5 hex drivers are within
+      reach.
 
-On a flat bench, stand at the operator edge and arrange:
+The preload steps account for **14 active + 6 parked = 20** channel bars before
+any cut end is closed.
 
-- `WIDTH-O-L` nearest you;
-- `WIDTH-D-L` parallel on the device side;
-- `DEPTH-L-L` and `DEPTH-R-L` between them; and
-- one labeled 360 mm post at each corner.
+## The 17-step path
 
-At each corner, install one metal three-way connector so the width rail butts
-against one post face and the depth rail butts against the adjacent face.
-Neither horizontal rail crosses the other. Before raising the posts, install
-`FIXTURE-L` between the lower depth rails with two concealed metal
-L-connectors. Set its centerline 75 mm from the operator-side outside plane,
-keep its loaded groove facing the operator, and keep it square to both depth
-rails. Raise all four posts, keep every outer-frame joint finger-snug, and
-confirm:
+<ol class="pf-step-list">
+  <li><a href="01-learn-the-rail/"><strong>Learn the rail and channel bar</strong><small>Practice the only hidden interface before loading labeled frame parts.</small></a></li>
+  <li><a href="02-load-width-rails/"><strong>Load the four width rails</strong><small>Put six active bars in their exact labeled rails and grooves.</small></a></li>
+  <li><a href="03-load-depth-rails/"><strong>Load the four depth rails</strong><small>Add the four power-strip bars and four blue-tagged parked spares.</small></a></li>
+  <li><a href="04-load-fixture-bars/"><strong>Load both fixture bars</strong><small>Add four active link bars and two parked spares; count all 20.</small></a></li>
+  <li><a href="05-lay-out-lower-frame/"><strong>Lay out the lower frame</strong><small>Resolve operator, device, left, and right while the frame is flat.</small></a></li>
+  <li><a href="06-install-lower-fixture-bar/"><strong>Install the lower fixture bar</strong><small>Set the continuous lower support at the 75 mm datum before posts rise.</small></a></li>
+  <li><a href="07-add-posts/"><strong>Add the four posts</strong><small>Raise the open frame while every joint remains adjustable.</small></a></li>
+  <li><a href="08-build-upper-ring/"><strong>Build the upper ring flat</strong><small>Join its four labeled rails without placing it on the posts yet.</small></a></li>
+  <li><a href="09-install-upper-fixture-bar/"><strong>Install the upper fixture bar</strong><small>Match the lower bar's 75 mm datum while the ring is on the bench.</small></a></li>
+  <li><a href="10-close-outer-frame/"><strong>Close the outer frame</strong><small>Lower the complete upper ring evenly onto all four posts.</small></a></li>
+  <li><a href="11-square-frame/"><strong>Square and tighten the frame</strong><small>Match both diagonal pairs within 2 mm before final torque.</small></a></li>
+  <li><a href="12-mount-dut-holder/"><strong>Mount the Smart Pro S holder</strong><small>Keep the marked upper and lower links in their correct positions.</small></a></li>
+  <li><a href="13-mount-fixture-board/"><strong>Mount the populated fixture board</strong><small>Use all four identical links and all four board slots.</small></a></li>
+  <li><a href="14-add-placard/"><strong>Add the node placard</strong><small>Keep its readable cartridge removable from the operator side.</small></a></li>
+  <li><a href="15-mount-power-strip/"><strong>Mount the unplugged power strip</strong><small>Run it front-to-back inside the lower operator-right depth rail.</small></a></li>
+  <li><a href="16-add-stacking-tabs/"><strong>Add the stacking tabs</strong><small>Install two narrow registration guides at each upper corner.</small></a></li>
+  <li><a href="17-final-check/"><strong>Align and compare the finished chassis</strong><small>Catch a missing part, skew, or unsafe power state before formal verification.</small></a></li>
+</ol>
 
-- the operator width rail's four-bar groove faces the chassis interior;
-- the device width rail's two-bar groove faces the operator;
-- each depth rail's parked-bar groove faces the interior; and
-- the lower fixture bar has two active bars plus one blue-tagged parked bar;
-  and
-- all four post tops remain open.
+After Step 17, continue to the [formal candidate verification](../verify.md).
 
-## 3. Build the upper ring with the upper fixture bar
-
-Arrange `WIDTH-O-U`, `WIDTH-D-U`, `DEPTH-L-U`, and `DEPTH-R-U` as a flat upper
-rectangle. Install its four three-way connectors loosely.
-
-Before placing the ring on the posts:
-
-1. Put one concealed metal L-connector at each end of `FIXTURE-U`, using the
-   lower grooves of the fixture bar and upper depth rails.
-2. Keep the fixture bar continuous and square between the depth rails.
-3. Set its centerline **75 mm from the operator-side outside plane**.
-4. Confirm its loaded groove faces the operator and both active link bars
-   remain accessible.
-5. Tighten the two metal L-connectors evenly. These connectors secure the
-   upper fixture bar.
-6. With a helper if available, lower the complete upper ring evenly onto all
-   four posts. Stop and realign if one corner resists.
-
-Bring every upper rail flush to its adjacent post face. Do not apply final
-torque yet.
-
-## 4. Square and tighten the outer frame
-
-1. Measure both corner-to-corner diagonals of the lower rectangle.
-2. Shift the loose frame until the diagonals differ by no more than 2 mm.
-3. Repeat on the upper rectangle.
-4. Use a machinist square to make all four posts plumb.
-5. Tighten opposite corners in a cross pattern, rechecking both diagonal pairs
-   after every pass.
-6. Confirm the chassis sits without rocking and both fixture bars remain at
-   the 75 mm datum.
-
-## 5. Mount the verified DUT holder
-
-Use the Smart Pro S holder, J-hooks, four carrier links, and fasteners from the
-same verified device pack.
-
-1. Put the shorter pair of links at the device-side upper width rail and the
-   longer pair at the device-side lower width rail, matching the pack's
-   `TOP`/`BOTTOM` markings.
-2. Move the four active channel bars under the link holes and fasten each link
-   flat to its rail.
-3. Attach the holder to all four links without twisting it.
-4. Confirm the holder faces the operator and is centered at X = 173 mm.
-5. Install the unpowered Smart Pro S only for fit inspection. Every J-hook
-   must clear its controls, ports, speakers, vents, triggers, and screen.
-6. Remove the handheld again if later work could drop hardware onto it.
-
-## 6. Join the populated fixture board to both bars
-
-![Installed upper and lower fixture-bar links](../../../assets/generated/test-node-chassis/dualbar/layout-suspension-detail.png)
-
-Turn the fixture board so its components face the operator and the Logitech
-C270 lens points toward the DUT. At each left/right side:
-
-1. Seat one link's 16 × 6.43 mm key in the upper fixture bar's
-   operator-facing groove. Move an active channel bar under its rail-side
-   hole and clamp it with an M3 × 12 mm screw and wide washer.
-2. Put the link below the upper plate slot, then clamp its plate-side hole
-   through that slot with a through-fastener, wide washers, and a metal
-   locknut.
-3. Seat a second identical link in the lower fixture bar's operator-facing
-   groove. The link rises from the bar to the lower plate slot. Clamp its
-   rail-side hole to the active channel bar.
-4. Put the lower link above the lower plate slot and clamp its plate-side hole
-   through the slot with the same washer-and-locknut arrangement.
-5. Repeat on the other side. Leave all four plate joints just loose enough to
-   remove twist, then tighten them evenly by hand.
-
-All four identical links are required. The upper and lower aluminum bars
-prevent swing and racking; no printed link, fastener, or rail may touch a
-fixture component, connector, or cable.
-
-## 7. Add the placard, power-strip mounts, and stacking tabs
-
-- Mount the reusable placard holder below the operator upper width rail with
-  its two risers/spacers and flat-head M3 fasteners. The name cartridge must
-  slide out without disturbing the fixture board.
-- Keep the power strip unplugged. On the lower operator-right depth rail, move
-  the four active channel bars under the two mounting holes in each printed
-  block. Clamp the blocks with four M3 × 12 mm screws and wide washers, with
-  the strip's long axis running front-to-back inside the chassis.
-  Use the strip's supplied wall-mount screws only between the strip and the
-  printed blocks. A supplied screw must not bottom against aluminum or pierce
-  the enclosure.
-- Install two 18 × 92 × 4 mm registration tabs at every upper corner: eight
-  tabs total. Each tab engages 60 mm below the top aluminum surface, extends
-  32 mm above it, and uses two lower M5 fastener sets.
-- When joining two chassis, let aluminum touch aluminum at all four corners,
-  then add one upper M5 locking set through each tab's round hole.
-
-!!! warning "Provisional two-chassis limit"
-    Until a populated load test establishes a rated stack count, stack no more
-    than two populated nodes. Registration tabs resist lateral motion;
-    aluminum carries the vertical load.
-
-## 8. Align the camera and finish the mechanical build
-
-1. Confirm both fixture-bar centerlines remain at 75 mm and the fixture board
-   lies flat.
-2. To adjust operator-to-device position, loosen all four metal L-connectors,
-   move the upper and lower bars to the same new datum without skewing either
-   one, then retighten all four connectors.
-3. Use the fixture-board slots only for final left/right centering. Keep every
-   printed link flat and every key seated.
-4. Connect only the Logitech C270 to a safe viewing computer if needed.
-5. Confirm the complete unpowered handheld is visible with margin on all four
-   sides and the screen is not keystoned.
-6. Disconnect the camera and compare the physical assembly with the
-   interactive model above.
-
-Before leaving the bench:
-
-- [ ] all 20 channel bars are accounted for;
-- [ ] every outer-frame joint is flush, square, and tight;
-- [ ] both continuous fixture bars are square and locked at the same recorded
-      datum;
-- [ ] four identical links are installed without fixture collisions;
-- [ ] the DUT holder is centered, correctly oriented, and unobstructed;
-- [ ] placard, power-strip switch, service corridors, and stacking interfaces
-      remain accessible; and
-- [ ] the chassis is still fully de-energized.
-
-Next: [verify and record the candidate](../verify.md).
+<nav class="pf-step-nav" aria-label="Assembly chapter navigation">
+  <a href="../cut/">← Back: Cut the rails</a>
+  <span>Assembly · 17 steps</span>
+  <a href="01-learn-the-rail/">Begin Step 1 →</a>
+</nav>

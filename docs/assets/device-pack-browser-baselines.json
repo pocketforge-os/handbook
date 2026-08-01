@@ -21,7 +21,7 @@
       "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
     },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "13fb38c44a81708f62e48fd275a2cbc942d64f4d15d1b5f403562bba18c80543",
+      "browser_normalized_sha256": "ae2ece563cb75660b4b1ca507d7748fee1bcf23fdbd9b58098e494d0a897598b",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -46,7 +46,7 @@
       "source_normalized_sha256": "db9f498c95a2d70d96f5272714f745382ef87b908a939a3bfd2dd47246be12fd"
     },
     "trimui-smart-pro-s/device_wire_anchors": {
-      "browser_normalized_sha256": "b2a1a7ce6ef5c32c5d5ff9719dc95b7bfcc27cb28f0133fee1bd723c022fd44c",
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
@@ -81,7 +81,7 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "82f8770309b8f495ebf7551fd3656d238917a550a987af3d1f238c30d4f451f7",
+      "browser_normalized_sha256": "004bc151baf7479c8c142b811b6625a1eac4c080b9c0c0cc48580d9e286a9851",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -106,7 +106,7 @@
       "source_normalized_sha256": "9205e8b1a12298036ced3bc2ecba50cc6397e19dcc32e92cf69ae0dadeed7107"
     },
     "trimui-smart-pro/device_wire_anchors": {
-      "browser_normalized_sha256": "b2a1a7ce6ef5c32c5d5ff9719dc95b7bfcc27cb28f0133fee1bd723c022fd44c",
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
@@ -139,7 +139,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "ff71c93d0e9ff304a5b8ee89f01861f27fdd75e8",
+    "commit": "148eb12e7d36a2b5cf7384f8225eb853c282aaed",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

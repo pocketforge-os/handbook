@@ -479,6 +479,23 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "dualbar/cut-list.csv",
         "dualbar/layout-preload.png",
         "dualbar/layout-suspension-detail.png",
+        "assembly/assembly-01-channel-bar.png",
+        "assembly/assembly-02-width-rails.png",
+        "assembly/assembly-03-depth-rails.png",
+        "assembly/assembly-04-fixture-bars.png",
+        "assembly/assembly-05-lower-frame.png",
+        "assembly/assembly-06-lower-fixture-bar.png",
+        "assembly/assembly-07-posts.png",
+        "assembly/assembly-08-upper-ring.png",
+        "assembly/assembly-09-upper-fixture-bar.png",
+        "assembly/assembly-10-close-frame.png",
+        "assembly/assembly-11-square-frame.png",
+        "assembly/assembly-12-dut-holder.png",
+        "assembly/assembly-13-fixture-board.png",
+        "assembly/assembly-14-placard.png",
+        "assembly/assembly-15-power-strip.png",
+        "assembly/assembly-16-stacking-tabs.png",
+        "assembly/assembly-17-final.png",
         "print-batches/batch-00-calibration.png",
         "print-batches/batch-00-calibration.glb",
         "print-batches/batch-01-ironed-interfaces.png",
@@ -627,7 +644,50 @@ def main() -> int:
     parts_page = guide_root / "parts" / "index.html"
     print_page = guide_root / "print" / "index.html"
     cut_page = guide_root / "cut" / "index.html"
-    assembly_page = guide_root / "assemble" / "index.html"
+    assembly_root = guide_root / "assemble"
+    assembly_page = assembly_root / "index.html"
+    assembly_step_names = (
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-load-fixture-bars",
+        "05-lay-out-lower-frame",
+        "06-install-lower-fixture-bar",
+        "07-add-posts",
+        "08-build-upper-ring",
+        "09-install-upper-fixture-bar",
+        "10-close-outer-frame",
+        "11-square-frame",
+        "12-mount-dut-holder",
+        "13-mount-fixture-board",
+        "14-add-placard",
+        "15-mount-power-strip",
+        "16-add-stacking-tabs",
+        "17-final-check",
+    )
+    assembly_image_names = (
+        "assembly-01-channel-bar.png",
+        "assembly-02-width-rails.png",
+        "assembly-03-depth-rails.png",
+        "assembly-04-fixture-bars.png",
+        "assembly-05-lower-frame.png",
+        "assembly-06-lower-fixture-bar.png",
+        "assembly-07-posts.png",
+        "assembly-08-upper-ring.png",
+        "assembly-09-upper-fixture-bar.png",
+        "assembly-10-close-frame.png",
+        "assembly-11-square-frame.png",
+        "assembly-12-dut-holder.png",
+        "assembly-13-fixture-board.png",
+        "assembly-14-placard.png",
+        "assembly-15-power-strip.png",
+        "assembly-16-stacking-tabs.png",
+        "assembly-17-final.png",
+    )
+    assembly_steps = [
+        assembly_root / step_name / "index.html"
+        for step_name in assembly_step_names
+    ]
     verify_page = guide_root / "verify" / "index.html"
     wire_page = guide_root / "wire-management" / "index.html"
     chassis_pages = [
@@ -639,24 +699,20 @@ def main() -> int:
         verify_page,
         wire_page,
     ]
-    pages = [*holder_pages, *chassis_pages]
+    pages = [*holder_pages, *chassis_pages, *assembly_steps]
     for page in pages:
         if not page.is_file():
             raise SystemExit(f"missing mechanical onboarding page: {page}")
 
-    removed_routes = [
-        path
-        for path in (guide_root / "assemble").iterdir()
-        if path.is_dir()
-    ]
-    if any(path.exists() for path in removed_routes):
+    actual_step_routes = {
+        path.name for path in assembly_root.iterdir() if path.is_dir()
+    }
+    expected_step_routes = set(assembly_step_names)
+    if actual_step_routes != expected_step_routes:
         raise SystemExit(
-            "removed chassis route reached the built site: "
-            + ", ".join(
-                str(path.relative_to(site))
-                for path in removed_routes
-                if path.exists()
-            )
+            "assembly step route set changed "
+            f"(missing={sorted(expected_step_routes - actual_step_routes)!r}, "
+            f"unexpected={sorted(actual_step_routes - expected_step_routes)!r})"
         )
 
     missing: list[str] = []
@@ -708,7 +764,8 @@ def main() -> int:
             )
 
     chassis_html = " ".join(
-        page.read_text(encoding="utf-8") for page in chassis_pages
+        page.read_text(encoding="utf-8")
+        for page in (*chassis_pages, *assembly_steps)
     )
     normalized_chassis_html = " ".join(chassis_html.split())
     for required_fragment in (
@@ -859,6 +916,144 @@ def main() -> int:
                 )
     if viewer_count != 2:
         raise SystemExit(f"expected two canonical chassis viewers, found {viewer_count}")
+
+    assembly_html = assembly_page.read_text(encoding="utf-8")
+    for required_fragment in (
+        "17 bench steps",
+        'class="pf-step-list"',
+        "Assembly · 17 steps",
+        "14 active + 6 parked = 20",
+    ):
+        if required_fragment not in assembly_html:
+            raise SystemExit(
+                f"assembly start page is missing {required_fragment!r}"
+            )
+    step_list_match = re.search(
+        r'<ol class="pf-step-list">.*?</ol>',
+        assembly_html,
+        flags=re.DOTALL,
+    )
+    if step_list_match is None:
+        raise SystemExit("assembly start page has no bounded step list")
+    step_list_parser = LocalReferenceParser()
+    step_list_parser.feed(step_list_match.group(0))
+    actual_ordered_steps = [
+        target
+        for tag, reference in step_list_parser.references
+        if tag == "a"
+        and (
+            target := resolve_reference(site, assembly_page, reference)
+        )
+        is not None
+    ]
+    if actual_ordered_steps != assembly_steps:
+        raise SystemExit(
+            "assembly landing-page order changed: "
+            f"{[path.parent.name for path in actual_ordered_steps]!r}"
+        )
+
+    step_contracts = {
+        1: ("18 mm", "open cut end"),
+        2: ("WIDTH-O-L", "six active width-rail bars"),
+        3: ("DEPTH-R-L", "four active + four parked"),
+        4: ("14 active + 6 parked = 20",),
+        5: ("WIDTH-O-L", "DEPTH-R-L"),
+        6: ("75 mm centerline", "2 × concealed L-connectors"),
+        7: ("POST-OL", "POST-DR"),
+        8: ("WIDTH-O-U", "DEPTH-R-U"),
+        9: ("75 mm", "2 × concealed L-connectors"),
+        10: ("all four post tops", "Do not pull"),
+        11: ("no more than 2 mm", "does not rock"),
+        12: ("X = 173 mm", "TOP", "BOTTOM"),
+        13: ("4 × identical 71.5 mm keyed fixture links", "four board slots"),
+        14: ("WIDTH-O-U", "slide out to the right"),
+        15: ("DEPTH-R-L", "front-to-back", "Never drill"),
+        16: ("8 × 18 × 92 × 4 mm stacking tabs", "32 mm above"),
+        17: ("14 active and 6 parked", "remains de-energized"),
+    }
+    step_count = len(assembly_steps)
+    for index, (step_page, expected_image) in enumerate(
+        zip(assembly_steps, assembly_image_names, strict=True)
+    ):
+        step_number = index + 1
+        step_html = step_page.read_text(encoding="utf-8")
+        for required_fragment in (
+            f"Step {step_number} of {step_count}",
+            'class="pf-step-layout"',
+            'class="pf-part-list"',
+            'class="pf-part-tag ',
+            'class="pf-picture-key"',
+            'class="pf-step-check"',
+            'class="pf-step-nav"',
+            "Get these parts",
+            "Do this",
+            "Before you continue:",
+            *step_contracts[step_number],
+        ):
+            if required_fragment not in step_html:
+                raise SystemExit(
+                    f"assembly step {step_number} is missing "
+                    f"{required_fragment!r}"
+                )
+        if step_html.count('class="pf-cue ') < 2:
+            raise SystemExit(
+                f"assembly step {step_number} needs at least two named cues"
+            )
+
+        step_parser = page_references[step_page]
+        if step_parser.model_viewers:
+            raise SystemExit(
+                f"assembly step {step_number} must use its focused static render"
+            )
+        assembly_images = [
+            image
+            for image in step_parser.images
+            if "/generated/test-node-chassis/assembly/" in image.get("src", "")
+        ]
+        if (
+            len(assembly_images) != 1
+            or Path(
+                urlparse(assembly_images[0].get("src", "")).path
+            ).name
+            != expected_image
+            or len(assembly_images[0].get("alt", "").split()) < 8
+        ):
+            raise SystemExit(
+                f"assembly step {step_number} focused image changed: "
+                f"{assembly_images!r}"
+            )
+
+        nav_match = re.search(
+            r'<nav class="pf-step-nav".*?</nav>',
+            step_html,
+            flags=re.DOTALL,
+        )
+        if nav_match is None:
+            raise SystemExit(
+                f"assembly step {step_number} has no bounded step navigation"
+            )
+        nav_parser = LocalReferenceParser()
+        nav_parser.feed(nav_match.group(0))
+        nav_targets = [
+            target
+            for tag, reference in nav_parser.references
+            if tag == "a"
+            and (
+                target := resolve_reference(site, step_page, reference)
+            )
+            is not None
+        ]
+        expected_previous = (
+            assembly_page if index == 0 else assembly_steps[index - 1]
+        )
+        expected_next = (
+            verify_page if index == step_count - 1 else assembly_steps[index + 1]
+        )
+        if nav_targets != [expected_previous, expected_next]:
+            raise SystemExit(
+                f"assembly step {step_number} navigation changed: "
+                f"{[path.relative_to(site) for path in nav_targets]!r}"
+            )
 
     print_html = print_page.read_text(encoding="utf-8")
     normalized_print_html = " ".join(print_html.split()).casefold()
@@ -1025,6 +1220,7 @@ def main() -> int:
         f"pages={len(pages)} local_links=resolved "
         f"checksums={checksums} holder_pages={len(holder_pages)} "
         f"chassis_pages={len(chassis_pages)} "
+        f"assembly_steps={len(assembly_steps)} "
         f"interactive_models={viewer_count} semantic_layers=70 "
         f"browser_devices={len(browser_catalog['devices'])} "
         f"browser_baselines={len(browser_baselines['artifacts'])}"
