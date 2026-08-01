@@ -13,7 +13,6 @@ per-DUT integration procedure.
 | --- | ---: | --- |
 | 20 mm square aluminum rail | 5 × 1 m maximum | 20.00 mm face-to-face with nominal 6 mm long grooves; four sticks plus two straight offcuts at least 309.2 mm long are sufficient |
 | Metal three-way end connectors | 8 | Cap-flush, side-butt type for 2020/slot-6; [BLCCLOY B08C9Q2TGW](https://www.amazon.com/dp/B08C9Q2TGW) or dimensionally equivalent, with supplied set screws |
-| Concealed metal L-connectors | 4 | 26 × 26 × 9.5 mm for 2020/slot-6; [BLCCLOY B08D6T9CGN](https://www.amazon.com/dp/B08D6T9CGN) or dimensionally equivalent, with supplied set screws |
 
 The finished frame uses four 360 mm posts, four 318 mm depth rails, four
 306 mm width rails, and two continuous 306 mm fixture bars.
@@ -23,13 +22,14 @@ The finished frame uses four 360 mm posts, four 318 mm depth rails, four
 Generate one verified `full` device pack. For the Smart Pro S example it
 contains:
 
-- 20 compact 18 mm M3 channel bars;
-- four identical 71.5 mm keyed fixture links;
+- 28 compact 18 mm M3 channel bars;
+- four identical 71.5 mm keyed fixture links and four printed crossbar-joint
+  plates;
 - eight 18 × 92 × 4 mm stacking-registration tabs;
 - two placard risers, two keyed placard spacers, two power-strip blocks, and
   one reusable placard holder;
-- one Smart Pro S holder, six J-hooks, a fit coupon, two upper and two lower
-  carrier links, and one device-name cartridge; and
+- one Smart Pro S holder, six J-hooks, a fit coupon, two 91.5 mm upper and two
+  108.5 mm lower stack-clear carrier links, and one device-name cartridge; and
 - eight rail-mounted cable anchors.
 
 The calibration bed is conditional. Print it after any rail supplier, printer,
@@ -37,8 +37,8 @@ nozzle, material, slicer compensation, or placard-slide change.
 
 | Fastener group | Quantity | Use |
 | --- | ---: | --- |
-| Ordinary M3 nuts | 20 | One seated in every compact channel bar |
-| M3 × 12 mm screws and wide washers | 20 sets | Fourteen active rail joints and six lightly retained parked bars |
+| Ordinary M3 nuts | 28 | One seated in every compact channel bar |
+| M3 × 12 mm screws and wide washers | 28 sets | Twenty-two active rail joints and six lightly retained parked bars; eight active sets clamp the four printed crossbar joints |
 | M3 suspension through-fasteners | 4 | Join the four fixture links to the two upper and two lower fixture-board slots |
 | M3 metal locknuts | 4 | One per suspension through-fastener |
 | M3 wide washers for suspension | 8 | One on each side of every printed-to-plate through-joint |
@@ -60,6 +60,13 @@ to compensate for a poor fastener choice.
     nut rotation, and spreads a light clamp load. The ordinary metal M3 nut
     supplies the thread. The printed carrier is not a structural frame
     connector.
+
+!!! note "Printed fixture-bar joints"
+    The four printed crossbar-joint plates replace the former concealed metal
+    elbows. Each plate keys into one fixture bar and one depth rail and uses
+    one active channel bar in each rail. Lower plates install above the lower
+    rails; upper plates install below the upper rails. They index the fixture
+    support and do not carry the outer-frame stacking load.
 
 ## Fabrication tools
 

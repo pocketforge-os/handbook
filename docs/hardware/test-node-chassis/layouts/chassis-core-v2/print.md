@@ -4,12 +4,8 @@ This chassis layout can be reused without making every device-specific print
 identical. Return to [Choose the device for this test node](../../index.md),
 open the exact build sheet, and use its locked print generator.
 
-This retained route documents the frozen physically qualified v1 baseline.
-The current [TrimUI Smart Pro print page](../../devices/trimui-smart-pro/print.md)
-selects its `chassis-core-v2` successor and must not be used to claim a new v1
-pack. To reproduce the original qualified geometry, check out source revision
-`85117d7eaed72f69dc40e358c5e80ec7f07e79d6` and build the Smart Pro full pack
-without an unqualified override.
+For the current candidate mapping, use the
+[TrimUI Smart Pro print page](../../devices/trimui-smart-pro/print.md).
 
 !!! danger "Do not choose a holder from a layout page"
     The device build sheet owns the holder, component profile, nameplate, and

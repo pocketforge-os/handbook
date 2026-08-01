@@ -14,10 +14,10 @@ permitted for the camera-framing gate.
       `nonproduction_reasons=["layout_unqualified"]`.
 - [ ] It selects device `trimui-smart-pro-s` and layout
       `chassis-dualbar-v1`.
-- [ ] Two continuous 306 mm fixture bars and exactly four metal L-connectors
-      are installed.
+- [ ] Two continuous 306 mm fixture bars and exactly four printed
+      crossbar-joint plates are installed.
 - [ ] Four identical keyed fixture links are installed.
-- [ ] All 14 active and six parked channel bars are accounted for.
+- [ ] All 22 active and six parked channel bars are accounted for.
 - [ ] Holder, J-hooks, carrier links, and nameplate trace to the same verified
       device pack.
 
@@ -48,6 +48,9 @@ permitted for the camera-framing gate.
       misalignment.
 - [ ] Links, rails, and fasteners clear every fixture component,
       connector, and cable corridor.
+- [ ] Each crossbar-joint plate lies on the clear interior horizontal faces:
+      lower plates above the lower rails and upper plates below the upper
+      rails, with both perpendicular keys fully seated.
 
 ## 4. Loaded stability
 
@@ -64,8 +67,8 @@ after the agreed observation interval.
 | End-of-interval datum / residual movement | |
 | Observation interval | |
 
-- [ ] All four links remain seated and all four fixture-bar connectors remain
-      tight.
+- [ ] All four links remain seated and all eight crossbar-joint plate screws
+      remain tight.
 - [ ] Gentle operator-to-device pressure does not produce unacceptable swing,
       racking, or persistent twist.
 - [ ] Removing the load leaves no unexpected residual displacement.
@@ -73,17 +76,19 @@ after the agreed observation interval.
 
 This candidate deliberately has no invented fleet tolerance. Record the
 measurements and obtain the owner's explicit fit/rigidity decision under
-`tsp-t1zd.2`.
+`tsp-px73.23`.
 
 ## 5. Adjustment and service clearance
 
 1. Mark the accepted position of both fixture bars.
-2. Loosen all four metal L-connectors.
+2. Loosen all eight crossbar-joint plate screws.
 3. Move the matched upper/lower pair through the required operator-to-device
    adjustment range without skewing or separating their datums.
-4. Restore both marks, square both bars, and retighten all four connectors.
+4. Restore both marks, square both bars, and retighten all eight plate screws.
 
 - [ ] The bars move only when loosened and lock squarely at one shared datum.
+- [ ] All four printed plates return flat with both keys fully seated and no
+      whitening, cracking, or crushed material.
 - [ ] The fixture-board slots provide the required final centering.
 - [ ] Harness service corridors and DUT-holder access remain unobstructed.
 - [ ] The placard cartridge, power-strip switch, and stacking hardware remain
@@ -93,6 +98,8 @@ measurements and obtain the owner's explicit fit/rigidity decision under
 
 - [ ] The holder is centered at X = 173 mm and faces the operator.
 - [ ] Two upper and two lower links sit flat.
+- [ ] The two upper links measure 91.5 mm, the two lower links measure
+      108.5 mm, and all four end 1 mm inside the chassis stack planes.
 - [ ] Every J-hook clears controls, ports, vents, speakers, triggers, and the
       display.
 - [ ] Gentle hand pressure does not make the holder swing or rack.
@@ -137,7 +144,8 @@ Record:
 - any deviation from the generated cut list or device pack.
 
 The owner must explicitly accept fit, thread engagement, loaded stability,
-service clearance, adjustment, and camera framing under `tsp-t1zd.2`.
+service clearance, adjustment, stack clearance, and camera framing under
+`tsp-px73.23`.
 Only a reviewed source change may then promote the exact accepted normalized
 fingerprints to a production-qualified layout.
 

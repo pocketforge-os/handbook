@@ -18,7 +18,7 @@ board. The Smart Pro S is the worked example and selects the registered
 !!! warning "Candidate mechanical layout"
     `chassis-dualbar-v1` is deterministic and reviewable, but its printed
     suspension still needs the physical fit, loaded-sag, racking, service, and
-    camera checks tracked by `tsp-t1zd.2`. Generate it only with the explicit
+    camera checks tracked by `tsp-px73.23`. Generate it only with the explicit
     non-production override until that acceptance record is complete.
 
 ## Explore the complete assembly
@@ -150,8 +150,8 @@ view; and every current suspension and frame part.
 | Finished extrusion | 4,548 mm |
 | Fresh stock | Five nominal 1 m sticks, or four plus two qualifying offcuts |
 | Fixture support | Two continuous 306 mm bars |
-| Printed suspension | Four identical 71.5 mm keyed fixture links |
-| DUT carrier | Device-selected holder pack on the device-side rails |
+| Printed suspension | Four identical 71.5 mm keyed fixture links + four keyed crossbar-joint plates |
+| DUT carrier | Stack-clear 91.5 mm upper / 108.5 mm lower links on the device-side rails |
 | Stacking | Eight 18 × 92 × 4 mm registration tabs |
 | Wire management | Eight repositionable M5 rail anchors to start; individual M3 or M5 replacements |
 

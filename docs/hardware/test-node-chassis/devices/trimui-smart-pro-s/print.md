@@ -18,11 +18,11 @@ cross-checked against the pinned source toolchain within 0.001 mm at the
 bounds and 0.02% by volume; a source, runtime, or geometry change stops here
 until its baseline is deliberately re-qualified.
 
-!!! info "Generate the corrected stacking tabs"
-    Keep **TrimUI Smart Pro S** selected, choose the full build, and generate
-    **Core 04 · frame hardware**. That current dual-bar bed has each upper
-    stacking-tab hole 7 mm higher. The older TrimUI Smart Pro pack remains
-    frozen at its previously accepted geometry.
+!!! info "Generate the current stack-clear revision"
+    Keep **TrimUI Smart Pro S** selected and generate the complete pack. Its
+    carrier links end 1 mm inside the chassis stack planes, **Core 02** adds
+    four printed crossbar-joint plates, and **Core 04** keeps each upper
+    stacking-tab hole 7 mm above the former datum.
 
 <script type="module" src="../../../../../assets/device-pack-generator.mjs"></script>
 <section
@@ -164,7 +164,7 @@ candidate generation; it does not qualify the layout. Before slicing, inspect
 - `production_eligible` is `false`;
 - `nonproduction_reasons` is exactly `["layout_unqualified"]`;
 - the selected layout is `chassis-dualbar-v1`; and
-- `layout.qualification.acceptance_ref` is `tsp-t1zd.2`.
+- `layout.qualification.acceptance_ref` is `tsp-px73.23`.
 
 Stop if any value differs.
 
@@ -198,8 +198,8 @@ The exported placement is part of the geometry contract.
 | Pack output | Expected contents | Special handling |
 | --- | --- | --- |
 | `calibration/chassis-process-calibration.stl` | Rail-key, channel-bar, and placard coupons | Conditional after a process or interface change |
-| `chassis/core-01-ironed-interfaces.stl` | 20 compact M3 channel bars | Iron topmost channel-contact surfaces |
-| `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links | Keep the exported broad faces on the bed and keys upward |
+| `chassis/core-01-ironed-interfaces.stl` | 28 compact M3 channel bars | Iron topmost channel-contact surfaces |
+| `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links and four printed crossbar-joint plates | Keep every exported broad face on the bed and every key upward |
 | `chassis/core-04-frame-hardware.stl` | Stacking, placard, and power-strip hardware | Inspect every slot and through-hole |
 | `chassis/core-05-placard-holder.stl` | One reusable placard holder | Check the slide channel before installing it |
 
@@ -215,12 +215,12 @@ no STL is stored on the site.
     <figcaption><strong>Calibration</strong><span>Conditional interface coupons</span></figcaption>
   </figure>
   <figure class="pf-print-preview">
-    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.png" alt="Interactive preview of 20 compact channel bars" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
-    <figcaption><strong>Core 01</strong><span>20 ironed channel bars</span></figcaption>
+    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-01-ironed-interfaces.png" alt="Interactive preview of 28 compact channel bars" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 01</strong><span>28 ironed channel bars</span></figcaption>
   </figure>
   <figure class="pf-print-preview">
-    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.png" alt="Interactive preview of four identical keyed fixture links" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
-    <figcaption><strong>Core 02</strong><span>4 identical fixture links</span></figcaption>
+    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.png" alt="Interactive preview of four keyed fixture links and four printed crossbar-joint plates" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 02</strong><span>4 fixture links + 4 joint plates</span></figcaption>
   </figure>
   <figure class="pf-print-preview">
     <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.png" alt="Interactive preview of the frame hardware print bed" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
@@ -241,10 +241,11 @@ no STL is stored on the site.
 </div>
 
 The same manifest selects the Smart Pro S holder, six J-hooks, holder fit
-coupon, four carrier links, device nameplate, and eight starter wire anchors.
-Use every device-specific piece from this one verified pack.
+coupon, two 91.5 mm upper carrier links, two 108.5 mm lower carrier links,
+device nameplate, and eight starter wire anchors. Use every device-specific
+piece from this one verified pack.
 
-## Seat and account for all 20 channel-bar nuts
+## Seat and account for all 28 channel-bar nuts
 
 A channel bar is the compact orange 18 mm carrier with one ordinary metal M3
 nut seated in its hex pocket. The metal nut supplies the thread; the printed
@@ -256,18 +257,18 @@ carrier keeps it aligned inside the rail.
    carrier, then turn it into the nut by hand.
 4. Tighten only until the nut reaches the bottom of the pocket.
 5. Remove the screw and washer. Confirm the nut lies flat and cannot rotate.
-6. Repeat for all 20 carriers. Do not glue, hammer, melt, or encapsulate a nut.
+6. Repeat for all 28 carriers. Do not glue, hammer, melt, or encapsulate a nut.
 
 ![Dual-bar channel-bar preload map](../../../../assets/generated/test-node-chassis/dualbar/layout-preload.png)
 
-The exact inventory is **14 active + 6 parked = 20**:
+The exact inventory is **22 active + 6 parked = 28**:
 
 | Destination | Active | Parked with removable blue tape |
 | --- | ---: | ---: |
-| Four outer width rails | 10 | 0 |
-| Four outer depth rails | 0 | 4 |
-| Lower and upper fixture bars | 4 | 2 |
-| **Total** | **14** | **6** |
+| Four outer width rails | 6 | 0 |
+| Four outer depth rails | 8 | 4 |
+| Lower and upper fixture bars | 8 | 2 |
+| **Total** | **22** | **6** |
 
 Parked bars are identical service spares. Blue tape marks the retaining screw;
 there is no separately printed blue part. Keep each parked screw only tight
@@ -350,13 +351,14 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
       manifest.
 - [ ] The manifest remains non-production with only `layout_unqualified`.
 - [ ] Every bed stayed at 100% scale in its exported support-free orientation.
-- [ ] Core 01 contains exactly 20 compact channel bars.
-- [ ] Core 02 contains exactly four identical keyed fixture links.
-- [ ] All 20 captive nuts sit flat and cannot rotate.
-- [ ] The preload count balances to 14 active and 6 blue-tagged parked bars.
+- [ ] Core 01 contains exactly 28 compact channel bars.
+- [ ] Core 02 contains four identical keyed fixture links and four printed
+      crossbar-joint plates.
+- [ ] All 28 captive nuts sit flat and cannot rotate.
+- [ ] The preload count balances to 22 active and 6 blue-tagged parked bars.
 - [ ] The holder, J-hooks, carrier links, and nameplate all come from the same
       verified device pack.
-- [ ] Every stacking-tab hole, fixture-link key, link hole, and zip-tie tunnel
-      is open and undamaged.
+- [ ] Every stacking-tab hole, fixture-link key, joint-plate key, carrier-link
+      hole, and zip-tie tunnel is open and undamaged.
 
 Next: [cut the aluminum rails](../../layouts/chassis-dualbar-v1/cut.md).

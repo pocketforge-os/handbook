@@ -33,7 +33,7 @@ formal verification.
 <div class="pf-picture-key" role="group" aria-label="Finished-chassis picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange hardware</span><span>Compare the holder, four fixture links, placard supports, power blocks, and eight tabs.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange hardware</span><span>Compare the holder, four carrier links, four fixture links, four crossbar-joint plates, placard supports, power blocks, and eight tabs.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Installed assemblies</span><span>The populated board, camera, DUT holder, placard, and power strip match the reference orientation.</span></li>
     <li><span class="pf-cue pf-cue--silver">Silver frame</span><span>Four posts, eight outer rails, and two fixture bars are flush, square, and continuous.</span></li>
   </ul>
@@ -43,9 +43,10 @@ formal verification.
 
 1. Confirm the upper and lower fixture-bar centerlines remain at the same 75 mm
    operator-side datum and the fixture board lies flat.
-2. If operator-to-device adjustment is needed, loosen all four metal
-   L-connectors. Move both fixture bars to the same new recorded datum without
-   skewing either bar, then square and retighten all four connectors.
+2. If operator-to-device adjustment is needed, loosen all eight
+   crossbar-joint plate screws. Move both fixture bars to the same new recorded
+   datum without skewing either bar, then square and retighten all eight
+   screws evenly.
 3. Use the fixture-board slots only for final left/right centering. Keep every
    printed link flat and every key fully seated.
 4. If needed, connect **only** the Logitech C270 to a safe viewing computer.
@@ -58,13 +59,14 @@ formal verification.
 - [ ] Frame: 4 × 360 mm posts, 4 × 306 mm width rails, and 4 × 318 mm depth
       rails are present and flush.
 - [ ] Support: 2 continuous 306 mm fixture bars share one recorded datum and
-      use all 4 concealed metal L-connectors.
-- [ ] Preload: all 14 active and 6 parked channel bars are accounted for; all
+      use all 4 printed crossbar-joint plates with both keys fully seated.
+- [ ] Preload: all 22 active and 6 parked channel bars are accounted for; all
       six parked screws retain blue tags.
 - [ ] Geometry: lower and upper diagonal pairs each differ by no more than
       2 mm; all posts are plumb and the chassis does not rock.
 - [ ] DUT: the Smart Pro S holder faces the operator, is centered at X =
-      173 mm, and uses two correctly marked upper plus two lower links.
+      173 mm, and uses two 91.5 mm upper plus two 108.5 mm lower links; every
+      link ends 1 mm inside its chassis stack plane.
 - [ ] Fixture: all 4 identical 71.5 mm links are seated and all 4 board slots
       are clamped without a component or cable collision.
 - [ ] Accessories: the placard is readable and removable; the unplugged strip

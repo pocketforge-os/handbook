@@ -15,7 +15,7 @@
       "display_name": "TrimUI Smart Pro",
       "family": "trimui-smart-pro-family",
       "integration_profile": "trimui-smart-pro-family-v1",
-      "layout": "chassis-core-v1",
+      "layout": "chassis-core-v2",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro/",
       "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro/print/"
     },
@@ -40,10 +40,10 @@
     }
   },
   "layouts": {
-    "chassis-core-v1": {
-      "display_name": "Qualified gantry chassis",
-      "qualification_status": "physically_qualified",
-      "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v1/",
+    "chassis-core-v2": {
+      "display_name": "Stack-clear gantry chassis candidate",
+      "qualification_status": "candidate",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v2/",
       "outside_envelope_mm": {
         "width": 346,
         "depth": 358,

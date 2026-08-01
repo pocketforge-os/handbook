@@ -174,17 +174,18 @@ an action.
       [print gate](../../../devices/trimui-smart-pro-s/print.md#print-gate).
 - [ ] Four 360 mm posts, four 318 mm depth rails, four 306 mm width rails, and
       two continuous 306 mm fixture bars passed the [cut gate](../cut.md#cut-gate).
-- [ ] One ordinary M3 nut is fully seated in each of the 20 compact channel
+- [ ] One ordinary M3 nut is fully seated in each of the 28 compact channel
       bars.
-- [ ] The 8 metal three-way connectors and four metal L-connectors are present.
-- [ ] Four identical 71.5 mm keyed links, all holder parts, placard parts,
-      power-strip blocks, and eight stacking tabs are present.
+- [ ] The 8 outer-frame metal three-way connectors are present.
+- [ ] Four identical 71.5 mm fixture links, four printed crossbar-joint
+      plates, all holder parts, placard parts, power-strip blocks, and eight
+      stacking tabs are present.
 - [ ] The power strip and every source of DUT power are physically separate
       from the work area.
 - [ ] A tape measure, square, and the required M3/M5 hex drivers are within
       reach.
 
-The preload steps account for **14 active + 6 parked = 20** channel bars before
+The preload steps account for **22 active + 6 parked = 28** channel bars before
 any cut end is closed.
 
 ## The 17-step path
@@ -192,8 +193,8 @@ any cut end is closed.
 <ol class="pf-step-list">
   <li><a href="01-learn-the-rail/"><strong>Learn the rail and channel bar</strong><small>Practice the only hidden interface before loading labeled frame parts.</small></a></li>
   <li><a href="02-load-width-rails/"><strong>Load the four width rails</strong><small>Put six active bars in their exact labeled rails and grooves.</small></a></li>
-  <li><a href="03-load-depth-rails/"><strong>Load the four depth rails</strong><small>Add the four power-strip bars and four blue-tagged parked spares.</small></a></li>
-  <li><a href="04-load-fixture-bars/"><strong>Load both fixture bars</strong><small>Add four active link bars and two parked spares; count all 20.</small></a></li>
+  <li><a href="03-load-depth-rails/"><strong>Load the four depth rails</strong><small>Add four printed-joint bars, four power-strip bars, and four blue-tagged parked spares.</small></a></li>
+  <li><a href="04-load-fixture-bars/"><strong>Load both fixture bars</strong><small>Add four link bars, four joint bars, and two parked spares; count all 28.</small></a></li>
   <li><a href="05-lay-out-lower-frame/"><strong>Lay out the lower frame</strong><small>Resolve operator, device, left, and right while the frame is flat.</small></a></li>
   <li><a href="06-install-lower-fixture-bar/"><strong>Install the lower fixture bar</strong><small>Set the continuous lower support at the 75 mm datum before posts rise.</small></a></li>
   <li><a href="07-add-posts/"><strong>Add the four posts</strong><small>Raise the open frame while every joint remains adjustable.</small></a></li>

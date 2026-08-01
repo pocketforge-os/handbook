@@ -29,7 +29,7 @@ for the upper rail stays above the holder; the lower pair stays below it.
 
 <ul class="pf-part-list">
   <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>1 × Smart Pro S holder with 6 J-hooks</strong><small>From one verified complete device pack</small></span></li>
-  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × upper links and 2 × lower links</strong><small>Keep the pack's <code>TOP</code>/<code>BOTTOM</code> identities visible</small></span></li>
+  <li><span class="pf-part-tag pf-part-tag--printed">Printed</span><span><strong>2 × 91.5 mm upper links and 2 × 108.5 mm lower links</strong><small>Keep the pack's <code>TOP</code>/<code>BOTTOM</code> identities visible</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">Rail M3</span><span><strong>4 × M3 × 12 mm screws and wide washers</strong><small>Already serving as handles in the device-side width rails</small></span></li>
   <li><span class="pf-part-tag pf-part-tag--fastener">Joint M3</span><span><strong>4 × verified holder-link hardware sets</strong><small>Use the screw, washer, and metal-nut lengths recorded by the pack</small></span></li>
 </ul>
@@ -60,7 +60,10 @@ for the upper rail stays above the holder; the lower pair stays below it.
    of the 346 mm-wide chassis.
 8. Adjust the four holder slots until all links lie flat, then tighten the
    eight joints evenly by hand.
-9. Place the fully unpowered Smart Pro S in the holder for a fit check. Confirm
+9. Sight across the upper and lower chassis stack planes. Every carrier link
+   must end **1 mm inside** its corresponding aluminum plane; no printed edge
+   may protrude beyond the frame.
+10. Place the fully unpowered Smart Pro S in the holder for a fit check. Confirm
    every hook clears its controls, ports, speakers, vents, triggers, and
    display, then remove it if later work could drop hardware onto it.
 
@@ -70,9 +73,9 @@ for the upper rail stays above the holder; the lower pair stays below it.
 <div class="pf-step-check" markdown="1">
 
 **Before you continue:** the marked upper and lower links are in their correct
-rails, all four lie flat, the holder center is 173 mm from either side, its
-hooks face the operator, and the unpowered DUT fits without blocked controls
-or forced contact.
+rails, all four lie flat and stay 1 mm inside the stack planes, the holder
+center is 173 mm from either side, its hooks face the operator, and the
+unpowered DUT fits without blocked controls or forced contact.
 
 </div>
 
