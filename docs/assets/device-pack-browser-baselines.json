@@ -1,9 +1,9 @@
 {
   "artifacts": {
     "trimui-smart-pro-s/chassis_core_04_frame_hardware": {
-      "browser_normalized_sha256": "25bc8c48ed55fb6a10b86ca27c90dc18e8e68c47b2b51907c9ba9805ca89c630",
+      "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
       "output": "chassis/core-04-frame-hardware.stl",
-      "source_normalized_sha256": "911d249f2b8e7120b46d86c9a25f85a4a1edbf64944c05615911681a01e0cb25"
+      "source_normalized_sha256": "31ddea2c53c3d93cb6f64cca11c123b39d071879b9e172839c0ea87c75307601"
     },
     "trimui-smart-pro-s/chassis_core_05_placard_holder": {
       "browser_normalized_sha256": "23f01b83674ef3179edcc372aad8e435cbe37285e31ff48a86e283ebbbf3337a",
@@ -21,7 +21,7 @@
       "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
     },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "ae2ece563cb75660b4b1ca507d7748fee1bcf23fdbd9b58098e494d0a897598b",
+      "browser_normalized_sha256": "e6397fe1b395dd904a1caccb60b9f2209c77359bde189ef9aca9dcb0aaa29ff1",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -81,7 +81,7 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "004bc151baf7479c8c142b811b6625a1eac4c080b9c0c0cc48580d9e286a9851",
+      "browser_normalized_sha256": "ea04686fe9fd737829d6718ff635331f6b0ead9256af7932198af86d3c4d8b07",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -139,7 +139,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "148eb12e7d36a2b5cf7384f8225eb853c282aaed",
+    "commit": "85117d7eaed72f69dc40e358c5e80ec7f07e79d6",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

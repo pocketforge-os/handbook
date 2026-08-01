@@ -15,6 +15,12 @@ cross-checked against the pinned source toolchain within 0.001 mm at the
 bounds and 0.02% by volume; a source, runtime, or geometry change stops here
 until its baseline is deliberately re-qualified.
 
+!!! info "Generate the corrected stacking tabs"
+    Keep **TrimUI Smart Pro S** selected, choose the full build, and generate
+    **Core 04 · frame hardware**. That current dual-bar bed has each upper
+    stacking-tab hole 7 mm higher. The older TrimUI Smart Pro pack remains
+    frozen at its previously accepted geometry.
+
 <script type="module" src="../../../assets/device-pack-generator.mjs"></script>
 <section
   class="pf-device-pack-generator"
