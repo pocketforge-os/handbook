@@ -110,6 +110,8 @@ measurements and obtain the owner's explicit fit/rigidity decision under
       corner, eight total.
 - [ ] Every tab engages 60 mm below the top aluminum surface, extends 32 mm
       above it, and uses both lower fasteners.
+- [ ] Every upper round-hole center sits 17 mm above the top aluminum surface,
+      7 mm above the former datum, and clears the metal corner intrusion.
 - [ ] A second empty chassis enters the guides without forcing.
 - [ ] Aluminum top and bottom faces meet directly when stacked.
 - [ ] All eight upper locking sets are installed for a joined pair.

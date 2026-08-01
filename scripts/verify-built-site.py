@@ -968,7 +968,12 @@ def main() -> int:
         13: ("4 × identical 71.5 mm keyed fixture links", "four board slots"),
         14: ("WIDTH-O-U", "slide out to the right"),
         15: ("DEPTH-R-L", "front-to-back", "Never drill"),
-        16: ("8 × 18 × 92 × 4 mm stacking tabs", "32 mm above"),
+        16: (
+            "8 × 18 × 92 × 4 mm stacking tabs",
+            "32 mm above",
+            "17 mm above",
+            "metal corner intrusion",
+        ),
         17: ("14 active and 6 parked", "remains de-energized"),
     }
     step_count = len(assembly_steps)
