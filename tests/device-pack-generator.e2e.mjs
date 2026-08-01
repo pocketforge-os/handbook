@@ -327,7 +327,7 @@ try {
   assert.equal(await generator.getAttribute("data-state"), "candidate");
   assert.match(
     await page.locator("[data-pack-qualification]").textContent(),
-    /not production-qualified.*tsp-t1zd\.2/is,
+    /not production-qualified.*tsp-px73\.23/is,
   );
 
   await page.route(/\/browser\/sources\/.*\.scad$/, async (route) => {
@@ -496,8 +496,8 @@ try {
       .evaluateAll((previews) => previews.map((preview) => preview.alt)),
     [
       "Interactive preview of the optional chassis calibration bed",
-      "Interactive preview of 20 compact channel bars",
-      "Interactive preview of four identical keyed fixture links",
+      "Interactive preview of 28 compact channel bars",
+      "Interactive preview of four keyed fixture links and four printed crossbar-joint plates",
       "Interactive preview of the frame hardware print bed",
       "Interactive preview of the reusable placard holder",
       "Interactive preview of the two-color device nameplate bed",

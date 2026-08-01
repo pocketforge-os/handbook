@@ -119,8 +119,11 @@ python3 -m venv "${python_env}"
   --disable-pip-version-check --quiet \
   -r "${project_dir}/scripts/handbook-model-requirements.txt"
 
+# Source-built artifacts use reproducible mtimes, so filesystem freshness
+# cannot prove that a cached render belongs to the pinned git revision.
 make_command=(
   make
+  --always-make
   -C "${project_dir}"
   "PYTHON=${python_env}/bin/python"
   guide-model
@@ -310,6 +313,7 @@ required_assets=(
   legacy/detail-05-lower-top-ring.png
   legacy/detail-05-square-diagonals.png
   legacy/detail-06-carrier-link-lengths.png
+  legacy/detail-06-carrier-link-lengths-stack-clear.png
   legacy/detail-07-fixture-spacers.png
   legacy/detail-07-optical-axis.png
   legacy/detail-08-placard.png

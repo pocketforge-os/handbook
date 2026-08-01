@@ -189,7 +189,7 @@ CURRENT_SCENE = {
     "device_registry": "mechanical/device-packs/device-layouts.json",
     "qualification": {
         "status": "candidate",
-        "acceptance_ref": "tsp-t1zd.2",
+        "acceptance_ref": "tsp-px73.23",
     },
 }
 

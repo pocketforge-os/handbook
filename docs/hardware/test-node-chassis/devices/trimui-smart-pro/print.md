@@ -1,6 +1,6 @@
-# Generate and print the qualified Smart Pro pack
+# Generate and print the stack-clear Smart Pro candidate
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro <span>·</span> <code>chassis-core-v1</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro <span>·</span> <code>chassis-core-v2</code></p>
 
 This build sheet locks the generator to **TrimUI Smart Pro**. Keep **Complete
 chassis** selected below. OpenSCAD runs locally in this browser from the pinned
@@ -25,7 +25,7 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
   <div class="pf-device-pack-generator__heading">
     <div>
       <span class="pf-device-pack-generator__eyebrow">LOCAL CAD WORKBENCH</span>
-      <h2 id="smart-pro-pack-generator-title">Generate the qualified device pack</h2>
+      <h2 id="smart-pro-pack-generator-title">Generate the stack-clear candidate pack</h2>
     </div>
     <span class="pf-device-pack-generator__privacy">runs on this device</span>
   </div>
@@ -46,24 +46,27 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
 
 <noscript>Browser generation requires JavaScript. Use the command-line path below.</noscript>
 
-The qualification panel must say **Physically qualified pack** and identify
-`trimui-smart-pro-family` with `chassis-core-v1`. Stop if it names the dual-bar
-layout or reports a non-production reason.
+The qualification panel must say **Non-production prototype** and identify
+`trimui-smart-pro-family` with `chassis-core-v2`. Its reason must include
+`layout_unqualified`; this is intentional until the newly printed link set
+receives physical acceptance. Stop if it names the dual-bar layout.
 
 ## Command-line alternative
 
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
   --device trimui-smart-pro \
-  --mode full
+  --mode full \
+  --allow-unqualified
 
 python3 mechanical/device-packs/build_device_pack.py verify \
   --pack mechanical/device-packs/build/trimui-smart-pro/full
 ```
 
-No unqualified override belongs in this command. Inspect `manifest.json` and
-confirm `production_eligible=true`, device `trimui-smart-pro`, and layout
-`chassis-core-v1` before slicing.
+The explicit override permits this source-verified candidate; it does not
+qualify the new links. Inspect `manifest.json` and confirm
+`production_eligible=false`, reason `layout_unqualified`, device
+`trimui-smart-pro`, and layout `chassis-core-v2` before slicing.
 
 ## Slicer contract
 
@@ -83,21 +86,24 @@ Use the exported orientation. Re-run the calibration artifact after changing
 rail supplier, printer, nozzle, material, slicer compensation, or placard
 fit.
 
-## Identify the qualified chassis artifacts
+## Identify the candidate chassis artifacts
 
-The verified full pack includes these qualified-gantry chassis groups in addition
+The verified full pack includes these gantry chassis groups in addition
 to the selected Smart Pro holder, hooks, carrier links, nameplate, and wire
 anchors:
 
 - Core 01: 28 short channel bars and four long double-nut splice bars;
 - Core 02: two full-wrap upright splice collars;
-- Core 03: four gantry joint plates, four fixture spacers, and the qualified
-  carrier-link set;
-- Core 04: the immutable qualified frame-hardware bed;
+- Core 03: four gantry joint plates and four fixture spacers;
+- Core 04: the frozen v1 frame-hardware bed;
 - Core 05: the reusable placard holder; and
 - the conditional process-calibration bed.
 
-![Qualified gantry preload inventory](../../../../assets/generated/test-node-chassis/legacy/prep-captive-nut-count.png)
+The device group contains the revised carrier-link set: two 91.5 mm upper
+links and two 108.5 mm lower links. These are the only geometry change from
+the frozen `chassis-core-v1` layout.
+
+![Gantry preload inventory](../../../../assets/generated/test-node-chassis/legacy/prep-captive-nut-count.png)
 
 Seat one ordinary M3 nut in each of the 28 short bars and two in each of the
 four long bars. Pull each nut flat with a spare screw and washer, then remove
@@ -126,12 +132,15 @@ use the same source-owned browser customizer:
 
 ## Print gate
 
-- [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v1`.
-- [ ] Manifest verification passes and `production_eligible=true`.
+- [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v2`.
+- [ ] Manifest verification passes with `production_eligible=false` and
+      `nonproduction_reasons=["layout_unqualified"]`.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
 - [ ] Count 28 short channel bars, four long splice bars, and 36 seated nuts.
 - [ ] Both splice collars, all movable mounts, the holder pack, placard, and
       wire anchors come from this same verified pack.
+- [ ] Both 91.5 mm upper links and both 108.5 mm lower links end 1 mm inside
+      their corresponding chassis stack planes.
 - [ ] No interface, slot, key, or through-hole is blocked or damaged.
 
-Next: [cut and label the qualified rails](../../layouts/chassis-core-v1/cut.md).
+Next: [cut and label the unchanged gantry rails](../../layouts/chassis-core-v2/cut.md).

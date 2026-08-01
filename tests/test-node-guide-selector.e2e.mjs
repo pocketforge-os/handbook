@@ -105,7 +105,7 @@ try {
   for (const selection of [
     {
       slug: "trimui-smart-pro",
-      layout: "chassis-core-v1",
+      layout: "chassis-core-v2",
       steps: 19,
       lastStep: "19-final-check",
     },

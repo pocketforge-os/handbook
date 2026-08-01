@@ -25,17 +25,17 @@ test("offers every registered DUT without a second option list", () => {
   ]);
 });
 
-test("resolves the qualified Smart Pro route and all 19 steps", () => {
+test("resolves the stack-clear Smart Pro candidate and all 19 steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro");
-  assert.equal(guide.layoutId, "chassis-core-v1");
-  assert.equal(guide.qualificationStatus, "physically_qualified");
+  assert.equal(guide.layoutId, "chassis-core-v2");
+  assert.equal(guide.qualificationStatus, "candidate");
   assert.equal(guide.assemblySteps.length, 19);
   assert.deepEqual(guide.assemblySteps[0], {
     number: 1,
     title: "Learn the rail",
     slug: "01-learn-the-rail",
     route:
-      "hardware/test-node-chassis/layouts/chassis-core-v1/assemble/01-learn-the-rail/",
+      "hardware/test-node-chassis/layouts/chassis-core-v2/assemble/01-learn-the-rail/",
   });
   assert.equal(guide.assemblySteps.at(-1).slug, "19-final-check");
   assert.deepEqual(

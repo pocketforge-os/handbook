@@ -552,6 +552,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "legacy/detail-05-lower-top-ring.png",
         "legacy/detail-05-square-diagonals.png",
         "legacy/detail-06-carrier-link-lengths.png",
+        "legacy/detail-06-carrier-link-lengths-stack-clear.png",
         "legacy/detail-07-fixture-spacers.png",
         "legacy/detail-07-optical-axis.png",
         "legacy/detail-08-placard.png",
@@ -634,7 +635,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         or scene.get("layout_id") != "chassis-dualbar-v1"
         or scene.get("chassis_variant") != "dualbar_v1"
         or scene.get("qualification")
-        != {"status": "candidate", "acceptance_ref": "tsp-t1zd.2"}
+        != {"status": "candidate", "acceptance_ref": "tsp-px73.23"}
         or len(provenance.get("semantic_layers", [])) != 70
     ):
         raise SystemExit("current chassis model provenance changed")
@@ -804,15 +805,31 @@ def main() -> int:
     ]
 
     legacy_root = layout_root / "chassis-core-v1"
-    legacy_print_page = (
+    gantry_root = layout_root / "chassis-core-v2"
+    gantry_print_page = (
         site
         / guide_profiles["devices"]["trimui-smart-pro"]["print_route"]
         / "index.html"
     )
-    legacy_assembly_root = legacy_root / "assemble"
-    legacy_step_names = tuple(
-        guide_profiles["layouts"]["chassis-core-v1"]["assembly_steps"]
+    gantry_assembly_root = gantry_root / "assemble"
+    gantry_step_names = tuple(
+        guide_profiles["layouts"]["chassis-core-v2"]["assembly_steps"]
     )
+    gantry_steps = [
+        gantry_assembly_root / step / "index.html"
+        for step in gantry_step_names
+    ]
+    gantry_chassis_pages = [
+        gantry_root / "index.html",
+        gantry_root / "parts" / "index.html",
+        gantry_print_page,
+        gantry_root / "cut" / "index.html",
+        gantry_assembly_root / "index.html",
+        gantry_root / "verify" / "index.html",
+        gantry_root / "wire-management" / "index.html",
+    ]
+    legacy_assembly_root = legacy_root / "assemble"
+    legacy_step_names = gantry_step_names
     legacy_steps = [
         legacy_assembly_root / step / "index.html"
         for step in legacy_step_names
@@ -820,7 +837,7 @@ def main() -> int:
     legacy_chassis_pages = [
         legacy_root / "index.html",
         legacy_root / "parts" / "index.html",
-        legacy_print_page,
+        legacy_root / "print" / "index.html",
         legacy_root / "cut" / "index.html",
         legacy_assembly_root / "index.html",
         legacy_root / "verify" / "index.html",
@@ -828,6 +845,7 @@ def main() -> int:
     ]
     layout_print_stops = [
         legacy_root / "print" / "index.html",
+        gantry_root / "print" / "index.html",
         dualbar_root / "print" / "index.html",
     ]
     pages = list(
@@ -841,6 +859,8 @@ def main() -> int:
                 *compatibility_pages,
                 *compatibility_step_pages,
                 *layout_print_stops,
+                *gantry_chassis_pages,
+                *gantry_steps,
                 *legacy_chassis_pages,
                 *legacy_steps,
                 *chassis_pages,
@@ -854,6 +874,7 @@ def main() -> int:
 
     for route_root, step_names in (
         (assembly_root, assembly_step_names),
+        (gantry_assembly_root, gantry_step_names),
         (legacy_assembly_root, legacy_step_names),
     ):
         actual_step_routes = {
@@ -1106,7 +1127,7 @@ def main() -> int:
         "--allow-unqualified",
         "production_eligible",
         "layout_unqualified",
-        "tsp-t1zd.2",
+        "tsp-px73.23",
         "Routine STLs are generated, not committed",
         "4,548 mm",
         "309.2 mm",
@@ -1114,10 +1135,12 @@ def main() -> int:
         "72.4 mm",
         "381.6 mm",
         "Five-stick cut plan",
-        "14 active + 6 parked = 20",
+        "22 active + 6 parked = 28",
         "Two continuous 306 mm fixture bars",
-        "four metal L-connectors",
+        "four printed crossbar-joint plates",
         "Four identical 71.5 mm keyed links",
+        "91.5 mm upper",
+        "108.5 mm lower",
         "Move the four active channel bars",
     ):
         if required_fragment not in normalized_chassis_html:
@@ -1148,7 +1171,6 @@ def main() -> int:
         "trimui-smart-pro",
         "chassis-core-v1",
         "physically_qualified",
-        "production_eligible=true",
         "5,204 mm",
         "28 short",
         "22 use-now + 6 spares = 28",
@@ -1162,6 +1184,34 @@ def main() -> int:
         if required_fragment not in normalized_legacy_html:
             raise SystemExit(
                 f"qualified gantry route is missing {required_fragment!r}"
+            )
+
+    gantry_html = " ".join(
+        read_article_html(page)
+        for page in (*gantry_chassis_pages, *gantry_steps)
+    )
+    normalized_gantry_html = " ".join(gantry_html.split())
+    for required_fragment in (
+        "trimui-smart-pro",
+        "chassis-core-v2",
+        "candidate",
+        "production_eligible=false",
+        "layout_unqualified",
+        "tsp-px73.23",
+        "5,204 mm",
+        "28 short",
+        "22 use-now + 6 spares = 28",
+        "four long",
+        "4 × 164 mm",
+        "2 × 306 mm",
+        "19 bench steps",
+        "91.5 mm",
+        "108.5 mm",
+        "1 mm inside",
+    ):
+        if required_fragment not in normalized_gantry_html:
+            raise SystemExit(
+                f"stack-clear gantry route is missing {required_fragment!r}"
             )
 
     legacy_assembly_page = legacy_assembly_root / "index.html"
@@ -1264,19 +1314,114 @@ def main() -> int:
                 f"{[path.relative_to(site) for path in nav_targets]!r}"
             )
 
-    for current_page, next_page in zip(chassis_pages, chassis_pages[1:]):
-        resolved_links = {
-            target
-            for tag, reference in page_references[current_page].references
-            if tag == "a"
-            and (target := resolve_reference(site, current_page, reference))
-            is not None
-        }
-        if next_page not in resolved_links:
+    gantry_assembly_page = gantry_assembly_root / "index.html"
+    gantry_step_list_match = re.search(
+        r'<ol class="pf-step-list">.*?</ol>',
+        gantry_assembly_page.read_text(encoding="utf-8"),
+        flags=re.DOTALL,
+    )
+    if gantry_step_list_match is None:
+        raise SystemExit("stack-clear assembly start page has no bounded step list")
+    gantry_step_list_parser = LocalReferenceParser()
+    gantry_step_list_parser.feed(gantry_step_list_match.group(0))
+    actual_gantry_order = [
+        target
+        for tag, reference in gantry_step_list_parser.references
+        if tag == "a"
+        and (
+            target := resolve_reference(site, gantry_assembly_page, reference)
+        )
+        is not None
+    ]
+    if actual_gantry_order != gantry_steps:
+        raise SystemExit(
+            "stack-clear assembly landing-page order changed: "
+            f"{[path.parent.name for path in actual_gantry_order]!r}"
+        )
+
+    gantry_verify_page = gantry_root / "verify" / "index.html"
+    for index, step_page in enumerate(gantry_steps):
+        step_number = index + 1
+        step_html = step_page.read_text(encoding="utf-8")
+        for required_fragment in (
+            f"Step {step_number} of {len(gantry_steps)}",
+            'data-guide-device="trimui-smart-pro"',
+            'data-layout-id="chassis-core-v2"',
+            'class="pf-step-layout"',
+            'class="pf-part-list"',
+            'class="pf-step-check"',
+            'class="pf-step-nav"',
+            "Get these parts",
+            "Before you continue:",
+        ):
+            if required_fragment not in step_html:
+                raise SystemExit(
+                    f"stack-clear assembly step {step_number} is missing "
+                    f"{required_fragment!r}"
+                )
+        if "Do this" not in step_html:
             raise SystemExit(
-                f"{current_page.relative_to(site)} does not link to "
-                f"{next_page.relative_to(site)}"
+                f"stack-clear assembly step {step_number} has no exact actions"
             )
+        source_images = [
+            image
+            for image in page_references[step_page].images
+            if "/generated/test-node-chassis/legacy/" in image.get("src", "")
+        ]
+        if not source_images or any(
+            len(image.get("alt", "").split()) < 8 for image in source_images
+        ):
+            raise SystemExit(
+                f"stack-clear assembly step {step_number} lacks a useful source image"
+            )
+        nav_match = re.search(
+            r'<nav class="pf-step-nav".*?</nav>',
+            step_html,
+            flags=re.DOTALL,
+        )
+        if nav_match is None:
+            raise SystemExit(
+                f"stack-clear assembly step {step_number} has no navigation"
+            )
+        nav_parser = LocalReferenceParser()
+        nav_parser.feed(nav_match.group(0))
+        nav_targets = [
+            target
+            for tag, reference in nav_parser.references
+            if tag == "a"
+            and (
+                target := resolve_reference(site, step_page, reference)
+            )
+            is not None
+        ]
+        expected_previous = (
+            gantry_assembly_page if index == 0 else gantry_steps[index - 1]
+        )
+        expected_next = (
+            gantry_verify_page
+            if index == len(gantry_steps) - 1
+            else gantry_steps[index + 1]
+        )
+        if nav_targets != [expected_previous, expected_next]:
+            raise SystemExit(
+                f"stack-clear assembly step {step_number} navigation changed: "
+                f"{[path.relative_to(site) for path in nav_targets]!r}"
+            )
+
+    for ordered_pages in (chassis_pages, gantry_chassis_pages):
+        for current_page, next_page in zip(ordered_pages, ordered_pages[1:]):
+            resolved_links = {
+                target
+                for tag, reference in page_references[current_page].references
+                if tag == "a"
+                and (target := resolve_reference(site, current_page, reference))
+                is not None
+            }
+            if next_page not in resolved_links:
+                raise SystemExit(
+                    f"{current_page.relative_to(site)} does not link to "
+                    f"{next_page.relative_to(site)}"
+                )
 
     full_chassis_pages = {overview_page, assembly_page}
     required_hotspot_slots = {
@@ -1379,7 +1524,7 @@ def main() -> int:
         "17 bench steps",
         'class="pf-step-list"',
         "Assembly · 17 steps",
-        "14 active + 6 parked = 20",
+        "22 active + 6 parked = 28",
     ):
         if required_fragment not in assembly_html:
             raise SystemExit(
@@ -1412,16 +1557,16 @@ def main() -> int:
     step_contracts = {
         1: ("18 mm", "open cut end"),
         2: ("WIDTH-O-L", "six active width-rail bars"),
-        3: ("DEPTH-R-L", "four active + four parked"),
-        4: ("14 active + 6 parked = 20",),
+        3: ("DEPTH-R-L", "eight active + four parked"),
+        4: ("22 active + 6 parked = 28",),
         5: ("WIDTH-O-L", "DEPTH-R-L"),
-        6: ("75 mm centerline", "2 × concealed L-connectors"),
+        6: ("75 mm centerline", "2 × keyed crossbar-joint plates"),
         7: ("POST-OL", "POST-DR"),
         8: ("WIDTH-O-U", "DEPTH-R-U"),
-        9: ("75 mm", "2 × concealed L-connectors"),
+        9: ("75 mm", "2 × keyed crossbar-joint plates"),
         10: ("all four post tops", "Do not pull"),
         11: ("no more than 2 mm", "does not rock"),
-        12: ("X = 173 mm", "TOP", "BOTTOM"),
+        12: ("X = 173 mm", "91.5 mm upper", "108.5 mm lower"),
         13: ("4 × identical 71.5 mm keyed fixture links", "four board slots"),
         14: ("WIDTH-O-U", "slide out to the right"),
         15: ("DEPTH-R-L", "front-to-back", "Never drill"),
@@ -1431,7 +1576,7 @@ def main() -> int:
             "17 mm above",
             "metal corner intrusion",
         ),
-        17: ("14 active and 6 parked", "remains de-energized"),
+        17: ("22 active and 6 parked", "remains de-energized"),
     }
     step_count = len(assembly_steps)
     for index, (step_page, expected_image) in enumerate(
@@ -1536,8 +1681,8 @@ def main() -> int:
         "name is not uploaded",
         "z = 2.4 mm",
         "pinned openscad chassis source",
-        "20 compact m3 channel bars",
-        "four identical 71.5 mm keyed links",
+        "28 compact m3 channel bars",
+        "four identical 71.5 mm keyed links and four printed crossbar-joint plates",
         "interactive print-bed previews",
         "data-cable-anchor-customizer",
         "cable-anchor-worker.mjs",
@@ -1680,6 +1825,7 @@ def main() -> int:
             *(page.read_text(encoding="utf-8") for page in device_pages),
             integration_html,
             legacy_html,
+            gantry_html,
             chassis_html,
         )
     )
@@ -1692,8 +1838,8 @@ def main() -> int:
         "handbook_surface=pass "
         f"pages={len(pages)} local_links=resolved "
         f"checksums={checksums} holder_pages={len(holder_pages)} "
-        f"chassis_pages={len(chassis_pages) + len(legacy_chassis_pages)} "
-        f"assembly_steps={len(assembly_steps) + len(legacy_steps)} "
+        f"chassis_pages={len(chassis_pages) + len(gantry_chassis_pages) + len(legacy_chassis_pages)} "
+        f"assembly_steps={len(assembly_steps) + len(gantry_steps) + len(legacy_steps)} "
         f"interactive_models={viewer_count} semantic_layers=70 "
         f"guide_devices={routing_contract['devices']} "
         f"guide_integrations={routing_contract['integration_profiles']} "

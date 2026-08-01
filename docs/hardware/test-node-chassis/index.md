@@ -47,8 +47,12 @@ The two current devices are close relatives and share the
 `trimui-smart-pro-family` holder mechanism and
 `trimui-smart-pro-family-v1` integration route. Their registered chassis
 layouts still differ today: the original Smart Pro pack remains frozen at its
-qualified gantry geometry, while the Smart Pro S dual-bar layout remains a
-candidate until the physical gate in `tsp-t1zd.2` passes.
+qualified v1 gantry geometry for reproducibility, while current Smart Pro
+builds select the stack-clear `chassis-core-v2` gantry candidate and Smart Pro
+S builds select the dual-bar candidate with four printed crossbar-joint
+plates. Both current packs use 91.5 mm upper and 108.5 mm lower carrier links
+that end 1 mm inside the chassis stack planes. Physical acceptance remains
+tracked in `tsp-px73.23`.
 
 Holder family, integration profile, and chassis layout are independent
 selections in the registry. A future DUT can reuse the same holder or frame

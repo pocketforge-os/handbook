@@ -20,11 +20,12 @@ and candidate verification.
 | Holder profile | `trimui-smart-pro-family` · shared with Smart Pro |
 | Integration route | `trimui-smart-pro-family-v1` · shared family route for later side-board, harness, and I/O instructions |
 | Integration status | `structure_only` · component-level wiring recipe still pending |
-| Chassis layout | `chassis-dualbar-v1` · upper and lower continuous fixture bars |
-| Qualification | `candidate` · non-production until owner gate `tsp-t1zd.2` passes |
+| Chassis layout | `chassis-dualbar-v1` · continuous fixture bars on four printed crossbar-joint plates |
+| Qualification | `candidate` · non-production until owner gate `tsp-px73.23` passes |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Assembly sequence | 17 page-per-job bench steps |
+| Carrier links | 91.5 mm upper / 108.5 mm lower · 1 mm inside the stack planes |
 
 !!! warning "Candidate mechanical layout"
     Generate this full pack only with the explicit non-production override.
