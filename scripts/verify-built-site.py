@@ -893,20 +893,37 @@ def main() -> int:
         raise SystemExit("unresolved local references:\n" + "\n".join(missing))
 
     selector_html = selector_page.read_text(encoding="utf-8")
-    selector_cards = [
-        anchor
-        for anchor in page_references[selector_page].content_anchors
-        if "pf-device-card" in anchor.get("class", "").split()
-    ]
+    selector_assets = (
+        site / "assets" / "test-node-guide-selector.mjs",
+        site / "assets" / "test-node-guide-selector-core.mjs",
+    )
+    for selector_asset in selector_assets:
+        if not selector_asset.is_file():
+            raise SystemExit(f"device selector asset is missing: {selector_asset}")
+    for fragment in (
+        'data-test-node-guide-selector=""',
+        'data-profiles-url="../../assets/test-node-guide-profiles.json"',
+        'data-guide-device-select=""',
+        'data-guide-status=""',
+        'aria-live="polite"',
+        'data-guide-result=""',
+        'src="../../assets/test-node-guide-selector.mjs"',
+    ):
+        if fragment not in selector_html:
+            raise SystemExit(f"device selector is missing {fragment!r}")
+    if "pf-device-card" in selector_html:
+        raise SystemExit("static device-card selector remains in the chassis guide")
+
+    # The runtime-generated route stays single-sourced from the profile JSON.
+    # The authored links are only the no-JavaScript build-sheet fallback.
     selector_links = [
         target
-        for anchor in selector_cards
+        for anchor in page_references[selector_page].content_anchors
         if (
             target := resolve_reference(
                 site, selector_page, anchor.get("href", "")
             )
-        )
-        is not None
+        ) in device_pages
     ]
     if len(selector_links) != len(device_pages) or set(selector_links) != set(
         device_pages
@@ -914,14 +931,25 @@ def main() -> int:
         raise SystemExit("device selector does not link every build sheet exactly once")
     if any(layout_root in target.parents for target in selector_links):
         raise SystemExit("device selector bypasses a device build sheet")
-    for slug, device in guide_profiles["devices"].items():
-        for fragment in (
-            f'data-device-slug="{slug}"',
-            f'data-layout-id="{device["layout"]}"',
-            device["display_name"],
-        ):
-            if fragment not in selector_html:
-                raise SystemExit(f"device selector is missing {fragment!r}")
+    selector_source = selector_assets[0].read_text(encoding="utf-8")
+    selector_core = selector_assets[1].read_text(encoding="utf-8")
+    for fragment in (
+        'from "./test-node-guide-selector-core.mjs"',
+        "deviceOptions(profiles)",
+        "resolveDeviceGuide(profiles, deviceSlug)",
+        'url.searchParams.set("device", deviceSlug)',
+    ):
+        if fragment not in selector_source:
+            raise SystemExit(f"device selector runtime is missing {fragment!r}")
+    for fragment in (
+        "profiles.devices",
+        "layout.assembly_steps",
+        "device.build_sheet_route",
+        "device.print_route",
+        "integration.guide_route",
+    ):
+        if fragment not in selector_core:
+            raise SystemExit(f"device selector core is missing {fragment!r}")
 
     for device_page, (slug, device) in zip(
         device_pages,

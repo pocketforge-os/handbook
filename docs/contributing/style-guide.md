@@ -52,6 +52,12 @@ chassis does not make their side boards interchangeable. Give a genuinely new
 frame size or assembly history a new layout namespace; never rewrite an
 existing qualified layout chapter to accommodate another device.
 
+The chassis landing page reads that registry at runtime. It must offer one DUT
+dropdown and generate the selected build sheet, preparation pages, ordered
+assembly sequence, verification, wiring, and integration route from the same
+record. Keep those destination pages directly linkable and searchable, but do
+not duplicate every device and bench step in the persistent site navigation.
+
 ### Chapter architecture
 
 Split a substantial physical build into four layers:
