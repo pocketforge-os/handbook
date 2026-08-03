@@ -21,7 +21,7 @@
       "source_normalized_sha256": "34acd4d45ba08cb9ab74a19d4e8508e890d86a54d0e90ed77f5033594d775538"
     },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "82f8770309b8f495ebf7551fd3656d238917a550a987af3d1f238c30d4f451f7",
+      "browser_normalized_sha256": "e6397fe1b395dd904a1caccb60b9f2209c77359bde189ef9aca9dcb0aaa29ff1",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -81,7 +81,7 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "b4220b00a19964754c4884ed4944fcb71955b467b36d0c4c72add93b16e2e01c",
+      "browser_normalized_sha256": "e99d736f01a361d4945b403e9012347c5fe3945ff4d9850d8580535acfd54551",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -139,7 +139,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "ff7a5fc23c3ea295ea4f551ae21796c1ad07615f",
+    "commit": "3a05ecd08ef3e222c2012b227fbdd5ad4b60690a",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

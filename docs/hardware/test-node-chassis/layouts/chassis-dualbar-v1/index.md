@@ -1,6 +1,6 @@
 # Smart Pro S dual-bar chassis
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-v1</code> <span>·</span> candidate</p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-v1</code> <span>·</span> physically qualified</p>
 
 Build the reusable aluminum frame that holds one PocketForge device, its
 inspection camera, and its populated DUT test board. New chassis builds use one
@@ -15,11 +15,10 @@ board. The Smart Pro S is the worked example and selects the registered
     the in-hand model gate and
     [qualify the DUT holder](../../../dut-holder/index.md).
 
-!!! warning "Candidate mechanical layout"
-    `chassis-dualbar-v1` is deterministic and reviewable, but its printed
-    suspension still needs the physical fit, loaded-sag, racking, service, and
-    camera checks tracked by `tsp-px73.23`. Generate it only with the explicit
-    non-production override until that acceptance record is complete.
+!!! success "Production-qualified mechanical layout"
+    `chassis-dualbar-v1` passed the physical fit, loaded-stability, racking,
+    service, and camera gates. Its production record is bound to the exact
+    accepted fingerprints under `tsp-t1zd.2`.
 
 ## Explore the complete assembly
 
@@ -187,7 +186,7 @@ depending on where someone stands.
    pack](../../devices/trimui-smart-pro-s/print.md).
 3. [Use scrap first and cut the 14 rails](cut.md).
 4. [Assemble the complete dual-bar chassis](assemble/index.md).
-5. [Run and record the candidate checks](verify.md).
+5. [Run and record the build checks](verify.md).
 6. [Secure the finished harness to the rails](wire-management.md) only after
    the mechanical layout is accepted and every source is disconnected.
 

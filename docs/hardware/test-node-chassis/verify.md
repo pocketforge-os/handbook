@@ -2,6 +2,6 @@
 
 Mechanical acceptance is layout-specific. Return to
 [Choose the device for this test node](index.md), open the matching build
-sheet, and use its verification page. Do not apply candidate checks to the
-qualified gantry or treat a qualified legacy checklist as acceptance of a new
-layout.
+sheet, and use its verification page. Qualification identifies the accepted
+source geometry; every newly assembled chassis must still pass its own
+layout-specific mechanical checklist before wiring.

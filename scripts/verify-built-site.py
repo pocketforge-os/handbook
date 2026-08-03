@@ -635,7 +635,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         or scene.get("layout_id") != "chassis-dualbar-v1"
         or scene.get("chassis_variant") != "dualbar_v1"
         or scene.get("qualification")
-        != {"status": "candidate", "acceptance_ref": "tsp-px73.23"}
+        != {"status": "physically_qualified", "acceptance_ref": "tsp-t1zd.2"}
         or len(provenance.get("semantic_layers", [])) != 70
     ):
         raise SystemExit("current chassis model provenance changed")
@@ -1124,10 +1124,8 @@ def main() -> int:
     for required_fragment in (
         "trimui-smart-pro-s",
         "chassis-dualbar-v1",
-        "--allow-unqualified",
-        "production_eligible",
-        "layout_unqualified",
-        "tsp-px73.23",
+        "production_eligible=true",
+        "tsp-t1zd.2",
         "Routine STLs are generated, not committed",
         "4,548 mm",
         "309.2 mm",
@@ -1194,10 +1192,9 @@ def main() -> int:
     for required_fragment in (
         "trimui-smart-pro",
         "chassis-core-v2",
-        "candidate",
-        "production_eligible=false",
-        "layout_unqualified",
-        "tsp-px73.23",
+        "physically_qualified",
+        "production_eligible=true",
+        "tsp-t1zd.2",
         "5,204 mm",
         "28 short",
         "22 use-now + 6 spares = 28",

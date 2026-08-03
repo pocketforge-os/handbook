@@ -4,7 +4,7 @@ This chassis layout can be reused without making every device-specific print
 identical. Return to [Choose the device for this test node](../../index.md),
 open the exact build sheet, and use its locked print generator.
 
-For the current candidate mapping, use the
+For the current production mapping, use the
 [TrimUI Smart Pro S print page](../../devices/trimui-smart-pro-s/print.md).
 
 !!! danger "Do not choose a holder from a layout page"

@@ -210,7 +210,7 @@ any cut end is closed.
   <li><a href="17-final-check/"><strong>Align and compare the finished chassis</strong><small>Catch a missing part, skew, or unsafe power state before formal verification.</small></a></li>
 </ol>
 
-After Step 17, continue to the [formal candidate verification](../verify.md).
+After Step 17, continue to the [formal build verification](../verify.md).
 
 <nav class="pf-step-nav" aria-label="Assembly chapter navigation">
   <a href="../cut/">← Back: Cut the rails</a>

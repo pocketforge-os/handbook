@@ -324,10 +324,10 @@ try {
       .every((label) => label.trim() === "Generate"),
     true,
   );
-  assert.equal(await generator.getAttribute("data-state"), "candidate");
+  assert.equal(await generator.getAttribute("data-state"), "qualified");
   assert.match(
     await page.locator("[data-pack-qualification]").textContent(),
-    /not production-qualified.*tsp-px73\.23/is,
+    /production-qualified pack.*tsp-t1zd\.2/is,
   );
 
   await page.route(/\/browser\/sources\/.*\.scad$/, async (route) => {

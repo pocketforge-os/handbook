@@ -1,4 +1,4 @@
-# Verify the dual-bar chassis candidate
+# Verify the dual-bar chassis build
 
 <p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -10,8 +10,8 @@ permitted for the camera-framing gate.
 
 - [ ] The pack verifies against the clean source revision recorded in
       `manifest.json`.
-- [ ] The manifest says `production_eligible=false` and
-      `nonproduction_reasons=["layout_unqualified"]`.
+- [ ] The manifest says `production_eligible=true` with no non-production
+      reasons.
 - [ ] It selects device `trimui-smart-pro-s` and layout
       `chassis-dualbar-v1`.
 - [ ] Two continuous 306 mm fixture bars and exactly four printed
@@ -74,9 +74,9 @@ after the agreed observation interval.
 - [ ] Removing the load leaves no unexpected residual displacement.
 - [ ] No joint shows creep, layer separation, cracking, or whitening.
 
-This candidate deliberately has no invented fleet tolerance. Record the
-measurements and obtain the owner's explicit fit/rigidity decision under
-`tsp-px73.23`.
+The qualified source deliberately has no invented fleet tolerance. Record the
+measurements for this individual build and stop if loaded stability is not
+acceptable.
 
 ## 5. Adjustment and service clearance
 
@@ -130,7 +130,7 @@ measurements and obtain the owner's explicit fit/rigidity decision under
     a higher rated count. Put the pair on a stable surface and restrain it
     against tipping.
 
-## 8. Record acceptance
+## 8. Record build verification
 
 Record:
 
@@ -143,11 +143,9 @@ Record:
   and
 - any deviation from the generated cut list or device pack.
 
-The owner must explicitly accept fit, thread engagement, loaded stability,
-service clearance, adjustment, stack clearance, and camera framing under
-`tsp-px73.23`.
-Only a reviewed source change may then promote the exact accepted normalized
-fingerprints to a production-qualified layout.
+The exact source fingerprints were physically accepted under `tsp-t1zd.2`.
+Qualification does not waive inspection of a newly printed and assembled
+chassis: every check above must pass before it is put into service.
 
-After acceptance and while the node is fully disconnected, continue to
+After verification and while the node is fully disconnected, continue to
 [manage the harness wiring](wire-management.md).

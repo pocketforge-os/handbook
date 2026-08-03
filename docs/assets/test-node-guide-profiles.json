@@ -41,8 +41,8 @@
   },
   "layouts": {
     "chassis-core-v2": {
-      "display_name": "Stack-clear gantry chassis candidate",
-      "qualification_status": "candidate",
+      "display_name": "Stack-clear gantry chassis",
+      "qualification_status": "physically_qualified",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v2/",
       "outside_envelope_mm": {
         "width": 346,
@@ -77,8 +77,8 @@
       ]
     },
     "chassis-dualbar-v1": {
-      "display_name": "Dual-bar chassis candidate",
-      "qualification_status": "candidate",
+      "display_name": "Dual-bar chassis",
+      "qualification_status": "physically_qualified",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
       "outside_envelope_mm": {
         "width": 346,

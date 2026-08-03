@@ -2,7 +2,7 @@
 
 <p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
 
-This inventory covers the `chassis-dualbar-v1` mechanical candidate, its
+This inventory covers the qualified `chassis-dualbar-v1` mechanical layout, its
 mounts, and the starter wire anchors. The SBC, relay board, programmable
 supply, cabling, and device-specific electrical connections belong to the
 per-DUT integration procedure.
@@ -52,7 +52,7 @@ nozzle, material, slicer compensation, or placard-slide change.
 
 For each fixture-board through-joint, use the shortest stocked M3 screw that
 fully engages its metal locknut without contacting a component or cable.
-Record that length during physical qualification. Do not crush printed laps
+Record that length during build verification. Do not crush printed laps
 to compensate for a poor fastener choice.
 
 !!! note "Why a printed channel bar contains a metal nut"

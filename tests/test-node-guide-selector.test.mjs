@@ -25,10 +25,10 @@ test("offers every registered DUT without a second option list", () => {
   ]);
 });
 
-test("resolves the stack-clear Smart Pro candidate and all 19 steps", () => {
+test("resolves the qualified stack-clear Smart Pro layout and all 19 steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro");
   assert.equal(guide.layoutId, "chassis-core-v2");
-  assert.equal(guide.qualificationStatus, "candidate");
+  assert.equal(guide.qualificationStatus, "physically_qualified");
   assert.equal(guide.assemblySteps.length, 19);
   assert.deepEqual(guide.assemblySteps[0], {
     number: 1,
@@ -57,7 +57,7 @@ test("resolves the stack-clear Smart Pro candidate and all 19 steps", () => {
 test("resolves the Smart Pro S route and all 17 dual-bar steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro-s");
   assert.equal(guide.layoutId, "chassis-dualbar-v1");
-  assert.equal(guide.qualificationStatus, "candidate");
+  assert.equal(guide.qualificationStatus, "physically_qualified");
   assert.equal(guide.assemblySteps.length, 17);
   assert.equal(guide.assemblySteps[15].slug, "16-add-stacking-tabs");
   assert.equal(

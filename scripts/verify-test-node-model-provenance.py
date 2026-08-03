@@ -188,8 +188,8 @@ CURRENT_SCENE = {
     "layout_record": "mechanical/device-packs/layouts/chassis-dualbar-v1.json",
     "device_registry": "mechanical/device-packs/device-layouts.json",
     "qualification": {
-        "status": "candidate",
-        "acceptance_ref": "tsp-px73.23",
+        "status": "physically_qualified",
+        "acceptance_ref": "tsp-t1zd.2",
     },
 }
 
