@@ -20,9 +20,26 @@ const profiles = JSON.parse(
 
 test("offers every registered DUT without a second option list", () => {
   assert.deepEqual(deviceOptions(profiles), [
+    { slug: "trimui-brick", displayName: "TrimUI Brick / TG3040" },
     { slug: "trimui-smart-pro", displayName: "TrimUI Smart Pro" },
     { slug: "trimui-smart-pro-s", displayName: "TrimUI Smart Pro S" },
   ]);
+});
+
+test("resolves the Brick candidate onto the shared dual-bar guide", () => {
+  const guide = resolveDeviceGuide(profiles, "trimui-brick");
+  assert.equal(guide.holderProfile, "trimui-brick");
+  assert.equal(guide.layoutId, "chassis-dualbar-brick-v1");
+  assert.equal(guide.qualificationStatus, "candidate");
+  assert.equal(guide.assemblySteps.length, 17);
+  assert.equal(
+    guide.stages.find(({ id }) => id === "print").route,
+    "hardware/test-node-chassis/devices/trimui-brick/print/",
+  );
+  assert.equal(
+    guide.stages.find(({ id }) => id === "layout").route,
+    "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
+  );
 });
 
 test("resolves the qualified stack-clear Smart Pro layout and all 19 steps", () => {

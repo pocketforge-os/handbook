@@ -76,7 +76,7 @@ function localZipNames(bytes) {
 }
 
 test("catalog exposes every mode and a complete source-only inventory", () => {
-  assert.ok(catalog.devices.length >= 2);
+  assert.equal(catalog.devices.length, 3);
   assert.deepEqual(catalog.modes, ["coupon", "retrofit", "full"]);
   assert.equal(new Set(catalog.devices.map((device) => device.slug)).size,
     catalog.devices.length);
@@ -95,6 +95,34 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
       true,
     );
   }
+});
+
+test("Brick remains an explicitly unqualified prototype", () => {
+  const brick = catalog.devices.find(
+    (device) => device.slug === "trimui-brick",
+  );
+  assert.ok(brick);
+  assert.equal(brick.profile.qualification.status, "unqualified");
+  assert.equal(brick.profile.qualification.acceptance_ref, null);
+  assert.equal(brick.layout.qualification.status, "candidate");
+  assert.equal(brick.layout.qualification.acceptance_ref, "tsp-bcx.21.23");
+  assert.equal(brick.modes.full.production_eligible, false);
+  assert.deepEqual(brick.modes.full.nonproduction_reasons, [
+    "holder_unqualified",
+    "layout_unqualified",
+  ]);
+  assert.deepEqual(brick.modes.full.required_overrides, [
+    "allow_unqualified",
+  ]);
+
+  const invalid = structuredClone(catalog);
+  invalid.devices.find(
+    (device) => device.slug === "trimui-brick",
+  ).profile.qualification.acceptance_ref = "premature-acceptance";
+  assert.throws(
+    () => validateCatalog(invalid),
+    /must stay null before qualification/i,
+  );
 });
 
 test("browser baseline lock covers every registered full-pack artifact", () => {

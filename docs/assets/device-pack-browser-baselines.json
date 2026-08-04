@@ -1,5 +1,60 @@
 {
   "artifacts": {
+    "trimui-brick/chassis_core_04_frame_hardware": {
+      "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
+      "output": "chassis/core-04-frame-hardware.stl",
+      "source_normalized_sha256": "31ddea2c53c3d93cb6f64cca11c123b39d071879b9e172839c0ea87c75307601"
+    },
+    "trimui-brick/chassis_core_05_placard_holder": {
+      "browser_normalized_sha256": "23f01b83674ef3179edcc372aad8e435cbe37285e31ff48a86e283ebbbf3337a",
+      "output": "chassis/core-05-placard-holder.stl",
+      "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
+    },
+    "trimui-brick/chassis_dualbar_01_ironed_interfaces": {
+      "browser_normalized_sha256": "a70fc84583d27a8177e260ce104703b189b65462944e4b859081bd07ecf9ef6a",
+      "output": "chassis/core-01-ironed-interfaces.stl",
+      "source_normalized_sha256": "118121e4d5d7e3bc75a19d37bd2b31dfbda56545a0e28c670f5e94f928ba98e2"
+    },
+    "trimui-brick/chassis_dualbar_02_fixture_links": {
+      "browser_normalized_sha256": "e42e1614e02db5e29c03e6620af6e8c8cd885d4ba33df7bfb37fb27e151cff04",
+      "output": "chassis/core-02-fixture-links.stl",
+      "source_normalized_sha256": "34acd4d45ba08cb9ab74a19d4e8508e890d86a54d0e90ed77f5033594d775538"
+    },
+    "trimui-brick/chassis_process_calibration": {
+      "browser_normalized_sha256": "313a18ff301ce0f1db4d160a598310809baf8e08c35befadb8972f5a77d886ac",
+      "output": "calibration/chassis-process-calibration.stl",
+      "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
+    },
+    "trimui-brick/device_carrier": {
+      "browser_normalized_sha256": "8135739acb8a60aa0dd01cffa489de8a109cce5e4c590b1cd50c9d501a349aa4",
+      "output": "device/carrier.stl",
+      "source_normalized_sha256": "e0fd0a8906a8ef07d1e1dc6979d4c0f7a5061614eb9f7844ad3359f4a070431a"
+    },
+    "trimui-brick/device_carrier_links": {
+      "browser_normalized_sha256": "8aa1617a3afaef37f5f3d535c9c1114df7f3601b6d1d5fb3c1d47d22a1c6bbf5",
+      "output": "device/carrier-link-set.stl",
+      "source_normalized_sha256": "184fc37b03916a70f16b47753f83ec8404602dea4de0481620f36b5b2cd2e1d6"
+    },
+    "trimui-brick/device_j_hook_set": {
+      "browser_normalized_sha256": "017a2802f1ae3b625b7e2316a806b6d9852347cc9e2fd82aacfaca24fd87158e",
+      "output": "device/j-hook-set.stl",
+      "source_normalized_sha256": "851d4e7af8e12480ddbe48f474dab3c34b0a56d1d44e3725a32196e76b057dc4"
+    },
+    "trimui-brick/device_nameplate": {
+      "browser_normalized_sha256": "99ea367b6de747d83ada1de04087e6798b649d521b2ff6f97072d7e6c3be2fc7",
+      "output": "device/device-nameplate.stl",
+      "source_normalized_sha256": "1c9998e88a2338864138f7fafd1fe2d7dcc6d18f733883ab966353b7a27bdf32"
+    },
+    "trimui-brick/device_wire_anchors": {
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
+      "output": "device/wire-anchor-set.stl",
+      "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
+    },
+    "trimui-brick/holder_fit_coupon": {
+      "browser_normalized_sha256": "c17c94a076dab271fee06c33eb42c114e52b7e0832e32c1b08d398ab182ff638",
+      "output": "coupon/holder-fit-coupon.stl",
+      "source_normalized_sha256": "92eaa05368ca008ff189d2ba1328362249bce2d67ee33e4174e8baae0323114d"
+    },
     "trimui-smart-pro-s/chassis_core_04_frame_hardware": {
       "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
       "output": "chassis/core-04-frame-hardware.stl",
@@ -21,7 +76,7 @@
       "source_normalized_sha256": "34acd4d45ba08cb9ab74a19d4e8508e890d86a54d0e90ed77f5033594d775538"
     },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "e6397fe1b395dd904a1caccb60b9f2209c77359bde189ef9aca9dcb0aaa29ff1",
+      "browser_normalized_sha256": "313a18ff301ce0f1db4d160a598310809baf8e08c35befadb8972f5a77d886ac",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -36,7 +91,7 @@
       "source_normalized_sha256": "af43228bdc8c76323e04f40aca12310f4291fcedd0f112ac5ff386cd712ee37e"
     },
     "trimui-smart-pro-s/device_j_hook_set": {
-      "browser_normalized_sha256": "eed497c1a4085cf525948c934edf3cb927c46fb4d970065134c7fd2623e62c92",
+      "browser_normalized_sha256": "1599a3d0887d2344c61b8a1e26c13da48a2a464b7c65ce24514c0a944e02a663",
       "output": "device/j-hook-set.stl",
       "source_normalized_sha256": "e77a9aeb725879b381a40d11f38a7ab242696923b4107d5cfacc9a9a8e6bed59"
     },
@@ -51,7 +106,7 @@
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
     "trimui-smart-pro-s/holder_fit_coupon": {
-      "browser_normalized_sha256": "52639c93e76b60f405e3b2008248b46e7469b70f19a4a083fcaf9e3bfa07e567",
+      "browser_normalized_sha256": "f23c11a5fb6fd20d1743f4ff4179380fe7f76c7aff1ba5f84f08c856abb3520d",
       "output": "coupon/holder-fit-coupon.stl",
       "source_normalized_sha256": "4dc8cd5e343f634a220a3836f80bc14278a9310c305133bfd94c79990553edae"
     },
@@ -81,7 +136,7 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "e99d736f01a361d4945b403e9012347c5fe3945ff4d9850d8580535acfd54551",
+      "browser_normalized_sha256": "6b02ca58fb77a29ca34a8582c98ed15fd95f0da049e74a7b602b963ff5e66a92",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -96,7 +151,7 @@
       "source_normalized_sha256": "af43228bdc8c76323e04f40aca12310f4291fcedd0f112ac5ff386cd712ee37e"
     },
     "trimui-smart-pro/device_j_hook_set": {
-      "browser_normalized_sha256": "eed497c1a4085cf525948c934edf3cb927c46fb4d970065134c7fd2623e62c92",
+      "browser_normalized_sha256": "1599a3d0887d2344c61b8a1e26c13da48a2a464b7c65ce24514c0a944e02a663",
       "output": "device/j-hook-set.stl",
       "source_normalized_sha256": "e77a9aeb725879b381a40d11f38a7ab242696923b4107d5cfacc9a9a8e6bed59"
     },
@@ -106,12 +161,12 @@
       "source_normalized_sha256": "9205e8b1a12298036ced3bc2ecba50cc6397e19dcc32e92cf69ae0dadeed7107"
     },
     "trimui-smart-pro/device_wire_anchors": {
-      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
+      "browser_normalized_sha256": "b2a1a7ce6ef5c32c5d5ff9719dc95b7bfcc27cb28f0133fee1bd723c022fd44c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
     "trimui-smart-pro/holder_fit_coupon": {
-      "browser_normalized_sha256": "52639c93e76b60f405e3b2008248b46e7469b70f19a4a083fcaf9e3bfa07e567",
+      "browser_normalized_sha256": "f23c11a5fb6fd20d1743f4ff4179380fe7f76c7aff1ba5f84f08c856abb3520d",
       "output": "coupon/holder-fit-coupon.stl",
       "source_normalized_sha256": "4dc8cd5e343f634a220a3836f80bc14278a9310c305133bfd94c79990553edae"
     }
@@ -120,7 +175,7 @@
     "maximum_absolute_volume_delta_percent": 0.02,
     "maximum_bounds_delta_mm": 0.001,
     "observed_maximum_absolute_volume_delta_percent": 0.014766,
-    "observed_maximum_bounds_delta_mm": 0.000038,
+    "observed_maximum_bounds_delta_mm": 0.00004,
     "source_toolchain": "OpenSCAD 2021.01 with Manifold"
   },
   "generation_contract": {
@@ -139,7 +194,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "3a05ecd08ef3e222c2012b227fbdd5ad4b60690a",
+    "commit": "630b35a2e97b95d0a79933f1095ed8cf4ba166e3",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

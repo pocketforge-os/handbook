@@ -2,6 +2,8 @@
 
 <p class="pf-profile-banner" data-integration-profile="trimui-smart-pro-family-v1"><strong>Integration profile:</strong> <code>trimui-smart-pro-family-v1</code> <span>·</span> <code>structure_only</code> <span>·</span> TrimUI Smart Pro family harness and I/O</p>
 
+<p class="pf-profile-banner" data-integration-profile="trimui-brick-v1"><strong>Integration profile:</strong> <code>trimui-brick-v1</code> <span>·</span> <code>structure_only</code> <span>·</span> TrimUI Brick harness and I/O</p>
+
 Electrical and harness integration begins only after the exact DUT has been
 selected and has passed its mechanical chassis verifier. Return to the
 [device-first chassis selector](test-node-chassis/index.md) if the device is
@@ -11,13 +13,15 @@ not already fixed for this node.
 
 | Device | Family integration route | Mechanical build sheet |
 | --- | --- | --- |
+| TrimUI Brick / TG3040 | `trimui-brick-v1` | [Prototype dual-bar build](test-node-chassis/devices/trimui-brick/index.md) |
 | TrimUI Smart Pro | `trimui-smart-pro-family-v1` | [Qualified gantry build](test-node-chassis/devices/trimui-smart-pro/index.md) |
-| TrimUI Smart Pro S | `trimui-smart-pro-family-v1` | [Dual-bar candidate build](test-node-chassis/devices/trimui-smart-pro-s/index.md) |
+| TrimUI Smart Pro S | `trimui-smart-pro-family-v1` | [Qualified dual-bar build](test-node-chassis/devices/trimui-smart-pro-s/index.md) |
 
-The two current DUTs share the same family-level input/output route. That does
-not make the mechanical lanes interchangeable: each build sheet still owns
-its registered rail plan, printable chassis artifacts, assembly order, and
-qualification state.
+The two Smart Pro DUTs share the same family-level input/output route. The
+Brick has its own structural integration identity because its board, holder,
+and harness route differ. None of that makes the mechanical lanes
+interchangeable: each build sheet still owns its registered rail plan,
+printable chassis artifacts, assembly order, and qualification state.
 
 ## What a device integration profile owns
 
@@ -35,10 +39,10 @@ device build sheet is the routing surface that joins that profile to the
 correct holder and chassis layout, including a larger frame when required.
 
 !!! warning "Profile structure is not an electrical recipe"
-    `trimui-smart-pro-family-v1` is the current shared routing identity. Do not
-    invent or substitute side boards, voltages, cables, or connection order
-    from this structural page. Component-level integration instructions must
-    be released from their source-owned profile before wiring proceeds.
+    `trimui-smart-pro-family-v1` and `trimui-brick-v1` are structural routing
+    identities. Do not invent or substitute side boards, voltages, cables, or
+    connection order from this page. Component-level integration instructions
+    must be released from their source-owned profile before wiring proceeds.
 
 Until that component-level recipe is published, finish with the selected
 layout's de-energized wire-management page and keep the DUT, fixture board,

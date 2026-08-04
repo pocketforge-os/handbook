@@ -32,13 +32,22 @@ export function safeRelativePath(value, label = "path") {
 function validateQualification(value, label) {
   assert(value && typeof value === "object", `${label} is missing.`);
   assert(
-    ["candidate", "physically_qualified"].includes(value.status),
+    ["unqualified", "candidate", "physically_qualified"].includes(
+      value.status,
+    ),
     `${label}.status is invalid.`,
   );
-  assert(
-    typeof value.acceptance_ref === "string" && value.acceptance_ref,
-    `${label}.acceptance_ref is missing.`,
-  );
+  if (value.status === "unqualified") {
+    assert(
+      value.acceptance_ref === null,
+      `${label}.acceptance_ref must stay null before qualification.`,
+    );
+  } else {
+    assert(
+      typeof value.acceptance_ref === "string" && value.acceptance_ref,
+      `${label}.acceptance_ref is missing.`,
+    );
+  }
 }
 
 function validateArtifact(artifact, sourcePaths, label) {
