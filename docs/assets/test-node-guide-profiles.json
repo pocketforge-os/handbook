@@ -1,6 +1,13 @@
 {
   "schema": "pocketforge-test-node-guide-profiles-v1",
   "families": {
+    "trimui-brick": {
+      "display_name": "TrimUI Brick",
+      "holder_profile": "trimui-brick",
+      "devices": [
+        "trimui-brick"
+      ]
+    },
     "trimui-smart-pro-family": {
       "display_name": "TrimUI Smart Pro family",
       "holder_profile": "trimui-smart-pro-family",
@@ -11,6 +18,14 @@
     }
   },
   "devices": {
+    "trimui-brick": {
+      "display_name": "TrimUI Brick / TG3040",
+      "family": "trimui-brick",
+      "integration_profile": "trimui-brick-v1",
+      "layout": "chassis-dualbar-brick-v1",
+      "build_sheet_route": "hardware/test-node-chassis/devices/trimui-brick/",
+      "print_route": "hardware/test-node-chassis/devices/trimui-brick/print/"
+    },
     "trimui-smart-pro": {
       "display_name": "TrimUI Smart Pro",
       "family": "trimui-smart-pro-family",
@@ -29,6 +44,14 @@
     }
   },
   "integration_profiles": {
+    "trimui-brick-v1": {
+      "display_name": "TrimUI Brick harness and I/O",
+      "status": "structure_only",
+      "guide_route": "hardware/test-node/",
+      "devices": [
+        "trimui-brick"
+      ]
+    },
     "trimui-smart-pro-family-v1": {
       "display_name": "TrimUI Smart Pro family harness and I/O",
       "status": "structure_only",
@@ -40,6 +63,40 @@
     }
   },
   "layouts": {
+    "chassis-dualbar-brick-v1": {
+      "display_name": "Brick dual-bar prototype",
+      "qualification_status": "candidate",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
+      "outside_envelope_mm": {
+        "width": 346,
+        "depth": 358,
+        "height": 368
+      },
+      "inside_envelope_mm": {
+        "width": 306,
+        "depth": 318,
+        "height": 328
+      },
+      "assembly_steps": [
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-load-fixture-bars",
+        "05-lay-out-lower-frame",
+        "06-install-lower-fixture-bar",
+        "07-add-posts",
+        "08-build-upper-ring",
+        "09-install-upper-fixture-bar",
+        "10-close-outer-frame",
+        "11-square-frame",
+        "12-mount-dut-holder",
+        "13-mount-fixture-board",
+        "14-add-placard",
+        "15-mount-power-strip",
+        "16-add-stacking-tabs",
+        "17-final-check"
+      ]
+    },
     "chassis-core-v2": {
       "display_name": "Stack-clear gantry chassis",
       "qualification_status": "physically_qualified",

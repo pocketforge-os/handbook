@@ -37,13 +37,14 @@ chapter, and verification gate.
   <div class="admonition info">
     <p class="admonition-title">Device build sheets</p>
     <p>The dropdown needs JavaScript. Continue directly with the
-    <a href="devices/trimui-smart-pro/">TrimUI Smart Pro build sheet</a> or the
+    <a href="devices/trimui-brick/">TrimUI Brick prototype build sheet</a>,
+    <a href="devices/trimui-smart-pro/">TrimUI Smart Pro build sheet</a>, or
     <a href="devices/trimui-smart-pro-s/">TrimUI Smart Pro S build sheet</a>;
-    each sheet links its complete instruction sequence.</p>
+    each sheet links its complete instruction sequence and qualification gate.</p>
   </div>
 </noscript>
 
-The two current devices are close relatives and share the
+The two Smart Pro devices are close relatives and share the
 `trimui-smart-pro-family` holder mechanism and
 `trimui-smart-pro-family-v1` integration route. Their registered chassis
 layouts still differ today: the original Smart Pro pack remains frozen at its
@@ -53,6 +54,14 @@ and Smart Pro S builds select the physically qualified dual-bar layout with
 four printed crossbar-joint plates. Both current packs use 91.5 mm upper and
 108.5 mm lower carrier links that end 1 mm inside the chassis stack planes.
 The accepted production records are tracked in `tsp-t1zd.2`.
+
+The **TrimUI Brick / TG3040** is now available as a deliberately unqualified
+prototype pack on the same aluminum dual-bar topology. It uses a smaller
+180 × 205 mm carrier, a five-part stepped-shell retention set, and
+Brick-specific carrier links. Automated source, mesh, and browser checks have
+passed; holder fit, installed stability, port/control clearance, webcam
+composition, and label legibility remain owner acceptance gates under
+`tsp-bcx.21.23`. Generating its files does not make it production-qualified.
 
 Holder family, integration profile, and chassis layout are independent
 selections in the registry. A future DUT can reuse the same holder or frame
@@ -72,7 +81,7 @@ flowchart LR
 
 | Build module | Smart Pro family today | What a future device may change |
 | --- | --- | --- |
-| DUT holder | Shared family carrier and hooks | Contact geometry, keep-outs, links, or retention mechanism |
+| DUT holder | Qualified Smart Pro family or Brick prototype | Contact geometry, keep-outs, links, or retention mechanism |
 | Chassis | 346 × 358 × approximately 368 mm outside | Width, depth, height, rail inventory, fixture suspension, or stacking details |
 | Printed pack | Selected by exact device slug and registered layout | Chassis beds, holder, placard, cable anchors, and device-specific fixtures |
 | Integration route | Shared family routing ID | Side boards, power/USB/serial/FEL topology, cables, and service access |
@@ -88,4 +97,4 @@ layout, stale qualification state, or absent assembly route fails publication.
 
 Adding a future DUT means adding a registered device build sheet. A genuinely
 larger chassis gets a new layout namespace and its own parts, cut, assembly,
-and verification pages; it does not alter these two build histories.
+and verification pages; it does not alter existing qualified build histories.

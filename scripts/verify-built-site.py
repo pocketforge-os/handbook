@@ -313,6 +313,7 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
     expected_counts_by_slug = {
+        "trimui-brick": {"coupon": 1, "retrofit": 6, "full": 11},
         "trimui-smart-pro": {"coupon": 1, "retrofit": 6, "full": 12},
         "trimui-smart-pro-s": {"coupon": 1, "retrofit": 6, "full": 11},
     }
@@ -330,11 +331,14 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         slugs.add(slug)
         for owner in ("profile", "layout"):
             qualification = device.get(owner, {}).get("qualification", {})
+            status = qualification.get("status")
+            acceptance_ref = qualification.get("acceptance_ref")
             if (
                 not device.get(owner, {}).get("id")
-                or qualification.get("status")
-                not in {"candidate", "physically_qualified"}
-                or not qualification.get("acceptance_ref")
+                or status
+                not in {"unqualified", "candidate", "physically_qualified"}
+                or (status == "unqualified" and acceptance_ref is not None)
+                or (status != "unqualified" and not acceptance_ref)
             ):
                 raise SystemExit(
                     f"browser catalog has invalid {owner} qualification: {slug}"

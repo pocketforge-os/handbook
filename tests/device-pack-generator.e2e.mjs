@@ -155,6 +155,14 @@ async function verifyPack(downloadPath, device) {
   assert.equal(manifest.source.dirty, false);
   assert.equal(manifest.device.slug, device.slug);
   assert.equal(manifest.mode, "full");
+  assert.equal(
+    manifest.production_eligible,
+    device.modes.full.production_eligible,
+  );
+  assert.deepEqual(
+    manifest.nonproduction_reasons,
+    device.modes.full.nonproduction_reasons,
+  );
   assert.deepEqual(manifest.generator, {
     backend: "Manifold",
     browser_baseline_sha256: sha256(baselineBytes),
@@ -526,6 +534,10 @@ try {
 
   const totals = { bytes: 0, triangles: 0, packs: 0 };
   const printRoutes = new Map([
+    [
+      "trimui-brick",
+      "/hardware/test-node-chassis/devices/trimui-brick/print/",
+    ],
     [
       "trimui-smart-pro",
       "/hardware/test-node-chassis/devices/trimui-smart-pro/print/",

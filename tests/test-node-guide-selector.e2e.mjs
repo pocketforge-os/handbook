@@ -96,6 +96,7 @@ try {
     ),
     [
       ["", "Choose a DUT…"],
+      ["trimui-brick", "TrimUI Brick / TG3040"],
       ["trimui-smart-pro", "TrimUI Smart Pro"],
       ["trimui-smart-pro-s", "TrimUI Smart Pro S"],
     ],
@@ -103,6 +104,12 @@ try {
   assert.equal(await page.locator("[data-guide-result]").isHidden(), true);
 
   for (const selection of [
+    {
+      slug: "trimui-brick",
+      layout: "chassis-dualbar-v1",
+      steps: 17,
+      lastStep: "17-final-check",
+    },
     {
       slug: "trimui-smart-pro",
       layout: "chassis-core-v2",
@@ -161,7 +168,11 @@ try {
   const noScriptContext = await browser.newContext({ javaScriptEnabled: false });
   const noScriptPage = await noScriptContext.newPage();
   await noScriptPage.goto(`${baseUrl}/hardware/test-node-chassis/`);
-  for (const slug of ["trimui-smart-pro", "trimui-smart-pro-s"]) {
+  for (const slug of [
+    "trimui-brick",
+    "trimui-smart-pro",
+    "trimui-smart-pro-s",
+  ]) {
     assert.equal(
       await noScriptPage.locator(`article a[href$="devices/${slug}/"]`).count(),
       1,
@@ -199,7 +210,7 @@ try {
 
   await context.close();
   console.log(
-    "test_node_guide_selector_e2e=pass devices=2 steps=19,17 nav_entries=1 responsive=pass",
+    "test_node_guide_selector_e2e=pass devices=3 steps=17,19,17 nav_entries=1 responsive=pass",
   );
 } finally {
   await browser.close();
