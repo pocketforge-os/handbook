@@ -18,6 +18,7 @@ real steps):
 - [ ] Generate the device-specific DUT holder from the accepted model
 - [ ] [Build and verify the test-node chassis](hardware/test-node-chassis/index.md)
 - [ ] Wire it into a [per-DUT test node](hardware/test-node.md)
+- [ ] [Provision and verify the BPI test-node host](lab/bpi-node-bringup.md)
 - [ ] Confirm [relay power](lab/power.md) and [serial](hardware/test-node.md) control
 - [ ] Acquire the device [place](lab/labgrid.md)
 - [ ] [Build an image](build-flash/pf-build.md)
