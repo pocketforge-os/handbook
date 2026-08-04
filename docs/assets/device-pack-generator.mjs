@@ -107,7 +107,7 @@ function initializeGenerator(root) {
     if (mode.production_eligible) {
       return {
         state: "qualified",
-        heading: "Physically qualified pack",
+        heading: "Production-qualified pack",
         copy:
           `${device.profile.id} and ${layout.id} are qualified. ` +
           `Acceptance: ${layout.qualification.acceptance_ref}.`,

@@ -20,8 +20,8 @@ and verification.
 | Holder profile | `trimui-smart-pro-family` · shared with Smart Pro S |
 | Integration route | `trimui-smart-pro-family-v1` · shared family route for later side-board, harness, and I/O instructions |
 | Integration status | `structure_only` · component-level wiring recipe still pending |
-| Chassis layout | `chassis-core-v2` · stack-clear gantry chassis candidate |
-| Qualification | `candidate` · newly printed carrier-link fit acceptance pending |
+| Chassis layout | `chassis-core-v2` · stack-clear gantry chassis |
+| Qualification | `physically_qualified` · accepted production layout under `tsp-t1zd.2` |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Assembly sequence | 19 page-per-job bench steps |
@@ -35,16 +35,16 @@ and verification.
 
 ## Follow this path in order
 
-1. [Review the stack-clear chassis candidate](../../layouts/chassis-core-v2/index.md).
+1. [Review the stack-clear chassis](../../layouts/chassis-core-v2/index.md).
 2. [Collect its parts and tools](../../layouts/chassis-core-v2/parts.md).
 3. [Generate and print the Smart Pro pack](print.md).
 4. [Cut and label the unchanged gantry rail set](../../layouts/chassis-core-v2/cut.md).
 5. [Assemble it in 19 workbench steps](../../layouts/chassis-core-v2/assemble/index.md).
-6. [Verify the candidate mechanical build](../../layouts/chassis-core-v2/verify.md).
+6. [Verify the mechanical build](../../layouts/chassis-core-v2/verify.md).
 7. [Route the de-energized harness](../../layouts/chassis-core-v2/wire-management.md).
 8. Continue to the [family integration route](../../../test-node.md).
 
 Do not use the dual-bar cut list or 17-step Smart Pro S chapter with this
-candidate pack.
+gantry pack.
 
 [← Change the selected device](../../index.md)

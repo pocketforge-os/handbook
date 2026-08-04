@@ -92,11 +92,11 @@ adjustment only to restore centering.
     restrain the stack against tipping. Printed tabs provide lateral
     registration; aluminum carries vertical load.
 
-## 7. Record candidate fit acceptance
+## 7. Record build verification
 
-Track this candidate qualification against acceptance record `tsp-px73.23`.
-That record remains open until the owner verifies the regenerated links in a
-physical stacked chassis.
+The exact source layout and carrier-link fingerprints are physically qualified
+under acceptance record `tsp-t1zd.2`. Record this individual build so any
+future service issue remains traceable to its source and print process.
 
 Record:
 
@@ -108,9 +108,6 @@ Record:
 - one camera-framing image;
 - any deviation from the standard cut list or fastener lengths.
 
-This candidate becomes eligible for a later qualification update only after
-the project owner explicitly accepts the newly printed carrier-link fit. Until
-then, keep the manifest's non-production status with the build record and do
-not describe source-only validation as physical acceptance.
-
-After acceptance, continue to [de-energized harness routing](wire-management.md).
+If any check fails, stop and correct the build; production qualification does
+not waive per-chassis inspection. Once every check passes, continue to
+[de-energized harness routing](wire-management.md).

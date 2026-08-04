@@ -7,5 +7,5 @@ gantry build cannot be confused with the Smart Pro S dual-bar sequence.
 [Choose the exact DUT and open its build sheet](../index.md).
 
 The selected sheet routes to either the qualified 19-step Smart Pro chapter or
-the 17-step Smart Pro S candidate chapter. Future chassis sizes get their own
+the qualified 17-step Smart Pro S chapter. Future chassis sizes get their own
 namespaced sequence here without changing existing builds.

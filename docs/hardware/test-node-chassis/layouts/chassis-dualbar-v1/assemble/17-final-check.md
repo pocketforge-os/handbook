@@ -82,7 +82,7 @@ formal verification.
 **Before you continue:** every comparison item matches the reference, both
 diagonal pairs pass, the camera is disconnected, and the entire chassis
 remains de-energized. The assembly chapter is complete; continue to the formal
-candidate gates.
+build gates.
 
 </div>
 

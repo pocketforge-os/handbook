@@ -1,4 +1,4 @@
-# Generate and print the stack-clear Smart Pro candidate
+# Generate and print the stack-clear Smart Pro pack
 
 <p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro <span>·</span> <code>chassis-core-v2</code></p>
 
@@ -25,7 +25,7 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
   <div class="pf-device-pack-generator__heading">
     <div>
       <span class="pf-device-pack-generator__eyebrow">LOCAL CAD WORKBENCH</span>
-      <h2 id="smart-pro-pack-generator-title">Generate the stack-clear candidate pack</h2>
+      <h2 id="smart-pro-pack-generator-title">Generate the stack-clear production pack</h2>
     </div>
     <span class="pf-device-pack-generator__privacy">runs on this device</span>
   </div>
@@ -46,27 +46,24 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
 
 <noscript>Browser generation requires JavaScript. Use the command-line path below.</noscript>
 
-The qualification panel must say **Non-production prototype** and identify
-`trimui-smart-pro-family` with `chassis-core-v2`. Its reason must include
-`layout_unqualified`; this is intentional until the newly printed link set
-receives physical acceptance. Stop if it names the dual-bar layout.
+The qualification panel must say **Production-qualified pack** and identify
+`trimui-smart-pro-family` with `chassis-core-v2`. It must show no
+non-production reason. Stop if it names the dual-bar layout.
 
 ## Command-line alternative
 
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
   --device trimui-smart-pro \
-  --mode full \
-  --allow-unqualified
+  --mode full
 
 python3 mechanical/device-packs/build_device_pack.py verify \
   --pack mechanical/device-packs/build/trimui-smart-pro/full
 ```
 
-The explicit override permits this source-verified candidate; it does not
-qualify the new links. Inspect `manifest.json` and confirm
-`production_eligible=false`, reason `layout_unqualified`, device
-`trimui-smart-pro`, and layout `chassis-core-v2` before slicing.
+Inspect `manifest.json` and confirm `production_eligible=true`, no
+non-production reasons, device `trimui-smart-pro`, layout `chassis-core-v2`,
+and acceptance reference `tsp-t1zd.2` before slicing.
 
 ## Slicer contract
 
@@ -86,7 +83,7 @@ Use the exported orientation. Re-run the calibration artifact after changing
 rail supplier, printer, nozzle, material, slicer compensation, or placard
 fit.
 
-## Identify the candidate chassis artifacts
+## Identify the chassis artifacts
 
 The verified full pack includes these gantry chassis groups in addition
 to the selected Smart Pro holder, hooks, carrier links, nameplate, and wire
@@ -133,8 +130,8 @@ use the same source-owned browser customizer:
 ## Print gate
 
 - [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v2`.
-- [ ] Manifest verification passes with `production_eligible=false` and
-      `nonproduction_reasons=["layout_unqualified"]`.
+- [ ] Manifest verification passes with `production_eligible=true` and no
+      non-production reasons.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
 - [ ] Count 28 short channel bars, four long splice bars, and 36 seated nuts.
 - [ ] Both splice collars, all movable mounts, the holder pack, placard, and

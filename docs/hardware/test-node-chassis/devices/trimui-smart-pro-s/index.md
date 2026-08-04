@@ -9,7 +9,7 @@ hide:
 
 This sheet is the only safe entrance to a new Smart Pro S chassis build. Keep
 this device selection for the printed pack, rail cuts, all 17 assembly steps,
-and candidate verification.
+and build verification.
 
 ## Resolved build profile
 
@@ -21,26 +21,25 @@ and candidate verification.
 | Integration route | `trimui-smart-pro-family-v1` · shared family route for later side-board, harness, and I/O instructions |
 | Integration status | `structure_only` · component-level wiring recipe still pending |
 | Chassis layout | `chassis-dualbar-v1` · continuous fixture bars on four printed crossbar-joint plates |
-| Qualification | `candidate` · non-production until owner gate `tsp-px73.23` passes |
+| Qualification | `physically_qualified` · accepted production layout under `tsp-t1zd.2` |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Assembly sequence | 17 page-per-job bench steps |
 | Carrier links | 91.5 mm upper / 108.5 mm lower · 1 mm inside the stack planes |
 
-!!! warning "Candidate mechanical layout"
-    Generate this full pack only with the explicit non-production override.
+!!! success "Production-qualified mechanical layout"
     The browser and command-line manifests must report
-    `production_eligible=false` and `layout_unqualified`. Publishing these
-    instructions does not qualify the layout.
+    `production_eligible=true` with no non-production reasons. This status is
+    bound to the exact source fingerprints accepted under `tsp-t1zd.2`.
 
 ## Follow this path in order
 
-1. [Review the dual-bar candidate layout](../../layouts/chassis-dualbar-v1/index.md).
+1. [Review the dual-bar layout](../../layouts/chassis-dualbar-v1/index.md).
 2. [Collect its parts and tools](../../layouts/chassis-dualbar-v1/parts.md).
 3. [Generate and print the Smart Pro S pack](print.md).
 4. [Cut and label the dual-bar rail set](../../layouts/chassis-dualbar-v1/cut.md).
 5. [Assemble it in 17 workbench steps](../../layouts/chassis-dualbar-v1/assemble/index.md).
-6. [Run and record candidate verification](../../layouts/chassis-dualbar-v1/verify.md).
+6. [Run and record build verification](../../layouts/chassis-dualbar-v1/verify.md).
 7. [Route the de-energized harness](../../layouts/chassis-dualbar-v1/wire-management.md).
 8. Continue to the [family integration route](../../../test-node.md).
 

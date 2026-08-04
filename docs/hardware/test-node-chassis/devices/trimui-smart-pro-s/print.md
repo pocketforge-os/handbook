@@ -150,21 +150,19 @@ device-selected plan from a clean `pocketforge-os/test-node-hw` checkout:
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
   --device trimui-smart-pro-s \
-  --mode full \
-  --allow-unqualified
+  --mode full
 
 python3 mechanical/device-packs/build_device_pack.py verify \
   --pack mechanical/device-packs/build/trimui-smart-pro-s/full
 ```
 
-The device slug selects `chassis-dualbar-v1`. The explicit override permits
-candidate generation; it does not qualify the layout. Before slicing, inspect
-`manifest.json` and confirm:
+The device slug selects the accepted `chassis-dualbar-v1` production layout.
+Before slicing, inspect `manifest.json` and confirm:
 
-- `production_eligible` is `false`;
-- `nonproduction_reasons` is exactly `["layout_unqualified"]`;
+- `production_eligible` is `true`;
+- `nonproduction_reasons` is empty;
 - the selected layout is `chassis-dualbar-v1`; and
-- `layout.qualification.acceptance_ref` is `tsp-px73.23`.
+- `layout.qualification.acceptance_ref` is `tsp-t1zd.2`.
 
 Stop if any value differs.
 
@@ -349,7 +347,7 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
 
 - [ ] Pack verification passes against the clean source revision in its
       manifest.
-- [ ] The manifest remains non-production with only `layout_unqualified`.
+- [ ] The manifest is production-eligible with no non-production reasons.
 - [ ] Every bed stayed at 100% scale in its exported support-free orientation.
 - [ ] Core 01 contains exactly 28 compact channel bars.
 - [ ] Core 02 contains four identical keyed fixture links and four printed

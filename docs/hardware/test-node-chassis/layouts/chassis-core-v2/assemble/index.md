@@ -61,7 +61,7 @@ instruction or caption.
 
 ## Before Step 1
 
-- [ ] The complete verified Smart Pro candidate pack passed the
+- [ ] The complete verified Smart Pro production pack passed the
       [print gate](../../../devices/trimui-smart-pro/print.md#print-gate).
 - [ ] All rail pieces passed the [cut gate](../cut.md#cut-gate) and still have
       their plain-language tape labels.
@@ -96,7 +96,7 @@ instruction or caption.
   <li><a href="19-final-check/"><strong>Compare the finished chassis</strong><small>Catch a missing part or reversed assembly before formal verification.</small></a></li>
 </ol>
 
-After Step 19, continue to the [formal candidate verification](../verify.md).
+After Step 19, continue to the [formal build verification](../verify.md).
 
 <nav class="pf-step-nav" aria-label="Assembly chapter navigation">
   <a href="../cut/">← Back: Cut the rails</a>
