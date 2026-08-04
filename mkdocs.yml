@@ -123,6 +123,7 @@ nav:
       - Bill of materials: hardware/bom.md
   - Lab & infrastructure:
       - lab/index.md
+      - BPI test-node bring-up: lab/bpi-node-bringup.md
       - labgrid coordinator: lab/labgrid.md
       - Relay power: lab/power.md
       - Networking: lab/networking.md
