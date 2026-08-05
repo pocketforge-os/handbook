@@ -194,6 +194,17 @@ test("browser baseline lock covers every registered full-pack artifact", () => {
   );
 });
 
+test("desktop font overlay resolves from the pinned CAD checkout", async () => {
+  const config = await readFile(
+    "docs/assets/device-pack-desktop-fonts.conf",
+    "utf8",
+  );
+  assert.match(
+    config,
+    /<dir prefix="cwd">\.\.\/\.\.\/docs\/assets\/vendor\/openscad\/fonts<\/dir>/,
+  );
+});
+
 test("catalog checksum is verified before its JSON is accepted", async () => {
   const catalogBytes = await readFile(catalogPath);
   const checksums = await readFile(checksumsPath);
