@@ -96,14 +96,21 @@ try {
     ),
     [
       ["", "Choose a DUT…"],
+      ["powkiddy-x55", "Powkiddy X55"],
       ["trimui-brick", "TrimUI Brick / TG3040"],
-      ["trimui-smart-pro", "TrimUI Smart Pro"],
-      ["trimui-smart-pro-s", "TrimUI Smart Pro S"],
+      ["trimui-smart-pro", "TrimUI Smart Pro / TG5040"],
+      ["trimui-smart-pro-s", "TrimUI Smart Pro S / TG5050"],
     ],
   );
   assert.equal(await page.locator("[data-guide-result]").isHidden(), true);
 
   for (const selection of [
+    {
+      slug: "powkiddy-x55",
+      layout: "chassis-core-v2",
+      steps: 19,
+      lastStep: "19-final-check",
+    },
     {
       slug: "trimui-brick",
       layout: "chassis-dualbar-v1",
@@ -169,6 +176,7 @@ try {
   const noScriptPage = await noScriptContext.newPage();
   await noScriptPage.goto(`${baseUrl}/hardware/test-node-chassis/`);
   for (const slug of [
+    "powkiddy-x55",
     "trimui-brick",
     "trimui-smart-pro",
     "trimui-smart-pro-s",
@@ -210,7 +218,7 @@ try {
 
   await context.close();
   console.log(
-    "test_node_guide_selector_e2e=pass devices=3 steps=17,19,17 nav_entries=1 responsive=pass",
+    "test_node_guide_selector_e2e=pass devices=4 steps=19,17,19,17 nav_entries=1 responsive=pass",
   );
 } finally {
   await browser.close();

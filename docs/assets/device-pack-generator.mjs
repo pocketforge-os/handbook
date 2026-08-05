@@ -6,7 +6,7 @@ import {
 
 const MODE_LABELS = {
   coupon: "Fit coupon · 1 file",
-  retrofit: "Device retrofit · 6 files",
+  retrofit: "Device retrofit · 7 files",
   full: "Complete chassis · device-selected files",
 };
 

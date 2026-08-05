@@ -313,9 +313,10 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
     expected_counts_by_slug = {
-        "trimui-brick": {"coupon": 1, "retrofit": 6, "full": 11},
-        "trimui-smart-pro": {"coupon": 1, "retrofit": 6, "full": 12},
-        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 6, "full": 11},
+        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 13},
+        "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 12},
+        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 13},
+        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 12},
     }
     for device in devices:
         slug = device.get("slug")
@@ -753,7 +754,7 @@ def main() -> int:
     ]
     compatibility_step_pages = [
         guide_root / "assemble" / step / "index.html"
-        for step in guide_profiles["layouts"]["chassis-dualbar-v1"][
+        for step in guide_profiles["layouts"]["chassis-dualbar-v2"][
             "assembly_steps"
         ]
     ]
@@ -771,7 +772,7 @@ def main() -> int:
     assembly_root = dualbar_root / "assemble"
     assembly_page = assembly_root / "index.html"
     assembly_step_names = tuple(
-        guide_profiles["layouts"]["chassis-dualbar-v1"]["assembly_steps"]
+        guide_profiles["layouts"]["chassis-dualbar-v2"]["assembly_steps"]
     )
     assembly_image_names = (
         "assembly-01-channel-bar.png",
@@ -817,7 +818,7 @@ def main() -> int:
     )
     gantry_assembly_root = gantry_root / "assemble"
     gantry_step_names = tuple(
-        guide_profiles["layouts"]["chassis-core-v2"]["assembly_steps"]
+        guide_profiles["layouts"]["chassis-core-v3"]["assembly_steps"]
     )
     gantry_steps = [
         gantry_assembly_root / step / "index.html"
@@ -1197,8 +1198,9 @@ def main() -> int:
         "trimui-smart-pro",
         "chassis-core-v2",
         "physically_qualified",
-        "production_eligible=true",
+        "production_eligible=false",
         "tsp-t1zd.2",
+        "tsp-bcx.21.38",
         "5,204 mm",
         "28 short",
         "22 use-now + 6 spares = 28",
@@ -1683,7 +1685,8 @@ def main() -> int:
         "z = 2.4 mm",
         "pinned openscad chassis source",
         "28 compact m3 channel bars",
-        "four identical 71.5 mm keyed links and four printed crossbar-joint plates",
+        "four identical 71.5 mm keyed links",
+        "side-clear-crossbar-joint-plate-set.stl",
         "interactive print-bed previews",
         "data-cable-anchor-customizer",
         "cable-anchor-worker.mjs",
@@ -1758,7 +1761,7 @@ def main() -> int:
     ).read_text(encoding="utf-8")
     for required_fragment in (
         'coupon: "Fit coupon · 1 file"',
-        'retrofit: "Device retrofit · 6 files"',
+        'retrofit: "Device retrofit · 7 files"',
         'full: "Complete chassis · device-selected files"',
         "catalog.devices",
         "mode.artifacts",

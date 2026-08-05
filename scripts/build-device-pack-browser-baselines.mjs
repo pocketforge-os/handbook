@@ -20,12 +20,18 @@ function parseArguments(argv) {
     const flag = argv[index];
     const value = argv[index + 1];
     if (
-      !["--desktop-root", "--browser-root", "--output"].includes(flag) ||
+      ![
+        "--desktop-root",
+        "--desktop-overlay-root",
+        "--browser-root",
+        "--output",
+      ].includes(flag) ||
       !value
     ) {
       fail(
         "usage: build-device-pack-browser-baselines.mjs " +
-          "--desktop-root DIR --browser-root DIR --output FILE",
+          "--desktop-root DIR [--desktop-overlay-root DIR] " +
+          "--browser-root DIR --output FILE",
       );
     }
     values.set(flag, path.resolve(value));
@@ -37,6 +43,7 @@ function parseArguments(argv) {
   }
   return {
     desktopRoot: values.get("--desktop-root"),
+    desktopOverlayRoot: values.get("--desktop-overlay-root"),
     browserRoot: values.get("--browser-root"),
     output: values.get("--output"),
   };
@@ -98,6 +105,11 @@ for (const device of catalog.devices) {
   const desktop = await readJson(
     path.join(args.desktopRoot, device.slug, "manifest.json"),
   );
+  const desktopOverlay = args.desktopOverlayRoot
+    ? await readJson(
+        path.join(args.desktopOverlayRoot, device.slug, "manifest.json"),
+      )
+    : null;
   const browser = await readJson(
     path.join(
       args.browserRoot,
@@ -106,10 +118,14 @@ for (const device of catalog.devices) {
   );
   if (
     desktop.source.commit !== catalog.source.commit ||
+    (desktopOverlay &&
+      desktopOverlay.source.commit !== catalog.source.commit) ||
     browser.source.commit !== catalog.source.commit ||
     desktop.device.slug !== device.slug ||
+    (desktopOverlay && desktopOverlay.device.slug !== device.slug) ||
     browser.device.slug !== device.slug ||
     desktop.mode !== "full" ||
+    (desktopOverlay && desktopOverlay.mode !== "retrofit") ||
     browser.mode !== "full"
   ) {
     fail(`manifest provenance changed for ${device.slug}`);
@@ -117,11 +133,19 @@ for (const device of catalog.devices) {
   const desktopArtifacts = new Map(
     desktop.artifacts.map((artifact) => [artifact.id, artifact]),
   );
+  const desktopOverlayArtifacts = new Map(
+    (desktopOverlay?.artifacts ?? []).map((artifact) => [
+      artifact.id,
+      artifact,
+    ]),
+  );
   const browserArtifacts = new Map(
     browser.artifacts.map((artifact) => [artifact.id, artifact]),
   );
   for (const planArtifact of device.modes.full.artifacts) {
-    const sourceArtifact = desktopArtifacts.get(planArtifact.id);
+    const sourceArtifact =
+      desktopOverlayArtifacts.get(planArtifact.id) ??
+      desktopArtifacts.get(planArtifact.id);
     const browserArtifact = browserArtifacts.get(planArtifact.id);
     if (
       !sourceArtifact ||

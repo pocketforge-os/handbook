@@ -1,6 +1,13 @@
 {
   "schema": "pocketforge-test-node-guide-profiles-v1",
   "families": {
+    "powkiddy-x55": {
+      "display_name": "Powkiddy X55",
+      "holder_profile": "powkiddy-x55",
+      "devices": [
+        "powkiddy-x55"
+      ]
+    },
     "trimui-brick": {
       "display_name": "TrimUI Brick",
       "holder_profile": "trimui-brick",
@@ -18,32 +25,48 @@
     }
   },
   "devices": {
+    "powkiddy-x55": {
+      "display_name": "Powkiddy X55",
+      "family": "powkiddy-x55",
+      "integration_profile": "powkiddy-x55-v1",
+      "layout": "chassis-core-powkiddy-x55-v1",
+      "build_sheet_route": "hardware/test-node-chassis/devices/powkiddy-x55/",
+      "print_route": "hardware/test-node-chassis/devices/powkiddy-x55/print/"
+    },
     "trimui-brick": {
       "display_name": "TrimUI Brick / TG3040",
       "family": "trimui-brick",
       "integration_profile": "trimui-brick-v1",
-      "layout": "chassis-dualbar-brick-v1",
+      "layout": "chassis-dualbar-brick-v2",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-brick/",
       "print_route": "hardware/test-node-chassis/devices/trimui-brick/print/"
     },
     "trimui-smart-pro": {
-      "display_name": "TrimUI Smart Pro",
+      "display_name": "TrimUI Smart Pro / TG5040",
       "family": "trimui-smart-pro-family",
       "integration_profile": "trimui-smart-pro-family-v1",
-      "layout": "chassis-core-v2",
+      "layout": "chassis-core-v3",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro/",
       "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro/print/"
     },
     "trimui-smart-pro-s": {
-      "display_name": "TrimUI Smart Pro S",
+      "display_name": "TrimUI Smart Pro S / TG5050",
       "family": "trimui-smart-pro-family",
       "integration_profile": "trimui-smart-pro-family-v1",
-      "layout": "chassis-dualbar-v1",
+      "layout": "chassis-dualbar-v2",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/",
       "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/print/"
     }
   },
   "integration_profiles": {
+    "powkiddy-x55-v1": {
+      "display_name": "Powkiddy X55 harness and I/O",
+      "status": "structure_only",
+      "guide_route": "hardware/test-node/",
+      "devices": [
+        "powkiddy-x55"
+      ]
+    },
     "trimui-brick-v1": {
       "display_name": "TrimUI Brick harness and I/O",
       "status": "structure_only",
@@ -63,43 +86,9 @@
     }
   },
   "layouts": {
-    "chassis-dualbar-brick-v1": {
-      "display_name": "Brick dual-bar prototype",
+    "chassis-core-powkiddy-x55-v1": {
+      "display_name": "Powkiddy X55 side-clear prototype",
       "qualification_status": "candidate",
-      "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
-      "outside_envelope_mm": {
-        "width": 346,
-        "depth": 358,
-        "height": 368
-      },
-      "inside_envelope_mm": {
-        "width": 306,
-        "depth": 318,
-        "height": 328
-      },
-      "assembly_steps": [
-        "01-learn-the-rail",
-        "02-load-width-rails",
-        "03-load-depth-rails",
-        "04-load-fixture-bars",
-        "05-lay-out-lower-frame",
-        "06-install-lower-fixture-bar",
-        "07-add-posts",
-        "08-build-upper-ring",
-        "09-install-upper-fixture-bar",
-        "10-close-outer-frame",
-        "11-square-frame",
-        "12-mount-dut-holder",
-        "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check"
-      ]
-    },
-    "chassis-core-v2": {
-      "display_name": "Stack-clear gantry chassis",
-      "qualification_status": "physically_qualified",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v2/",
       "outside_envelope_mm": {
         "width": 346,
@@ -133,9 +122,79 @@
         "19-final-check"
       ]
     },
-    "chassis-dualbar-v1": {
-      "display_name": "Dual-bar chassis",
-      "qualification_status": "physically_qualified",
+    "chassis-dualbar-brick-v2": {
+      "display_name": "Side-clear Brick dual-bar prototype",
+      "qualification_status": "candidate",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
+      "outside_envelope_mm": {
+        "width": 346,
+        "depth": 358,
+        "height": 368
+      },
+      "inside_envelope_mm": {
+        "width": 306,
+        "depth": 318,
+        "height": 328
+      },
+      "assembly_steps": [
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-load-fixture-bars",
+        "05-lay-out-lower-frame",
+        "06-install-lower-fixture-bar",
+        "07-add-posts",
+        "08-build-upper-ring",
+        "09-install-upper-fixture-bar",
+        "10-close-outer-frame",
+        "11-square-frame",
+        "12-mount-dut-holder",
+        "13-mount-fixture-board",
+        "14-add-placard",
+        "15-mount-power-strip",
+        "16-add-stacking-tabs",
+        "17-final-check"
+      ]
+    },
+    "chassis-core-v3": {
+      "display_name": "Side-clear stack-clear gantry chassis",
+      "qualification_status": "candidate",
+      "guide_route": "hardware/test-node-chassis/layouts/chassis-core-v2/",
+      "outside_envelope_mm": {
+        "width": 346,
+        "depth": 358,
+        "height": 368
+      },
+      "inside_envelope_mm": {
+        "width": 306,
+        "depth": 318,
+        "height": 328
+      },
+      "assembly_steps": [
+        "01-learn-the-rail",
+        "02-load-width-rails",
+        "03-load-depth-rails",
+        "04-splice-uprights",
+        "05-load-camera-frame",
+        "06-build-camera-frame",
+        "07-lay-out-lower-frame",
+        "08-add-posts",
+        "09-lower-camera-frame",
+        "10-set-camera-frame",
+        "11-close-outer-frame",
+        "12-square-frame",
+        "13-mount-dut-holder",
+        "14-mount-electronics-plate",
+        "15-aim-camera",
+        "16-add-placard",
+        "17-mount-power-strip",
+        "18-add-stacking-tabs",
+        "19-final-check"
+      ]
+    },
+    "chassis-dualbar-v2": {
+      "display_name": "Side-clear dual-bar chassis",
+      "qualification_status": "candidate",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
       "outside_envelope_mm": {
         "width": 346,

@@ -125,9 +125,24 @@ done < <(
     docs/assets/generated/test-node-chassis/browser/catalog.json
 )
 
+font_root=$(mktemp -d)
+export FONTCONFIG_FILE="$PWD/docs/assets/device-pack-desktop-fonts.conf"
+while read -r device; do
+  python3 cad/test-node-hw/mechanical/device-packs/build_device_pack.py build \
+    --device "${device}" \
+    --mode retrofit \
+    --allow-unqualified \
+    --output "${font_root}/${device}"
+done < <(
+  jq -r '.devices[].slug' \
+    docs/assets/generated/test-node-chassis/browser/catalog.json
+)
+unset FONTCONFIG_FILE
+
 npm run test:e2e
 node scripts/build-device-pack-browser-baselines.mjs \
   --desktop-root "${desktop_root}" \
+  --desktop-overlay-root "${font_root}" \
   --browser-root test-artifacts \
   --output docs/assets/device-pack-browser-baselines.json
 ```
