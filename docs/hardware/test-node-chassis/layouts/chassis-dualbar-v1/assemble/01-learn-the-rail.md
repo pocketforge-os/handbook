@@ -7,7 +7,7 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 1 of 17</p>
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Practice the hidden sliding interface once before loading any labeled frame
 rail. The compact printed carrier is **18 mm end to end**.

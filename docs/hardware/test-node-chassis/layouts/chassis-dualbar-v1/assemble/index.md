@@ -1,6 +1,6 @@
 # Assemble the dual-bar chassis
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code> <span>·</span> 17 steps</p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code> <span>·</span> 17 steps</p>
 
 Use this chapter at the workbench after the verified device pack is printed
 and all 14 aluminum pieces pass the cut gate. Each page is one small physical
@@ -170,8 +170,9 @@ an action.
 
 ## Before Step 1
 
-- [ ] The complete Smart Pro S device pack passed the
-      [print gate](../../../devices/trimui-smart-pro-s/print.md#print-gate).
+- [ ] The complete pack for the selected DUT passed its print gate; return to
+      the [device selector](../../../index.md) if the device identity is not
+      still visible on the verified manifest.
 - [ ] Four 360 mm posts, four 318 mm depth rails, four 306 mm width rails, and
       two continuous 306 mm fixture bars passed the [cut gate](../cut.md#cut-gate).
 - [ ] One ordinary M3 nut is fully seated in each of the 28 compact channel

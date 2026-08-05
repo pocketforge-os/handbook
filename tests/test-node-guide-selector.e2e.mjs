@@ -107,9 +107,9 @@ try {
   for (const selection of [
     {
       slug: "powkiddy-x55",
-      layout: "chassis-core-v2",
-      steps: 19,
-      lastStep: "19-final-check",
+      layout: "chassis-dualbar-v1",
+      steps: 17,
+      lastStep: "17-final-check",
     },
     {
       slug: "trimui-brick",
@@ -119,9 +119,9 @@ try {
     },
     {
       slug: "trimui-smart-pro",
-      layout: "chassis-core-v2",
-      steps: 19,
-      lastStep: "19-final-check",
+      layout: "chassis-dualbar-v1",
+      steps: 17,
+      lastStep: "17-final-check",
     },
     {
       slug: "trimui-smart-pro-s",
@@ -218,7 +218,7 @@ try {
 
   await context.close();
   console.log(
-    "test_node_guide_selector_e2e=pass devices=4 steps=19,17,19,17 nav_entries=1 responsive=pass",
+    "test_node_guide_selector_e2e=pass devices=4 steps=17,17,17,17 nav_entries=1 responsive=pass",
   );
 } finally {
   await browser.close();

@@ -1,6 +1,6 @@
 # Generate the Powkiddy X55 prototype pack
 
-<p class="pf-profile-banner" data-guide-device="powkiddy-x55" data-layout-id="chassis-core-powkiddy-x55-v1"><strong>Compatible DUT:</strong> Powkiddy X55 <span>·</span> <code>chassis-core-powkiddy-x55-v1</code></p>
+<p class="pf-profile-banner" data-guide-device="powkiddy-x55" data-layout-id="chassis-dualbar-powkiddy-x55-v1"><strong>Compatible DUT:</strong> Powkiddy X55 <span>·</span> <code>chassis-dualbar-powkiddy-x55-v1</code></p>
 
 This build sheet locks the browser generator to **Powkiddy X55**. OpenSCAD
 runs locally in the browser from the exact source revision pinned by the
@@ -8,14 +8,14 @@ handbook. No model or generated STL is uploaded.
 
 Choose the fit coupon first. It reproduces the production bottom-contact
 spacing while using only one low-filament bed. Use retrofit mode only when an
-existing core chassis needs the X55 device parts and side-clear joint plates;
-use full mode for the complete 13-artifact prototype pack. Every download
+existing continuous-bar chassis needs the X55 device parts and side-clear joint plates;
+use full mode for a conversion or the complete 12-artifact prototype pack. Every download
 includes a manifest and `SHA256SUMS`.
 
 !!! warning "Prototype pack · not production-qualified"
     The source manifest must report `production_eligible=false`. Full and
     retrofit modes must list `holder_unqualified` and `layout_unqualified`.
-    This is expected while physical gates `tsp-bcx.21.28`, `tsp-bcx.21.39`,
+    This is expected while physical gates `tsp-bcx.21.28`, `tsp-bcx.21.40`,
     and `tsp-bcx.21.38` remain open. Generating files does not qualify them.
 
 <script type="module" src="../../../../../assets/device-pack-generator.mjs"></script>
@@ -98,7 +98,7 @@ python3 mechanical/device-packs/build_device_pack.py verify \
 ```
 
 Stop if `manifest.json` does not identify `powkiddy-x55`,
-`chassis-core-powkiddy-x55-v1`, the expected physical gates, and exactly the
+`chassis-dualbar-powkiddy-x55-v1`, the expected physical gates, and exactly the
 expected non-production reasons.
 
 ## What to print and inspect
@@ -112,7 +112,7 @@ expected non-production reasons.
 | `device/device-nameplate.stl` | ABS | Confirm the complete “Powkiddy X55” label is legible |
 | `device/wire-anchor-set.stl` | ABS | Eight starter rail anchors; repeat or omit only after routing is known |
 | `chassis/side-clear-crossbar-joint-plate-set.stl` | ABS | Four 38.4 mm plates; confirm each ends inside the outward extrusion planes |
-| Other `chassis/*.stl` | ABS | Accepted core common beds reused without geometry changes |
+| Other `chassis/*.stl` | ABS | Continuous-bar common beds; no splice-bar or splice-collar bed is present |
 
 Use 100% scale, supports disabled, and automatic orientation disabled. Follow
 the material and orientation notes in the generated manifest.

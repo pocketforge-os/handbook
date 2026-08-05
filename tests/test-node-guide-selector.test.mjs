@@ -30,19 +30,19 @@ test("offers every registered DUT without a second option list", () => {
   ]);
 });
 
-test("resolves the X55 prototype onto the shared core guide", () => {
+test("resolves the X55 prototype onto the shared continuous-bar guide", () => {
   const guide = resolveDeviceGuide(profiles, "powkiddy-x55");
   assert.equal(guide.holderProfile, "powkiddy-x55");
-  assert.equal(guide.layoutId, "chassis-core-powkiddy-x55-v1");
+  assert.equal(guide.layoutId, "chassis-dualbar-powkiddy-x55-v1");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 19);
+  assert.equal(guide.assemblySteps.length, 17);
   assert.equal(
     guide.stages.find(({ id }) => id === "print").route,
     "hardware/test-node-chassis/devices/powkiddy-x55/print/",
   );
   assert.equal(
     guide.stages.find(({ id }) => id === "layout").route,
-    "hardware/test-node-chassis/layouts/chassis-core-v2/",
+    "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
   );
 });
 
@@ -62,19 +62,19 @@ test("resolves the Brick candidate onto the shared dual-bar guide", () => {
   );
 });
 
-test("resolves the candidate side-clear Smart Pro layout and all 19 steps", () => {
+test("resolves the candidate continuous-bar Smart Pro layout and all 17 steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro");
-  assert.equal(guide.layoutId, "chassis-core-v3");
+  assert.equal(guide.layoutId, "chassis-dualbar-smart-pro-v1");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 19);
+  assert.equal(guide.assemblySteps.length, 17);
   assert.deepEqual(guide.assemblySteps[0], {
     number: 1,
     title: "Learn the rail",
     slug: "01-learn-the-rail",
     route:
-      "hardware/test-node-chassis/layouts/chassis-core-v2/assemble/01-learn-the-rail/",
+      "hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/01-learn-the-rail/",
   });
-  assert.equal(guide.assemblySteps.at(-1).slug, "19-final-check");
+  assert.equal(guide.assemblySteps.at(-1).slug, "17-final-check");
   assert.deepEqual(
     guide.stages.map(({ id }) => id),
     [

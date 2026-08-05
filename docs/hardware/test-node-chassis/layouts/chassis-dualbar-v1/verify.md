@@ -1,6 +1,6 @@
 # Verify the dual-bar chassis build
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Keep the DUT, fixture electronics, programmable supply, and power strip
 unpowered. Connecting only the Logitech C270 to a safe viewing computer is
@@ -10,10 +10,13 @@ permitted for the camera-framing gate.
 
 - [ ] The pack verifies against the clean source revision recorded in
       `manifest.json`.
-- [ ] The manifest says `production_eligible=true` with no non-production
-      reasons.
-- [ ] It selects device `trimui-smart-pro-s` and layout
-      `chassis-dualbar-v1`.
+- [ ] The manifest's `production_eligible` value and non-production reasons
+      match the selected device's qualification panel; a candidate must stay
+      non-production until its physical gate is recorded.
+- [ ] It selects the intended device slug and that device's registered
+      `chassis-dualbar-*` layout.
+- [ ] The full plan contains 12 artifacts and no spliced-upright or movable
+      fixture-frame artifact.
 - [ ] Two continuous 306 mm fixture bars and exactly four printed
       crossbar-joint plates are installed.
 - [ ] Four identical keyed fixture links are installed.

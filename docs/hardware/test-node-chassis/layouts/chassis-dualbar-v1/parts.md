@@ -1,6 +1,6 @@
 # Parts and tools
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 This inventory covers the qualified `chassis-dualbar-v1` mechanical layout, its
 mounts, and the starter wire anchors. The SBC, relay board, programmable
@@ -91,7 +91,7 @@ to compensate for a poor fastener choice.
 ## Before starting
 
 - [ ] The device model passed its remote-evidence gate.
-- [ ] The Smart Pro S holder model and fixture dependency intake are complete.
+- [ ] The selected DUT holder model and fixture dependency intake are complete.
 - [ ] The rail measures 20 mm face-to-face and its groove opening is close to
       6.73 mm.
 - [ ] The printer, nozzle, ABS, and dimensional compensation match an accepted
@@ -101,5 +101,5 @@ to compensate for a poor fastener choice.
 - [ ] All power hardware is unplugged and physically separate from the work
       area.
 
-Next: [generate, verify, and print the Smart Pro S
-pack](../../devices/trimui-smart-pro-s/print.md).
+Next: [return to the selected device sheet and generate its locked
+pack](../../index.md).

@@ -8,6 +8,6 @@ Start at [Choose the device for this test node](index.md). Its build sheet
 links the exact parts list registered for that DUT.
 
 !!! danger "Do not mix layout inventories"
-    The qualified Smart Pro gantry and Smart Pro S dual-bar layout use
-    different aluminum and printed parts. A complete-looking mixed inventory
-    is not a valid build.
+    Current packs use the continuous-bar inventory. Do not mix in long gantry
+    splice bars, splice collars, or movable gantry mounts from a historical
+    pack; a complete-looking mixed inventory is not a valid build.

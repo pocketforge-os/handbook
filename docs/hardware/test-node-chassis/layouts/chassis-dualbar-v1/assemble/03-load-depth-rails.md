@@ -7,7 +7,7 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 3 of 17</p>
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Load one active printed-joint position into every depth rail, add the four
 power-strip positions to the lower operator-right rail, then park one

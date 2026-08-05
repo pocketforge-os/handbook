@@ -1,32 +1,27 @@
 {
   "artifacts": {
-    "powkiddy-x55/chassis_core_01_ironed_interfaces": {
-      "browser_normalized_sha256": "bea1f796a9c52eb0b75d0123f3f3092cf0a48b8c706638f2fa601bac7df3273a",
-      "output": "chassis/core-01-ironed-interfaces.stl",
-      "source_normalized_sha256": "548e8a4bacf7e44721bc1284e1823a038cce499d571c08c14f06fa65a0be42ef"
-    },
-    "powkiddy-x55/chassis_core_02_splice_collars": {
-      "browser_normalized_sha256": "57e39d694f508b433552efe73ad64084c613796f70c066673a89ea556343f3f5",
-      "output": "chassis/core-02-splice-collars.stl",
-      "source_normalized_sha256": "99c52f74f7129e8c29f91563b753ada49610e419848668915a45166492709268"
-    },
-    "powkiddy-x55/chassis_core_03_movable_mounts": {
-      "browser_normalized_sha256": "bbf6b1a3d1971939e9d07c57973b39a9db8d21828e69094314823eeb0b0645b5",
-      "output": "chassis/core-03-movable-mounts.stl",
-      "source_normalized_sha256": "9ffcb8e3df10967ded5b734c64a4c44af51752b6cddfa241e424069d07e018f7"
-    },
     "powkiddy-x55/chassis_core_04_frame_hardware": {
-      "browser_normalized_sha256": "25bc8c48ed55fb6a10b86ca27c90dc18e8e68c47b2b51907c9ba9805ca89c630",
+      "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
       "output": "chassis/core-04-frame-hardware.stl",
-      "source_normalized_sha256": "911d249f2b8e7120b46d86c9a25f85a4a1edbf64944c05615911681a01e0cb25"
+      "source_normalized_sha256": "31ddea2c53c3d93cb6f64cca11c123b39d071879b9e172839c0ea87c75307601"
     },
     "powkiddy-x55/chassis_core_05_placard_holder": {
       "browser_normalized_sha256": "23f01b83674ef3179edcc372aad8e435cbe37285e31ff48a86e283ebbbf3337a",
       "output": "chassis/core-05-placard-holder.stl",
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
+    "powkiddy-x55/chassis_dualbar_01_ironed_interfaces": {
+      "browser_normalized_sha256": "a70fc84583d27a8177e260ce104703b189b65462944e4b859081bd07ecf9ef6a",
+      "output": "chassis/core-01-ironed-interfaces.stl",
+      "source_normalized_sha256": "118121e4d5d7e3bc75a19d37bd2b31dfbda56545a0e28c670f5e94f928ba98e2"
+    },
+    "powkiddy-x55/chassis_dualbar_02_fixture_links": {
+      "browser_normalized_sha256": "8a318d66124268a7a00992281cdea4bf1101d2976a6db2b9a418e1c72a8e0290",
+      "output": "chassis/core-02-fixture-links.stl",
+      "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
+    },
     "powkiddy-x55/chassis_process_calibration": {
-      "browser_normalized_sha256": "733e422f449f535ad6415bc169e1e239ca5ffabd4021be0c4156c9ddfd851ada",
+      "browser_normalized_sha256": "b1678bc4ac636e9073162904380abef51ade329b1a4b62f3183824ff477bf192",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -185,33 +180,28 @@
       "output": "coupon/holder-fit-coupon.stl",
       "source_normalized_sha256": "4dc8cd5e343f634a220a3836f80bc14278a9310c305133bfd94c79990553edae"
     },
-    "trimui-smart-pro/chassis_core_01_ironed_interfaces": {
-      "browser_normalized_sha256": "bea1f796a9c52eb0b75d0123f3f3092cf0a48b8c706638f2fa601bac7df3273a",
-      "output": "chassis/core-01-ironed-interfaces.stl",
-      "source_normalized_sha256": "548e8a4bacf7e44721bc1284e1823a038cce499d571c08c14f06fa65a0be42ef"
-    },
-    "trimui-smart-pro/chassis_core_02_splice_collars": {
-      "browser_normalized_sha256": "57e39d694f508b433552efe73ad64084c613796f70c066673a89ea556343f3f5",
-      "output": "chassis/core-02-splice-collars.stl",
-      "source_normalized_sha256": "99c52f74f7129e8c29f91563b753ada49610e419848668915a45166492709268"
-    },
-    "trimui-smart-pro/chassis_core_03_movable_mounts": {
-      "browser_normalized_sha256": "bbf6b1a3d1971939e9d07c57973b39a9db8d21828e69094314823eeb0b0645b5",
-      "output": "chassis/core-03-movable-mounts.stl",
-      "source_normalized_sha256": "9ffcb8e3df10967ded5b734c64a4c44af51752b6cddfa241e424069d07e018f7"
-    },
     "trimui-smart-pro/chassis_core_04_frame_hardware": {
-      "browser_normalized_sha256": "25bc8c48ed55fb6a10b86ca27c90dc18e8e68c47b2b51907c9ba9805ca89c630",
+      "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
       "output": "chassis/core-04-frame-hardware.stl",
-      "source_normalized_sha256": "911d249f2b8e7120b46d86c9a25f85a4a1edbf64944c05615911681a01e0cb25"
+      "source_normalized_sha256": "31ddea2c53c3d93cb6f64cca11c123b39d071879b9e172839c0ea87c75307601"
     },
     "trimui-smart-pro/chassis_core_05_placard_holder": {
       "browser_normalized_sha256": "23f01b83674ef3179edcc372aad8e435cbe37285e31ff48a86e283ebbbf3337a",
       "output": "chassis/core-05-placard-holder.stl",
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
+    "trimui-smart-pro/chassis_dualbar_01_ironed_interfaces": {
+      "browser_normalized_sha256": "a70fc84583d27a8177e260ce104703b189b65462944e4b859081bd07ecf9ef6a",
+      "output": "chassis/core-01-ironed-interfaces.stl",
+      "source_normalized_sha256": "118121e4d5d7e3bc75a19d37bd2b31dfbda56545a0e28c670f5e94f928ba98e2"
+    },
+    "trimui-smart-pro/chassis_dualbar_02_fixture_links": {
+      "browser_normalized_sha256": "8a318d66124268a7a00992281cdea4bf1101d2976a6db2b9a418e1c72a8e0290",
+      "output": "chassis/core-02-fixture-links.stl",
+      "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
+    },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "733e422f449f535ad6415bc169e1e239ca5ffabd4021be0c4156c9ddfd851ada",
+      "browser_normalized_sha256": "b1678bc4ac636e9073162904380abef51ade329b1a4b62f3183824ff477bf192",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
@@ -274,7 +264,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "a956c2c33c9d3cc72b009673987f68f768aa1565",
+    "commit": "97e0027482d205ca547c10bec73883fbf60c8b9f",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }
