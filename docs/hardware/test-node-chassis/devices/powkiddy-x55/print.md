@@ -1,26 +1,28 @@
-# Generate the TrimUI Brick prototype pack
+# Generate the Powkiddy X55 prototype pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-brick" data-layout-id="chassis-dualbar-brick-v2"><strong>Compatible DUT:</strong> TrimUI Brick / TG3040 <span>·</span> <code>chassis-dualbar-brick-v2</code></p>
+<p class="pf-profile-banner" data-guide-device="powkiddy-x55" data-layout-id="chassis-core-powkiddy-x55-v1"><strong>Compatible DUT:</strong> Powkiddy X55 <span>·</span> <code>chassis-core-powkiddy-x55-v1</code></p>
 
-This build sheet locks the browser generator to **TrimUI Brick / TG3040**.
-OpenSCAD runs locally in the browser from the exact source revision pinned by
-the handbook. No model or generated STL is uploaded.
+This build sheet locks the browser generator to **Powkiddy X55**. OpenSCAD
+runs locally in the browser from the exact source revision pinned by the
+handbook. No model or generated STL is uploaded.
 
-Choose the fit coupon first when validating the holder alone. Choose the full
-mode when you are ready to print the complete 12-artifact chassis pack. Every
-download includes a manifest and `SHA256SUMS`.
+Choose the fit coupon first. It reproduces the production bottom-contact
+spacing while using only one low-filament bed. Use retrofit mode only when an
+existing core chassis needs the X55 device parts and side-clear joint plates;
+use full mode for the complete 13-artifact prototype pack. Every download
+includes a manifest and `SHA256SUMS`.
 
 !!! warning "Prototype pack · not production-qualified"
-    The source manifest must report `production_eligible=false`. Full mode
-    must list `holder_unqualified` and `layout_unqualified` in full or retrofit
-    mode. This is expected while physical gates `tsp-bcx.21.23` and
-    `tsp-bcx.21.38` remain open. Generating files does not qualify them.
+    The source manifest must report `production_eligible=false`. Full and
+    retrofit modes must list `holder_unqualified` and `layout_unqualified`.
+    This is expected while physical gates `tsp-bcx.21.28`, `tsp-bcx.21.39`,
+    and `tsp-bcx.21.38` remain open. Generating files does not qualify them.
 
 <script type="module" src="../../../../../assets/device-pack-generator.mjs"></script>
 <section
   class="pf-device-pack-generator"
   data-device-pack-generator
-  data-locked-device="trimui-brick"
+  data-locked-device="powkiddy-x55"
   data-catalog-url="../../../../../assets/generated/test-node-chassis/browser/catalog.json"
   data-checksums-url="../../../../../assets/generated/test-node-chassis/browser/SHA256SUMS"
   data-baseline-url="../../../../../assets/device-pack-browser-baselines.json"
@@ -87,42 +89,44 @@ revision:
 
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
-  --device trimui-brick \
-  --mode full \
+  --device powkiddy-x55 \
+  --mode coupon \
   --allow-unqualified
 
 python3 mechanical/device-packs/build_device_pack.py verify \
-  --pack mechanical/device-packs/build/trimui-brick/full
+  --pack mechanical/device-packs/build/powkiddy-x55/coupon
 ```
 
-Stop if `manifest.json` does not identify `trimui-brick`,
-`chassis-dualbar-brick-v2`, physical gates `tsp-bcx.21.23` and
-`tsp-bcx.21.38`, and exactly the expected non-production reasons.
+Stop if `manifest.json` does not identify `powkiddy-x55`,
+`chassis-core-powkiddy-x55-v1`, the expected physical gates, and exactly the
+expected non-production reasons.
 
 ## What to print and inspect
 
 | Output | Material | Prototype check |
 | --- | --- | --- |
-| `coupon/holder-fit-coupon.stl` | PETG | Print first; confirm the stepped-shell contacts without forcing the DUT |
-| `device/carrier.stl` | PETG | 180 × 205 mm, flat, labels upward; color change at 3.2 mm |
-| `device/j-hook-set.stl` | PETG | Contains 2 rear-only bottom supports, 2 side hooks, and 1 upper hook |
-| `device/carrier-link-set.stl` | ABS | Four Brick-specific links; broad face down, keys upward |
-| `device/device-nameplate.stl` | ABS | Confirm the complete “TrimUI Brick / TG3040” label is legible |
+| `coupon/holder-fit-coupon.stl` | PETG | Print first; confirm bottom spacing, shelf depth, throat play, and nut capture without forcing the DUT |
+| `device/carrier.stl` | PETG | 247 × 175 mm, flat, labels upward; color change at 3.2 mm |
+| `device/j-hook-set.stl` | PETG | Contains 2 bottom, 2 side, and 2 top contacts; do not substitute a single-depth hook |
+| `device/carrier-link-set.stl` | ABS | Four X55-specific stack-clear links; broad face down, keys upward |
+| `device/device-nameplate.stl` | ABS | Confirm the complete “Powkiddy X55” label is legible |
 | `device/wire-anchor-set.stl` | ABS | Eight starter rail anchors; repeat or omit only after routing is known |
-| `chassis/side-clear-crossbar-joint-plate-set.stl` | ABS | Four 38.4 mm plates; print once per chassis and confirm each ends inside the outward extrusion planes |
-| Other `chassis/*.stl` | ABS | Qualified dual-bar common beds reused without geometry changes |
+| `chassis/side-clear-crossbar-joint-plate-set.stl` | ABS | Four 38.4 mm plates; confirm each ends inside the outward extrusion planes |
+| Other `chassis/*.stl` | ABS | Accepted core common beds reused without geometry changes |
 
 Use 100% scale, supports disabled, and automatic orientation disabled. Follow
-the materials and notes in the generated manifest for each artifact.
+the material and orientation notes in the generated manifest.
 
 ## Physical acceptance checklist
 
-- The DUT seats without stress and cannot rock or escape the five retainers.
-- The bottom audio, TF, and USB-C openings remain usable.
-- Side controls, top USB, rear triggers, and rear service area remain clear.
-- The active display and useful whole-device context are visible to the C270.
+- Calipers replace the provisional bottom, top, and side contact depths.
+- The coupon seats without stress and confirms the production bottom spacing.
+- The DUT cannot rock or escape all six retainers after full-carrier assembly.
+- Both microSD slots, every top connector/control, shoulders, speakers, display,
+  and rear service area remain accessible.
+- The useful whole-device view is visible to the C270.
 - Carrier and chassis nameplate labels are readable after installation.
 
 Keep the pack marked prototype until the owner records explicit acceptance.
 
-[← Back to the Brick build sheet](index.md)
+[← Back to the X55 build sheet](index.md)

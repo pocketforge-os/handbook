@@ -1,5 +1,70 @@
 {
   "artifacts": {
+    "powkiddy-x55/chassis_core_01_ironed_interfaces": {
+      "browser_normalized_sha256": "bea1f796a9c52eb0b75d0123f3f3092cf0a48b8c706638f2fa601bac7df3273a",
+      "output": "chassis/core-01-ironed-interfaces.stl",
+      "source_normalized_sha256": "548e8a4bacf7e44721bc1284e1823a038cce499d571c08c14f06fa65a0be42ef"
+    },
+    "powkiddy-x55/chassis_core_02_splice_collars": {
+      "browser_normalized_sha256": "57e39d694f508b433552efe73ad64084c613796f70c066673a89ea556343f3f5",
+      "output": "chassis/core-02-splice-collars.stl",
+      "source_normalized_sha256": "99c52f74f7129e8c29f91563b753ada49610e419848668915a45166492709268"
+    },
+    "powkiddy-x55/chassis_core_03_movable_mounts": {
+      "browser_normalized_sha256": "bbf6b1a3d1971939e9d07c57973b39a9db8d21828e69094314823eeb0b0645b5",
+      "output": "chassis/core-03-movable-mounts.stl",
+      "source_normalized_sha256": "9ffcb8e3df10967ded5b734c64a4c44af51752b6cddfa241e424069d07e018f7"
+    },
+    "powkiddy-x55/chassis_core_04_frame_hardware": {
+      "browser_normalized_sha256": "25bc8c48ed55fb6a10b86ca27c90dc18e8e68c47b2b51907c9ba9805ca89c630",
+      "output": "chassis/core-04-frame-hardware.stl",
+      "source_normalized_sha256": "911d249f2b8e7120b46d86c9a25f85a4a1edbf64944c05615911681a01e0cb25"
+    },
+    "powkiddy-x55/chassis_core_05_placard_holder": {
+      "browser_normalized_sha256": "23f01b83674ef3179edcc372aad8e435cbe37285e31ff48a86e283ebbbf3337a",
+      "output": "chassis/core-05-placard-holder.stl",
+      "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
+    },
+    "powkiddy-x55/chassis_process_calibration": {
+      "browser_normalized_sha256": "733e422f449f535ad6415bc169e1e239ca5ffabd4021be0c4156c9ddfd851ada",
+      "output": "calibration/chassis-process-calibration.stl",
+      "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
+    },
+    "powkiddy-x55/chassis_side_clear_joint_plate_set": {
+      "browser_normalized_sha256": "b4c7999a41585f5959600fca9bed265e6b3dfec13f31a52d872795db8689dfa6",
+      "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
+      "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
+    },
+    "powkiddy-x55/device_carrier": {
+      "browser_normalized_sha256": "c73c79a05494fe157b608a133c7e776bf9087144f0d3bf5603ed45ee4698be6c",
+      "output": "device/carrier.stl",
+      "source_normalized_sha256": "0611b055dab3d54df5516a5e1251adbf68f3d99999bc3136a78e91d37f359900"
+    },
+    "powkiddy-x55/device_carrier_links": {
+      "browser_normalized_sha256": "56d7c035edc26a77e5e09f7ec74fc3ae4ddb7f38292095fc4cf9c22e8eadb3a0",
+      "output": "device/carrier-link-set.stl",
+      "source_normalized_sha256": "9a43c6a35d083907afda8042365e80124017b5b5e88a3fec7790430a3b2e03c6"
+    },
+    "powkiddy-x55/device_j_hook_set": {
+      "browser_normalized_sha256": "189045e580b435bb2245b4bac8a215ef4f0ecb8ee2fbfb3898cc59aabba9848e",
+      "output": "device/j-hook-set.stl",
+      "source_normalized_sha256": "fb900dbf3d06a1b65d43705fc3d33e997f3eb47eb5d32fa9169d9dfd1752628f"
+    },
+    "powkiddy-x55/device_nameplate": {
+      "browser_normalized_sha256": "f815c019a47a2cc1d0916173e5e0eeee64f5c9dd4c9af3e48c0ce4addc78fbfe",
+      "output": "device/device-nameplate.stl",
+      "source_normalized_sha256": "122515cbb3bc5029082a531787e6a819a06a02b744822ca04f86dae003ceebf6"
+    },
+    "powkiddy-x55/device_wire_anchors": {
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
+      "output": "device/wire-anchor-set.stl",
+      "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
+    },
+    "powkiddy-x55/holder_fit_coupon": {
+      "browser_normalized_sha256": "1c89c22e48dcdbd3b65cfeedfa22678a07ec70a61e20150175a0d5a16ec9571f",
+      "output": "coupon/holder-fit-coupon.stl",
+      "source_normalized_sha256": "53e76056d7b46e78ee9bb5ef16a6ef8fb99aab3401a50cf1a4bffacc03e37532"
+    },
     "trimui-brick/chassis_core_04_frame_hardware": {
       "browser_normalized_sha256": "c278ea5c4afeb9f707891d0bc1e9a534cd0db66435fee46acb19adfaac1129d8",
       "output": "chassis/core-04-frame-hardware.stl",
@@ -16,14 +81,19 @@
       "source_normalized_sha256": "118121e4d5d7e3bc75a19d37bd2b31dfbda56545a0e28c670f5e94f928ba98e2"
     },
     "trimui-brick/chassis_dualbar_02_fixture_links": {
-      "browser_normalized_sha256": "e42e1614e02db5e29c03e6620af6e8c8cd885d4ba33df7bfb37fb27e151cff04",
+      "browser_normalized_sha256": "8a318d66124268a7a00992281cdea4bf1101d2976a6db2b9a418e1c72a8e0290",
       "output": "chassis/core-02-fixture-links.stl",
-      "source_normalized_sha256": "34acd4d45ba08cb9ab74a19d4e8508e890d86a54d0e90ed77f5033594d775538"
+      "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
     },
     "trimui-brick/chassis_process_calibration": {
-      "browser_normalized_sha256": "313a18ff301ce0f1db4d160a598310809baf8e08c35befadb8972f5a77d886ac",
+      "browser_normalized_sha256": "b1678bc4ac636e9073162904380abef51ade329b1a4b62f3183824ff477bf192",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
+    },
+    "trimui-brick/chassis_side_clear_joint_plate_set": {
+      "browser_normalized_sha256": "b4c7999a41585f5959600fca9bed265e6b3dfec13f31a52d872795db8689dfa6",
+      "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
+      "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
     "trimui-brick/device_carrier": {
       "browser_normalized_sha256": "8135739acb8a60aa0dd01cffa489de8a109cce5e4c590b1cd50c9d501a349aa4",
@@ -71,19 +141,24 @@
       "source_normalized_sha256": "118121e4d5d7e3bc75a19d37bd2b31dfbda56545a0e28c670f5e94f928ba98e2"
     },
     "trimui-smart-pro-s/chassis_dualbar_02_fixture_links": {
-      "browser_normalized_sha256": "e42e1614e02db5e29c03e6620af6e8c8cd885d4ba33df7bfb37fb27e151cff04",
+      "browser_normalized_sha256": "8a318d66124268a7a00992281cdea4bf1101d2976a6db2b9a418e1c72a8e0290",
       "output": "chassis/core-02-fixture-links.stl",
-      "source_normalized_sha256": "34acd4d45ba08cb9ab74a19d4e8508e890d86a54d0e90ed77f5033594d775538"
+      "source_normalized_sha256": "3d3b39d39461aef21bc2659fc4346122da087b2e95e5fc5b64a76ca2678dc8d3"
     },
     "trimui-smart-pro-s/chassis_process_calibration": {
-      "browser_normalized_sha256": "313a18ff301ce0f1db4d160a598310809baf8e08c35befadb8972f5a77d886ac",
+      "browser_normalized_sha256": "b1678bc4ac636e9073162904380abef51ade329b1a4b62f3183824ff477bf192",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
+    "trimui-smart-pro-s/chassis_side_clear_joint_plate_set": {
+      "browser_normalized_sha256": "b4c7999a41585f5959600fca9bed265e6b3dfec13f31a52d872795db8689dfa6",
+      "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
+      "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
+    },
     "trimui-smart-pro-s/device_carrier": {
-      "browser_normalized_sha256": "04c6bfa89c6c39c5805922f1f768960662930e6481b8dbff8d005280901bb11b",
+      "browser_normalized_sha256": "fe5e1cda6ad1f6a54c046d18fc524c6305d7313b0a371c2a3ce06d0da6933a7d",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "f1e266c30e23a49a1c49da89d06a395873c5dedbabd1237256fffc3c1ce2589f"
+      "source_normalized_sha256": "d7e2f994c17aca0000d390cb84e8e02c28598489ba506886ff59090a0e68b19e"
     },
     "trimui-smart-pro-s/device_carrier_links": {
       "browser_normalized_sha256": "3da11c201c7f445bfa34317209884761e2420c7d03e29b4db0615e83a88600ac",
@@ -96,9 +171,9 @@
       "source_normalized_sha256": "e77a9aeb725879b381a40d11f38a7ab242696923b4107d5cfacc9a9a8e6bed59"
     },
     "trimui-smart-pro-s/device_nameplate": {
-      "browser_normalized_sha256": "69f2aa8cf3ef10a89b52fba49ec78e9a60453836ee06497f2349a0c532be5fc8",
+      "browser_normalized_sha256": "99ce0bf4e11275fbd4b30a19742efed113f263884431f02f161f2558f9cf7d5a",
       "output": "device/device-nameplate.stl",
-      "source_normalized_sha256": "db9f498c95a2d70d96f5272714f745382ef87b908a939a3bfd2dd47246be12fd"
+      "source_normalized_sha256": "e617a400e3b7608e4ce262c80b28d08cfcbc054ecaa7cbc28f01f77b9ab5bc9f"
     },
     "trimui-smart-pro-s/device_wire_anchors": {
       "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
@@ -121,9 +196,9 @@
       "source_normalized_sha256": "99c52f74f7129e8c29f91563b753ada49610e419848668915a45166492709268"
     },
     "trimui-smart-pro/chassis_core_03_movable_mounts": {
-      "browser_normalized_sha256": "24c0e8b48daf68b2f8971e201ee37bf59aac885d40c60b475a5ffe509bcb5270",
+      "browser_normalized_sha256": "bbf6b1a3d1971939e9d07c57973b39a9db8d21828e69094314823eeb0b0645b5",
       "output": "chassis/core-03-movable-mounts.stl",
-      "source_normalized_sha256": "1ad8ac70a3eb94051e5a0e241e09ca342b1312b05923a17efa80cf5131d4e92f"
+      "source_normalized_sha256": "9ffcb8e3df10967ded5b734c64a4c44af51752b6cddfa241e424069d07e018f7"
     },
     "trimui-smart-pro/chassis_core_04_frame_hardware": {
       "browser_normalized_sha256": "25bc8c48ed55fb6a10b86ca27c90dc18e8e68c47b2b51907c9ba9805ca89c630",
@@ -136,14 +211,19 @@
       "source_normalized_sha256": "01cdd01b5043aae5fca4bac793abfd9952035b420d4fcb928c6805feb787d854"
     },
     "trimui-smart-pro/chassis_process_calibration": {
-      "browser_normalized_sha256": "6b02ca58fb77a29ca34a8582c98ed15fd95f0da049e74a7b602b963ff5e66a92",
+      "browser_normalized_sha256": "733e422f449f535ad6415bc169e1e239ca5ffabd4021be0c4156c9ddfd851ada",
       "output": "calibration/chassis-process-calibration.stl",
       "source_normalized_sha256": "9677650b5e925f78c2c7de8166e699a54461f0f3543c64de332e5872daf185d9"
     },
+    "trimui-smart-pro/chassis_side_clear_joint_plate_set": {
+      "browser_normalized_sha256": "b4c7999a41585f5959600fca9bed265e6b3dfec13f31a52d872795db8689dfa6",
+      "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
+      "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
+    },
     "trimui-smart-pro/device_carrier": {
-      "browser_normalized_sha256": "a5ed682861e2bd94a65308d0491725d211e02344270565627a838821d1f307ec",
+      "browser_normalized_sha256": "38f8d84fc8eb819a1a802fade1b39d35edbeb3870fc2a1b3287fcc2621d4f811",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "c1c556b3f34916889fce9a0415ae0b690ce1f0d523b64601c414dc13c4361043"
+      "source_normalized_sha256": "de230ca2490e20896e61109ea3cd5201633e666a67955d8986c7be94879995e2"
     },
     "trimui-smart-pro/device_carrier_links": {
       "browser_normalized_sha256": "3da11c201c7f445bfa34317209884761e2420c7d03e29b4db0615e83a88600ac",
@@ -156,12 +236,12 @@
       "source_normalized_sha256": "e77a9aeb725879b381a40d11f38a7ab242696923b4107d5cfacc9a9a8e6bed59"
     },
     "trimui-smart-pro/device_nameplate": {
-      "browser_normalized_sha256": "b38a8eda57eb20c9305b7d5ef1c544e2865f3824a519767efe1b31955ecd16af",
+      "browser_normalized_sha256": "a42341adec5d9bc0adbe0e76b0ceec8e613f647a8d4986103afebe91ceac3e82",
       "output": "device/device-nameplate.stl",
-      "source_normalized_sha256": "9205e8b1a12298036ced3bc2ecba50cc6397e19dcc32e92cf69ae0dadeed7107"
+      "source_normalized_sha256": "f8c458a3eddd590ea7ebf7552eedc40fc04be8078e1c870ebedf0b57c9f58775"
     },
     "trimui-smart-pro/device_wire_anchors": {
-      "browser_normalized_sha256": "b2a1a7ce6ef5c32c5d5ff9719dc95b7bfcc27cb28f0133fee1bd723c022fd44c",
+      "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
@@ -194,7 +274,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "630b35a2e97b95d0a79933f1095ed8cf4ba166e3",
+    "commit": "a956c2c33c9d3cc72b009673987f68f768aa1565",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

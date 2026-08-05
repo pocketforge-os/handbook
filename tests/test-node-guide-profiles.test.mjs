@@ -37,7 +37,7 @@ test("device-first guide profiles match the pinned source catalog", () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   assert.match(
     result.stdout,
-    /guide_profiles=pass devices=3 families=2 integration_profiles=2 layouts=3/,
+    /guide_profiles=pass devices=4 families=3 integration_profiles=3 layouts=4/,
   );
 });
 

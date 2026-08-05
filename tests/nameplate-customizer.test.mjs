@@ -17,6 +17,8 @@ test("normalizes surrounding and repeated whitespace", () => {
 test("accepts representative device names", () => {
   for (const label of [
     "TrimUI Smart Pro",
+    "TrimUI Smart Pro / TG5040",
+    "TrimUI Smart Pro S / TG5050",
     "Anbernic RG35XX",
     "RG35XX-H",
     "Retroid Pocket 4+",

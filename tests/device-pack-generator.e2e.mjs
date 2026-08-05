@@ -294,7 +294,7 @@ try {
   );
   assert.deepEqual(await modeSelect.locator("option").allTextContents(), [
     "Fit coupon · 1 file",
-    "Device retrofit · 6 files",
+    "Device retrofit · 7 files",
     "Complete chassis · device-selected files",
   ]);
   assert.equal(await deviceSelect.isDisabled(), true);
@@ -332,10 +332,10 @@ try {
       .every((label) => label.trim() === "Generate"),
     true,
   );
-  assert.equal(await generator.getAttribute("data-state"), "qualified");
+  assert.equal(await generator.getAttribute("data-state"), "candidate");
   assert.match(
     await page.locator("[data-pack-qualification]").textContent(),
-    /production-qualified pack.*tsp-t1zd\.2/is,
+    /prototype pack.*tsp-bcx\.21\.38/is,
   );
 
   await page.route(/\/browser\/sources\/.*\.scad$/, async (route) => {
@@ -505,7 +505,7 @@ try {
     [
       "Interactive preview of the optional chassis calibration bed",
       "Interactive preview of 28 compact channel bars",
-      "Interactive preview of four keyed fixture links and four printed crossbar-joint plates",
+      "Interactive preview of four keyed fixture links",
       "Interactive preview of the frame hardware print bed",
       "Interactive preview of the reusable placard holder",
       "Interactive preview of the two-color device nameplate bed",
@@ -534,6 +534,10 @@ try {
 
   const totals = { bytes: 0, triangles: 0, packs: 0 };
   const printRoutes = new Map([
+    [
+      "powkiddy-x55",
+      "/hardware/test-node-chassis/devices/powkiddy-x55/print/",
+    ],
     [
       "trimui-brick",
       "/hardware/test-node-chassis/devices/trimui-brick/print/",

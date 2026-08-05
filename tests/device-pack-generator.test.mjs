@@ -76,7 +76,7 @@ function localZipNames(bytes) {
 }
 
 test("catalog exposes every mode and a complete source-only inventory", () => {
-  assert.equal(catalog.devices.length, 3);
+  assert.equal(catalog.devices.length, 4);
   assert.deepEqual(catalog.modes, ["coupon", "retrofit", "full"]);
   assert.equal(new Set(catalog.devices.map((device) => device.slug)).size,
     catalog.devices.length);
@@ -84,8 +84,8 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
     true);
   for (const device of catalog.devices) {
     assert.equal(device.modes.coupon.artifacts.length, 1);
-    assert.equal(device.modes.retrofit.artifacts.length, 6);
-    assert.ok(device.modes.full.artifacts.length > 6);
+    assert.equal(device.modes.retrofit.artifacts.length, 7);
+    assert.ok(device.modes.full.artifacts.length > 7);
     const fullIds = new Set(
       device.modes.full.artifacts.map((artifact) => artifact.id),
     );
@@ -105,7 +105,7 @@ test("Brick remains an explicitly unqualified prototype", () => {
   assert.equal(brick.profile.qualification.status, "unqualified");
   assert.equal(brick.profile.qualification.acceptance_ref, null);
   assert.equal(brick.layout.qualification.status, "candidate");
-  assert.equal(brick.layout.qualification.acceptance_ref, "tsp-bcx.21.23");
+  assert.equal(brick.layout.qualification.acceptance_ref, "tsp-bcx.21.38");
   assert.equal(brick.modes.full.production_eligible, false);
   assert.deepEqual(brick.modes.full.nonproduction_reasons, [
     "holder_unqualified",
@@ -114,6 +114,21 @@ test("Brick remains an explicitly unqualified prototype", () => {
   assert.deepEqual(brick.modes.full.required_overrides, [
     "allow_unqualified",
   ]);
+  assert.deepEqual(brick.modes.retrofit.nonproduction_reasons, [
+    "holder_unqualified",
+    "layout_unqualified",
+  ]);
+
+  for (const device of catalog.devices) {
+    assert.equal(device.layout.qualification.status, "candidate");
+    assert.equal(device.modes.retrofit.production_eligible, false);
+    assert.equal(
+      device.modes.retrofit.nonproduction_reasons.includes(
+        "layout_unqualified",
+      ),
+      true,
+    );
+  }
 
   const invalid = structuredClone(catalog);
   invalid.devices.find(
@@ -123,6 +138,31 @@ test("Brick remains an explicitly unqualified prototype", () => {
     () => validateCatalog(invalid),
     /must stay null before qualification/i,
   );
+});
+
+test("Powkiddy X55 remains coupon-first and explicitly unqualified", () => {
+  const x55 = catalog.devices.find(
+    (device) => device.slug === "powkiddy-x55",
+  );
+  assert.ok(x55);
+  assert.equal(x55.profile.qualification.status, "unqualified");
+  assert.equal(x55.profile.qualification.acceptance_ref, null);
+  assert.equal(x55.layout.qualification.status, "candidate");
+  assert.equal(x55.layout.qualification.acceptance_ref, "tsp-bcx.21.39");
+  assert.equal(x55.modes.coupon.artifacts.length, 1);
+  assert.equal(x55.modes.retrofit.artifacts.length, 7);
+  assert.equal(x55.modes.full.artifacts.length, 13);
+  assert.deepEqual(x55.modes.coupon.nonproduction_reasons, [
+    "coupon_only",
+    "holder_unqualified",
+  ]);
+  assert.deepEqual(x55.modes.full.nonproduction_reasons, [
+    "holder_unqualified",
+    "layout_unqualified",
+  ]);
+  assert.deepEqual(x55.modes.full.required_overrides, [
+    "allow_unqualified",
+  ]);
 });
 
 test("browser baseline lock covers every registered full-pack artifact", () => {
@@ -151,6 +191,17 @@ test("browser baseline lock covers every registered full-pack artifact", () => {
   assert.throws(
     () => validateBrowserBaselines(tampered, catalog),
     /baseline changed/i,
+  );
+});
+
+test("desktop font overlay resolves from the pinned CAD checkout", async () => {
+  const config = await readFile(
+    "docs/assets/device-pack-desktop-fonts.conf",
+    "utf8",
+  );
+  assert.match(
+    config,
+    /<dir prefix="cwd">\.\.\/\.\.\/docs\/assets\/vendor\/openscad\/fonts<\/dir>/,
   );
 });
 

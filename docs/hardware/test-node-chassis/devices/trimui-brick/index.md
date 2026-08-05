@@ -5,7 +5,7 @@ hide:
 
 # Prototype build sheet · TrimUI Brick / TG3040
 
-<p class="pf-profile-banner" data-guide-device="trimui-brick" data-layout-id="chassis-dualbar-brick-v1"><strong>Selected DUT:</strong> TrimUI Brick / TG3040 <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-brick-v1</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-brick" data-layout-id="chassis-dualbar-brick-v2"><strong>Selected DUT:</strong> TrimUI Brick / TG3040 <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-brick-v2</code></p>
 
 This is the device-selected entrance to the first TrimUI Brick chassis build.
 The aluminum frame reuses the qualified dual-bar topology, while the holder,
@@ -21,8 +21,8 @@ the printed hardware is checked on the real DUT.
 | Holder profile | `trimui-brick` · stepped-shell prototype |
 | Integration route | `trimui-brick-v1` · harness and I/O structure placeholder |
 | Integration status | `structure_only` · electrical routing is not qualified here |
-| Chassis layout | `chassis-dualbar-brick-v1` · qualified dual-bar core plus Brick-specific carrier links |
-| Qualification | `candidate` · not production-qualified; physical gate `tsp-bcx.21.23` remains open |
+| Chassis layout | `chassis-dualbar-brick-v2` · side-clear dual-bar core plus Brick-specific carrier links |
+| Qualification | `candidate` · holder gate `tsp-bcx.21.23` and four-plate installed gate `tsp-bcx.21.38` remain open |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | DUT carrier | 180 × 205 mm · screen-center optical datum |
@@ -35,6 +35,9 @@ the printed hardware is checked on the real DUT.
     coupon fit; device retention and stability; bottom I/O, side controls, top
     USB, and rear-trigger clearance; webcam composition; and both labels on the
     assembled chassis. Record the result against `tsp-bcx.21.23`.
+
+    The four 38.4 mm side-clear crossbar-joint plates also require the adjacent
+    chassis clearance check tracked under `tsp-bcx.21.38`.
 
 ## Follow this path in order
 
@@ -49,6 +52,8 @@ the printed hardware is checked on the real DUT.
 
 Do not substitute the Smart Pro family carrier or its six J-hooks. The Brick's
 stepped 20/12 mm shell requires the five-part retention set generated from this
-device profile.
+device profile. The linked dual-bar chapter describes the unchanged predecessor
+topology; substitute the dedicated four-piece side-clear plate set for the old
+joint plates.
 
 [← Change the selected device](../../index.md)

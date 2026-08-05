@@ -1,9 +1,12 @@
 # Generate and print the chassis pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro S / TG5050 <span>·</span> <code>chassis-dualbar-v2</code></p>
 
-This build sheet locks the generator to **TrimUI Smart Pro S**. Choose what you
-are building. OpenSCAD runs locally in this browser: part recipes,
+This build sheet locks the generator to **TrimUI Smart Pro S / TG5050**. For an
+existing chassis, choose **Retrofit** and generate only
+`chassis/side-clear-crossbar-joint-plate-set.stl`; that one bed contains all
+four replacements. Choose **Complete chassis** for a new build. OpenSCAD runs
+locally in this browser: part recipes,
 qualification state, and source files come from the same pinned registry as
 the command-line pack builder. No model is uploaded, and the handbook neither
 stores nor serves a pre-rendered STL.
@@ -18,11 +21,11 @@ cross-checked against the pinned source toolchain within 0.001 mm at the
 bounds and 0.02% by volume; a source, runtime, or geometry change stops here
 until its baseline is deliberately re-qualified.
 
-!!! info "Generate the current stack-clear revision"
-    Keep **TrimUI Smart Pro S** selected and generate the complete pack. Its
-    carrier links end 1 mm inside the chassis stack planes, **Core 02** adds
-    four printed crossbar-joint plates, and **Core 04** keeps each upper
-    stacking-tab hole 7 mm above the former datum.
+!!! warning "Side-clear candidate · not production-qualified"
+    The dedicated plate bed replaces the four 44.0 mm predecessor joints with
+    four 38.4 mm joints. Each installed plate ends 0.8 mm inside both outward
+    extrusion planes. The manifest must retain `layout_unqualified` until the
+    installed side-by-side gate passes under `tsp-bcx.21.38`.
 
 <script type="module" src="../../../../../assets/device-pack-generator.mjs"></script>
 <section
@@ -150,19 +153,20 @@ device-selected plan from a clean `pocketforge-os/test-node-hw` checkout:
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
   --device trimui-smart-pro-s \
-  --mode full
+  --mode retrofit \
+  --allow-unqualified
 
 python3 mechanical/device-packs/build_device_pack.py verify \
-  --pack mechanical/device-packs/build/trimui-smart-pro-s/full
+  --pack mechanical/device-packs/build/trimui-smart-pro-s/retrofit
 ```
 
-The device slug selects the accepted `chassis-dualbar-v1` production layout.
+The device slug selects the candidate `chassis-dualbar-v2` layout.
 Before slicing, inspect `manifest.json` and confirm:
 
-- `production_eligible` is `true`;
-- `nonproduction_reasons` is empty;
-- the selected layout is `chassis-dualbar-v1`; and
-- `layout.qualification.acceptance_ref` is `tsp-t1zd.2`.
+- `production_eligible` is `false`;
+- `nonproduction_reasons` contains `layout_unqualified`;
+- the selected layout is `chassis-dualbar-v2`; and
+- `layout.qualification.acceptance_ref` is `tsp-bcx.21.38`.
 
 Stop if any value differs.
 
@@ -197,7 +201,8 @@ The exported placement is part of the geometry contract.
 | --- | --- | --- |
 | `calibration/chassis-process-calibration.stl` | Rail-key, channel-bar, and placard coupons | Conditional after a process or interface change |
 | `chassis/core-01-ironed-interfaces.stl` | 28 compact M3 channel bars | Iron topmost channel-contact surfaces |
-| `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links and four printed crossbar-joint plates | Keep every exported broad face on the bed and every key upward |
+| `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links | Keep every exported broad face on the bed and every key upward |
+| `chassis/side-clear-crossbar-joint-plate-set.stl` | Four identical 38.4 mm side-clear joint plates | Print once per chassis; broad face down, with supports disabled |
 | `chassis/core-04-frame-hardware.stl` | Stacking, placard, and power-strip hardware | Inspect every slot and through-hole |
 | `chassis/core-05-placard-holder.stl` | One reusable placard holder | Check the slide channel before installing it |
 
@@ -217,8 +222,8 @@ no STL is stored on the site.
     <figcaption><strong>Core 01</strong><span>28 ironed channel bars</span></figcaption>
   </figure>
   <figure class="pf-print-preview">
-    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.png" alt="Interactive preview of four keyed fixture links and four printed crossbar-joint plates" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
-    <figcaption><strong>Core 02</strong><span>4 fixture links + 4 joint plates</span></figcaption>
+    <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-02-fixture-links.png" alt="Interactive preview of four keyed fixture links" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
+    <figcaption><strong>Core 02</strong><span>4 fixture links</span></figcaption>
   </figure>
   <figure class="pf-print-preview">
     <model-viewer src="../../../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.glb" poster="../../../../../assets/generated/test-node-chassis/print-batches/batch-04-frame-hardware.png" alt="Interactive preview of the frame hardware print bed" camera-controls touch-action="pan-y" reveal="interaction"></model-viewer>
@@ -292,13 +297,13 @@ press **Generate personalized STL**.
           data-nameplate-input
           name="device-name"
           type="text"
-          value="TrimUI Smart Pro S"
+          value="TrimUI Smart Pro S / TG5050"
           maxlength="29"
           autocomplete="off"
           spellcheck="false"
           aria-describedby="device-nameplate-help device-nameplate-count">
         <span id="device-nameplate-count" class="pf-nameplate-customizer__count">
-          <output data-nameplate-count>18</output>/29
+          <output data-nameplate-count>27</output>/29
         </span>
       </div>
       <p id="device-nameplate-help" class="pf-nameplate-customizer__help">
@@ -328,7 +333,7 @@ press **Generate personalized STL**.
   </div>
   <div class="pf-nameplate-customizer__preview" aria-hidden="true">
     <span>NAME PREVIEW</span>
-    <strong data-nameplate-preview>TrimUI Smart Pro S</strong>
+    <strong data-nameplate-preview>TrimUI Smart Pro S / TG5050</strong>
     <small>white body · black from Z = 2.4 mm</small>
   </div>
 </div>
@@ -347,11 +352,13 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
 
 - [ ] Pack verification passes against the clean source revision in its
       manifest.
-- [ ] The manifest is production-eligible with no non-production reasons.
+- [ ] The manifest is non-production with `layout_unqualified` while
+      `tsp-bcx.21.38` remains open.
 - [ ] Every bed stayed at 100% scale in its exported support-free orientation.
 - [ ] Core 01 contains exactly 28 compact channel bars.
-- [ ] Core 02 contains four identical keyed fixture links and four printed
-      crossbar-joint plates.
+- [ ] Core 02 contains four identical keyed fixture links.
+- [ ] The dedicated side-clear bed contains four identical 38.4 mm joint
+      plates.
 - [ ] All 28 captive nuts sit flat and cannot rotate.
 - [ ] The preload count balances to 22 active and 6 blue-tagged parked bars.
 - [ ] The holder, J-hooks, carrier links, and nameplate all come from the same

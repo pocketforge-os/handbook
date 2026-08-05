@@ -1,11 +1,13 @@
-# Generate and print the stack-clear Smart Pro pack
+# Generate the side-clear Smart Pro / TG5040 pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro <span>·</span> <code>chassis-core-v2</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v3"><strong>Compatible DUT:</strong> TrimUI Smart Pro / TG5040 <span>·</span> <code>chassis-core-v3</code></p>
 
-This build sheet locks the generator to **TrimUI Smart Pro**. Keep **Complete
-chassis** selected below. OpenSCAD runs locally in this browser from the pinned
-source catalog. The resulting ZIP contains every STL, `manifest.json`, and
-`SHA256SUMS`; the handbook stores no pre-rendered production STL.
+This build sheet locks the generator to **TrimUI Smart Pro / TG5040**. For an
+existing chassis, choose **Retrofit** and generate only
+`chassis/side-clear-crossbar-joint-plate-set.stl`; that one bed contains all
+four replacement plates. Choose **Complete chassis** for a new build. OpenSCAD
+runs locally in this browser from the pinned source catalog; the handbook
+stores no pre-rendered production STL.
 
 <script type="module" src="../../../../../assets/device-pack-generator.mjs"></script>
 <section
@@ -25,7 +27,7 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
   <div class="pf-device-pack-generator__heading">
     <div>
       <span class="pf-device-pack-generator__eyebrow">LOCAL CAD WORKBENCH</span>
-      <h2 id="smart-pro-pack-generator-title">Generate the stack-clear production pack</h2>
+      <h2 id="smart-pro-pack-generator-title">Generate the side-clear candidate pack</h2>
     </div>
     <span class="pf-device-pack-generator__privacy">runs on this device</span>
   </div>
@@ -46,24 +48,26 @@ source catalog. The resulting ZIP contains every STL, `manifest.json`, and
 
 <noscript>Browser generation requires JavaScript. Use the command-line path below.</noscript>
 
-The qualification panel must say **Production-qualified pack** and identify
-`trimui-smart-pro-family` with `chassis-core-v2`. It must show no
-non-production reason. Stop if it names the dual-bar layout.
+The qualification panel must identify `trimui-smart-pro-family` with
+`chassis-core-v3` and say **Prototype pack · not production-qualified**. It
+must list `layout_unqualified`; this remains expected until the four installed
+plates pass `tsp-bcx.21.38`. Stop if it names the dual-bar layout.
 
 ## Command-line alternative
 
 ```sh
 python3 mechanical/device-packs/build_device_pack.py build \
   --device trimui-smart-pro \
-  --mode full
+  --mode retrofit \
+  --allow-unqualified
 
 python3 mechanical/device-packs/build_device_pack.py verify \
-  --pack mechanical/device-packs/build/trimui-smart-pro/full
+  --pack mechanical/device-packs/build/trimui-smart-pro/retrofit
 ```
 
-Inspect `manifest.json` and confirm `production_eligible=true`, no
-non-production reasons, device `trimui-smart-pro`, layout `chassis-core-v2`,
-and acceptance reference `tsp-t1zd.2` before slicing.
+Inspect `manifest.json` and confirm `production_eligible=false`, reason
+`layout_unqualified`, device `trimui-smart-pro`, layout `chassis-core-v3`, and
+acceptance reference `tsp-bcx.21.38` before slicing.
 
 ## Slicer contract
 
@@ -91,14 +95,15 @@ anchors:
 
 - Core 01: 28 short channel bars and four long double-nut splice bars;
 - Core 02: two full-wrap upright splice collars;
-- Core 03: four gantry joint plates and four fixture spacers;
+- Core 03: four fixture spacers;
 - Core 04: the frozen v1 frame-hardware bed;
 - Core 05: the reusable placard holder; and
+- Side-clear joints: four dedicated 38.4 mm crossbar-joint plates; and
 - the conditional process-calibration bed.
 
-The device group contains the revised carrier-link set: two 91.5 mm upper
-links and two 108.5 mm lower links. These are the only geometry change from
-the frozen `chassis-core-v1` layout.
+The device group contains two 91.5 mm upper links and two 108.5 mm lower links.
+Those remain unchanged from `chassis-core-v2`; the dedicated four-plate bed is
+the only `chassis-core-v3` geometry change.
 
 ![Gantry preload inventory](../../../../assets/generated/test-node-chassis/legacy/prep-captive-nut-count.png)
 
@@ -129,15 +134,17 @@ use the same source-owned browser customizer:
 
 ## Print gate
 
-- [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v2`.
-- [ ] Manifest verification passes with `production_eligible=true` and no
-      non-production reasons.
+- [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v3`.
+- [ ] Manifest verification passes with `production_eligible=false` and
+      `layout_unqualified` while `tsp-bcx.21.38` remains open.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
 - [ ] Count 28 short channel bars, four long splice bars, and 36 seated nuts.
 - [ ] Both splice collars, all movable mounts, the holder pack, placard, and
       wire anchors come from this same verified pack.
 - [ ] Both 91.5 mm upper links and both 108.5 mm lower links end 1 mm inside
       their corresponding chassis stack planes.
+- [ ] All four side-clear plates end 0.8 mm inside the two outward extrusion
+      planes after installation.
 - [ ] No interface, slot, key, or through-hole is blocked or damaged.
 
 Next: [cut and label the unchanged gantry rails](../../layouts/chassis-core-v2/cut.md).

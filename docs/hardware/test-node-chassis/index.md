@@ -37,6 +37,7 @@ chapter, and verification gate.
   <div class="admonition info">
     <p class="admonition-title">Device build sheets</p>
     <p>The dropdown needs JavaScript. Continue directly with the
+    <a href="devices/powkiddy-x55/">Powkiddy X55 prototype build sheet</a>,
     <a href="devices/trimui-brick/">TrimUI Brick prototype build sheet</a>,
     <a href="devices/trimui-smart-pro/">TrimUI Smart Pro build sheet</a>, or
     <a href="devices/trimui-smart-pro-s/">TrimUI Smart Pro S build sheet</a>;
@@ -44,24 +45,28 @@ chapter, and verification gate.
   </div>
 </noscript>
 
-The two Smart Pro devices are close relatives and share the
-`trimui-smart-pro-family` holder mechanism and
-`trimui-smart-pro-family-v1` integration route. Their registered chassis
-layouts still differ today: the original Smart Pro pack remains frozen at its
-qualified v1 gantry geometry for reproducibility, while current Smart Pro
-builds select the physically qualified stack-clear `chassis-core-v2` gantry
-and Smart Pro S builds select the physically qualified dual-bar layout with
-four printed crossbar-joint plates. Both current packs use 91.5 mm upper and
-108.5 mm lower carrier links that end 1 mm inside the chassis stack planes.
-The accepted production records are tracked in `tsp-t1zd.2`.
+The two Smart Pro devices share the `trimui-smart-pro-family` holder mechanism
+and `trimui-smart-pro-family-v1` integration route. Their current candidate
+layouts preserve the accepted aluminum topologies and replace only the four
+crossbar-joint plates: Smart Pro selects `chassis-core-v3`, while Smart Pro S
+selects `chassis-dualbar-v2`. Each new 38.4 mm plate ends 0.8 mm inside both
+outward extrusion planes so adjacent chassis can meet aluminum-to-aluminum.
+The predecessor layouts remain physically qualified under `tsp-t1zd.2`; the
+side-clear revisions remain candidates until their four-plate installed gate
+passes under `tsp-bcx.21.38`.
 
-The **TrimUI Brick / TG3040** is now available as a deliberately unqualified
-prototype pack on the same aluminum dual-bar topology. It uses a smaller
-180 × 205 mm carrier, a five-part stepped-shell retention set, and
-Brick-specific carrier links. Automated source, mesh, and browser checks have
-passed; holder fit, installed stability, port/control clearance, webcam
-composition, and label legibility remain owner acceptance gates under
-`tsp-bcx.21.23`. Generating its files does not make it production-qualified.
+The **TrimUI Brick / TG3040** selects `chassis-dualbar-brick-v2`, which applies
+the same side-clear plate revision to its deliberately unqualified prototype
+pack. It uses a smaller 180 × 205 mm carrier, a five-part stepped-shell
+retention set, and Brick-specific carrier links. Its holder gates remain open
+under `tsp-bcx.21.23`, and its side-clear installed gate remains open under
+`tsp-bcx.21.38`. Generating its files does not make it production-qualified.
+
+The **Powkiddy X55** selects `chassis-core-powkiddy-x55-v1`. It reuses the core
+rail topology with a 247 × 175 mm carrier, six edge-specific contacts, and the
+same side-clear plate revision. Its bottom, top, and side shell depths remain
+provisional under `tsp-bcx.21.28`; print the coupon first and keep the pack a
+candidate under `tsp-bcx.21.39` until physical acceptance is recorded.
 
 Holder family, integration profile, and chassis layout are independent
 selections in the registry. A future DUT can reuse the same holder or frame
@@ -81,7 +86,7 @@ flowchart LR
 
 | Build module | Smart Pro family today | What a future device may change |
 | --- | --- | --- |
-| DUT holder | Qualified Smart Pro family or Brick prototype | Contact geometry, keep-outs, links, or retention mechanism |
+| DUT holder | Qualified Smart Pro family, Brick prototype, or X55 prototype | Contact geometry, keep-outs, links, or retention mechanism |
 | Chassis | 346 × 358 × approximately 368 mm outside | Width, depth, height, rail inventory, fixture suspension, or stacking details |
 | Printed pack | Selected by exact device slug and registered layout | Chassis beds, holder, placard, cable anchors, and device-specific fixtures |
 | Integration route | Shared family routing ID | Side boards, power/USB/serial/FEL topology, cables, and service access |

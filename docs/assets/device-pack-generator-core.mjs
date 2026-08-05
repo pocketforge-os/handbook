@@ -229,12 +229,12 @@ export function validateCatalog(catalog) {
         );
       } else if (mode === "retrofit") {
         assert(
-          modeRecord.artifacts.length === 6,
-          `${modeLabel} must contain six artifacts.`,
+          modeRecord.artifacts.length === 7,
+          `${modeLabel} must contain seven artifacts.`,
         );
       } else {
         assert(
-          modeRecord.artifacts.length > 6,
+          modeRecord.artifacts.length > 7,
           `${modeLabel} must extend the retrofit plan.`,
         );
       }
