@@ -7,7 +7,7 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 9 of 17</p>
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Add the second continuous support while the upper ring is separate and easy to
 reach. Match the lower bar's 75 mm operator-side datum.

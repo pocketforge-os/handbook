@@ -148,10 +148,10 @@ test("Powkiddy X55 remains coupon-first and explicitly unqualified", () => {
   assert.equal(x55.profile.qualification.status, "unqualified");
   assert.equal(x55.profile.qualification.acceptance_ref, null);
   assert.equal(x55.layout.qualification.status, "candidate");
-  assert.equal(x55.layout.qualification.acceptance_ref, "tsp-bcx.21.39");
+  assert.equal(x55.layout.qualification.acceptance_ref, "tsp-bcx.21.40");
   assert.equal(x55.modes.coupon.artifacts.length, 1);
   assert.equal(x55.modes.retrofit.artifacts.length, 7);
-  assert.equal(x55.modes.full.artifacts.length, 13);
+  assert.equal(x55.modes.full.artifacts.length, 12);
   assert.deepEqual(x55.modes.coupon.nonproduction_reasons, [
     "coupon_only",
     "holder_unqualified",

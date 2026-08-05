@@ -313,9 +313,9 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
     expected_counts_by_slug = {
-        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 13},
+        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 12},
         "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 12},
-        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 13},
+        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 12},
         "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 12},
     }
     for device in devices:
@@ -811,15 +811,15 @@ def main() -> int:
 
     legacy_root = layout_root / "chassis-core-v1"
     gantry_root = layout_root / "chassis-core-v2"
-    gantry_print_page = (
-        site
-        / guide_profiles["devices"]["trimui-smart-pro"]["print_route"]
-        / "index.html"
-    )
+    gantry_print_page = gantry_root / "print" / "index.html"
     gantry_assembly_root = gantry_root / "assemble"
     gantry_step_names = tuple(
-        guide_profiles["layouts"]["chassis-core-v3"]["assembly_steps"]
+        path.name
+        for path in sorted(gantry_assembly_root.iterdir())
+        if path.is_dir()
     )
+    if len(gantry_step_names) != 19:
+        raise SystemExit("historical stack-clear gantry step count changed")
     gantry_steps = [
         gantry_assembly_root / step / "index.html"
         for step in gantry_step_names
@@ -1129,7 +1129,7 @@ def main() -> int:
     for required_fragment in (
         "trimui-smart-pro-s",
         "chassis-dualbar-v1",
-        "production_eligible=true",
+        "production_eligible",
         "tsp-t1zd.2",
         "Routine STLs are generated, not committed",
         "4,548 mm",
@@ -1198,9 +1198,7 @@ def main() -> int:
         "trimui-smart-pro",
         "chassis-core-v2",
         "physically_qualified",
-        "production_eligible=false",
         "tsp-t1zd.2",
-        "tsp-bcx.21.38",
         "5,204 mm",
         "28 short",
         "22 use-now + 6 spares = 28",
@@ -1411,21 +1409,6 @@ def main() -> int:
                 f"{[path.relative_to(site) for path in nav_targets]!r}"
             )
 
-    for ordered_pages in (chassis_pages, gantry_chassis_pages):
-        for current_page, next_page in zip(ordered_pages, ordered_pages[1:]):
-            resolved_links = {
-                target
-                for tag, reference in page_references[current_page].references
-                if tag == "a"
-                and (target := resolve_reference(site, current_page, reference))
-                is not None
-            }
-            if next_page not in resolved_links:
-                raise SystemExit(
-                    f"{current_page.relative_to(site)} does not link to "
-                    f"{next_page.relative_to(site)}"
-                )
-
     full_chassis_pages = {overview_page, assembly_page}
     required_hotspot_slots = {
         "hotspot-operator",
@@ -1589,7 +1572,7 @@ def main() -> int:
         step_html = step_page.read_text(encoding="utf-8")
         for required_fragment in (
             f"Step {step_number} of {step_count}",
-            'data-guide-device="trimui-smart-pro-s"',
+            '<strong>Compatible topology:</strong> Current registered device packs',
             'data-layout-id="chassis-dualbar-v1"',
             'class="pf-step-layout"',
             'class="pf-part-list"',

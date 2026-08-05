@@ -7,7 +7,7 @@ hide:
 
 <p class="pf-step-count">Assembly · Step 10 of 17</p>
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Lower the complete upper ring evenly onto all four open post tops. A helper
 makes it easier to keep the ring level.

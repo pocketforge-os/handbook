@@ -1,12 +1,13 @@
-# Smart Pro S dual-bar chassis
+# Continuous-bar chassis
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-v1</code> <span>·</span> physically qualified</p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <strong>Layout:</strong> <code>chassis-dualbar-v1</code> <span>·</span> physically qualified</p>
 
 Build the reusable aluminum frame that holds one PocketForge device, its
 inspection camera, and its populated DUT test board. New chassis builds use one
 continuous upper bar and one continuous lower bar to suspend the fixture
-board. The Smart Pro S is the worked example and selects the registered
-`chassis-dualbar-v1` layout.
+board. The Smart Pro S is the physically qualified worked example; every
+current registered DUT pack selects a candidate derived from this same
+continuous-bar topology.
 
 !!! info "Model the DUT first"
     Complete the
@@ -142,7 +143,7 @@ view; and every current suspension and frame part.
 | Property | Current value |
 | --- | ---: |
 | Registered device example | `trimui-smart-pro-s` |
-| Registered chassis layout | `chassis-dualbar-v1` |
+| Qualified topology reference | `chassis-dualbar-v1` |
 | Outside envelope | 346 W × 358 D × approximately 368 H mm |
 | Clear inside envelope | 306 W × 318 D × 328 H mm |
 | Aluminum | 20 × 20 mm square slot-6 extrusion |
@@ -182,8 +183,8 @@ depending on where someone stands.
 ## Build path
 
 1. [Collect the parts and tools](parts.md).
-2. [Generate, verify, and print the Smart Pro S
-   pack](../../devices/trimui-smart-pro-s/print.md).
+2. [Return to the selected device sheet and generate its locked
+   pack](../../index.md).
 3. [Use scrap first and cut the 14 rails](cut.md).
 4. [Assemble the complete dual-bar chassis](assemble/index.md).
 5. [Run and record the build checks](verify.md).
@@ -202,4 +203,4 @@ a full-chassis page diverges from this interactive model.
 
 Next: [collect the parts and tools](parts.md).
 
-[← Back to the Smart Pro S build sheet](../../devices/trimui-smart-pro-s/index.md)
+[← Back to the device selector](../../index.md)

@@ -1,6 +1,6 @@
 # Cut the aluminum rails
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 The current chassis uses **4,548 mm** of finished 2020 extrusion. Finished
 dimensions are aluminum lengths; do not add connector caps or blade kerf to a

@@ -1,11 +1,12 @@
 # Generate the side-clear Smart Pro / TG5040 pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-core-v3"><strong>Compatible DUT:</strong> TrimUI Smart Pro / TG5040 <span>·</span> <code>chassis-core-v3</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-dualbar-smart-pro-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro / TG5040 <span>·</span> <code>chassis-dualbar-smart-pro-v1</code></p>
 
 This build sheet locks the generator to **TrimUI Smart Pro / TG5040**. For an
-existing chassis, choose **Retrofit** and generate only
+existing continuous-bar chassis, choose **Retrofit** and generate only
 `chassis/side-clear-crossbar-joint-plate-set.stl`; that one bed contains all
-four replacement plates. Choose **Complete chassis** for a new build. OpenSCAD
+four replacement plates. Choose **Complete chassis** for a gantry conversion
+or new build. OpenSCAD
 runs locally in this browser from the pinned source catalog; the handbook
 stores no pre-rendered production STL.
 
@@ -49,9 +50,9 @@ stores no pre-rendered production STL.
 <noscript>Browser generation requires JavaScript. Use the command-line path below.</noscript>
 
 The qualification panel must identify `trimui-smart-pro-family` with
-`chassis-core-v3` and say **Prototype pack · not production-qualified**. It
-must list `layout_unqualified`; this remains expected until the four installed
-plates pass `tsp-bcx.21.38`. Stop if it names the dual-bar layout.
+`chassis-dualbar-smart-pro-v1` and say **Prototype pack · not
+production-qualified**. It must list `layout_unqualified`; this remains
+expected until the complete continuous-bar assembly passes `tsp-bcx.21.40`.
 
 ## Command-line alternative
 
@@ -66,8 +67,9 @@ python3 mechanical/device-packs/build_device_pack.py verify \
 ```
 
 Inspect `manifest.json` and confirm `production_eligible=false`, reason
-`layout_unqualified`, device `trimui-smart-pro`, layout `chassis-core-v3`, and
-acceptance reference `tsp-bcx.21.38` before slicing.
+`layout_unqualified`, device `trimui-smart-pro`, layout
+`chassis-dualbar-smart-pro-v1`, and acceptance reference `tsp-bcx.21.40`
+before slicing.
 
 ## Slicer contract
 
@@ -89,27 +91,25 @@ fit.
 
 ## Identify the chassis artifacts
 
-The verified full pack includes these gantry chassis groups in addition
+The verified 12-artifact full pack includes these continuous-bar chassis groups in addition
 to the selected Smart Pro holder, hooks, carrier links, nameplate, and wire
 anchors:
 
-- Core 01: 28 short channel bars and four long double-nut splice bars;
-- Core 02: two full-wrap upright splice collars;
-- Core 03: four fixture spacers;
+- Dual-bar 01: 28 short channel bars;
+- Dual-bar 02: four keyed fixture links and four fixture-bar joints;
 - Core 04: the frozen v1 frame-hardware bed;
 - Core 05: the reusable placard holder; and
 - Side-clear joints: four dedicated 38.4 mm crossbar-joint plates; and
 - the conditional process-calibration bed.
 
 The device group contains two 91.5 mm upper links and two 108.5 mm lower links.
-Those remain unchanged from `chassis-core-v2`; the dedicated four-plate bed is
-the only `chassis-core-v3` geometry change.
+Those remain unchanged from the qualified Smart Pro. The frame uses one
+continuous 306 mm lower fixture bar and one continuous 306 mm upper fixture
+bar, exactly like the successful Smart Pro S topology.
 
-![Gantry preload inventory](../../../../assets/generated/test-node-chassis/legacy/prep-captive-nut-count.png)
-
-Seat one ordinary M3 nut in each of the 28 short bars and two in each of the
-four long bars. Pull each nut flat with a spare screw and washer, then remove
-the temporary hardware. Do not glue, hammer, melt, or encapsulate a nut.
+Seat one ordinary M3 nut in each of the 28 short bars. Pull each nut flat with
+a spare screw and washer, then remove the temporary hardware. Do not glue,
+hammer, melt, or encapsulate a nut.
 
 ## Generate one cable anchor
 
@@ -134,17 +134,17 @@ use the same source-owned browser customizer:
 
 ## Print gate
 
-- [ ] Device and layout are `trimui-smart-pro` / `chassis-core-v3`.
+- [ ] Device and layout are `trimui-smart-pro` / `chassis-dualbar-smart-pro-v1`.
 - [ ] Manifest verification passes with `production_eligible=false` and
-      `layout_unqualified` while `tsp-bcx.21.38` remains open.
+      `layout_unqualified` while `tsp-bcx.21.40` remains open.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
-- [ ] Count 28 short channel bars, four long splice bars, and 36 seated nuts.
-- [ ] Both splice collars, all movable mounts, the holder pack, placard, and
-      wire anchors come from this same verified pack.
+- [ ] Count 28 short channel bars and 28 seated nuts; there are no long splice bars.
+- [ ] Both continuous fixture bars, all fixture links, the holder pack,
+      placard, and wire anchors come from this same verified pack.
 - [ ] Both 91.5 mm upper links and both 108.5 mm lower links end 1 mm inside
       their corresponding chassis stack planes.
 - [ ] All four side-clear plates end 0.8 mm inside the two outward extrusion
       planes after installation.
 - [ ] No interface, slot, key, or through-hole is blocked or damaged.
 
-Next: [cut and label the unchanged gantry rails](../../layouts/chassis-core-v2/cut.md).
+Next: [cut and label the continuous-bar rails](../../layouts/chassis-dualbar-v1/cut.md).

@@ -1,6 +1,6 @@
 # Manage the harness wiring
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v1"><strong>Selected build:</strong> TrimUI Smart Pro S <span>·</span> <code>chassis-dualbar-v1</code></p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
 Use the eight-anchor starter set to keep a completed DUT harness against
 exposed chassis rails. Anchor positions are deliberately chosen at the bench:
