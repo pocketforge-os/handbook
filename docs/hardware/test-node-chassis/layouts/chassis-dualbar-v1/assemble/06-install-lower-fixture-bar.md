@@ -5,7 +5,7 @@ hide:
 
 # 6. Install the lower fixture bar
 
-<p class="pf-step-count">Assembly · Step 6 of 17</p>
+<p class="pf-step-count">Assembly · Step 6 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -68,6 +68,6 @@ operator-facing groove.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../05-lay-out-lower-frame/">← Lower frame</a>
-  <span>Step 6 of 17</span>
+  <span>Step 6 of 18</span>
   <a href="../07-add-posts/">Next: Add posts →</a>
 </nav>

@@ -22,6 +22,10 @@ const libraryUrl = new URL(
   "./generated/test-node-chassis/customizer/lib/pf-2020.scad",
   import.meta.url,
 );
+const usbCInterrupterLibraryUrl = new URL(
+  "./generated/test-node-chassis/customizer/lib/usb-c-interrupter-bracket.scad",
+  import.meta.url,
+);
 
 function reportStatus(message) {
   self.postMessage({ type: "status", message });
@@ -54,11 +58,19 @@ async function generateNameplate(label) {
   }
 
   reportStatus("Loading the local OpenSCAD engine…");
-  const [{ default: OpenSCAD }, source, library, font, fontConfig] =
+  const [
+    { default: OpenSCAD },
+    source,
+    library,
+    usbCInterrupterLibrary,
+    font,
+    fontConfig,
+  ] =
     await Promise.all([
       import(runtimeUrl.href),
       fetchRequired(sourceUrl),
       fetchRequired(libraryUrl),
+      fetchRequired(usbCInterrupterLibraryUrl),
       fetchRequired(fontUrl, "arrayBuffer"),
       fetchRequired(fontConfigUrl),
     ]);
@@ -78,6 +90,10 @@ async function generateNameplate(label) {
   makeDirectory(instance.FS, "/locale");
   instance.FS.writeFile("/work/pocketforge-node-chassis.scad", source);
   instance.FS.writeFile("/work/lib/pf-2020.scad", library);
+  instance.FS.writeFile(
+    "/work/lib/usb-c-interrupter-bracket.scad",
+    usbCInterrupterLibrary,
+  );
   instance.FS.writeFile("/work/fonts/LiberationSans-Bold.ttf", font);
   instance.FS.writeFile("/work/fonts/fonts.conf", fontConfig);
   instance.FS.chdir("/work");

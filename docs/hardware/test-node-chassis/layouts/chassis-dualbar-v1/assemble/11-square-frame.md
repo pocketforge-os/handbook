@@ -5,7 +5,7 @@ hide:
 
 # 11. Square and tighten the frame
 
-<p class="pf-step-count">Assembly · Step 11 of 17</p>
+<p class="pf-step-count">Assembly · Step 11 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -70,6 +70,6 @@ fixture bars remain at 75 mm, and the chassis does not rock.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../10-close-outer-frame/">← Close frame</a>
-  <span>Step 11 of 17</span>
+  <span>Step 11 of 18</span>
   <a href="../12-mount-dut-holder/">Next: DUT holder →</a>
 </nav>

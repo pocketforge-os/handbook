@@ -5,7 +5,7 @@ hide:
 
 # 7. Add the four posts
 
-<p class="pf-step-count">Assembly · Step 7 of 17</p>
+<p class="pf-step-count">Assembly · Step 7 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -66,6 +66,6 @@ post tops are open for the upper ring.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../06-install-lower-fixture-bar/">← Lower fixture bar</a>
-  <span>Step 7 of 17</span>
+  <span>Step 7 of 18</span>
   <a href="../08-build-upper-ring/">Next: Upper ring →</a>
 </nav>

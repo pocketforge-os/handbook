@@ -1,6 +1,6 @@
 # Assemble the dual-bar chassis
 
-<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code> <span>·</span> 17 steps</p>
+<p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code> <span>·</span> 18 steps</p>
 
 Use this chapter at the workbench after the verified device pack is printed
 and all 14 aluminum pieces pass the cut gate. Each page is one small physical
@@ -8,7 +8,7 @@ job: collect its parts, match the picture, follow the numbered actions, and
 pass the green check before moving on.
 
 <div class="pf-chapter-meta">
-  <span>17 bench steps</span>
+  <span>18 bench steps</span>
   <span>Mechanical work only</span>
   <span>First-time builder friendly</span>
   <span>Phone-friendly step pages</span>
@@ -181,6 +181,8 @@ an action.
 - [ ] Four identical 71.5 mm fixture links, four printed crossbar-joint
       plates, all holder parts, placard parts, power-strip blocks, and eight
       stacking tabs are present.
+- [ ] One dual USB-C interrupter holder, four M1.7 × 6 mm self-tapping screws,
+      and two M3 screws with drop-in T-nuts are present.
 - [ ] The power strip and every source of DUT power are physically separate
       from the work area.
 - [ ] A tape measure, square, and the required M3/M5 hex drivers are within
@@ -189,7 +191,7 @@ an action.
 The preload steps account for **22 active + 6 parked = 28** channel bars before
 any cut end is closed.
 
-## The 17-step path
+## The 18-step path
 
 <ol class="pf-step-list">
   <li><a href="01-learn-the-rail/"><strong>Learn the rail and channel bar</strong><small>Practice the only hidden interface before loading labeled frame parts.</small></a></li>
@@ -205,16 +207,17 @@ any cut end is closed.
   <li><a href="11-square-frame/"><strong>Square and tighten the frame</strong><small>Match both diagonal pairs within 2 mm before final torque.</small></a></li>
   <li><a href="12-mount-dut-holder/"><strong>Mount the Smart Pro S holder</strong><small>Keep the marked upper and lower links in their correct positions.</small></a></li>
   <li><a href="13-mount-fixture-board/"><strong>Mount the populated fixture board</strong><small>Use all four identical links and all four board slots.</small></a></li>
-  <li><a href="14-add-placard/"><strong>Add the node placard</strong><small>Keep its readable cartridge removable from the operator side.</small></a></li>
-  <li><a href="15-mount-power-strip/"><strong>Mount the unplugged power strip</strong><small>Run it front-to-back inside the lower operator-right depth rail.</small></a></li>
-  <li><a href="16-add-stacking-tabs/"><strong>Add the stacking tabs</strong><small>Install two narrow registration guides at each upper corner.</small></a></li>
-  <li><a href="17-final-check/"><strong>Align and compare the finished chassis</strong><small>Catch a missing part, skew, or unsafe power state before formal verification.</small></a></li>
+  <li><a href="14-install-usb-c-interrupter/"><strong>Install the dual USB-C interrupter holder</strong><small>Set the operator-facing holder 5.0 mm to the right of the left fixture-board link.</small></a></li>
+  <li><a href="15-add-placard/"><strong>Add the node placard</strong><small>Keep its readable cartridge removable from the operator side.</small></a></li>
+  <li><a href="16-mount-power-strip/"><strong>Mount the unplugged power strip</strong><small>Run it front-to-back inside the lower operator-right depth rail.</small></a></li>
+  <li><a href="17-add-stacking-tabs/"><strong>Add the stacking tabs</strong><small>Install two narrow registration guides at each upper corner.</small></a></li>
+  <li><a href="18-final-check/"><strong>Align and compare the finished chassis</strong><small>Catch a missing part, skew, or unsafe power state before formal verification.</small></a></li>
 </ol>
 
-After Step 17, continue to the [formal build verification](../verify.md).
+After Step 18, continue to the [formal build verification](../verify.md).
 
 <nav class="pf-step-nav" aria-label="Assembly chapter navigation">
   <a href="../cut/">← Back: Cut the rails</a>
-  <span>Assembly · 17 steps</span>
+  <span>Assembly · 18 steps</span>
   <a href="01-learn-the-rail/">Begin Step 1 →</a>
 </nav>

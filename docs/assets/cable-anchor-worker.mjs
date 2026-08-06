@@ -23,6 +23,10 @@ const sourceRoot = new URL(
 );
 const sourceUrl = new URL("pocketforge-node-chassis.scad", sourceRoot);
 const libraryUrl = new URL("lib/pf-2020.scad", sourceRoot);
+const usbCInterrupterLibraryUrl = new URL(
+  "lib/usb-c-interrupter-bracket.scad",
+  sourceRoot,
+);
 const provenanceUrl = new URL("customizer-provenance.json", sourceRoot);
 
 function reportStatus(message) {
@@ -52,11 +56,13 @@ function makeDirectory(fs, path) {
 }
 
 async function verifiedSource() {
-  const [provenance, source, library] = await Promise.all([
-    fetchJson(provenanceUrl),
-    fetchBytes(sourceUrl),
-    fetchBytes(libraryUrl),
-  ]);
+  const [provenance, source, library, usbCInterrupterLibrary] =
+    await Promise.all([
+      fetchJson(provenanceUrl),
+      fetchBytes(sourceUrl),
+      fetchBytes(libraryUrl),
+      fetchBytes(usbCInterrupterLibraryUrl),
+    ]);
   if (
     provenance?.schema !== 1 ||
     provenance.source_dirty !== false ||
@@ -69,12 +75,13 @@ async function verifiedSource() {
   for (const [path, bytes] of [
     ["pocketforge-node-chassis.scad", source],
     ["lib/pf-2020.scad", library],
+    ["lib/usb-c-interrupter-bracket.scad", usbCInterrupterLibrary],
   ]) {
     if ((await sha256Hex(bytes)) !== provenance.files?.[path]) {
       throw new Error(`Cable-anchor source hash changed: ${path}`);
     }
   }
-  return { source, library };
+  return { source, library, usbCInterrupterLibrary };
 }
 
 async function generateCableAnchor(value) {
@@ -100,6 +107,10 @@ async function generateCableAnchor(value) {
     inputs.source,
   );
   instance.FS.writeFile("/work/lib/pf-2020.scad", inputs.library);
+  instance.FS.writeFile(
+    "/work/lib/usb-c-interrupter-bracket.scad",
+    inputs.usbCInterrupterLibrary,
+  );
   instance.FS.chdir("/work");
 
   reportStatus(`Building one ${fastener} rail cable anchor…`);

@@ -47,20 +47,21 @@ chapter, and verification gate.
 
 All four registered devices now use the successful Pro S continuous-bar
 topology: one unspliced 306 mm lower fixture bar and one unspliced 306 mm upper
-fixture bar. Their full packs contain no long gantry splice bars, splice
+fixture bar. Every full pack also contains one common dual USB-C interrupter
+holder for the populated fixture-board assembly. Their full packs contain no long gantry splice bars, splice
 collars, or movable gantry mounts. The Smart Pro family shares its holder and
 integration route; its exact device slug still selects the correct carrier,
 nameplate, and qualification record. The former qualified gantry layouts stay
 frozen as build history rather than being rewritten.
 
-The **TrimUI Brick / TG3040** selects `chassis-dualbar-brick-v2`, which applies
+The **TrimUI Brick / TG3040** selects `chassis-dualbar-brick-v3`, which applies
 the same side-clear plate revision to its deliberately unqualified prototype
 pack. It uses a smaller 180 × 205 mm carrier, a five-part stepped-shell
 retention set, and Brick-specific carrier links. Its holder gates remain open
 under `tsp-bcx.21.23`, and its side-clear installed gate remains open under
 `tsp-bcx.21.38`. Generating its files does not make it production-qualified.
 
-The **Powkiddy X55** selects `chassis-dualbar-powkiddy-x55-v1`. It combines the
+The **Powkiddy X55** selects `chassis-dualbar-powkiddy-x55-v2`. It combines the
 continuous-bar topology with a 247 × 175 mm carrier, six edge-specific
 contacts, and the same side-clear plate revision. Its bottom, top, and side
 shell depths remain provisional under `tsp-bcx.21.28`; print the coupon first and keep the pack a
@@ -88,7 +89,7 @@ flowchart LR
 | Chassis | 346 × 358 × approximately 368 mm outside | Width, depth, height, rail inventory, fixture suspension, or stacking details |
 | Printed pack | Selected by exact device slug and registered layout | Chassis beds, holder, placard, cable anchors, and device-specific fixtures |
 | Integration route | Shared family routing ID | Side boards, power/USB/serial/FEL topology, cables, and service access |
-| Assembly | Shared 17-step continuous-bar route | Different step count, order, images, and verification gates |
+| Assembly | Shared 18-step continuous-bar route | Different step count, order, images, and verification gates |
 
 ## Source of truth
 

@@ -33,9 +33,9 @@ test("offers every registered DUT without a second option list", () => {
 test("resolves the X55 prototype onto the shared continuous-bar guide", () => {
   const guide = resolveDeviceGuide(profiles, "powkiddy-x55");
   assert.equal(guide.holderProfile, "powkiddy-x55");
-  assert.equal(guide.layoutId, "chassis-dualbar-powkiddy-x55-v1");
+  assert.equal(guide.layoutId, "chassis-dualbar-powkiddy-x55-v2");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 17);
+  assert.equal(guide.assemblySteps.length, 18);
   assert.equal(
     guide.stages.find(({ id }) => id === "print").route,
     "hardware/test-node-chassis/devices/powkiddy-x55/print/",
@@ -49,9 +49,9 @@ test("resolves the X55 prototype onto the shared continuous-bar guide", () => {
 test("resolves the Brick candidate onto the shared dual-bar guide", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-brick");
   assert.equal(guide.holderProfile, "trimui-brick");
-  assert.equal(guide.layoutId, "chassis-dualbar-brick-v2");
+  assert.equal(guide.layoutId, "chassis-dualbar-brick-v3");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 17);
+  assert.equal(guide.assemblySteps.length, 18);
   assert.equal(
     guide.stages.find(({ id }) => id === "print").route,
     "hardware/test-node-chassis/devices/trimui-brick/print/",
@@ -62,11 +62,11 @@ test("resolves the Brick candidate onto the shared dual-bar guide", () => {
   );
 });
 
-test("resolves the candidate continuous-bar Smart Pro layout and all 17 steps", () => {
+test("resolves the candidate continuous-bar Smart Pro layout and all 18 steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro");
-  assert.equal(guide.layoutId, "chassis-dualbar-smart-pro-v1");
+  assert.equal(guide.layoutId, "chassis-dualbar-smart-pro-v2");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 17);
+  assert.equal(guide.assemblySteps.length, 18);
   assert.deepEqual(guide.assemblySteps[0], {
     number: 1,
     title: "Learn the rail",
@@ -74,7 +74,8 @@ test("resolves the candidate continuous-bar Smart Pro layout and all 17 steps", 
     route:
       "hardware/test-node-chassis/layouts/chassis-dualbar-v1/assemble/01-learn-the-rail/",
   });
-  assert.equal(guide.assemblySteps.at(-1).slug, "17-final-check");
+  assert.equal(guide.assemblySteps[13].slug, "14-install-usb-c-interrupter");
+  assert.equal(guide.assemblySteps.at(-1).slug, "18-final-check");
   assert.deepEqual(
     guide.stages.map(({ id }) => id),
     [
@@ -91,12 +92,12 @@ test("resolves the candidate continuous-bar Smart Pro layout and all 17 steps", 
   );
 });
 
-test("resolves the Smart Pro S route and all 17 dual-bar steps", () => {
+test("resolves the Smart Pro S route and all 18 dual-bar steps", () => {
   const guide = resolveDeviceGuide(profiles, "trimui-smart-pro-s");
-  assert.equal(guide.layoutId, "chassis-dualbar-v2");
+  assert.equal(guide.layoutId, "chassis-dualbar-v3");
   assert.equal(guide.qualificationStatus, "candidate");
-  assert.equal(guide.assemblySteps.length, 17);
-  assert.equal(guide.assemblySteps[15].slug, "16-add-stacking-tabs");
+  assert.equal(guide.assemblySteps.length, 18);
+  assert.equal(guide.assemblySteps[16].slug, "17-add-stacking-tabs");
   assert.equal(
     guide.stages.find(({ id }) => id === "print").route,
     "hardware/test-node-chassis/devices/trimui-smart-pro-s/print/",
@@ -112,7 +113,7 @@ test("humanizes only contiguous, safe assembly step slugs", () => {
   assert.throws(() => humanizeAssemblyStep("../wrong"), /Invalid assembly step/);
 
   const changed = structuredClone(profiles);
-  changed.layouts["chassis-dualbar-v2"].assembly_steps[1] =
+  changed.layouts["chassis-dualbar-v3"].assembly_steps[1] =
     "04-skip-a-step";
   assert.throws(
     () => resolveDeviceGuide(changed, "trimui-smart-pro-s"),

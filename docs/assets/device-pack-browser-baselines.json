@@ -30,6 +30,11 @@
       "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
+    "powkiddy-x55/chassis_usb_c_interrupter_bracket": {
+      "browser_normalized_sha256": "29c6799f5934437acc39a83f45e771bd9a64e0834c5ccb514100c25d865a45ea",
+      "output": "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+      "source_normalized_sha256": "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a"
+    },
     "powkiddy-x55/device_carrier": {
       "browser_normalized_sha256": "724e73712b474528bb104652a95c066875a330e24298b13e28f740d9379f7d4f",
       "output": "device/carrier.stl",
@@ -99,6 +104,11 @@
       "browser_normalized_sha256": "b4c7999a41585f5959600fca9bed265e6b3dfec13f31a52d872795db8689dfa6",
       "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
+    },
+    "trimui-brick/chassis_usb_c_interrupter_bracket": {
+      "browser_normalized_sha256": "29c6799f5934437acc39a83f45e771bd9a64e0834c5ccb514100c25d865a45ea",
+      "output": "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+      "source_normalized_sha256": "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a"
     },
     "trimui-brick/device_carrier": {
       "browser_normalized_sha256": "e06c312b2c29f57f07d4f0411ce485dd2280435da79d68f5d31b2c5c24656280",
@@ -170,6 +180,11 @@
       "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
+    "trimui-smart-pro-s/chassis_usb_c_interrupter_bracket": {
+      "browser_normalized_sha256": "29c6799f5934437acc39a83f45e771bd9a64e0834c5ccb514100c25d865a45ea",
+      "output": "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+      "source_normalized_sha256": "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a"
+    },
     "trimui-smart-pro-s/device_carrier": {
       "browser_normalized_sha256": "fe5e1cda6ad1f6a54c046d18fc524c6305d7313b0a371c2a3ce06d0da6933a7d",
       "output": "device/carrier.stl",
@@ -240,6 +255,11 @@
       "output": "chassis/side-clear-crossbar-joint-plate-set.stl",
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
+    "trimui-smart-pro/chassis_usb_c_interrupter_bracket": {
+      "browser_normalized_sha256": "29c6799f5934437acc39a83f45e771bd9a64e0834c5ccb514100c25d865a45ea",
+      "output": "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+      "source_normalized_sha256": "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a"
+    },
     "trimui-smart-pro/device_carrier": {
       "browser_normalized_sha256": "38f8d84fc8eb819a1a802fade1b39d35edbeb3870fc2a1b3287fcc2621d4f811",
       "output": "device/carrier.stl",
@@ -304,7 +324,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "dc3aaada2ea1b6d0bb21b49b2020f6eeeaf69f68",
+    "commit": "92eee7fe8f8d0da76414e6770d5a0dea43c64c0a",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

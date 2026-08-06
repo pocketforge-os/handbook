@@ -3,9 +3,9 @@ hide:
   - toc
 ---
 
-# 14. Add the node placard
+# 15. Add the node placard
 
-<p class="pf-step-count">Assembly · Step 14 of 17</p>
+<p class="pf-step-count">Assembly · Step 15 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -15,7 +15,7 @@ device-name cartridge in from the right.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-14-placard.png" alt="Device-name cartridge highlighted beside a placard holder suspended below the operator-side upper width rail by two risers and keyed spacers">
+    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-15-placard.png" alt="Device-name cartridge highlighted beside a placard holder suspended below the operator-side upper width rail by two risers and keyed spacers">
     <figcaption>The fixed holder hangs below <code>WIDTH-O-U</code>. The readable cartridge remains removable from the right.</figcaption>
   </figure>
 </div>
@@ -68,7 +68,7 @@ slide out to the right without disturbing the fixture board.
 </div>
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
-  <a href="../13-mount-fixture-board/">← Fixture board</a>
-  <span>Step 14 of 17</span>
-  <a href="../15-mount-power-strip/">Next: Power strip →</a>
+  <a href="../14-install-usb-c-interrupter/">← USB-C interrupter</a>
+  <span>Step 15 of 18</span>
+  <a href="../16-mount-power-strip/">Next: Power strip →</a>
 </nav>

@@ -3,9 +3,9 @@ hide:
   - toc
 ---
 
-# 17. Align and compare the finished chassis
+# 18. Align and compare the finished chassis
 
-<p class="pf-step-count">Assembly · Step 17 of 17</p>
+<p class="pf-step-count">Assembly · Step 18 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -16,7 +16,7 @@ formal verification.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-17-final.png" alt="Complete Smart Pro S dual-bar test-node chassis with populated fixture board, DUT holder, placard, lower-right power strip, and eight upper stacking tabs">
+    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-18-final.png" alt="Complete Smart Pro S dual-bar test-node chassis with populated fixture board, DUT holder, dual USB-C interrupter holder, placard, lower-right power strip, and eight upper stacking tabs">
     <figcaption>Operator-side reference: fixture board and placard face you, the DUT holder is across the frame, and the unplugged strip runs along the inside right depth rail.</figcaption>
   </figure>
 </div>
@@ -33,7 +33,7 @@ formal verification.
 <div class="pf-picture-key" role="group" aria-label="Finished-chassis picture annotations">
   <p class="pf-picture-key__title">Read the picture</p>
   <ul>
-    <li><span class="pf-cue pf-cue--orange">Orange hardware</span><span>Compare the holder, four carrier links, four fixture links, four crossbar-joint plates, placard supports, power blocks, and eight tabs.</span></li>
+    <li><span class="pf-cue pf-cue--orange">Orange hardware</span><span>Compare the DUT holder, dual USB-C interrupter holder, four carrier links, four fixture links, four crossbar-joint plates, placard supports, power blocks, and eight tabs.</span></li>
     <li><span class="pf-cue pf-cue--charcoal">Installed assemblies</span><span>The populated board, camera, DUT holder, placard, and power strip match the reference orientation.</span></li>
     <li><span class="pf-cue pf-cue--silver">Silver frame</span><span>Four posts, eight outer rails, and two fixture bars are flush, square, and continuous.</span></li>
   </ul>
@@ -69,6 +69,9 @@ formal verification.
       link ends 1 mm inside its chassis stack plane.
 - [ ] Fixture: all 4 identical 71.5 mm links are seated and all 4 board slots
       are clamped without a component or cable collision.
+- [ ] Interrupters: one dual-board holder is exactly 5.0 mm to the right of
+      the left fixture-board link; both ports face the operator and remain
+      accessible without collision.
 - [ ] Accessories: the placard is readable and removable; the unplugged strip
       runs front-to-back inside `DEPTH-R-L`; 8 stacking tabs project 32 mm.
 - [ ] Power: the DUT, fixture board, programmable supply, power strip, USB
@@ -87,7 +90,7 @@ build gates.
 </div>
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
-  <a href="../16-add-stacking-tabs/">← Stacking tabs</a>
-  <span>Step 17 of 17</span>
+  <a href="../17-add-stacking-tabs/">← Stacking tabs</a>
+  <span>Step 18 of 18</span>
   <a href="../../verify/">Verify the build →</a>
 </nav>

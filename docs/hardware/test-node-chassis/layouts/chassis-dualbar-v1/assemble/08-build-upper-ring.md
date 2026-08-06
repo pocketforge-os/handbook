@@ -5,7 +5,7 @@ hide:
 
 # 8. Build the upper ring flat
 
-<p class="pf-step-count">Assembly · Step 8 of 17</p>
+<p class="pf-step-count">Assembly · Step 8 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -66,6 +66,6 @@ four post sockets face down and remain unobstructed.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../07-add-posts/">← Add posts</a>
-  <span>Step 8 of 17</span>
+  <span>Step 8 of 18</span>
   <a href="../09-install-upper-fixture-bar/">Next: Upper fixture bar →</a>
 </nav>

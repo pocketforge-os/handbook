@@ -1,6 +1,6 @@
 # Generate and print the chassis pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro S / TG5050 <span>·</span> <code>chassis-dualbar-v2</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro-s" data-layout-id="chassis-dualbar-v3"><strong>Compatible DUT:</strong> TrimUI Smart Pro S / TG5050 <span>·</span> <code>chassis-dualbar-v3</code></p>
 
 This build sheet locks the generator to **TrimUI Smart Pro S / TG5050**. For an
 existing chassis, choose **Retrofit** and generate only
@@ -160,12 +160,12 @@ python3 mechanical/device-packs/build_device_pack.py verify \
   --pack mechanical/device-packs/build/trimui-smart-pro-s/retrofit
 ```
 
-The device slug selects the candidate `chassis-dualbar-v2` layout.
+The device slug selects the candidate `chassis-dualbar-v3` layout.
 Before slicing, inspect `manifest.json` and confirm:
 
 - `production_eligible` is `false`;
 - `nonproduction_reasons` contains `layout_unqualified`;
-- the selected layout is `chassis-dualbar-v2`; and
+- the selected layout is `chassis-dualbar-v3`; and
 - `layout.qualification.acceptance_ref` is `tsp-bcx.21.38`.
 
 Stop if any value differs.
@@ -205,6 +205,7 @@ The exported placement is part of the geometry contract.
 | `chassis/core-01-ironed-interfaces.stl` | 28 compact M3 channel bars | Iron topmost channel-contact surfaces |
 | `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links | Keep every exported broad face on the bed and every key upward |
 | `chassis/side-clear-crossbar-joint-plate-set.stl` | Four identical 38.4 mm side-clear joint plates | Print once per chassis; broad face down, with supports disabled |
+| `chassis/dual-usb-c-interrupter-rail-bracket.stl` | One dual-board interrupter holder | ABS chassis process; broad rail-contact face down; 100% infill; supports and auto-orient off; supply four M1.7 × 6 mm self-tappers and two M3 screws/drop-in T-nuts |
 | `chassis/core-04-frame-hardware.stl` | Stacking, placard, and power-strip hardware | Inspect every slot and through-hole |
 | `chassis/core-05-placard-holder.stl` | One reusable placard holder | Check the slide channel before installing it |
 
@@ -367,6 +368,8 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
 - [ ] Core 02 contains four identical keyed fixture links.
 - [ ] The dedicated side-clear bed contains four identical 38.4 mm joint
       plates.
+- [ ] Exactly one dual USB-C interrupter holder is present and its four
+      M1.7 × 6 mm plus two M3/drop-in-T-nut fastener sets are ready.
 - [ ] All 28 captive nuts sit flat and cannot rotate.
 - [ ] The preload count balances to 22 active and 6 blue-tagged parked bars.
 - [ ] The holder, J-hooks, carrier links, and nameplate all come from the same

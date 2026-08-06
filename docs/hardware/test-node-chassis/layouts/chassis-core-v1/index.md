@@ -10,7 +10,7 @@ the shared Smart Pro family DUT holder.
 !!! info "Choose the device first"
     Enter this lane only from the
     [TrimUI Smart Pro build sheet](../../devices/trimui-smart-pro/index.md). The Smart
-    Pro S print pack selects a different layout and must use its 17-step
+    Pro S print pack selects a different layout and must use its 18-step
     dual-bar chapter.
 
 !!! danger "Keep fabrication de-energized"

@@ -1,13 +1,13 @@
 # Generate the TrimUI Brick prototype pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-brick" data-layout-id="chassis-dualbar-brick-v2"><strong>Compatible DUT:</strong> TrimUI Brick / TG3040 <span>·</span> <code>chassis-dualbar-brick-v2</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-brick" data-layout-id="chassis-dualbar-brick-v3"><strong>Compatible DUT:</strong> TrimUI Brick / TG3040 <span>·</span> <code>chassis-dualbar-brick-v3</code></p>
 
 This build sheet locks the browser generator to **TrimUI Brick / TG3040**.
 OpenSCAD runs locally in the browser from the exact source revision pinned by
 the handbook. No model or generated STL is uploaded.
 
 Choose the fit coupon first when validating the holder alone. Choose the full
-mode when you are ready to print the complete 14-artifact chassis pack. Every
+mode when you are ready to print the complete 15-artifact chassis pack. Every
 download includes a manifest and `SHA256SUMS`.
 
 !!! warning "Prototype pack · not production-qualified"
@@ -96,7 +96,7 @@ python3 mechanical/device-packs/build_device_pack.py verify \
 ```
 
 Stop if `manifest.json` does not identify `trimui-brick`,
-`chassis-dualbar-brick-v2`, physical gates `tsp-bcx.21.23` and
+`chassis-dualbar-brick-v3`, physical gates `tsp-bcx.21.23` and
 `tsp-bcx.21.38`, and exactly the expected non-production reasons.
 
 ## What to print and inspect
@@ -112,6 +112,7 @@ Stop if `manifest.json` does not identify `trimui-brick`,
 | `device/device-nameplate.stl` | ABS | Confirm the complete “TrimUI Brick / TG3040” label is legible |
 | `device/wire-anchor-set.stl` | ABS | Eight starter rail anchors; repeat or omit only after routing is known |
 | `chassis/side-clear-crossbar-joint-plate-set.stl` | ABS | Four 38.4 mm plates; print once per chassis and confirm each ends inside the outward extrusion planes |
+| `chassis/dual-usb-c-interrupter-rail-bracket.stl` | ABS | One holder; broad rail-contact face down, 100% infill, supports off, auto-orient off; supply four M1.7 × 6 mm self-tappers and two M3 screws/drop-in T-nuts |
 | Other `chassis/*.stl` | ABS | Qualified dual-bar common beds reused without geometry changes |
 
 Use 100% scale, supports disabled, and automatic orientation disabled. Follow

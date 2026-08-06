@@ -313,10 +313,10 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
     expected_counts_by_slug = {
-        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 14},
-        "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 14},
-        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 14},
-        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 14},
+        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 15},
+        "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 15},
+        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 15},
+        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 15},
     }
     for device in devices:
         slug = device.get("slug")
@@ -435,6 +435,35 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
                 raise SystemExit(
                     f"browser fixture artifact leaked into {slug}/{mode_name}"
                 )
+        interrupter_artifacts = {
+            artifact["id"]: artifact
+            for artifact in modes["full"]["artifacts"]
+            if artifact["id"] == "chassis_usb_c_interrupter_bracket"
+        }
+        if set(interrupter_artifacts) != {
+            "chassis_usb_c_interrupter_bracket"
+        }:
+            raise SystemExit(f"browser interrupter holder changed: {slug}")
+        interrupter = interrupter_artifacts[
+            "chassis_usb_c_interrupter_bracket"
+        ]
+        if (
+            interrupter["output"]
+            != "chassis/dual-usb-c-interrupter-rail-bracket.stl"
+            or interrupter.get("expected_normalized_sha256")
+            != "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a"
+        ):
+            raise SystemExit(
+                f"browser interrupter holder contract changed: {slug}"
+            )
+        for mode_name in ("coupon", "retrofit"):
+            if any(
+                artifact["id"] == "chassis_usb_c_interrupter_bracket"
+                for artifact in modes[mode_name]["artifacts"]
+            ):
+                raise SystemExit(
+                    f"browser interrupter holder leaked into {slug}/{mode_name}"
+                )
     if slugs != set(expected_counts_by_slug):
         raise SystemExit(f"browser catalog device set changed: {sorted(slugs)!r}")
 
@@ -522,7 +551,7 @@ def verify_browser_pack_baselines(site: Path, catalog: dict) -> dict:
         for artifact in device["modes"]["full"]["artifacts"]:
             expected_artifacts[f"{device['slug']}/{artifact['id']}"] = artifact
     records = baseline.get("artifacts", {})
-    if set(records) != set(expected_artifacts):
+    if len(records) != 60 or set(records) != set(expected_artifacts):
         raise SystemExit("browser baseline coverage differs from the catalog")
     for key, artifact in expected_artifacts.items():
         record = records[key]
@@ -569,10 +598,23 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "assembly/assembly-11-square-frame.png",
         "assembly/assembly-12-dut-holder.png",
         "assembly/assembly-13-fixture-board.png",
-        "assembly/assembly-14-placard.png",
-        "assembly/assembly-15-power-strip.png",
-        "assembly/assembly-16-stacking-tabs.png",
-        "assembly/assembly-17-final.png",
+        "assembly/assembly-14-usb-c-interrupter.png",
+        "assembly/assembly-15-placard.png",
+        "assembly/assembly-16-power-strip.png",
+        "assembly/assembly-17-stacking-tabs.png",
+        "assembly/assembly-18-final.png",
+        "device-examples/powkiddy_x55/layout-assembly.png",
+        "device-examples/powkiddy_x55/layout-front.png",
+        "device-examples/powkiddy_x55/layout-device-side.png",
+        "device-examples/trimui_brick/layout-assembly.png",
+        "device-examples/trimui_brick/layout-front.png",
+        "device-examples/trimui_brick/layout-device-side.png",
+        "device-examples/smart_pro/layout-assembly.png",
+        "device-examples/smart_pro/layout-front.png",
+        "device-examples/smart_pro/layout-device-side.png",
+        "device-examples/smart_pro_s/layout-assembly.png",
+        "device-examples/smart_pro_s/layout-front.png",
+        "device-examples/smart_pro_s/layout-device-side.png",
         "legacy/prep-captive-nut.png",
         "legacy/prep-captive-nut-count.png",
         "legacy/preload-channel-bar.png",
@@ -625,6 +667,7 @@ def verify_chassis_assets(asset_dir: Path) -> tuple[dict, dict]:
         "print-batches/cable-anchor-m3.glb",
         "customizer/pocketforge-node-chassis.scad",
         "customizer/lib/pf-2020.scad",
+        "customizer/lib/usb-c-interrupter-bracket.scad",
         "customizer/customizer-provenance.json",
     }
     actual_files = {
@@ -796,7 +839,7 @@ def main() -> int:
     ]
     compatibility_step_pages = [
         guide_root / "assemble" / step / "index.html"
-        for step in guide_profiles["layouts"]["chassis-dualbar-v2"][
+        for step in guide_profiles["layouts"]["chassis-dualbar-v3"][
             "assembly_steps"
         ]
     ]
@@ -814,7 +857,7 @@ def main() -> int:
     assembly_root = dualbar_root / "assemble"
     assembly_page = assembly_root / "index.html"
     assembly_step_names = tuple(
-        guide_profiles["layouts"]["chassis-dualbar-v2"]["assembly_steps"]
+        guide_profiles["layouts"]["chassis-dualbar-v3"]["assembly_steps"]
     )
     assembly_image_names = (
         "assembly-01-channel-bar.png",
@@ -830,10 +873,11 @@ def main() -> int:
         "assembly-11-square-frame.png",
         "assembly-12-dut-holder.png",
         "assembly-13-fixture-board.png",
-        "assembly-14-placard.png",
-        "assembly-15-power-strip.png",
-        "assembly-16-stacking-tabs.png",
-        "assembly-17-final.png",
+        "assembly-14-usb-c-interrupter.png",
+        "assembly-15-placard.png",
+        "assembly-16-power-strip.png",
+        "assembly-17-stacking-tabs.png",
+        "assembly-18-final.png",
     )
     assembly_steps = [
         assembly_root / step_name / "index.html"
@@ -1549,9 +1593,9 @@ def main() -> int:
 
     assembly_html = assembly_page.read_text(encoding="utf-8")
     for required_fragment in (
-        "17 bench steps",
+        "18 bench steps",
         'class="pf-step-list"',
-        "Assembly · 17 steps",
+        "Assembly · 18 steps",
         "22 active + 6 parked = 28",
     ):
         if required_fragment not in assembly_html:
@@ -1596,15 +1640,26 @@ def main() -> int:
         11: ("no more than 2 mm", "does not rock"),
         12: ("X = 173 mm", "91.5 mm upper", "108.5 mm lower"),
         13: ("4 × identical 71.5 mm keyed fixture links", "four board slots"),
-        14: ("WIDTH-O-U", "slide out to the right"),
-        15: ("DEPTH-R-L", "front-to-back", "Never drill"),
-        16: (
+        14: (
+            "dual USB-C interrupter holder",
+            "5.0 mm edge-to-edge gap",
+            "4 × M1.7 × 6 mm self-tapping screws",
+            "2 × M3 screws and drop-in T-nuts",
+            "ports facing the operator",
+        ),
+        15: ("WIDTH-O-U", "slide out to the right"),
+        16: ("DEPTH-R-L", "front-to-back", "Never drill"),
+        17: (
             "8 × 18 × 92 × 4 mm stacking tabs",
             "32 mm above",
             "17 mm above",
             "metal corner intrusion",
         ),
-        17: ("22 active and 6 parked", "remains de-energized"),
+        18: (
+            "22 active and 6 parked",
+            "dual USB-C interrupter holder",
+            "remains de-energized",
+        ),
     }
     step_count = len(assembly_steps)
     for index, (step_page, expected_image) in enumerate(
@@ -1716,6 +1771,9 @@ def main() -> int:
         "canonical unpopulated electronics mounting tray",
         "bpi, usb hubs, relay/interrupter, dp100, camera, wiring",
         "side-clear-crossbar-joint-plate-set.stl",
+        "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+        "four m1.7 × 6 mm",
+        "two m3 screws/drop-in t-nuts",
         "interactive print-bed previews",
         "data-cable-anchor-customizer",
         "cable-anchor-worker.mjs",
