@@ -1,6 +1,6 @@
 # Generate the side-clear Smart Pro / TG5040 pack
 
-<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-dualbar-smart-pro-v1"><strong>Compatible DUT:</strong> TrimUI Smart Pro / TG5040 <span>·</span> <code>chassis-dualbar-smart-pro-v1</code></p>
+<p class="pf-profile-banner" data-guide-device="trimui-smart-pro" data-layout-id="chassis-dualbar-smart-pro-v2"><strong>Compatible DUT:</strong> TrimUI Smart Pro / TG5040 <span>·</span> <code>chassis-dualbar-smart-pro-v2</code></p>
 
 This build sheet locks the generator to **TrimUI Smart Pro / TG5040**. For an
 existing continuous-bar chassis, choose **Retrofit** and generate only
@@ -50,7 +50,7 @@ stores no pre-rendered production STL.
 <noscript>Browser generation requires JavaScript. Use the command-line path below.</noscript>
 
 The qualification panel must identify `trimui-smart-pro-family` with
-`chassis-dualbar-smart-pro-v1` and say **Prototype pack · not
+`chassis-dualbar-smart-pro-v2` and say **Prototype pack · not
 production-qualified**. It must list `layout_unqualified`; this remains
 expected until the complete continuous-bar assembly passes `tsp-bcx.21.40`.
 
@@ -68,7 +68,7 @@ python3 mechanical/device-packs/build_device_pack.py verify \
 
 Inspect `manifest.json` and confirm `production_eligible=false`, reason
 `layout_unqualified`, device `trimui-smart-pro`, layout
-`chassis-dualbar-smart-pro-v1`, and acceptance reference `tsp-bcx.21.40`
+`chassis-dualbar-smart-pro-v2`, and acceptance reference `tsp-bcx.21.40`
 before slicing.
 
 ## Slicer contract
@@ -91,7 +91,7 @@ fit.
 
 ## Identify the chassis artifacts
 
-The verified 14-artifact full pack includes these continuous-bar chassis groups in addition
+The verified 15-artifact full pack includes these continuous-bar chassis groups in addition
 to the selected Smart Pro holder, hooks, carrier links, nameplate, and wire
 anchors:
 
@@ -100,6 +100,9 @@ anchors:
 - Core 04: the frozen v1 frame-hardware bed;
 - Core 05: the reusable placard holder; and
 - Side-clear joints: four dedicated 38.4 mm crossbar-joint plates; and
+- USB-C interrupter: one dual-board rail holder, printed broad rail-contact
+  face down in ABS at 100% infill with supports and auto-orient off; supply
+  four M1.7 × 6 mm self-tappers plus two M3 screws/drop-in T-nuts; and
 - the conditional process-calibration bed.
 
 It also contains the common PETG fixture outputs:
@@ -145,7 +148,7 @@ use the same source-owned browser customizer:
 
 ## Print gate
 
-- [ ] Device and layout are `trimui-smart-pro` / `chassis-dualbar-smart-pro-v1`.
+- [ ] Device and layout are `trimui-smart-pro` / `chassis-dualbar-smart-pro-v2`.
 - [ ] Manifest verification passes with `production_eligible=false` and
       `layout_unqualified` while `tsp-bcx.21.40` remains open.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
@@ -154,6 +157,8 @@ use the same source-owned browser customizer:
 - [ ] Count 28 short channel bars and 28 seated nuts; there are no long splice bars.
 - [ ] Both continuous fixture bars, all fixture links, the holder pack,
       placard, and wire anchors come from this same verified pack.
+- [ ] Exactly one dual USB-C interrupter holder is present and its four
+      M1.7 × 6 mm plus two M3/drop-in-T-nut fastener sets are ready.
 - [ ] Both 91.5 mm upper links and both 108.5 mm lower links end 1 mm inside
       their corresponding chassis stack planes.
 - [ ] All four side-clear plates end 0.8 mm inside the two outward extrusion

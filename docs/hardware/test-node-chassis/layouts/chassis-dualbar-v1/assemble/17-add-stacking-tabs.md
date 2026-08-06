@@ -3,9 +3,9 @@ hide:
   - toc
 ---
 
-# 16. Add the stacking tabs
+# 17. Add the stacking tabs
 
-<p class="pf-step-count">Assembly · Step 16 of 17</p>
+<p class="pf-step-count">Assembly · Step 17 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -16,7 +16,7 @@ second chassis is actually seated above it.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-16-stacking-tabs.png" alt="Eight orange stacking-registration tabs installed as perpendicular pairs on the four upper chassis corners, with the upper round holes above the metal corner intrusion">
+    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-17-stacking-tabs.png" alt="Eight orange stacking-registration tabs installed as perpendicular pairs on the four upper chassis corners, with the upper round holes above the metal corner intrusion">
     <figcaption>Two tabs per corner × four corners = eight. Each tab uses two lower fasteners, extends 32 mm above the top aluminum surface, and places its upper-hole center 17 mm above that surface.</figcaption>
   </figure>
 </div>
@@ -84,7 +84,7 @@ second chassis is locked aluminum-to-aluminum.
 </div>
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
-  <a href="../15-mount-power-strip/">← Power strip</a>
-  <span>Step 16 of 17</span>
-  <a href="../17-final-check/">Next: Final check →</a>
+  <a href="../16-mount-power-strip/">← Power strip</a>
+  <span>Step 17 of 18</span>
+  <a href="../18-final-check/">Next: Final check →</a>
 </nav>

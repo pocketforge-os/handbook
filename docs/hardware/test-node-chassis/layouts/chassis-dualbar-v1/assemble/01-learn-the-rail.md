@@ -5,7 +5,7 @@ hide:
 
 # 1. Learn the rail and channel bar
 
-<p class="pf-step-count">Assembly · Step 1 of 17</p>
+<p class="pf-step-count">Assembly · Step 1 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -71,6 +71,6 @@ the aluminum and repeat if it catches.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../">← Assembly start</a>
-  <span>Step 1 of 17</span>
+  <span>Step 1 of 18</span>
   <a href="../02-load-width-rails/">Next: Width rails →</a>
 </nav>

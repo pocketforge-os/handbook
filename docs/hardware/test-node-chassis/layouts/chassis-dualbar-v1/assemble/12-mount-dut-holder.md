@@ -5,7 +5,7 @@ hide:
 
 # 12. Mount the Smart Pro S holder
 
-<p class="pf-step-count">Assembly · Step 12 of 17</p>
+<p class="pf-step-count">Assembly · Step 12 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -81,6 +81,6 @@ unpowered DUT fits without blocked controls or forced contact.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../11-square-frame/">← Square frame</a>
-  <span>Step 12 of 17</span>
+  <span>Step 12 of 18</span>
   <a href="../13-mount-fixture-board/">Next: Fixture board →</a>
 </nav>

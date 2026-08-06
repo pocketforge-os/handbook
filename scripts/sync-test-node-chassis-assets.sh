@@ -129,6 +129,7 @@ make_command=(
   guide-model
   guide-static
   dualbar-preview
+  device-example-previews
   dualbar-cutlist
   guide-batch-models
   build/handbook/hero.png
@@ -174,6 +175,7 @@ mkdir -p \
   "${asset_dir}/assembly" \
   "${asset_dir}/browser" \
   "${asset_dir}/customizer/lib" \
+  "${asset_dir}/device-examples" \
   "${asset_dir}/dualbar" \
   "${asset_dir}/legacy" \
   "${asset_dir}/print-batches"
@@ -189,6 +191,9 @@ install -m 0644 \
   "${project_dir}/build/dualbar/layout-suspension-detail.png" \
   "${project_dir}/build/dualbar/cut-list.csv" \
   "${asset_dir}/dualbar/"
+cp -a \
+  "${project_dir}/build/device-examples/." \
+  "${asset_dir}/device-examples/"
 install -m 0644 \
   "${project_dir}"/build/handbook/assembly-*.png \
   "${asset_dir}/assembly/"
@@ -225,12 +230,16 @@ install -m 0644 \
 install -m 0644 \
   "${project_dir}/lib/pf-2020.scad" \
   "${asset_dir}/customizer/lib/pf-2020.scad"
+install -m 0644 \
+  "${project_dir}/lib/usb-c-interrupter-bracket.scad" \
+  "${asset_dir}/customizer/lib/usb-c-interrupter-bracket.scad"
 cp -a "${browser_bundle}/." "${asset_dir}/browser/"
 
 python3 - \
   "${asset_dir}/customizer/customizer-provenance.json" \
   "${asset_dir}/customizer/pocketforge-node-chassis.scad" \
   "${asset_dir}/customizer/lib/pf-2020.scad" \
+  "${asset_dir}/customizer/lib/usb-c-interrupter-bracket.scad" \
   "${actual_revision}" \
   "${ALLOW_DIRTY_CAD:-0}" <<'PY'
 import hashlib
@@ -241,10 +250,11 @@ import sys
 output = pathlib.Path(sys.argv[1])
 source = pathlib.Path(sys.argv[2])
 library = pathlib.Path(sys.argv[3])
+usb_c_interrupter_library = pathlib.Path(sys.argv[4])
 data = {
     "schema": 1,
-    "source_revision": sys.argv[4],
-    "source_dirty": sys.argv[5] == "1",
+    "source_revision": sys.argv[5],
+    "source_dirty": sys.argv[6] == "1",
     "entrypoint": source.name,
     "library": f"lib/{library.name}",
     "part": "production_batch_06_device_nameplate",
@@ -257,6 +267,9 @@ data = {
     "files": {
         source.name: hashlib.sha256(source.read_bytes()).hexdigest(),
         f"lib/{library.name}": hashlib.sha256(library.read_bytes()).hexdigest(),
+        f"lib/{usb_c_interrupter_library.name}": hashlib.sha256(
+            usb_c_interrupter_library.read_bytes()
+        ).hexdigest(),
     },
 }
 output.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
@@ -283,10 +296,23 @@ required_assets=(
   assembly/assembly-11-square-frame.png
   assembly/assembly-12-dut-holder.png
   assembly/assembly-13-fixture-board.png
-  assembly/assembly-14-placard.png
-  assembly/assembly-15-power-strip.png
-  assembly/assembly-16-stacking-tabs.png
-  assembly/assembly-17-final.png
+  assembly/assembly-14-usb-c-interrupter.png
+  assembly/assembly-15-placard.png
+  assembly/assembly-16-power-strip.png
+  assembly/assembly-17-stacking-tabs.png
+  assembly/assembly-18-final.png
+  device-examples/smart_pro/layout-assembly.png
+  device-examples/smart_pro/layout-front.png
+  device-examples/smart_pro/layout-device-side.png
+  device-examples/smart_pro_s/layout-assembly.png
+  device-examples/smart_pro_s/layout-front.png
+  device-examples/smart_pro_s/layout-device-side.png
+  device-examples/trimui_brick/layout-assembly.png
+  device-examples/trimui_brick/layout-front.png
+  device-examples/trimui_brick/layout-device-side.png
+  device-examples/powkiddy_x55/layout-assembly.png
+  device-examples/powkiddy_x55/layout-front.png
+  device-examples/powkiddy_x55/layout-device-side.png
   legacy/prep-captive-nut.png
   legacy/prep-captive-nut-count.png
   legacy/preload-channel-bar.png
@@ -341,6 +367,7 @@ required_assets=(
   browser/SHA256SUMS
   customizer/pocketforge-node-chassis.scad
   customizer/lib/pf-2020.scad
+  customizer/lib/usb-c-interrupter-bracket.scad
   customizer/customizer-provenance.json
 )
 for required_asset in "${required_assets[@]}"; do
@@ -384,7 +411,8 @@ for retired_asset in \
   layout-assembly.png \
   layout-front.png \
   step-08-complete.png; do
-  if find "${asset_dir}" -type f -name "${retired_asset}" | grep -q .; then
+  if find "${asset_dir}" -type f -name "${retired_asset}" \
+      ! -path "${asset_dir}/device-examples/*" | grep -q .; then
     echo "standalone full-chassis still leaked into publication: ${retired_asset}" >&2
     exit 1
   fi

@@ -5,7 +5,7 @@ hide:
 
 # 5. Lay out the lower frame
 
-<p class="pf-step-count">Assembly · Step 5 of 17</p>
+<p class="pf-step-count">Assembly · Step 5 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -70,6 +70,6 @@ ends are flush, and all four post sockets remain open upward.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../04-load-fixture-bars/">← Fixture bars</a>
-  <span>Step 5 of 17</span>
+  <span>Step 5 of 18</span>
   <a href="../06-install-lower-fixture-bar/">Next: Lower fixture bar →</a>
 </nav>

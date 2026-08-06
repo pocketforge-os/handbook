@@ -5,7 +5,7 @@ hide:
 
 # 10. Close the outer frame
 
-<p class="pf-step-count">Assembly · Step 10 of 17</p>
+<p class="pf-step-count">Assembly · Step 10 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -68,6 +68,6 @@ handle, and the complete frame remains loose enough to square.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../09-install-upper-fixture-bar/">← Upper fixture bar</a>
-  <span>Step 10 of 17</span>
+  <span>Step 10 of 18</span>
   <a href="../11-square-frame/">Next: Square frame →</a>
 </nav>

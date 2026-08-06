@@ -5,7 +5,7 @@ hide:
 
 # 13. Mount the populated fixture board
 
-<p class="pf-step-count">Assembly · Step 13 of 17</p>
+<p class="pf-step-count">Assembly · Step 13 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -74,6 +74,6 @@ hardware collides with a component or cable.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../12-mount-dut-holder/">← DUT holder</a>
-  <span>Step 13 of 17</span>
-  <a href="../14-add-placard/">Next: Placard →</a>
+  <span>Step 13 of 18</span>
+  <a href="../14-install-usb-c-interrupter/">Next: USB-C interrupter →</a>
 </nav>

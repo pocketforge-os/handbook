@@ -11,7 +11,7 @@ the bench.
 
 [Choose the exact DUT](../index.md) and open the assembly chapter from its
 build sheet. Smart Pro uses the qualified 19-step gantry lane; Smart Pro S
-uses the qualified 17-step dual-bar lane.
+uses the qualified 18-step dual-bar lane.
 
 !!! danger "Do not resume by step number alone"
     Step numbers and parts differ between layouts. Re-enter through the device

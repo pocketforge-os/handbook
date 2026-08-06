@@ -176,7 +176,7 @@ async function verifyPack(downloadPath, device) {
     manifest.artifacts.map((artifact) => artifact.path),
     device.modes.full.artifacts.map((artifact) => artifact.output),
   );
-  assert.equal(manifest.artifacts.length, 14);
+  assert.equal(manifest.artifacts.length, 15);
   assert.deepEqual(
     manifest.artifacts
       .filter((artifact) => artifact.id.startsWith("fixture_dut_"))
@@ -185,6 +185,18 @@ async function verifyPack(downloadPath, device) {
       "fixture/dut-fixture-fit-coupon.stl",
       "fixture/dut-fixture-plate.stl",
     ],
+  );
+  assert.deepEqual(
+    manifest.artifacts
+      .filter((artifact) => artifact.id === "chassis_usb_c_interrupter_bracket")
+      .map((artifact) => ({
+        path: artifact.path,
+        sourceFingerprint: artifact.source_normalized_sha256,
+      })),
+    [{
+      path: "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+      sourceFingerprint: "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a",
+    }],
   );
 
   const checksumRecords = new Map(
@@ -578,7 +590,7 @@ try {
     );
     await modeSelect.selectOption("full");
     const expectedCount = device.modes.full.artifacts.length;
-    assert.equal(expectedCount, 14);
+    assert.equal(expectedCount, 15);
     assert.equal(
       await inventory.locator("[data-artifact-id]").count(),
       expectedCount,

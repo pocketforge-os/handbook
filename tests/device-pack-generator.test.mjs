@@ -85,7 +85,7 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
   for (const device of catalog.devices) {
     assert.equal(device.modes.coupon.artifacts.length, 1);
     assert.equal(device.modes.retrofit.artifacts.length, 7);
-    assert.equal(device.modes.full.artifacts.length, 14);
+    assert.equal(device.modes.full.artifacts.length, 15);
     const fullIds = new Set(
       device.modes.full.artifacts.map((artifact) => artifact.id),
     );
@@ -120,10 +120,27 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
         },
       ],
     );
+    assert.deepEqual(
+      device.modes.full.artifacts
+        .filter((artifact) => artifact.id === "chassis_usb_c_interrupter_bracket")
+        .map((artifact) => ({
+          output: artifact.output,
+          fingerprint: artifact.expected_normalized_sha256,
+        })),
+      [{
+        output: "chassis/dual-usb-c-interrupter-rail-bracket.stl",
+        fingerprint: "7c98e46e5ae0435803df79b7d8a0902632c83192047d51635823237d3b584f8a",
+      }],
+    );
     for (const mode of ["coupon", "retrofit"]) {
       assert.equal(
         device.modes[mode].artifacts.some((artifact) =>
           artifact.id.startsWith("fixture_dut_")),
+        false,
+      );
+      assert.equal(
+        device.modes[mode].artifacts.some((artifact) =>
+          artifact.id === "chassis_usb_c_interrupter_bracket"),
         false,
       );
     }
@@ -184,7 +201,7 @@ test("Powkiddy X55 remains coupon-first and explicitly unqualified", () => {
   assert.equal(x55.layout.qualification.acceptance_ref, "tsp-bcx.21.40");
   assert.equal(x55.modes.coupon.artifacts.length, 1);
   assert.equal(x55.modes.retrofit.artifacts.length, 7);
-  assert.equal(x55.modes.full.artifacts.length, 14);
+  assert.equal(x55.modes.full.artifacts.length, 15);
   assert.deepEqual(x55.modes.coupon.nonproduction_reasons, [
     "coupon_only",
     "holder_unqualified",

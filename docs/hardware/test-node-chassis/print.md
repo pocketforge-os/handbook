@@ -9,16 +9,18 @@ sheet, and use the profile-specific print page linked there.
 
 ## Common fixture prints in every complete pack
 
-Every device-selected **Complete chassis** pack contains these two common
-PETG fixture outputs in addition to its holder and chassis beds:
+Every device-selected **Complete chassis** pack contains these three common
+outputs in addition to its device holder and other chassis beds:
 
-| Output | Purpose |
-| --- | --- |
-| `fixture/dut-fixture-fit-coupon.stl` | Print first to verify the printer-specific pilot holes, tie slots, frame slot, and camera opening |
-| `fixture/dut-fixture-plate.stl` | The canonical unpopulated electronics mounting tray |
+| Output | Material and process | Purpose / hardware |
+| --- | --- | --- |
+| `fixture/dut-fixture-fit-coupon.stl` | PETG; follow the manifest | Print first to verify the printer-specific pilot holes, tie slots, frame slot, and camera opening |
+| `fixture/dut-fixture-plate.stl` | PETG; follow the manifest | The canonical unpopulated electronics mounting tray |
+| `chassis/dual-usb-c-interrupter-rail-bracket.stl` | ABS chassis process; broad rail-contact face down; 100% infill; supports off; automatic orientation off | One holder for two interrupter boards; supply four M1.7 × 6 mm self-tappers plus two M3 screws and drop-in T-nuts |
 
 The plate STL contains mounting geometry only. The BPI, USB hubs,
 relay/interrupter, DP100, camera, wiring, cable ties, screws, and other
 fasteners are separately supplied hardware; they are not embedded in the
-print. Coupon and retrofit packs assume that an existing fixture stays in
-service, so they do not duplicate these two full-build outputs.
+print. Coupon and retrofit packs assume that an existing fixture and
+interrupter holder stay in service, so they do not duplicate these three
+full-build outputs.

@@ -29,7 +29,7 @@
       "display_name": "Powkiddy X55",
       "family": "powkiddy-x55",
       "integration_profile": "powkiddy-x55-v1",
-      "layout": "chassis-dualbar-powkiddy-x55-v1",
+      "layout": "chassis-dualbar-powkiddy-x55-v2",
       "build_sheet_route": "hardware/test-node-chassis/devices/powkiddy-x55/",
       "print_route": "hardware/test-node-chassis/devices/powkiddy-x55/print/"
     },
@@ -37,7 +37,7 @@
       "display_name": "TrimUI Brick / TG3040",
       "family": "trimui-brick",
       "integration_profile": "trimui-brick-v1",
-      "layout": "chassis-dualbar-brick-v2",
+      "layout": "chassis-dualbar-brick-v3",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-brick/",
       "print_route": "hardware/test-node-chassis/devices/trimui-brick/print/"
     },
@@ -45,7 +45,7 @@
       "display_name": "TrimUI Smart Pro / TG5040",
       "family": "trimui-smart-pro-family",
       "integration_profile": "trimui-smart-pro-family-v1",
-      "layout": "chassis-dualbar-smart-pro-v1",
+      "layout": "chassis-dualbar-smart-pro-v2",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro/",
       "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro/print/"
     },
@@ -53,7 +53,7 @@
       "display_name": "TrimUI Smart Pro S / TG5050",
       "family": "trimui-smart-pro-family",
       "integration_profile": "trimui-smart-pro-family-v1",
-      "layout": "chassis-dualbar-v2",
+      "layout": "chassis-dualbar-v3",
       "build_sheet_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/",
       "print_route": "hardware/test-node-chassis/devices/trimui-smart-pro-s/print/"
     }
@@ -86,7 +86,7 @@
     }
   },
   "layouts": {
-    "chassis-dualbar-brick-v2": {
+    "chassis-dualbar-brick-v3": {
       "display_name": "Side-clear Brick dual-bar prototype",
       "qualification_status": "candidate",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
@@ -114,13 +114,14 @@
         "11-square-frame",
         "12-mount-dut-holder",
         "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check"
+        "14-install-usb-c-interrupter",
+        "15-add-placard",
+        "16-mount-power-strip",
+        "17-add-stacking-tabs",
+        "18-final-check"
       ]
     },
-    "chassis-dualbar-v2": {
+    "chassis-dualbar-v3": {
       "display_name": "Side-clear dual-bar chassis",
       "qualification_status": "candidate",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
@@ -148,13 +149,14 @@
         "11-square-frame",
         "12-mount-dut-holder",
         "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check"
+        "14-install-usb-c-interrupter",
+        "15-add-placard",
+        "16-mount-power-strip",
+        "17-add-stacking-tabs",
+        "18-final-check"
       ]
     },
-    "chassis-dualbar-powkiddy-x55-v1": {
+    "chassis-dualbar-powkiddy-x55-v2": {
       "display_name": "Powkiddy X55 side-clear continuous-bar prototype",
       "qualification_status": "candidate",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
@@ -182,13 +184,14 @@
         "11-square-frame",
         "12-mount-dut-holder",
         "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check"
+        "14-install-usb-c-interrupter",
+        "15-add-placard",
+        "16-mount-power-strip",
+        "17-add-stacking-tabs",
+        "18-final-check"
       ]
     },
-    "chassis-dualbar-smart-pro-v1": {
+    "chassis-dualbar-smart-pro-v2": {
       "display_name": "Smart Pro side-clear continuous-bar prototype",
       "qualification_status": "candidate",
       "guide_route": "hardware/test-node-chassis/layouts/chassis-dualbar-v1/",
@@ -216,10 +219,11 @@
         "11-square-frame",
         "12-mount-dut-holder",
         "13-mount-fixture-board",
-        "14-add-placard",
-        "15-mount-power-strip",
-        "16-add-stacking-tabs",
-        "17-final-check"
+        "14-install-usb-c-interrupter",
+        "15-add-placard",
+        "16-mount-power-strip",
+        "17-add-stacking-tabs",
+        "18-final-check"
       ]
     }
   }

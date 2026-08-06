@@ -3,9 +3,9 @@ hide:
   - toc
 ---
 
-# 15. Mount the unplugged power strip
+# 16. Mount the unplugged power strip
 
-<p class="pf-step-count">Assembly · Step 15 of 17</p>
+<p class="pf-step-count">Assembly · Step 16 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -15,7 +15,7 @@ operator-right depth rail. Keep its mains plug visibly disconnected.
 <div class="pf-step-layout" markdown="1">
 <div class="pf-step-visual">
   <figure>
-    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-15-power-strip.png" alt="Unplugged power strip highlighted front-to-back inside the lower operator-right depth rail on two printed mounting blocks">
+    <img src="../../../../../../assets/generated/test-node-chassis/assembly/assembly-16-power-strip.png" alt="Unplugged power strip highlighted front-to-back inside the lower operator-right depth rail on two printed mounting blocks">
     <figcaption>The strip follows <code>DEPTH-R-L</code> inside the frame. Its supplied wall screws enter the printed blocks only.</figcaption>
   </figure>
 </div>
@@ -77,7 +77,7 @@ service controls remain clear.
 </div>
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
-  <a href="../14-add-placard/">← Placard</a>
-  <span>Step 15 of 17</span>
-  <a href="../16-add-stacking-tabs/">Next: Stacking tabs →</a>
+  <a href="../15-add-placard/">← Placard</a>
+  <span>Step 16 of 18</span>
+  <a href="../17-add-stacking-tabs/">Next: Stacking tabs →</a>
 </nav>

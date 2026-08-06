@@ -108,26 +108,26 @@ try {
     {
       slug: "powkiddy-x55",
       layout: "chassis-dualbar-v1",
-      steps: 17,
-      lastStep: "17-final-check",
+      steps: 18,
+      lastStep: "18-final-check",
     },
     {
       slug: "trimui-brick",
       layout: "chassis-dualbar-v1",
-      steps: 17,
-      lastStep: "17-final-check",
+      steps: 18,
+      lastStep: "18-final-check",
     },
     {
       slug: "trimui-smart-pro",
       layout: "chassis-dualbar-v1",
-      steps: 17,
-      lastStep: "17-final-check",
+      steps: 18,
+      lastStep: "18-final-check",
     },
     {
       slug: "trimui-smart-pro-s",
       layout: "chassis-dualbar-v1",
-      steps: 17,
-      lastStep: "17-final-check",
+      steps: 18,
+      lastStep: "18-final-check",
     },
   ]) {
     await device.selectOption(selection.slug);
@@ -164,7 +164,7 @@ try {
     { waitUntil: "networkidle" },
   );
   assert.equal(await device.inputValue(), "trimui-smart-pro-s");
-  assert.equal(await selector.locator("[data-guide-step]").count(), 17);
+  assert.equal(await selector.locator("[data-guide-step]").count(), 18);
   await selector.locator(".pf-guide-assembly").evaluate((details) => {
     details.open = true;
   });
@@ -218,7 +218,7 @@ try {
 
   await context.close();
   console.log(
-    "test_node_guide_selector_e2e=pass devices=4 steps=17,17,17,17 nav_entries=1 responsive=pass",
+    "test_node_guide_selector_e2e=pass devices=4 steps=18,18,18,18 nav_entries=1 responsive=pass",
   );
 } finally {
   await browser.close();

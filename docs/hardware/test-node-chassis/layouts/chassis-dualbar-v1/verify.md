@@ -15,7 +15,7 @@ permitted for the camera-framing gate.
       non-production until its physical gate is recorded.
 - [ ] It selects the intended device slug and that device's registered
       `chassis-dualbar-*` layout.
-- [ ] The full plan contains 14 artifacts and no spliced-upright or movable
+- [ ] The full plan contains 15 artifacts and no spliced-upright or movable
       fixture-frame artifact.
 - [ ] The full plan contains exactly one
       `fixture/dut-fixture-fit-coupon.stl` and one
@@ -24,6 +24,9 @@ permitted for the camera-framing gate.
 - [ ] Two continuous 306 mm fixture bars and exactly four printed
       crossbar-joint plates are installed.
 - [ ] Four identical keyed fixture links are installed.
+- [ ] Exactly one `chassis/dual-usb-c-interrupter-rail-bracket.stl` is in the
+      full pack; the installed holder retains two boards with four M1.7 × 6 mm
+      self-tapping screws and uses two M3 screws with drop-in T-nuts.
 - [ ] All 22 active and six parked channel bars are accounted for.
 - [ ] Holder, J-hooks, carrier links, and nameplate trace to the same verified
       device pack.
@@ -98,6 +101,10 @@ acceptable.
       whitening, cracking, or crushed material.
 - [ ] The fixture-board slots provide the required final centering.
 - [ ] Harness service corridors and DUT-holder access remain unobstructed.
+- [ ] The dual USB-C interrupter holder sits on the upper fixture rail exactly
+      5.0 mm edge-to-edge to the right of the left fixture-board link.
+- [ ] Both USB-C ports face the operator and accept/remove an unpowered plug
+      without contacting a link, board, rail, or the other port.
 - [ ] The placard cartridge, power-strip switch, and stacking hardware remain
       accessible.
 

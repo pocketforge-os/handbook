@@ -5,7 +5,7 @@ hide:
 
 # 4. Load both fixture bars
 
-<p class="pf-step-count">Assembly · Step 4 of 17</p>
+<p class="pf-step-count">Assembly · Step 4 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -68,6 +68,6 @@ bars in its inward horizontal groove; the full inventory is
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../03-load-depth-rails/">← Depth rails</a>
-  <span>Step 4 of 17</span>
+  <span>Step 4 of 18</span>
   <a href="../05-lay-out-lower-frame/">Next: Lower frame →</a>
 </nav>

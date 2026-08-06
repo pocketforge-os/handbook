@@ -5,7 +5,7 @@ hide:
 
 # 2. Load the four width rails
 
-<p class="pf-step-count">Assembly · Step 2 of 17</p>
+<p class="pf-step-count">Assembly · Step 2 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -65,6 +65,6 @@ loaded.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../01-learn-the-rail/">← Learn the rail</a>
-  <span>Step 2 of 17</span>
+  <span>Step 2 of 18</span>
   <a href="../03-load-depth-rails/">Next: Depth rails →</a>
 </nav>

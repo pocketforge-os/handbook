@@ -5,7 +5,7 @@ hide:
 
 # 9. Install the upper fixture bar
 
-<p class="pf-step-count">Assembly · Step 9 of 17</p>
+<p class="pf-step-count">Assembly · Step 9 of 18</p>
 
 <p class="pf-profile-banner" data-layout-id="chassis-dualbar-v1"><strong>Compatible topology:</strong> Current registered device packs <span>·</span> <code>chassis-dualbar-v1</code></p>
 
@@ -69,6 +69,6 @@ groove.
 
 <nav class="pf-step-nav" aria-label="Assembly step navigation">
   <a href="../08-build-upper-ring/">← Upper ring</a>
-  <span>Step 9 of 17</span>
+  <span>Step 9 of 18</span>
   <a href="../10-close-outer-frame/">Next: Close frame →</a>
 </nav>
