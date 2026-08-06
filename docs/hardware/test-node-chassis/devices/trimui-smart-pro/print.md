@@ -91,7 +91,7 @@ fit.
 
 ## Identify the chassis artifacts
 
-The verified 12-artifact full pack includes these continuous-bar chassis groups in addition
+The verified 14-artifact full pack includes these continuous-bar chassis groups in addition
 to the selected Smart Pro holder, hooks, carrier links, nameplate, and wire
 anchors:
 
@@ -101,6 +101,17 @@ anchors:
 - Core 05: the reusable placard holder; and
 - Side-clear joints: four dedicated 38.4 mm crossbar-joint plates; and
 - the conditional process-calibration bed.
+
+It also contains the common PETG fixture outputs:
+
+- `fixture/dut-fixture-fit-coupon.stl`: print this first to verify the
+  printer-specific pilot holes, tie slots, frame slot, and camera opening; and
+- `fixture/dut-fixture-plate.stl`: the canonical unpopulated electronics
+  mounting tray, printed flat with its standoffs upward.
+
+The BPI, USB hubs, relay/interrupter, DP100, camera, wiring, cable ties,
+screws, and other fasteners are separately supplied hardware. They are not
+embedded in the plate STL.
 
 The device group contains two 91.5 mm upper links and two 108.5 mm lower links.
 Those remain unchanged from the qualified Smart Pro. The frame uses one
@@ -138,6 +149,8 @@ use the same source-owned browser customizer:
 - [ ] Manifest verification passes with `production_eligible=false` and
       `layout_unqualified` while `tsp-bcx.21.40` remains open.
 - [ ] Every artifact stayed at 100% scale in its exported orientation.
+- [ ] The fixture fit coupon passed before committing filament to the
+      unpopulated fixture plate.
 - [ ] Count 28 short channel bars and 28 seated nuts; there are no long splice bars.
 - [ ] Both continuous fixture bars, all fixture links, the holder pack,
       placard, and wire anchors come from this same verified pack.

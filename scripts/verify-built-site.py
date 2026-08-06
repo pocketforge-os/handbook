@@ -313,10 +313,10 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
         raise SystemExit("browser catalog has no registered devices")
     slugs: set[str] = set()
     expected_counts_by_slug = {
-        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 12},
-        "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 12},
-        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 12},
-        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 12},
+        "powkiddy-x55": {"coupon": 1, "retrofit": 7, "full": 14},
+        "trimui-brick": {"coupon": 1, "retrofit": 7, "full": 14},
+        "trimui-smart-pro": {"coupon": 1, "retrofit": 7, "full": 14},
+        "trimui-smart-pro-s": {"coupon": 1, "retrofit": 7, "full": 14},
     }
     for device in devices:
         slug = device.get("slug")
@@ -393,6 +393,48 @@ def verify_browser_pack_sources(asset_dir: Path) -> dict:
                     )
                 artifact_ids.add(artifact_id)
                 outputs.add(output)
+        fixture_artifacts = {
+            artifact["id"]: artifact
+            for artifact in modes["full"]["artifacts"]
+            if artifact["id"].startswith("fixture_dut_")
+        }
+        expected_fixture_artifacts = {
+            "fixture_dut_fit_coupon": (
+                "fixture/dut-fixture-fit-coupon.stl",
+                '"fit_coupon"',
+            ),
+            "fixture_dut_plate": (
+                "fixture/dut-fixture-plate.stl",
+                '"plate"',
+            ),
+        }
+        if set(fixture_artifacts) != set(expected_fixture_artifacts):
+            raise SystemExit(f"browser fixture artifacts changed: {slug}")
+        for artifact_id, (output, part) in expected_fixture_artifacts.items():
+            artifact = fixture_artifacts[artifact_id]
+            definitions = {
+                row["name"]: row["literal"]
+                for row in artifact["definitions"]
+            }
+            if (
+                artifact["output"] != output
+                or artifact["source"]
+                != "mechanical/dut-fixture-v1/dut-fixture.scad"
+                or definitions
+                != {"PART": part, "SHOW_COMPONENTS": "false"}
+            ):
+                raise SystemExit(
+                    f"browser fixture artifact contract changed: "
+                    f"{slug}/{artifact_id}"
+                )
+        for mode_name in ("coupon", "retrofit"):
+            if any(
+                artifact["id"].startswith("fixture_dut_")
+                for artifact in modes[mode_name]["artifacts"]
+            ):
+                raise SystemExit(
+                    f"browser fixture artifact leaked into {slug}/{mode_name}"
+                )
     if slugs != set(expected_counts_by_slug):
         raise SystemExit(f"browser catalog device set changed: {sorted(slugs)!r}")
 
@@ -1669,6 +1711,10 @@ def main() -> int:
         "pinned openscad chassis source",
         "28 compact m3 channel bars",
         "four identical 71.5 mm keyed links",
+        "fixture/dut-fixture-fit-coupon.stl",
+        "fixture/dut-fixture-plate.stl",
+        "canonical unpopulated electronics mounting tray",
+        "bpi, usb hubs, relay/interrupter, dp100, camera, wiring",
         "side-clear-crossbar-joint-plate-set.stl",
         "interactive print-bed previews",
         "data-cable-anchor-customizer",

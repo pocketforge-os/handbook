@@ -9,7 +9,7 @@ handbook. No model or generated STL is uploaded.
 Choose the fit coupon first. It reproduces the production bottom-contact
 spacing while using only one low-filament bed. Use retrofit mode only when an
 existing continuous-bar chassis needs the X55 device parts and side-clear joint plates;
-use full mode for a conversion or the complete 12-artifact prototype pack. Every download
+use full mode for a conversion or the complete 14-artifact prototype pack. Every download
 includes a manifest and `SHA256SUMS`.
 
 !!! warning "Prototype pack · not production-qualified"
@@ -106,6 +106,8 @@ expected non-production reasons.
 | Output | Material | Prototype check |
 | --- | --- | --- |
 | `coupon/holder-fit-coupon.stl` | PETG | Print first; confirm bottom spacing, shelf depth, throat play, and nut capture without forcing the DUT |
+| `fixture/dut-fixture-fit-coupon.stl` | PETG | For a full chassis, print this before the plate; confirm its pilot holes, tie slots, frame slot, and camera opening |
+| `fixture/dut-fixture-plate.stl` | PETG | Canonical unpopulated electronics mounting tray; print flat with standoffs upward |
 | `device/carrier.stl` | PETG | 247 × 175 mm, flat, labels upward; color change at 3.2 mm; the 11.0 mm title is mesh-audited to stay at least 2.4 mm inside its border |
 | `device/j-hook-set.stl` | PETG | Contains 2 bottom, 2 side, and 2 top contacts; do not substitute a single-depth hook |
 | `device/carrier-link-set.stl` | ABS | Four X55-specific stack-clear links; broad face down, keys upward |
@@ -116,6 +118,10 @@ expected non-production reasons.
 
 Use 100% scale, supports disabled, and automatic orientation disabled. Follow
 the material and orientation notes in the generated manifest.
+
+The fixture plate supplies only the printable mounting geometry. Supply the
+BPI, USB hubs, relay/interrupter, DP100, camera, wiring, cable ties, screws,
+and other fasteners separately; none is embedded in the STL.
 
 ## Physical acceptance checklist
 

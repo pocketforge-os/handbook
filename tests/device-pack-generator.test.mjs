@@ -85,7 +85,7 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
   for (const device of catalog.devices) {
     assert.equal(device.modes.coupon.artifacts.length, 1);
     assert.equal(device.modes.retrofit.artifacts.length, 7);
-    assert.ok(device.modes.full.artifacts.length > 7);
+    assert.equal(device.modes.full.artifacts.length, 14);
     const fullIds = new Set(
       device.modes.full.artifacts.map((artifact) => artifact.id),
     );
@@ -94,6 +94,39 @@ test("catalog exposes every mode and a complete source-only inventory", () => {
         fullIds.has(artifact.id)),
       true,
     );
+    assert.deepEqual(
+      device.modes.full.artifacts
+        .filter((artifact) => artifact.id.startsWith("fixture_dut_"))
+        .map((artifact) => ({
+          id: artifact.id,
+          output: artifact.output,
+          source: artifact.source,
+          definitions: Object.fromEntries(
+            artifact.definitions.map(({ name, literal }) => [name, literal]),
+          ),
+        })),
+      [
+        {
+          id: "fixture_dut_fit_coupon",
+          output: "fixture/dut-fixture-fit-coupon.stl",
+          source: "mechanical/dut-fixture-v1/dut-fixture.scad",
+          definitions: { PART: '"fit_coupon"', SHOW_COMPONENTS: "false" },
+        },
+        {
+          id: "fixture_dut_plate",
+          output: "fixture/dut-fixture-plate.stl",
+          source: "mechanical/dut-fixture-v1/dut-fixture.scad",
+          definitions: { PART: '"plate"', SHOW_COMPONENTS: "false" },
+        },
+      ],
+    );
+    for (const mode of ["coupon", "retrofit"]) {
+      assert.equal(
+        device.modes[mode].artifacts.some((artifact) =>
+          artifact.id.startsWith("fixture_dut_")),
+        false,
+      );
+    }
   }
 });
 
@@ -151,7 +184,7 @@ test("Powkiddy X55 remains coupon-first and explicitly unqualified", () => {
   assert.equal(x55.layout.qualification.acceptance_ref, "tsp-bcx.21.40");
   assert.equal(x55.modes.coupon.artifacts.length, 1);
   assert.equal(x55.modes.retrofit.artifacts.length, 7);
-  assert.equal(x55.modes.full.artifacts.length, 12);
+  assert.equal(x55.modes.full.artifacts.length, 14);
   assert.deepEqual(x55.modes.coupon.nonproduction_reasons, [
     "coupon_only",
     "holder_unqualified",

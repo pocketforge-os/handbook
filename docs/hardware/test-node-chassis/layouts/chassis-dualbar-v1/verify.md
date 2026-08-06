@@ -15,8 +15,12 @@ permitted for the camera-framing gate.
       non-production until its physical gate is recorded.
 - [ ] It selects the intended device slug and that device's registered
       `chassis-dualbar-*` layout.
-- [ ] The full plan contains 12 artifacts and no spliced-upright or movable
+- [ ] The full plan contains 14 artifacts and no spliced-upright or movable
       fixture-frame artifact.
+- [ ] The full plan contains exactly one
+      `fixture/dut-fixture-fit-coupon.stl` and one
+      `fixture/dut-fixture-plate.stl`; the coupon passed before the
+      unpopulated plate was printed.
 - [ ] Two continuous 306 mm fixture bars and exactly four printed
       crossbar-joint plates are installed.
 - [ ] Four identical keyed fixture links are installed.

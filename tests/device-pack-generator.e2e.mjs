@@ -176,6 +176,16 @@ async function verifyPack(downloadPath, device) {
     manifest.artifacts.map((artifact) => artifact.path),
     device.modes.full.artifacts.map((artifact) => artifact.output),
   );
+  assert.equal(manifest.artifacts.length, 14);
+  assert.deepEqual(
+    manifest.artifacts
+      .filter((artifact) => artifact.id.startsWith("fixture_dut_"))
+      .map((artifact) => artifact.path),
+    [
+      "fixture/dut-fixture-fit-coupon.stl",
+      "fixture/dut-fixture-plate.stl",
+    ],
+  );
 
   const checksumRecords = new Map(
     entries
@@ -568,6 +578,7 @@ try {
     );
     await modeSelect.selectOption("full");
     const expectedCount = device.modes.full.artifacts.length;
+    assert.equal(expectedCount, 14);
     assert.equal(
       await inventory.locator("[data-artifact-id]").count(),
       expectedCount,
