@@ -31,9 +31,9 @@
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
     "powkiddy-x55/device_carrier": {
-      "browser_normalized_sha256": "c73c79a05494fe157b608a133c7e776bf9087144f0d3bf5603ed45ee4698be6c",
+      "browser_normalized_sha256": "724e73712b474528bb104652a95c066875a330e24298b13e28f740d9379f7d4f",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "0611b055dab3d54df5516a5e1251adbf68f3d99999bc3136a78e91d37f359900"
+      "source_normalized_sha256": "261ae4213867b9e4221df2d324ad96adc74f35ea5950b16e7d3bfd5fa2a3be6a"
     },
     "powkiddy-x55/device_carrier_links": {
       "browser_normalized_sha256": "56d7c035edc26a77e5e09f7ec74fc3ae4ddb7f38292095fc4cf9c22e8eadb3a0",
@@ -91,9 +91,9 @@
       "source_normalized_sha256": "ba6209606b3927a56d865571c41a5f8c45ac6d350d8680780499983b5c575cc2"
     },
     "trimui-brick/device_carrier": {
-      "browser_normalized_sha256": "8135739acb8a60aa0dd01cffa489de8a109cce5e4c590b1cd50c9d501a349aa4",
+      "browser_normalized_sha256": "e06c312b2c29f57f07d4f0411ce485dd2280435da79d68f5d31b2c5c24656280",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "e0fd0a8906a8ef07d1e1dc6979d4c0f7a5061614eb9f7844ad3359f4a070431a"
+      "source_normalized_sha256": "32ee28433c62817e46be750fd31d4f084ae33cc2896f37c5c36b251ad48009c9"
     },
     "trimui-brick/device_carrier_links": {
       "browser_normalized_sha256": "8aa1617a3afaef37f5f3d535c9c1114df7f3601b6d1d5fb3c1d47d22a1c6bbf5",
@@ -153,7 +153,7 @@
     "trimui-smart-pro-s/device_carrier": {
       "browser_normalized_sha256": "fe5e1cda6ad1f6a54c046d18fc524c6305d7313b0a371c2a3ce06d0da6933a7d",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "d7e2f994c17aca0000d390cb84e8e02c28598489ba506886ff59090a0e68b19e"
+      "source_normalized_sha256": "de946b5f54542c56eb7d729facfce5492ca48bbd5f16b13a227f658eaab8404c"
     },
     "trimui-smart-pro-s/device_carrier_links": {
       "browser_normalized_sha256": "3da11c201c7f445bfa34317209884761e2420c7d03e29b4db0615e83a88600ac",
@@ -213,7 +213,7 @@
     "trimui-smart-pro/device_carrier": {
       "browser_normalized_sha256": "38f8d84fc8eb819a1a802fade1b39d35edbeb3870fc2a1b3287fcc2621d4f811",
       "output": "device/carrier.stl",
-      "source_normalized_sha256": "de230ca2490e20896e61109ea3cd5201633e666a67955d8986c7be94879995e2"
+      "source_normalized_sha256": "16a7324ffc892f267517ca5abeb105a754572349c1024fb3c0246a80fc1065e1"
     },
     "trimui-smart-pro/device_carrier_links": {
       "browser_normalized_sha256": "3da11c201c7f445bfa34317209884761e2420c7d03e29b4db0615e83a88600ac",
@@ -264,7 +264,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "97e0027482d205ca547c10bec73883fbf60c8b9f",
+    "commit": "47cac16986ef746b4de4e74c7eb423557722d5bb",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

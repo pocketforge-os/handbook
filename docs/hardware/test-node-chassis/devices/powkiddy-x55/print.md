@@ -106,7 +106,7 @@ expected non-production reasons.
 | Output | Material | Prototype check |
 | --- | --- | --- |
 | `coupon/holder-fit-coupon.stl` | PETG | Print first; confirm bottom spacing, shelf depth, throat play, and nut capture without forcing the DUT |
-| `device/carrier.stl` | PETG | 247 × 175 mm, flat, labels upward; color change at 3.2 mm |
+| `device/carrier.stl` | PETG | 247 × 175 mm, flat, labels upward; color change at 3.2 mm; the 11.0 mm title is mesh-audited to stay at least 2.4 mm inside its border |
 | `device/j-hook-set.stl` | PETG | Contains 2 bottom, 2 side, and 2 top contacts; do not substitute a single-depth hook |
 | `device/carrier-link-set.stl` | ABS | Four X55-specific stack-clear links; broad face down, keys upward |
 | `device/device-nameplate.stl` | ABS | Confirm the complete “Powkiddy X55” label is legible |
