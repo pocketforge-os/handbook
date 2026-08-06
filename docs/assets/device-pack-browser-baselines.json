@@ -55,6 +55,16 @@
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
+    "powkiddy-x55/fixture_dut_fit_coupon": {
+      "browser_normalized_sha256": "b0dbdc52b7e49c734df548788561c978a20a41dcdf67fd0d8323f80cfb6a69c3",
+      "output": "fixture/dut-fixture-fit-coupon.stl",
+      "source_normalized_sha256": "92db75b0bdf6f49ca70bf27c2f4e5af96a658cd93a9c5c0d4d03f7a25ca5692d"
+    },
+    "powkiddy-x55/fixture_dut_plate": {
+      "browser_normalized_sha256": "cf6e8f7096beeae345b768db08fbd4ebe79db97c1a8e7fa19a3241382d48a22c",
+      "output": "fixture/dut-fixture-plate.stl",
+      "source_normalized_sha256": "1fd31d7298cbec9febeb6257f99db74ca36fa5b8750153a050d7b6957c65583d"
+    },
     "powkiddy-x55/holder_fit_coupon": {
       "browser_normalized_sha256": "1c89c22e48dcdbd3b65cfeedfa22678a07ec70a61e20150175a0d5a16ec9571f",
       "output": "coupon/holder-fit-coupon.stl",
@@ -114,6 +124,16 @@
       "browser_normalized_sha256": "99e6f78ae61307c03b2e060f1337b78f73df46d74f1762f772ee9939192f7c7c",
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
+    },
+    "trimui-brick/fixture_dut_fit_coupon": {
+      "browser_normalized_sha256": "b0dbdc52b7e49c734df548788561c978a20a41dcdf67fd0d8323f80cfb6a69c3",
+      "output": "fixture/dut-fixture-fit-coupon.stl",
+      "source_normalized_sha256": "92db75b0bdf6f49ca70bf27c2f4e5af96a658cd93a9c5c0d4d03f7a25ca5692d"
+    },
+    "trimui-brick/fixture_dut_plate": {
+      "browser_normalized_sha256": "cf6e8f7096beeae345b768db08fbd4ebe79db97c1a8e7fa19a3241382d48a22c",
+      "output": "fixture/dut-fixture-plate.stl",
+      "source_normalized_sha256": "1fd31d7298cbec9febeb6257f99db74ca36fa5b8750153a050d7b6957c65583d"
     },
     "trimui-brick/holder_fit_coupon": {
       "browser_normalized_sha256": "c17c94a076dab271fee06c33eb42c114e52b7e0832e32c1b08d398ab182ff638",
@@ -175,6 +195,16 @@
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
+    "trimui-smart-pro-s/fixture_dut_fit_coupon": {
+      "browser_normalized_sha256": "b0dbdc52b7e49c734df548788561c978a20a41dcdf67fd0d8323f80cfb6a69c3",
+      "output": "fixture/dut-fixture-fit-coupon.stl",
+      "source_normalized_sha256": "92db75b0bdf6f49ca70bf27c2f4e5af96a658cd93a9c5c0d4d03f7a25ca5692d"
+    },
+    "trimui-smart-pro-s/fixture_dut_plate": {
+      "browser_normalized_sha256": "cf6e8f7096beeae345b768db08fbd4ebe79db97c1a8e7fa19a3241382d48a22c",
+      "output": "fixture/dut-fixture-plate.stl",
+      "source_normalized_sha256": "1fd31d7298cbec9febeb6257f99db74ca36fa5b8750153a050d7b6957c65583d"
+    },
     "trimui-smart-pro-s/holder_fit_coupon": {
       "browser_normalized_sha256": "f23c11a5fb6fd20d1743f4ff4179380fe7f76c7aff1ba5f84f08c856abb3520d",
       "output": "coupon/holder-fit-coupon.stl",
@@ -235,6 +265,16 @@
       "output": "device/wire-anchor-set.stl",
       "source_normalized_sha256": "dd40ffd1b0903eccaf5cd44fec9c1454466473160a59c7f44c49846ec706c4ee"
     },
+    "trimui-smart-pro/fixture_dut_fit_coupon": {
+      "browser_normalized_sha256": "b0dbdc52b7e49c734df548788561c978a20a41dcdf67fd0d8323f80cfb6a69c3",
+      "output": "fixture/dut-fixture-fit-coupon.stl",
+      "source_normalized_sha256": "92db75b0bdf6f49ca70bf27c2f4e5af96a658cd93a9c5c0d4d03f7a25ca5692d"
+    },
+    "trimui-smart-pro/fixture_dut_plate": {
+      "browser_normalized_sha256": "cf6e8f7096beeae345b768db08fbd4ebe79db97c1a8e7fa19a3241382d48a22c",
+      "output": "fixture/dut-fixture-plate.stl",
+      "source_normalized_sha256": "1fd31d7298cbec9febeb6257f99db74ca36fa5b8750153a050d7b6957c65583d"
+    },
     "trimui-smart-pro/holder_fit_coupon": {
       "browser_normalized_sha256": "f23c11a5fb6fd20d1743f4ff4179380fe7f76c7aff1ba5f84f08c856abb3520d",
       "output": "coupon/holder-fit-coupon.stl",
@@ -264,7 +304,7 @@
   },
   "schema": "pocketforge-browser-device-pack-baselines-v1",
   "source": {
-    "commit": "47cac16986ef746b4de4e74c7eb423557722d5bb",
+    "commit": "dc3aaada2ea1b6d0bb21b49b2020f6eeeaf69f68",
     "dirty": false,
     "repository": "https://github.com/pocketforge-os/test-node-hw"
   }

@@ -174,7 +174,7 @@ Stop if any value differs.
 
 | Setting | Value |
 | --- | --- |
-| Material | ABS |
+| Material | ABS for chassis hardware; PETG for holder and fixture artifacts as recorded in the manifest |
 | Nozzle | 0.8 mm |
 | Layer height | 0.4 mm |
 | Perimeters | At least 3 |
@@ -200,11 +200,17 @@ The exported placement is part of the geometry contract.
 | Pack output | Expected contents | Special handling |
 | --- | --- | --- |
 | `calibration/chassis-process-calibration.stl` | Rail-key, channel-bar, and placard coupons | Conditional after a process or interface change |
+| `fixture/dut-fixture-fit-coupon.stl` | Printer-specific fixture pilot holes, tie slots, frame slot, and camera opening | Print and accept before spending a full plate of filament |
+| `fixture/dut-fixture-plate.stl` | Canonical unpopulated electronics mounting tray | PETG; print flat with standoffs upward |
 | `chassis/core-01-ironed-interfaces.stl` | 28 compact M3 channel bars | Iron topmost channel-contact surfaces |
 | `chassis/core-02-fixture-links.stl` | Four identical 71.5 mm keyed links | Keep every exported broad face on the bed and every key upward |
 | `chassis/side-clear-crossbar-joint-plate-set.stl` | Four identical 38.4 mm side-clear joint plates | Print once per chassis; broad face down, with supports disabled |
 | `chassis/core-04-frame-hardware.stl` | Stacking, placard, and power-strip hardware | Inspect every slot and through-hole |
 | `chassis/core-05-placard-holder.stl` | One reusable placard holder | Check the slide channel before installing it |
+
+The fixture plate contains printable mounting geometry, not the electronics
+shown in the assembly model. Supply the BPI, USB hubs, relay/interrupter,
+DP100, camera, wiring, cable ties, screws, and other fasteners separately.
 
 ### Interactive print-bed previews
 
@@ -355,6 +361,8 @@ Print the 2.4 mm nameplate body in white ABS. Add a filament change at
 - [ ] The manifest is non-production with `layout_unqualified` while
       `tsp-bcx.21.38` remains open.
 - [ ] Every bed stayed at 100% scale in its exported support-free orientation.
+- [ ] The fixture fit coupon passed before committing filament to the
+      unpopulated fixture plate.
 - [ ] Core 01 contains exactly 28 compact channel bars.
 - [ ] Core 02 contains four identical keyed fixture links.
 - [ ] The dedicated side-clear bed contains four identical 38.4 mm joint
