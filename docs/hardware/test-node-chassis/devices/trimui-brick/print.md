@@ -104,7 +104,7 @@ Stop if `manifest.json` does not identify `trimui-brick`,
 | Output | Material | Prototype check |
 | --- | --- | --- |
 | `coupon/holder-fit-coupon.stl` | PETG | Print first; confirm the stepped-shell contacts without forcing the DUT |
-| `device/carrier.stl` | PETG | 180 × 205 mm, flat, labels upward; color change at 3.2 mm |
+| `device/carrier.stl` | PETG | 180 × 205 mm, flat, labels upward; color change at 3.2 mm; the 8.5 mm title is mesh-audited to stay at least 2.4 mm inside its border |
 | `device/j-hook-set.stl` | PETG | Contains 2 rear-only bottom supports, 2 side hooks, and 1 upper hook |
 | `device/carrier-link-set.stl` | ABS | Four Brick-specific links; broad face down, keys upward |
 | `device/device-nameplate.stl` | ABS | Confirm the complete “TrimUI Brick / TG3040” label is legible |
