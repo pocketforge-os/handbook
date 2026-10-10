@@ -48,6 +48,7 @@ flowchart LR
 | [Hardware](hardware/index.md) | Model the handheld, generate its DUT holder, build the test-node chassis, and integrate the test node |
 | [Lab & infrastructure](lab/index.md) | labgrid coordinator, relay power, networking |
 | [Build & flash](build-flash/index.md) | The `pf build` pipeline, the OTA→SD→FEL flashing ladder |
+| [Virtual device (pfvd)](virtual-device/index.md) | The 3D simulator: what it proves, the device and runtime tiers, scripting it |
 | [⭐ Bring up a device](bring-up-checklist.md) | The end-to-end master checklist |
 | [Reference](reference/index.md) | Glossary, troubleshooting, recovery runbooks |
 | [Contributing](contributing/index.md) | Doc style guide, how to add a page |
