@@ -133,6 +133,7 @@ nav:
       - Flashing ladder (OTA→SD→FEL): build-flash/flashing-ladder.md
   - Input bring-up & calibration:
       - input-bringup/index.md
+  - Virtual device (pfvd): virtual-device/index.md
   - ⭐ Bring up a device: bring-up-checklist.md
   - Reference:
       - reference/index.md
