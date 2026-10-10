@@ -144,7 +144,7 @@ unavailable).
   boundary is the user's own account, checked with `SO_PEERCRED`.
 - **The event log.** Every state-changing action, from any client, is one line
   of `events.jsonl` with its source (`gui`, `cli`, `pad`, `scenario`, `core`,
-  `app`), so a clicked press and a scripted press look the same.
+  `app`, `serial`), so a clicked press and a scripted press look the same.
   `pfvd-cli --json log tail --follow` streams it as an event bus.
 
 A raw JSON-RPC exchange from Python, against a session on the clamshell test
